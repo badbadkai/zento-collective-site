@@ -40,7 +40,7 @@ export const Hero = () => {
         </div>
 
         <p className="text-sm text-muted-foreground">
-          Free to join. No signals. No spam. Just structure.
+          Free to join -- No shortcuts, just structure.
         </p>
       </div>
     </section>;
