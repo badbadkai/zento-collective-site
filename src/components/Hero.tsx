@@ -1,19 +1,14 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-equity-curve.jpg";
-
 export const Hero = () => {
-  return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
-      <div 
-        className="absolute inset-0 opacity-30"
-        style={{
-          backgroundImage: `url(${heroImage})`,
-          backgroundSize: 'cover',
-          backgroundPosition: 'center',
-        }}
-      />
+      <div className="absolute inset-0 opacity-30" style={{
+      backgroundImage: `url(${heroImage})`,
+      backgroundSize: 'cover',
+      backgroundPosition: 'center'
+    }} />
       
       {/* Gradient overlay */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
@@ -24,10 +19,7 @@ export const Hero = () => {
           Precision Is a Habit,<br />Not a Signal.
         </h1>
         
-        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance">
-          The Studio trains price-action traders to systemize execution, remove emotion, 
-          and operate like a process — not a guess.
-        </p>
+        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance">The Studio trains price-action traders to systemize execution, remove emotion, and operate like a process — not a guess.</p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button variant="hero" size="lg" className="group">
@@ -43,6 +35,5 @@ export const Hero = () => {
           Free to join. No signals. No spam — just structure.
         </p>
       </div>
-    </section>
-  );
+    </section>;
 };
