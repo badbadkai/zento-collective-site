@@ -19,7 +19,9 @@ export const Hero = () => {
           Precision Is a Habit,<br />Not a Signal.
         </h1>
         
-        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance">The Studio trains price-action traders to systemize execution, remove emotion, and operate like a process — not a guess.</p>
+        <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance">
+          <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">The Studio</span> trains price-action traders to systemize execution, remove emotion, and operate like a process — not a guess.
+        </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button variant="hero" size="lg" className="group">

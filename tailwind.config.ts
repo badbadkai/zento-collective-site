@@ -78,6 +78,10 @@ export default {
           "0%": { strokeDashoffset: "1000" },
           "100%": { strokeDashoffset: "0" },
         },
+        "shimmer": {
+          "0%": { backgroundPosition: "-200% center" },
+          "100%": { backgroundPosition: "200% center" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -85,6 +89,7 @@ export default {
         "fade-in": "fade-in 0.6s ease-out",
         "glow": "glow 3s ease-in-out infinite",
         "line-draw": "line-draw 2s ease-out forwards",
+        "shimmer": "shimmer 3s ease-in-out infinite",
       },
     },
   },
