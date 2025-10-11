@@ -21,7 +21,12 @@ export const Hero = () => {
           alt="The Studio Logo" 
           className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 animate-fade-in"
         />
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
+        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance relative">
+          {/* Animated checkmark projectile */}
+          <span className="absolute inset-0 pointer-events-none">
+            <span className="absolute w-3 h-3 md:w-4 md:h-4 bg-primary rounded-full animate-checkmark-path shadow-[0_0_20px_hsl(25_95%_53%/0.8)]" 
+                  style={{ left: '50%', top: '50%' }} />
+          </span>
           Performance begins with yourself.
         </h1>
         
