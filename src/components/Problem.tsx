@@ -43,7 +43,7 @@ export const Problem = () => {
                 className="flex flex-col items-center text-center p-8 rounded-lg bg-card border border-border hover:border-primary transition-studio animate-fade-in"
                 style={{ animationDelay: `${index * 0.2}s` }}
               >
-                <div className="w-24 h-24 mb-6 rounded-lg flex items-center justify-center bg-primary/10">
+                <div className="w-24 h-24 mb-6 rounded-lg flex items-center justify-center bg-primary/10 animate-pulse">
                   <IconComponent className="w-12 h-12 text-primary" strokeWidth={1.5} />
                 </div>
                 <h3 className="text-xl font-bold mb-3">{point.title}</h3>
