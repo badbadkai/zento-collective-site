@@ -71,8 +71,8 @@ export default {
           "100%": { opacity: "1", transform: "translateY(0)" },
         },
         "glow": {
-          "0%, 100%": { filter: "drop-shadow(0 0 20px hsl(211 100% 50% / 0.5))" },
-          "50%": { filter: "drop-shadow(0 0 30px hsl(211 100% 50% / 0.8))" },
+          "0%, 100%": { filter: "drop-shadow(0 0 20px hsl(25 95% 53% / 0.5))" },
+          "50%": { filter: "drop-shadow(0 0 30px hsl(25 95% 53% / 0.8))" },
         },
         "line-draw": {
           "0%": { strokeDashoffset: "1000" },
