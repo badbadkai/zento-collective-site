@@ -3,6 +3,7 @@ import { Hero } from "@/components/Hero";
 import { Problem } from "@/components/Problem";
 import { Solution } from "@/components/Solution";
 import { Journal } from "@/components/Journal";
+import { Waitlist } from "@/components/Waitlist";
 import { Community } from "@/components/Community";
 import { Credibility } from "@/components/Credibility";
 import { FinalCTA } from "@/components/FinalCTA";
@@ -16,6 +17,7 @@ const Index = () => {
       <Problem />
       <Solution />
       <Journal />
+      <Waitlist />
       <Community />
       <Credibility />
       <FinalCTA />
