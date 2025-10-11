@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-equity-curve.jpg";
+import logo from "@/assets/logo.png";
 export const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
@@ -15,6 +16,11 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="container-studio relative z-10 text-center animate-fade-in">
+        <img 
+          src={logo} 
+          alt="The Studio Logo" 
+          className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 animate-fade-in"
+        />
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
           Precision Is a Habit,<br />Not a Signal.
         </h1>
