@@ -26,7 +26,7 @@ export const Problem = () => {
       <div className="container-studio">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Inconsistency, Not Ignorance,<br />Destroys Traders.
+            Discipline fails when systems do not exist
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
             You know your setups. You know your rules. Yet emotion, fatigue, and overconfidence ruin execution.
