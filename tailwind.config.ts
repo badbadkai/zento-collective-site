@@ -84,28 +84,29 @@ export default {
         },
         "checkmark-path": {
           "0%": { 
-            transform: "translate(-40%, -30%) scale(0.8)",
+            transform: "translate(120%, 80%) scale(0.8)",
             opacity: "0"
           },
-          "10%": {
+          "5%": {
             opacity: "1"
           },
-          "30%": { 
-            transform: "translate(0%, 50%) scale(1)",
+          "25%": { 
+            transform: "translate(100%, 100%) scale(1)",
             opacity: "1"
           },
           "50%": { 
-            transform: "translate(80%, -40%) scale(0.9)",
+            transform: "translate(40%, 20%) scale(1)",
             opacity: "1"
           },
-          "70%": {
+          "75%": { 
+            transform: "translate(20%, -20%) scale(0.9)",
             opacity: "1"
           },
-          "85%": {
-            opacity: "0.5"
+          "95%": {
+            opacity: "0.3"
           },
           "100%": { 
-            transform: "translate(-40%, -30%) scale(0.8)",
+            transform: "translate(120%, 80%) scale(0.8)",
             opacity: "0"
           }
         },
