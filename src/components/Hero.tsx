@@ -19,7 +19,7 @@ export const Hero = () => {
         <img 
           src={logo} 
           alt="The Studio Logo" 
-          className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 animate-fade-in"
+          className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 animate-fade-in animate-spin-slow"
         />
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
           Performance begins with yourself.

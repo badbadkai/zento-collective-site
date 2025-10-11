@@ -82,6 +82,10 @@ export default {
           "0%": { backgroundPosition: "-200% center" },
           "100%": { backgroundPosition: "200% center" },
         },
+        "spin-slow": {
+          "0%": { transform: "rotate(0deg)" },
+          "100%": { transform: "rotate(360deg)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -90,6 +94,7 @@ export default {
         "glow": "glow 3s ease-in-out infinite",
         "line-draw": "line-draw 2s ease-out forwards",
         "shimmer": "shimmer 3s ease-in-out infinite",
+        "spin-slow": "spin-slow 8s linear infinite",
       },
     },
   },
