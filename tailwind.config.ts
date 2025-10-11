@@ -82,34 +82,6 @@ export default {
           "0%": { backgroundPosition: "-200% center" },
           "100%": { backgroundPosition: "200% center" },
         },
-        "checkmark-path": {
-          "0%": { 
-            transform: "translate(120%, 80%) scale(0.8)",
-            opacity: "0"
-          },
-          "5%": {
-            opacity: "1"
-          },
-          "25%": { 
-            transform: "translate(100%, 100%) scale(1)",
-            opacity: "1"
-          },
-          "50%": { 
-            transform: "translate(40%, 20%) scale(1)",
-            opacity: "1"
-          },
-          "75%": { 
-            transform: "translate(20%, -20%) scale(0.9)",
-            opacity: "1"
-          },
-          "95%": {
-            opacity: "0.3"
-          },
-          "100%": { 
-            transform: "translate(120%, 80%) scale(0.8)",
-            opacity: "0"
-          }
-        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -118,7 +90,6 @@ export default {
         "glow": "glow 3s ease-in-out infinite",
         "line-draw": "line-draw 2s ease-out forwards",
         "shimmer": "shimmer 3s ease-in-out infinite",
-        "checkmark-path": "checkmark-path 3s ease-in-out infinite",
       },
     },
   },
