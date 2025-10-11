@@ -31,7 +31,7 @@ export const Hero = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button variant="hero" size="lg" className="group">
-            <span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Join The Studio Free</span>
+            <span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Join the Waitlist</span>
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
           <Button variant="accent" size="lg">
