@@ -19,11 +19,6 @@ export const Credibility = () => {
     },
   ];
 
-  const stats = [
-    "500+ traders in structured performance cohort.",
-    "Average daily logging: 6 minutes per session.",
-  ];
-
   return (
     <section className="section-spacing">
       <div className="container-studio">
@@ -55,17 +50,6 @@ export const Credibility = () => {
           ))}
         </div>
 
-        <div className="flex flex-col md:flex-row gap-8 justify-center items-center">
-          {stats.map((stat, index) => (
-            <div
-              key={index}
-              className="px-8 py-4 rounded-lg bg-muted text-center animate-fade-in"
-              style={{ animationDelay: `${0.6 + index * 0.2}s` }}
-            >
-              <p className="text-sm font-medium">{stat}</p>
-            </div>
-          ))}
-        </div>
       </div>
     </section>
   );
