@@ -1,7 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import heroImage from "@/assets/hero-equity-curve.jpg";
-import logo from "@/assets/logo.png";
 export const Hero = () => {
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
@@ -16,13 +15,8 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="container-studio relative z-10 text-center animate-fade-in">
-        <img 
-          src={logo} 
-          alt="The Studio Logo" 
-          className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 animate-fade-in"
-        />
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
-          Performance begins with yourself.
+          Precision Is a Habit,<br />Not a Signal.
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance">
@@ -31,7 +25,7 @@ export const Hero = () => {
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
           <Button variant="hero" size="lg" className="group">
-            <span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Join The Studio Free</span>
+            <span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">The Studio helps traders achieve peak performance through cognitive restructuring and process-driven executions</span>
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
           <Button variant="accent" size="lg">
