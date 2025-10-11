@@ -6,18 +6,18 @@ export const Solution = () => {
   const features = [
     {
       icon: BookOpen,
-      title: "Structured Journaling",
-      description: "Log, review, and iterate daily.",
+      title: "Structured Reflection",
+      description: "Daily decision logging with cognitive tagging.",
     },
     {
       icon: TrendingUp,
-      title: "Performance Metrics",
-      description: "Win rate, expectancy, and R-multiple tracking.",
+      title: "Quantified Behavior",
+      description: "Metrics that measure execution precision and bias frequency.",
     },
     {
       icon: Users,
-      title: "Accountability Loop",
-      description: "Peer review and system refinement with traders who treat process as edge.",
+      title: "Feedback Systems",
+      description: "Peer calibration and process refinement loops.",
     },
   ];
 
@@ -26,11 +26,10 @@ export const Solution = () => {
       <div className="container-studio">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Trade With Structure.<br />Refine With Data.
+            Structure Converts Thought Into Consistency
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            The Studio transforms how you operate. Instead of reacting to the market, 
-            you follow a designed system — reinforced by community, metrics, and cognitive discipline.
+            The Studio applies behavioral science to help traders regulate decision-making, automate discipline, and translate self-awareness into structured execution.
           </p>
         </div>
 
@@ -52,7 +51,7 @@ export const Solution = () => {
 
         <div className="text-center">
           <Button variant="hero" size="lg" className="group">
-            Join the Community
+            Join The Studio Free
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
         </div>

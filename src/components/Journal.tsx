@@ -9,25 +9,24 @@ export const Journal = () => {
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Your Trading Data,<br />Mechanically Organized.
+              Your Behavior, Quantified
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Our Notion-based Studio Journal converts every trade into measurable insight. 
-              Track execution, analyze setups, and see what your data actually says about your behavior.
+              The Studio Journal tracks decision data, bias frequency, and performance metrics — transforming subjective reflection into measurable cognitive improvement.
             </p>
 
             <ul className="space-y-4 mb-8">
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                <p className="text-foreground">Auto-calculated metrics for accuracy and expectancy</p>
+                <p className="text-foreground">Automated performance calculations and expectancy tracking</p>
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                <p className="text-foreground">Emotional tagging system to track bias</p>
+                <p className="text-foreground">Cognitive tagging to identify recurring bias patterns</p>
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-primary mt-2 flex-shrink-0" />
-                <p className="text-foreground">Simple enough to fill in daily without friction</p>
+                <p className="text-foreground">Low-friction daily input designed for sustained use</p>
               </li>
             </ul>
 

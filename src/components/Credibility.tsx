@@ -4,24 +4,24 @@ export const Credibility = () => {
   const pillars = [
     {
       icon: Database,
-      title: "Data Discipline",
-      description: "Every decision recorded, reviewed, refined.",
+      title: "Feedback Architecture",
+      description: "Continuous measurement of decision quality and execution precision.",
     },
     {
       icon: Brain,
-      title: "Cognitive Control",
-      description: "Systems that reduce emotional variance.",
+      title: "Behavioral Regulation",
+      description: "Cognitive frameworks that minimize bias-driven errors.",
     },
     {
       icon: Users2,
-      title: "Peer Calibration",
-      description: "Learn from other process-driven traders.",
+      title: "Collective Intelligence",
+      description: "Shared process refinement through structured peer review.",
     },
   ];
 
   const stats = [
-    "Over 500 traders joined the early access waitlist.",
-    "Average journaling time per day: 6 minutes.",
+    "500+ traders in structured performance cohort.",
+    "Average daily logging: 6 minutes per session.",
   ];
 
   return (
@@ -29,14 +29,13 @@ export const Credibility = () => {
       <div className="container-studio">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Built on Process,<br />Not Promises.
+            Grounded in Science,<br />Designed for Execution
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-            The Studio applies principles from cognitive psychology, habit formation, 
-            and performance science to the craft of trading.
+            Built on cognitive-behavioral principles, The Studio translates research into practical systems for measurable performance improvement.
           </p>
           <p className="text-xl font-medium">
-            You don't need motivation — you need a mechanism.
+            Performance is trained, not found.
           </p>
         </div>
 

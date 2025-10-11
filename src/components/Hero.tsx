@@ -26,7 +26,7 @@ export const Hero = () => {
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance">
-          <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">The Studio</span> helps traders achieve peak performance through cognitive restructuring and process-driven executions.
+          <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">The Studio</span> helps traders achieve peak performance through cognitive restructuring and process-driven execution grounded in behavioral science.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
@@ -40,7 +40,7 @@ export const Hero = () => {
         </div>
 
         <p className="text-sm text-muted-foreground">
-          Free to join. No signals. No spam — just structure.
+          Free to join. No signals. No spam. Just structure.
         </p>
       </div>
     </section>;

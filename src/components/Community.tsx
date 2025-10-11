@@ -5,15 +5,15 @@ export const Community = () => {
   const channels = [
     {
       name: "#charts and #setups",
-      description: "Daily market structure sharing.",
+      description: "Market structure analysis and execution review.",
     },
     {
       name: "#journals",
-      description: "Trade logs and weekly performance posts.",
+      description: "Performance logs and cognitive pattern tracking.",
     },
     {
       name: "#education",
-      description: "Price-action and mindset materials curated weekly.",
+      description: "Behavioral frameworks and process design resources.",
     },
   ];
 
@@ -22,11 +22,10 @@ export const Community = () => {
       <div className="container-studio">
         <div className="text-center mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            A Network of<br />Disciplined Operators.
+            Calibrate Performance With Precision
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">
-            Inside The Studio Discord, traders share trade reviews, refine their routines, 
-            and build mechanical consistency through repetition and feedback.
+            Join a network of traders applying neuroscience-based frameworks to refine process control and reduce behavioral variance.
           </p>
         </div>
 
