@@ -22,7 +22,7 @@ export const Hero = () => {
           className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 animate-fade-in"
         />
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
-          Performance Begins with a Process
+          Performance begins with yourself.
         </h1>
         
         <p className="text-xl md:text-2xl text-muted-foreground mb-12 max-w-3xl mx-auto text-balance">
