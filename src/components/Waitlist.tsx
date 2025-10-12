@@ -10,11 +10,7 @@ export const Waitlist = () => {
           </h2>
           
           <p className="text-xl md:text-2xl text-foreground mb-8 font-medium">
-            The Studio is building systems that apply neuroscience and behavioral data to trading performance — structured tools designed to train consistency, decision control, and measurable improvement.
-          </p>
-          
-          <p className="text-lg text-muted-foreground leading-relaxed">
-            Your behavior is the edge. Join early to access research-based frameworks and data-driven tools engineered for traders who value precision over emotion.
+            Structured tools designed to train consistency, decision control, and measurable improvement.
           </p>
         </div>
 
