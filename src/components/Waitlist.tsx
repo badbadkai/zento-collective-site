@@ -10,7 +10,7 @@ export const Waitlist = () => {
           </h2>
           
           <p className="text-xl md:text-2xl text-foreground mb-8 font-medium">
-            Turn behaviour into your edge. What's your excuse?
+            Turn behaviour into your edge. No excuses.
           </p>
         </div>
 
