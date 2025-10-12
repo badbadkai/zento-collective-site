@@ -10,7 +10,7 @@ export const Waitlist = () => {
           </h2>
           
           <p className="text-xl md:text-2xl text-foreground mb-8 font-medium">
-            Structured tools designed to train consistency, decision control, and measurable improvement.
+            Turn behaviour into your edge. What's your excuse?
           </p>
         </div>
 
