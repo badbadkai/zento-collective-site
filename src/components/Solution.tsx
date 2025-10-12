@@ -50,8 +50,16 @@ export const Solution = () => {
         </div>
 
         <div className="text-center">
-          <Button variant="hero" size="lg" className="group">
-            Join The Studio Free
+          <Button 
+            variant="hero" 
+            size="lg" 
+            className="group"
+            onClick={() => {
+              const waitlistSection = document.getElementById('waitlist');
+              waitlistSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
+            }}
+          >
+            Join the Waitlist Now
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
         </div>
