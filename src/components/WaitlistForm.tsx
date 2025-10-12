@@ -147,9 +147,9 @@ export const WaitlistForm = () => {
                 name="fullName"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg">Full Name</FormLabel>
+                    <FormLabel className="text-lg">Name</FormLabel>
                     <FormControl>
-                      <Input placeholder="Your full name" {...field} />
+                      <Input placeholder="Your name" {...field} />
                     </FormControl>
                     <FormMessage />
                   </FormItem>
