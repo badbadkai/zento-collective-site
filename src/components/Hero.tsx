@@ -39,7 +39,7 @@ export const Hero = () => {
               waitlistSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
             }}
           >
-            <span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Join the Waitlist Now</span>
+            <span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Join for FREE now</span>
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
           <Button variant="accent" size="lg">
