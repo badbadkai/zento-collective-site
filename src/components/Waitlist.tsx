@@ -6,7 +6,7 @@ export const Waitlist = () => {
       <div className="container-studio">
         <div className="max-w-4xl mb-16 animate-fade-in">
           <h2 className="text-4xl md:text-5xl lg:text-6xl font-bold mb-6">
-            Join the Cognitive Performance Waitlist.
+            Join the Waiting List Now.
           </h2>
           
           <p className="text-xl md:text-2xl text-foreground mb-8 font-medium">
