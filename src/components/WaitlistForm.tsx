@@ -134,7 +134,6 @@ export const WaitlistForm = () => {
   return (
     <div className="max-w-2xl mx-auto animate-fade-in">
       <div className="mb-8">
-        <h3 className="text-2xl font-bold mb-4">Build Your Performance Profile</h3>
         <Progress value={progress} className="h-2" />
       </div>
 
