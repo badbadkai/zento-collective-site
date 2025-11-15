@@ -1,12 +1,9 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import { useTheme } from "next-themes";
 import heroImage from "@/assets/hero-equity-curve.jpg";
-import logoLight from "@/assets/logo-light.png";
-import logoDark from "@/assets/logo-dark.png";
+import logo from "@/assets/logo.png";
 
 export const Hero = () => {
-  const { theme } = useTheme();
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 opacity-30" style={{
@@ -21,7 +18,7 @@ export const Hero = () => {
       {/* Content */}
       <div className="container-studio relative z-10 text-center animate-fade-in">
         <img 
-          src={theme === "dark" ? logoLight : logoDark} 
+          src={logo} 
           alt="Greenridge Studios Logo" 
           className="w-40 h-auto md:w-50 mx-auto mb-8 animate-fade-in"
         />

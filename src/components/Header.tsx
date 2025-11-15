@@ -1,5 +1,4 @@
-import logoLight from "@/assets/logo-light.png";
-import logoDark from "@/assets/logo-dark.png";
+import logo from "@/assets/logo.png";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
@@ -24,7 +23,7 @@ export const Header = () => {
           aria-label="Scroll to top"
         >
           <img 
-            src={theme === "dark" ? logoLight : logoDark} 
+            src={logo} 
             alt="Greenridge Studios Logo" 
             className="h-10 w-auto md:h-12"
           />
