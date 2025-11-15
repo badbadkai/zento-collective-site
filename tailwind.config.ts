@@ -14,7 +14,7 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Space Grotesk', 'sans-serif'],
+        heading: ['Playfair Display', 'serif'],
         body: ['Space Grotesk', 'sans-serif'],
         hero: ['Playfair Display', 'serif'],
       },
