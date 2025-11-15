@@ -1,13 +1,22 @@
 import logo from "@/assets/logo.png";
+import { Moon, Sun } from "lucide-react";
+import { useTheme } from "next-themes";
+import { Button } from "@/components/ui/button";
 
 export const Header = () => {
+  const { theme, setTheme } = useTheme();
+  
   const scrollToTop = () => {
     window.scrollTo({ top: 0, behavior: 'smooth' });
   };
 
+  const toggleTheme = () => {
+    setTheme(theme === "dark" ? "light" : "dark");
+  };
+
   return (
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container-studio py-4">
+      <div className="container-studio py-4 flex items-center justify-between">
         <button 
           onClick={scrollToTop}
           className="transition-transform hover:scale-105 active:scale-95"
@@ -15,10 +24,20 @@ export const Header = () => {
         >
           <img 
             src={logo} 
-            alt="The Studio Logo" 
+            alt="Greenridge Studios Logo" 
             className="h-10 w-10 md:h-12 md:w-12"
           />
         </button>
+        
+        <Button
+          variant="outline"
+          size="icon"
+          onClick={toggleTheme}
+          aria-label="Toggle theme"
+        >
+          <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
+          <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+        </Button>
       </div>
     </header>
   );
