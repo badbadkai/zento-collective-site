@@ -1,8 +1,12 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
+import { useTheme } from "next-themes";
 import heroImage from "@/assets/hero-equity-curve.jpg";
-import logo from "@/assets/logo.png";
+import logoLight from "@/assets/logo-light.png";
+import logoDark from "@/assets/logo-dark.png";
+
 export const Hero = () => {
+  const { theme } = useTheme();
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 opacity-30" style={{
@@ -17,9 +21,9 @@ export const Hero = () => {
       {/* Content */}
       <div className="container-studio relative z-10 text-center animate-fade-in">
         <img 
-          src={logo} 
-          alt="The Studio Logo" 
-          className="w-24 h-24 md:w-32 md:h-32 mx-auto mb-8 animate-fade-in animate-spin-slow"
+          src={theme === "dark" ? logoLight : logoDark} 
+          alt="Greenridge Studios Logo" 
+          className="w-24 h-auto md:w-32 mx-auto mb-8 animate-fade-in"
         />
         <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
           Performance begins with yourself.
