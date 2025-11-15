@@ -23,9 +23,9 @@ export const Hero = () => {
         <img 
           src={theme === "dark" ? logoLight : logoDark} 
           alt="Greenridge Studios Logo" 
-          className="w-24 h-auto md:w-32 mx-auto mb-8 animate-fade-in"
+          className="w-32 h-auto md:w-40 mx-auto mb-8 animate-fade-in"
         />
-        <h1 className="text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
+        <h1 className="font-hero text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
           Performance begins with yourself.
         </h1>
         
