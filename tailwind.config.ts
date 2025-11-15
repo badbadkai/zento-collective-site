@@ -16,6 +16,7 @@ export default {
       fontFamily: {
         heading: ['Space Grotesk', 'sans-serif'],
         body: ['Space Grotesk', 'sans-serif'],
+        hero: ['Playfair Display', 'serif'],
       },
       colors: {
         border: "hsl(var(--border))",
