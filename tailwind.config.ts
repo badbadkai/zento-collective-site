@@ -14,9 +14,9 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Playfair Display', 'serif'],
+        heading: ['Space Grotesk', 'sans-serif'],
         body: ['Space Grotesk', 'sans-serif'],
-        hero: ['Playfair Display', 'serif'],
+        hero: ['Space Grotesk', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
