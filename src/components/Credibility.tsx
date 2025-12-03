@@ -27,7 +27,7 @@ export const Credibility = () => {
             Grounded in Science,<br />Designed for Execution
           </h2>
           <p className="text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto mb-4">
-            Built on cognitive-behavioral principles, The Studio translates research into practical systems for measurable performance improvement.
+            Built on cognitive-behavioral principles, Greenridge Studios translates research into practical systems for measurable performance improvement.
           </p>
           <p className="text-xl font-medium">
             Performance is trained, not found.

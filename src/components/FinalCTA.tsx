@@ -10,7 +10,7 @@ export const FinalCTA = () => {
             Structure Your Mind.<br />Execute With Control.
           </h2>
           <p className="text-sm sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
-            Performance is trained. Join The Studio and start rewiring your process.
+            Performance is trained. Join Greenridge Studios and start rewiring your process.
           </p>
           <Button variant="hero" size="lg" className="group w-full sm:w-auto">
             Join the Waitlist Now

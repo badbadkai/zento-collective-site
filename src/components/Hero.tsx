@@ -19,7 +19,7 @@ export const Hero = () => {
         </h1>
         
         <p className="text-base sm:text-xl md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto text-balance">
-          <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">The Studio</span> helps traders achieve peak performance through cognitive restructuring and process-driven execution grounded in behavioral science.
+          <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Greenridge Studios</span> helps traders achieve peak performance through cognitive restructuring and process-driven execution grounded in behavioral science.
         </p>
 
         <div className="flex flex-col sm:flex-row gap-3 sm:gap-4 justify-center items-center mb-8">
