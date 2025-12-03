@@ -5,7 +5,7 @@ import { Solution } from "@/components/Solution";
 import { Journal } from "@/components/Journal";
 import { Waitlist } from "@/components/Waitlist";
 import { Community } from "@/components/Community";
-import { Credibility } from "@/components/Credibility";
+
 import { FinalCTA } from "@/components/FinalCTA";
 import { Footer } from "@/components/Footer";
 
@@ -19,7 +19,7 @@ const Index = () => {
       <Journal />
       <Waitlist />
       <Community />
-      <Credibility />
+      
       <FinalCTA />
       <Footer />
     </div>
