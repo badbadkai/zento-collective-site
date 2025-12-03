@@ -4,9 +4,10 @@ import { useTheme } from "next-themes";
 import heroImage from "@/assets/hero-equity-curve.jpg";
 import logoLight from "@/assets/logo-light.png";
 import logoDark from "@/assets/logo-dark.png";
-
 export const Hero = () => {
-  const { theme } = useTheme();
+  const {
+    theme
+  } = useTheme();
   return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
       {/* Background image */}
       <div className="absolute inset-0 opacity-30" style={{
@@ -20,11 +21,7 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="container-studio relative z-10 text-center animate-fade-in">
-        <img 
-          src={theme === "dark" ? logoLight : logoDark} 
-          alt="Greenridge Studios Logo" 
-          className="w-52 h-auto md:w-64 mx-auto mb-8 animate-fade-in"
-        />
+        <img src={theme === "dark" ? logoLight : logoDark} alt="Greenridge Studios Logo" className="w-52 h-auto md:w-64 mx-auto mb-8 animate-fade-in" />
         <h1 className="font-hero text-5xl md:text-7xl lg:text-8xl font-bold mb-6 text-balance">
           Performance begins with yourself.
         </h1>
@@ -34,16 +31,13 @@ export const Hero = () => {
         </p>
 
         <div className="flex flex-col sm:flex-row gap-4 justify-center items-center mb-8">
-          <Button 
-            variant="hero" 
-            size="lg" 
-            className="group"
-            onClick={() => {
-              const waitlistSection = document.getElementById('waitlist');
-              waitlistSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-          >
-            <span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Join for FREE now</span>
+          <Button variant="hero" size="lg" className="group" onClick={() => {
+          const waitlistSection = document.getElementById('waitlist');
+          waitlistSection?.scrollIntoView({
+            behavior: 'smooth',
+            block: 'start'
+          });
+        }}>Join us now<span className="bg-gradient-to-r from-primary-foreground via-white to-primary-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Join us no</span>
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
           <Button variant="accent" size="lg">
