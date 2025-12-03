@@ -13,7 +13,7 @@ export const FinalCTA = () => {
             Performance is trained. Join The Studio and start rewiring your process.
           </p>
           <Button variant="hero" size="lg" className="group w-full sm:w-auto">
-            Join The Studio Free
+            Join the Waitlist Now
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
         </div>

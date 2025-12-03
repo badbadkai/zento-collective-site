@@ -30,7 +30,7 @@ export const Hero = () => {
             block: 'start'
           });
         }}>
-            Join Us Now!
+            Join the Waitlist Now
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
           <Button variant="accent" size="lg">
