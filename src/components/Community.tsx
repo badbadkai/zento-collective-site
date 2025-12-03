@@ -1,5 +1,4 @@
-import { Button } from "@/components/ui/button";
-import { Hash, ArrowRight } from "lucide-react";
+import { Hash } from "lucide-react";
 
 export const Community = () => {
   const channels = [
@@ -45,20 +44,6 @@ export const Community = () => {
           ))}
         </div>
 
-        <div className="text-center">
-          <Button 
-            variant="hero" 
-            size="lg" 
-            className="group"
-            onClick={() => {
-              const waitlistSection = document.getElementById('waitlist');
-              waitlistSection?.scrollIntoView({ behavior: 'smooth', block: 'start' });
-            }}
-          >
-            Join the Waitlist Now
-            <ArrowRight className="transition-transform group-hover:translate-x-1" />
-          </Button>
-        </div>
       </div>
     </section>
   );
