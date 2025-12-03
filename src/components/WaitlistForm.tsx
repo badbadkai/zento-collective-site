@@ -189,7 +189,7 @@ export const WaitlistForm = () => {
                 name="peakPerformance"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg">What would "peak performance" look like for you in 6 months?</FormLabel>
+                    <FormLabel className="text-lg">What are you hoping to achieve with us?</FormLabel>
                     <FormControl>
                       <Textarea 
                         placeholder="Describe your vision for peak performance..." 
