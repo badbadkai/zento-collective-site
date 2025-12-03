@@ -14,9 +14,10 @@ export default {
     },
     extend: {
       fontFamily: {
-        heading: ['Space Grotesk', 'sans-serif'],
-        body: ['Space Grotesk', 'sans-serif'],
-        hero: ['Space Grotesk', 'sans-serif'],
+        heading: ['DM Sans', 'sans-serif'],
+        body: ['DM Sans', 'sans-serif'],
+        hero: ['DM Sans', 'sans-serif'],
+        sans: ['DM Sans', 'sans-serif'],
       },
       colors: {
         border: "hsl(var(--border))",
