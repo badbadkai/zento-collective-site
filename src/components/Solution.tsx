@@ -19,8 +19,8 @@ export const Solution = () => {
       <div className="container-studio">
         <div className="text-center mb-10 md:mb-16 animate-fade-in">
           <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">The First Market Is Your Mind</h2>
-          <p className="text-sm sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Most trading errors originate from cognitive errors, not strategy failure. 
-The Studio applies behavioral science to help traders regulate decision-making, automate discipline, and translate self-awareness into structured execution.</p>
+          <p className="text-sm sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Most trading errors originate from cognitive errors, not strategy failure. 
+Greenridge Studios applies behavioral science to help traders regulate decision-making, automate discipline, and translate self-awareness into structured execution.</p>
         </div>
 
         <div className="grid sm:grid-cols-2 md:grid-cols-3 gap-4 md:gap-8 mb-8 md:mb-12">
