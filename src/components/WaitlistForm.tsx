@@ -175,7 +175,7 @@ export const WaitlistForm = () => {
                 name="socialHandle"
                 render={({ field }) => (
                   <FormItem>
-                    <FormLabel className="text-lg">Twitter or Discord Handle (Optional)</FormLabel>
+                    <FormLabel className="text-lg">X or Discord Handle (Optional)</FormLabel>
                     <FormControl>
                       <Input placeholder="@username" {...field} />
                     </FormControl>
