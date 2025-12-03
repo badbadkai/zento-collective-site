@@ -1,16 +1,13 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import journalPreview from "@/assets/journal-preview.jpg";
-
 export const Journal = () => {
-  return (
-    <section className="section-spacing">
+  return <section className="section-spacing">
       <div className="container-studio">
         <div className="grid lg:grid-cols-2 gap-12 items-center">
           <div className="animate-fade-in">
-            <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              Your Behavior, Quantified
-            </h2>
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">Your Edge, 
+Quantified</h2>
             <p className="text-lg text-muted-foreground mb-8">
               The Studio Journal tracks decision data, bias frequency, and performance metrics — transforming subjective reflection into measurable cognitive improvement.
             </p>
@@ -36,17 +33,14 @@ export const Journal = () => {
             </Button>
           </div>
 
-          <div className="animate-fade-in" style={{ animationDelay: '0.2s' }}>
+          <div className="animate-fade-in" style={{
+          animationDelay: '0.2s'
+        }}>
             <div className="rounded-lg overflow-hidden border border-border">
-              <img
-                src={journalPreview}
-                alt="Studio Journal interface showing organized metrics and trading data"
-                className="w-full h-auto"
-              />
+              <img src={journalPreview} alt="Studio Journal interface showing organized metrics and trading data" className="w-full h-auto" />
             </div>
           </div>
         </div>
       </div>
-    </section>
-  );
+    </section>;
 };
