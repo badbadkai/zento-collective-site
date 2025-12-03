@@ -45,10 +45,6 @@ export const Hero = () => {
             <span className="bg-gradient-to-r from-accent-foreground via-white to-accent-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Preview The Journal</span>
           </Button>
         </div>
-
-        <p className="text-sm text-muted-foreground">
-          Free to join -- No shortcuts, just structure.
-        </p>
       </div>
     </section>;
 };
