@@ -13,7 +13,7 @@ Quantified</h2>
             <ul className="space-y-3 md:space-y-4 mb-6 md:mb-8">
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-primary mt-1.5 sm:mt-2 flex-shrink-0" />
-                <p className="text-sm sm:text-base text-foreground">Automated performance calculations and expectancy tracking</p>
+                <p className="text-sm sm:text-base text-foreground">Straightforward performance tracking</p>
               </li>
               <li className="flex items-start gap-3">
                 <div className="w-2 h-2 rounded-full bg-primary mt-1.5 sm:mt-2 flex-shrink-0" />
