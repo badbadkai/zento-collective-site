@@ -1,6 +1,6 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
-import journalPreview from "@/assets/journal-preview.jpg";
+import journalPreview from "@/assets/journal-preview.png";
 export const Journal = () => {
   return <section className="section-spacing">
       <div className="container-studio">
