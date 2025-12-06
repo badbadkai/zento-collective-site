@@ -61,6 +61,8 @@ const steps = [
 export const WaitlistForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [submitError, setSubmitError] = useState<string | null>(null);
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -105,13 +107,40 @@ export const WaitlistForm = () => {
     }
   };
 
-  const onSubmit = (data: FormData) => {
-    console.log("Waitlist submission:", data);
-    setIsComplete(true);
-    toast({
-      title: "Registration Complete",
-      description: "You're now part of Greenridge Studios' early access network.",
-    });
+  const onSubmit = async (data: FormData) => {
+    setIsSubmitting(true);
+    setSubmitError(null);
+
+    try {
+      const res = await fetch("/api/waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ ...data, source: "landing_page" }),
+      });
+
+      const result = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const message = result?.error || "Something went wrong";
+        throw new Error(message);
+      }
+
+      setIsComplete(true);
+      form.reset();
+      toast({
+        title: "Registration Complete",
+        description: "You're now part of Greenridge Studios' early access network.",
+      });
+    } catch (err: any) {
+      const message = err?.message || "Failed to join waitlist";
+      setSubmitError(message);
+      toast({
+        title: "Submission failed",
+        description: message,
+      });
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   if (isComplete) {
