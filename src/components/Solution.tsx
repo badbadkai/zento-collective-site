@@ -37,13 +37,9 @@ Greenridge Studios applies behavioral science to help traders regulate decision-
 
         <div className="text-center">
           <Button variant="hero" size="lg" className="group" onClick={() => {
-          const waitlistSection = document.getElementById('waitlist');
-          waitlistSection?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+          window.location.href = 'https://whop.com/greenridge-studios/';
         }}>
-            Join the Waitlist Now
+            Join Now
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
         </div>

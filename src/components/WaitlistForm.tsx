@@ -215,7 +215,7 @@ export const WaitlistForm = () => {
                     <FormLabel className="text-lg">What best describes your trading approach?</FormLabel>
                     <FormControl>
                       <RadioGroup onValueChange={field.onChange} value={field.value} className="space-y-3">
-                        {["Day Trading", "Swing Trading", "Scalping", "Other"].map((option) => (
+                        {["Day Trading", "Swing Trading", "Scalping", "Other", "Not sure"].map((option) => (
                           <div key={option} className="flex items-center space-x-3">
                             <RadioGroupItem value={option} id={`approach-${option}`} />
                             <Label htmlFor={`approach-${option}`} className="cursor-pointer">{option}</Label>
@@ -236,7 +236,7 @@ export const WaitlistForm = () => {
                     <FormLabel className="text-lg">How long have you been trading?</FormLabel>
                     <FormControl>
                       <RadioGroup onValueChange={field.onChange} value={field.value} className="space-y-3">
-                        {["<1 year", "1–3 years", "3–5 years", "5+ years"].map((option) => (
+                        {["<1 year", "1–3 years", "3–5 years", "5+ years", "I'm completely new to it"].map((option) => (
                           <div key={option} className="flex items-center space-x-3">
                             <RadioGroupItem value={option} id={`duration-${option}`} />
                             <Label htmlFor={`duration-${option}`} className="cursor-pointer">{option}</Label>
@@ -459,9 +459,9 @@ export const WaitlistForm = () => {
               </Button>
             ) : (
               <Button type="submit">
-                Join the Waitlist
-                <ArrowRight className="ml-2" />
-              </Button>
+                  Join Now
+                  <ArrowRight className="ml-2" />
+                </Button>
             )}
           </div>
         </form>

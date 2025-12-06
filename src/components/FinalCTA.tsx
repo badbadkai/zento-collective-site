@@ -12,8 +12,8 @@ export const FinalCTA = () => {
           <p className="text-sm sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
             Performance is trained. Join Greenridge Studios and start rewiring your process.
           </p>
-          <Button variant="hero" size="lg" className="group w-full sm:w-auto">
-            Join the Waitlist Now
+          <Button variant="hero" size="lg" className="group w-full sm:w-auto" onClick={() => { window.location.href = 'https://whop.com/greenridge-studios/'; }}>
+            Join Now
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
         </div>

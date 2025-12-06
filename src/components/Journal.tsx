@@ -26,7 +26,7 @@ Quantified</h2>
             </ul>
 
             <Button variant="hero" size="lg" className="group w-full sm:w-auto">
-              Get Early Access to The Journal
+              Get Access to The Journal
               <ArrowRight className="transition-transform group-hover:translate-x-1" />
             </Button>
           </div>

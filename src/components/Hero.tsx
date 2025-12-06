@@ -16,25 +16,31 @@ export const Hero = () => {
         <img src={theme === "dark" ? logoLight : logoDark} alt="Greenridge Studios Logo" className="w-32 h-auto sm:w-44 md:w-56 mx-auto mb-8 md:mb-10 animate-fade-in" />
         <h1 className="font-hero text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-8 text-balance leading-tight">
           Performance begins with yourself.
+    
         </h1>
         
-        <p className="text-base sm:text-lg md:text-xl text-muted-foreground mb-10 md:mb-14 max-w-2xl mx-auto text-balance leading-relaxed">
+        <p className="text-base sm:text-lg md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto text-balance leading-relaxed text-center">
           <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Greenridge Studios</span> helps traders achieve peak performance through cognitive restructuring and process-driven execution grounded in behavioral science.
         </p>
 
-        <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-          <Button variant="hero" size="lg" className="group" onClick={() => {
-          const waitlistSection = document.getElementById('waitlist');
-          waitlistSection?.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
+        <div className="flex flex-col items-center gap-4">
+          <Button variant="hero" size="lg" className="group w-full sm:w-auto" onClick={() => {
+          window.location.href = 'https://whop.com/greenridge-studios/';
         }}>
-            Join the Waitlist Now
+            Join Now
             <ArrowRight className="animate-arrow-bounce" />
           </Button>
-          <Button variant="accent" size="lg">
-            Preview The Journal
+
+          <div className="text-sm text-muted-foreground font-medium">OR</div>
+
+          <Button variant="accent" size="lg" className="w-full sm:w-auto" onClick={() => {
+            const waitlistSection = document.getElementById('waitlist');
+            waitlistSection?.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+          }}>
+            Book a 1-to-1 session
           </Button>
         </div>
       </div>

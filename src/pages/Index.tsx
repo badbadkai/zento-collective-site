@@ -6,6 +6,8 @@ import { Waitlist } from "@/components/Waitlist";
 import { Community } from "@/components/Community";
 
 import { FinalCTA } from "@/components/FinalCTA";
+import { FAQ } from "@/components/FAQ";
+import { Newsletter } from "@/components/Newsletter";
 import { Footer } from "@/components/Footer";
 
 const Index = () => {
@@ -18,7 +20,9 @@ const Index = () => {
       <Waitlist />
       <Community />
       
+      <FAQ />
       <FinalCTA />
+      <Newsletter />
       <Footer />
     </div>
   );
