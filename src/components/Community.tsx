@@ -2,7 +2,7 @@ import { Hash } from "lucide-react";
 export const Community = () => {
   const channels = [{
     name: "Real-time Market Analysis",
-    description: "Real-time market structure analysis and execution review."
+    description: "Live market breakdowns, trade setups, and execution reviews."
   }, {
     name: "Educational Resources",
     description: "Foundational and technical concepts suitable for all skill levels."
