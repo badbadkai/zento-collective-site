@@ -1,7 +1,7 @@
 import { Hash } from "lucide-react";
 export const Community = () => {
   const channels = [{
-    name: "#charts and #setups",
+    name: "live analysis",
     description: "Market structure analysis and execution review."
   }, {
     name: "#journals",
