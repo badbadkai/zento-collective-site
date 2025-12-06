@@ -12,7 +12,7 @@ export const FinalCTA = () => {
           <p className="text-sm sm:text-lg md:text-xl text-muted-foreground mb-6 md:mb-8">
             Performance is trained. Join Greenridge Studios and start rewiring your process.
           </p>
-          <Button variant="hero" size="lg" className="group w-full sm:w-auto" onClick={() => { window.location.href = 'https://whop.com/greenridge-studios/'; }}>
+          <Button variant="hero" size="lg" className="group w-full sm:w-auto" onClick={() => { window.location.href = 'https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456'; }}>
             Join Now
             <ArrowRight className="transition-transform group-hover:translate-x-1" />
           </Button>
