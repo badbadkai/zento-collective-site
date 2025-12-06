@@ -88,6 +88,10 @@ export default {
           "0%": { transform: "rotate(0deg)" },
           "100%": { transform: "rotate(360deg)" },
         },
+        "arrow-bounce": {
+          "0%, 100%": { transform: "translateX(0)" },
+          "50%": { transform: "translateX(4px)" },
+        },
       },
       animation: {
         "accordion-down": "accordion-down 0.2s ease-out",
@@ -97,6 +101,7 @@ export default {
         "line-draw": "line-draw 2s ease-out forwards",
         "shimmer": "shimmer 3s ease-in-out infinite",
         "spin-slow": "spin-slow 8s linear infinite",
+        "arrow-bounce": "arrow-bounce 1.5s ease-in-out infinite",
       },
     },
   },
