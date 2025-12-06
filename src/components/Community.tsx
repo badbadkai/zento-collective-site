@@ -1,14 +1,14 @@
 import { Hash } from "lucide-react";
 export const Community = () => {
   const channels = [{
-    name: "live analysis",
-    description: "Market structure analysis and execution review."
+    name: "Live Analysis",
+    description: "Real-time market structure analysis and execution review."
   }, {
-    name: "#journals",
+    name: "Educational Resources",
+    description: "Foundational and technical concepts suitable for all skill levels."
+  }, {
+    name: "Trading Journals",
     description: "Performance logs and cognitive pattern tracking."
-  }, {
-    name: "#education",
-    description: "Behavioral frameworks and process design resources."
   }];
   return <section className="section-spacing bg-card/50">
       <div className="container-studio">
