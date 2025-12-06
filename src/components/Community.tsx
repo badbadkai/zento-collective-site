@@ -13,9 +13,7 @@ export const Community = () => {
   return <section className="section-spacing bg-card/50">
       <div className="container-studio">
         <div className="text-center mb-10 md:mb-16 animate-fade-in">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">
-            Calibrate Performance With Precision
-          </h2>
+          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">Think Sharper. Trade Smarter.</h2>
           <p className="text-sm sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Join a community of traders applying our frameworks to refine process control and reduce behavioral variance.</p>
         </div>
 
