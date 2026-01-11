@@ -3,12 +3,14 @@ import logoDark from "@/assets/logo-dark.png";
 import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
+import { useNavigate } from "react-router-dom";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
+  const navigate = useNavigate();
   
-  const scrollToTop = () => {
-    window.scrollTo({ top: 0, behavior: 'smooth' });
+  const goHome = () => {
+    navigate("/");
   };
 
   const toggleTheme = () => {
@@ -19,9 +21,9 @@ export const Header = () => {
     <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
       <div className="container-studio py-4 flex items-center justify-between">
         <button 
-          onClick={scrollToTop}
+          onClick={goHome}
           className="transition-transform hover:scale-105 active:scale-95"
-          aria-label="Scroll to top"
+          aria-label="Go to home"
         >
           <img 
             src={theme === "dark" ? logoLight : logoDark} 

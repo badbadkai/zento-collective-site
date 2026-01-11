@@ -10,15 +10,21 @@ export const Footer = () => {
           <div className="flex items-center gap-6">
             <p className="text-sm text-muted-foreground">© Greenridge Studios. Precision through process.</p>
 
-            <div className="flex gap-6">
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
+            <div className="flex gap-6 flex-wrap">
+              <a href="/contact" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
                 Contact
               </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
+              <a href="/terms" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
+                Terms
+              </a>
+              <a href="/privacy_policy" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
                 Privacy
               </a>
-              <a href="#" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
-                Terms
+              <a href="/risk_disclaimer" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
+                Risk Disclaimer
+              </a>
+              <a href="/refund" className="text-sm text-muted-foreground hover:text-foreground transition-studio">
+                Refund Policy
               </a>
             </div>
           </div>
