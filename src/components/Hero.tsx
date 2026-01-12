@@ -20,27 +20,19 @@ export const Hero = () => {
         </h1>
         
         <p className="text-base sm:text-lg md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto text-balance leading-relaxed text-center">
-          <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Greenridge Studios</span> helps traders achieve peak performance through cognitive restructuring and process-driven execution grounded in behavioral science.
+          Develop mastery in trading through structured systems and disciplined execution with an exclusive community of traders in <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Greenridge Studios</span>.
         </p>
 
         <div className="flex flex-col items-center gap-4">
           <Button variant="hero" size="lg" className="group w-full sm:w-auto" onClick={() => {
-          window.location.href = 'https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456';
-        }}>
-            Join Now
-            <ArrowRight className="animate-arrow-bounce" />
-          </Button>
-
-          <div className="text-sm text-muted-foreground font-medium">OR</div>
-
-          <Button variant="accent" size="lg" className="w-full sm:w-auto" onClick={() => {
-            const waitlistSection = document.getElementById('waitlist');
-            waitlistSection?.scrollIntoView({
+            const offeringsSection = document.getElementById('offerings');
+            offeringsSection?.scrollIntoView({
               behavior: 'smooth',
               block: 'start'
             });
           }}>
-            Book a 1-to-1 session
+            Get Started
+            <ArrowRight className="animate-arrow-bounce" />
           </Button>
         </div>
       </div>

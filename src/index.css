@@ -133,4 +133,27 @@ All colors MUST be HSL.
   .transition-studio {
     transition: var(--transition-smooth);
   }
+
+  /* Wavy animation for buttons */
+  @keyframes wave {
+    0% {
+      transform: translateX(0) translateY(0);
+    }
+    25% {
+      transform: translateX(2px) translateY(-2px);
+    }
+    50% {
+      transform: translateX(4px) translateY(0);
+    }
+    75% {
+      transform: translateX(2px) translateY(2px);
+    }
+    100% {
+      transform: translateX(0) translateY(0);
+    }
+  }
+
+  .wave-hover:hover {
+    animation: wave 0.8s ease-in-out infinite;
+  }
 }
