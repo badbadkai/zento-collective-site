@@ -34,6 +34,9 @@ export const Hero = () => {
             Get Started
             <ArrowRight className="animate-arrow-bounce" />
           </Button>
+          <p className="text-sm text-muted-foreground italic">
+            Instant access. Cancel anytime.
+          </p>
         </div>
       </div>
     </section>;
