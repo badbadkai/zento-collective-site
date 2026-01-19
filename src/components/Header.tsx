@@ -1,6 +1,6 @@
-import logoLight from "@/assets/logo-light.png";
-import logoDark from "@/assets/logo-dark.png";
-import { Moon, Sun, ChevronDown, Menu, X } from "lucide-react";
+import logoMonogramLight from "@/assets/logo-monogram-light.svg";
+import logoMonogramDark from "@/assets/logo-monogram-dark.svg";
+import { Moon, Sun, ChevronDown, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
 import {
@@ -16,13 +16,22 @@ import {
   SheetClose,
 } from "@/components/ui/sheet";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
+import { useState, useEffect } from "react";
 
 export const Header = () => {
   const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  
+  const [scrolled, setScrolled] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrolled(window.scrollY > 20);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
+
   const goHome = () => {
     window.scrollTo(0, 0);
     navigate("/");
@@ -31,7 +40,7 @@ export const Header = () => {
   const scrollToSection = (sectionId: string) => {
     const section = document.getElementById(sectionId);
     if (section) {
-      section.scrollIntoView({ behavior: 'smooth', block: 'start' });
+      section.scrollIntoView({ behavior: "smooth", block: "start" });
     }
   };
 
@@ -39,86 +48,105 @@ export const Header = () => {
     setTheme(theme === "dark" ? "light" : "dark");
   };
 
+  const navItems = [
+    { label: "Features", action: () => scrollToSection("solution") },
+    { label: "Pricing", action: () => scrollToSection("offerings") },
+    { label: "FAQ", action: () => scrollToSection("faq") },
+  ];
+
   return (
-    <header className="fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-md border-b border-border">
-      <div className="container-studio py-4 flex items-center justify-between">
-        <button 
+    <header
+      className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+        scrolled
+          ? "py-3 bg-background/80 backdrop-blur-xl border-b border-border/50 shadow-sm"
+          : "py-5 bg-transparent"
+      }`}
+    >
+      <div className="container-studio flex items-center justify-between">
+        {/* Logo */}
+        <button
           onClick={goHome}
-          className="transition-transform hover:scale-105 active:scale-95"
+          className="relative group"
           aria-label="Go to home"
         >
-          <img 
-            src={theme === "dark" ? logoLight : logoDark} 
-            alt="Greenridge Studios Logo" 
-            className="h-10 w-auto md:h-12"
+          <img
+            src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
+            alt="Greenridge Studios"
+            className="h-9 md:h-11 w-auto transition-all duration-300 group-hover:opacity-80"
           />
         </button>
-        
-        {/* Right side - Desktop Navigation + Theme toggle and Mobile Menu */}
-        <div className="flex items-center gap-1 md:gap-3">
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center gap-1">
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection('solution')}
-              aria-label="Go to Features"
-            >
-              Features
-            </Button>
 
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection('offerings')}
-              aria-label="Go to Pricing"
+        {/* Desktop Navigation */}
+        <nav className="hidden md:flex items-center gap-1">
+          {navItems.map((item) => (
+            <button
+              key={item.label}
+              onClick={item.action}
+              className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 relative group"
             >
-              Pricing
-            </Button>
+              {item.label}
+              <span className="absolute bottom-1 left-4 right-4 h-px bg-primary scale-x-0 group-hover:scale-x-100 transition-transform duration-300 origin-left" />
+            </button>
+          ))}
 
-            <DropdownMenu>
-              <DropdownMenuTrigger asChild>
-                <Button variant="ghost" size="sm" className="flex items-center gap-1">
-                  Resources
-                  <ChevronDown className="w-4 h-4" />
-                </Button>
-              </DropdownMenuTrigger>
-              <DropdownMenuContent align="end">
-                <DropdownMenuItem onClick={() => {
+          {/* Resources Dropdown */}
+          <DropdownMenu>
+            <DropdownMenuTrigger asChild>
+              <button className="px-4 py-2 text-sm font-medium text-muted-foreground hover:text-foreground transition-colors duration-200 flex items-center gap-1.5 group">
+                Resources
+                <ChevronDown className="w-3.5 h-3.5 transition-transform duration-200 group-data-[state=open]:rotate-180" />
+              </button>
+            </DropdownMenuTrigger>
+            <DropdownMenuContent
+              align="end"
+              className="min-w-[180px] bg-card/95 backdrop-blur-xl border-border/50"
+            >
+              <DropdownMenuItem
+                onClick={() => {
                   window.scrollTo(0, 0);
-                  navigate('/waitlist');
-                }}>
-                  Waitlist
-                </DropdownMenuItem>
-                <DropdownMenuItem onClick={() => {
-                  window.open('https://blog.greenridgestudios.com', '_blank');
-                }}>
-                  Articles
-                </DropdownMenuItem>
-              </DropdownMenuContent>
-            </DropdownMenu>
+                  navigate("/waitlist");
+                }}
+                className="cursor-pointer"
+              >
+                Waitlist
+              </DropdownMenuItem>
+              <DropdownMenuItem
+                onClick={() => {
+                  window.open("https://blog.greenridgestudios.com", "_blank");
+                }}
+                className="cursor-pointer"
+              >
+                Articles
+              </DropdownMenuItem>
+            </DropdownMenuContent>
+          </DropdownMenu>
+        </nav>
 
-            <Button
-              variant="ghost"
-              size="sm"
-              onClick={() => scrollToSection('faq')}
-              aria-label="Go to FAQ"
-            >
-              FAQ
-            </Button>
-          </div>
-
+        {/* Right side actions */}
+        <div className="flex items-center gap-2">
+          {/* Theme Toggle */}
           <Button
-            variant="outline"
+            variant="ghost"
             size="icon"
             onClick={toggleTheme}
             aria-label="Toggle theme"
+            className="relative overflow-hidden"
           >
-            <Sun className="h-[1.2rem] w-[1.2rem] rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-            <Moon className="absolute h-[1.2rem] w-[1.2rem] rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
+            <Sun className="h-[1.1rem] w-[1.1rem] rotate-0 scale-100 transition-all duration-300 dark:-rotate-90 dark:scale-0" />
+            <Moon className="absolute h-[1.1rem] w-[1.1rem] rotate-90 scale-0 transition-all duration-300 dark:rotate-0 dark:scale-100" />
           </Button>
 
-          {/* Mobile Hamburger Menu */}
+          {/* CTA Button - Desktop */}
+          <Button
+            variant="default"
+            size="sm"
+            onClick={() => scrollToSection("offerings")}
+            className="hidden md:flex"
+          >
+            Get Started
+          </Button>
+
+          {/* Mobile Menu */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild>
               <Button
@@ -127,69 +155,72 @@ export const Header = () => {
                 className="md:hidden"
                 aria-label="Toggle mobile menu"
               >
-                <Menu className="h-[1.2rem] w-[1.2rem]" />
+                <Menu className="h-5 w-5" />
               </Button>
             </SheetTrigger>
-            <SheetContent side="right" className="w-[80vw] sm:w-[300px]">
-              <div className="flex flex-col gap-4 mt-8">
-                <SheetClose asChild>
-                  <Button
-                    variant="ghost"
-                    className="justify-start text-base"
-                    onClick={() => scrollToSection('solution')}
-                  >
-                    Features
-                  </Button>
-                </SheetClose>
+            <SheetContent
+              side="right"
+              className="w-[85vw] sm:w-[350px] bg-background/95 backdrop-blur-xl border-l border-border/50"
+            >
+              <div className="flex flex-col h-full pt-8">
+                {/* Mobile Nav Items */}
+                <nav className="flex flex-col gap-1">
+                  {navItems.map((item) => (
+                    <SheetClose asChild key={item.label}>
+                      <button
+                        onClick={item.action}
+                        className="w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
+                      >
+                        {item.label}
+                      </button>
+                    </SheetClose>
+                  ))}
 
-                <SheetClose asChild>
-                  <Button
-                    variant="ghost"
-                    className="justify-start text-base"
-                    onClick={() => scrollToSection('offerings')}
-                  >
-                    Pricing
-                  </Button>
-                </SheetClose>
+                  {/* Resources Section */}
+                  <div className="mt-4 pt-4 border-t border-border/50">
+                    <p className="px-4 text-xs font-semibold text-muted-foreground uppercase tracking-wider mb-2">
+                      Resources
+                    </p>
+                    <SheetClose asChild>
+                      <button
+                        onClick={() => {
+                          window.scrollTo(0, 0);
+                          navigate("/waitlist");
+                        }}
+                        className="w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
+                      >
+                        Waitlist
+                      </button>
+                    </SheetClose>
+                    <SheetClose asChild>
+                      <button
+                        onClick={() => {
+                          window.open(
+                            "https://blog.greenridgestudios.com",
+                            "_blank"
+                          );
+                        }}
+                        className="w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
+                      >
+                        Articles
+                      </button>
+                    </SheetClose>
+                  </div>
+                </nav>
 
-                <div className="border-t pt-4">
-                  <p className="text-sm font-semibold text-muted-foreground mb-3 px-4">
-                    Resources
-                  </p>
+                {/* Mobile CTA */}
+                <div className="mt-auto pb-8">
                   <SheetClose asChild>
                     <Button
-                      variant="ghost"
-                      className="justify-start text-base w-full"
-                      onClick={() => {
-                        window.scrollTo(0, 0);
-                        navigate('/waitlist');
-                      }}
+                      variant="hero"
+                      size="lg"
+                      onClick={() => scrollToSection("offerings")}
+                      className="w-full"
                     >
-                      Waitlist
-                    </Button>
-                  </SheetClose>
-                  <SheetClose asChild>
-                    <Button
-                      variant="ghost"
-                      className="justify-start text-base w-full"
-                      onClick={() => {
-                        window.open('https://blog.greenridgestudios.com', '_blank');
-                      }}
-                    >
-                      Articles
+                      Get Started
                     </Button>
                   </SheetClose>
                 </div>
-
-                <SheetClose asChild>
-                  <Button
-                    variant="ghost"
-                    className="justify-start text-base"
-                    onClick={() => scrollToSection('faq')}
-                  >
-                    FAQ
-                  </Button>
-                </SheetClose>
               </div>
             </SheetContent>
           </Sheet>

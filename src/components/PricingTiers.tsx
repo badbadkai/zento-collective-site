@@ -1,5 +1,5 @@
 import React from "react";
-import { Check } from "lucide-react";
+import { Check, Sparkles } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { usePricing } from "@/context/PricingContext";
 import { formatPrice, convertUSDToCurrency } from "@/lib/pricing";
@@ -13,32 +13,91 @@ interface Tier {
   highlight?: boolean;
 }
 
-const BASE_MONTHLY_USD = 90; // Tier 1 base
+const BASE_MONTHLY_USD = 90;
 
 export const PricingTiers: React.FC = () => {
   const { currency } = usePricing();
 
   const tiers: Tier[] = [
-    { name: "Monthly", baseUSD: BASE_MONTHLY_USD, billingMonths: 1, savingsPercent: 0, features: ["Real-time market analysis & insights", "Live streams & webinars", "Educational materials & journal templates", "Exclusive community", "Direct support access", "Cancel anytime"] },
-    { name: "Quarterly", baseUSD: Math.round(BASE_MONTHLY_USD * (1 - 0.15)), billingMonths: 3, savingsPercent: 15, features: ["Real-time market analysis & insights", "Live streams & webinars", "Educational materials & journal templates", "Exclusive community", "Direct support access", "Cancel anytime"], highlight: true },
-    { name: "Annual", baseUSD: Math.round(BASE_MONTHLY_USD * (1 - 0.2)), billingMonths: 12, savingsPercent: 20, features: ["Real-time market analysis & insights", "Live streams & webinars", "Educational materials & journal templates", "Exclusive community", "Direct support access", "Cancel anytime"] }
+    {
+      name: "Monthly",
+      baseUSD: BASE_MONTHLY_USD,
+      billingMonths: 1,
+      savingsPercent: 0,
+      features: [
+        "Live market analysis & trade breakdowns",
+        "Weekly streams & educational webinars",
+        "Complete resource library & templates",
+        "Private community workspace",
+        "Priority support channel",
+        "Full flexibility — cancel anytime",
+      ],
+    },
+    {
+      name: "Quarterly",
+      baseUSD: Math.round(BASE_MONTHLY_USD * (1 - 0.15)),
+      billingMonths: 3,
+      savingsPercent: 15,
+      features: [
+        "Live market analysis & trade breakdowns",
+        "Weekly streams & educational webinars",
+        "Complete resource library & templates",
+        "Private community workspace",
+        "Priority support channel",
+        "Full flexibility — cancel anytime",
+      ],
+      highlight: true,
+    },
+    {
+      name: "Annual",
+      baseUSD: Math.round(BASE_MONTHLY_USD * (1 - 0.2)),
+      billingMonths: 12,
+      savingsPercent: 20,
+      features: [
+        "Live market analysis & trade breakdowns",
+        "Weekly streams & educational webinars",
+        "Complete resource library & templates",
+        "Private community workspace",
+        "Priority support channel",
+        "Full flexibility — cancel anytime",
+      ],
+    },
   ];
 
   const handleTierClick = () => {
-    window.location.href = 'https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456';
+    window.location.href =
+      "https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456";
   };
 
   return (
-    <section className="section-spacing bg-background">
-      <div className="container-studio">
-        <div className="text-center mb-10 md:mb-16 animate-fade-in">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold mb-4 md:mb-6">The Exclusive Community</h2>
-          <p className="text-base sm:text-lg md:text-xl text-muted-foreground max-w-3xl mx-auto">Choose your commitment level and unlock exclusive trading insights.</p>
+    <section className="section-spacing relative">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
+
+      <div className="container-studio relative">
+        {/* Section Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 animate-fade-in">
+            Investment
+          </p>
+          <h2
+            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            Premium <span className="text-primary">Membership</span>
+          </h2>
+          <p
+            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto animate-fade-in"
+            style={{ animationDelay: "0.2s" }}
+          >
+            Select your commitment horizon. Access remains consistent across all tiers.
+          </p>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-6 md:gap-8 max-w-6xl mx-auto">
+        {/* Pricing Grid */}
+        <div className="grid md:grid-cols-3 gap-6 lg:gap-8 max-w-6xl mx-auto">
           {tiers.map((tier, i) => {
-            const monthlyUSD = tier.baseUSD; // already reduced where needed
+            const monthlyUSD = tier.baseUSD;
             const monthlyLocal = convertUSDToCurrency(monthlyUSD, currency);
             const totalLocal = monthlyLocal * tier.billingMonths;
 
@@ -46,66 +105,116 @@ export const PricingTiers: React.FC = () => {
               <div
                 key={tier.name}
                 onClick={handleTierClick}
-              className={`animate-fade-in rounded-lg border-2 transition-all hover:shadow-lg cursor-pointer group relative ${tier.highlight ? "border-primary bg-primary/5 md:scale-105 md:z-10 hover:bg-primary/10" : "border-border bg-card hover:bg-muted"}`}
-                style={{ animationDelay: `${i * 0.12}s` }}
+                className={`group relative cursor-pointer animate-fade-in ${
+                  tier.highlight ? "md:-mt-4 md:mb-4 z-10" : ""
+                }`}
+                style={{ animationDelay: `${0.2 + i * 0.1}s` }}
               >
-                {/* Popular badge on Quarterly */}
-                {tier.name === 'Quarterly' && (
-                  <div className="absolute top-0 left-0 bg-primary text-primary-foreground px-3 py-1 rounded-br-lg text-xs sm:text-sm font-bold">Popular</div>
-                )}
-
-                {/* Savings badge: primary for Quarterly, muted and shown on hover for Annual */}
-                {tier.savingsPercent > 0 && tier.name !== 'Annual' && (
-                  <div className="absolute top-0 right-0 bg-primary text-primary-foreground px-3 py-1 rounded-bl-lg text-xs sm:text-sm font-bold">Save {tier.savingsPercent}%</div>
-                )}
-                {tier.savingsPercent > 0 && tier.name === 'Annual' && (
-                  <div className="absolute top-0 right-0 px-3 py-1 rounded-bl-lg text-xs sm:text-sm font-bold text-muted-foreground opacity-0 group-hover:opacity-100 transition-opacity">Save {tier.savingsPercent}%</div>
-                )}
-
-                <div className="p-6 md:p-8">
-                  <h3 className="text-xl md:text-2xl font-bold mb-2 text-foreground">{tier.name}</h3>
-                  <p className="text-sm text-muted-foreground mb-4">Billed {tier.billingMonths === 1 ? 'monthly' : tier.billingMonths === 3 ? 'every 3 months' : 'annually'}</p>
-
-                  <div className="mb-6">
-                    <div className="flex items-baseline gap-1">
-                      <span className="text-4xl md:text-5xl font-bold text-foreground">{formatPrice(monthlyLocal, currency)}</span>
-                      <span className="text-muted-foreground text-sm md:text-base">/month</span>
+                <div
+                  className={`relative h-full rounded-2xl border transition-all duration-500 hover:-translate-y-1 ${
+                    tier.highlight
+                      ? "border-primary/50 bg-primary/5 hover:border-primary hover:bg-primary/10 hover:shadow-xl hover:shadow-primary/10"
+                      : "border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card hover:shadow-xl hover:shadow-primary/5"
+                  }`}
+                >
+                  {/* Popular badge */}
+                  {tier.highlight && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2 flex items-center gap-1.5 px-4 py-1 bg-primary text-primary-foreground rounded-full">
+                      <Sparkles className="w-3.5 h-3.5" />
+                      <span className="text-xs font-bold">Most Popular</span>
                     </div>
-                    {tier.billingMonths !== 1 && (
-                      <p className="text-sm text-muted-foreground mt-2">{formatPrice(totalLocal, currency)} {tier.billingMonths === 3 ? 'every 3 months' : 'per year'}</p>
-                    )}
-                    {tier.savingsPercent > 0 && (
-                      (() => {
-                        const savingsUSD = (BASE_MONTHLY_USD - tier.baseUSD) * tier.billingMonths;
-                        const savingsLocal = convertUSDToCurrency(savingsUSD, currency);
-                        return (
-                          <p className="text-sm text-primary font-semibold mt-2">Save {formatPrice(savingsLocal, currency)}</p>
-                        );
-                      })()
-                    )}
-                    {tier.savingsPercent === 0 && (
-                      <>
-                        <p className="text-sm text-muted-foreground mt-2 invisible">placeholder</p>
-                        <p className="text-sm text-primary font-semibold mt-2 invisible">placeholder</p>
-                      </>
-                    )}
-                  </div>
+                  )}
 
-                  <Button
-                    className={`w-full mb-8 group-hover:wave-hover ${tier.name !== 'Quarterly' ? 'group-hover:bg-primary group-hover:border-primary group-hover:text-primary-foreground' : ''}`}
-                    variant={tier.highlight ? 'default' : 'outline'}
-                    onClick={(e) => { e.stopPropagation(); handleTierClick(); }}
-                  >
-                    Get Started
-                  </Button>
+                  {/* Savings badge */}
+                  {tier.savingsPercent > 0 && (
+                    <div className="absolute top-4 right-4">
+                      <span
+                        className={`px-3 py-1 text-xs font-bold rounded-full ${
+                          tier.highlight
+                            ? "bg-primary text-primary-foreground"
+                            : "bg-muted text-muted-foreground group-hover:bg-primary/20 group-hover:text-primary"
+                        } transition-colors`}
+                      >
+                        Save {tier.savingsPercent}%
+                      </span>
+                    </div>
+                  )}
 
-                  <div className="space-y-3">
-                    {tier.features.map((f, idx) => (
-                      <div key={idx} className="flex gap-3">
-                        <Check className="w-5 h-5 text-primary flex-shrink-0" />
-                        <span className="text-sm text-foreground">{f}</span>
+                  <div className="p-8 md:p-10">
+                    {/* Tier name */}
+                    <h3 className="font-heading text-xl md:text-2xl font-semibold mb-2 text-foreground">
+                      {tier.name}
+                    </h3>
+                    <p className="text-sm text-muted-foreground mb-6">
+                      Billed{" "}
+                      {tier.billingMonths === 1
+                        ? "monthly"
+                        : tier.billingMonths === 3
+                        ? "every 3 months"
+                        : "annually"}
+                    </p>
+
+                    {/* Price */}
+                    <div className="mb-8">
+                      <div className="flex items-baseline gap-1">
+                        <span className="font-heading text-4xl md:text-5xl font-bold text-foreground">
+                          {formatPrice(monthlyLocal, currency)}
+                        </span>
+                        <span className="text-muted-foreground text-sm">
+                          /month
+                        </span>
                       </div>
-                    ))}
+                      {tier.billingMonths !== 1 && (
+                        <p className="text-sm text-muted-foreground mt-2">
+                          {formatPrice(totalLocal, currency)}{" "}
+                          {tier.billingMonths === 3
+                            ? "every 3 months"
+                            : "per year"}
+                        </p>
+                      )}
+                      {tier.savingsPercent > 0 && (
+                        <p className="text-sm text-primary font-semibold mt-2">
+                          Save{" "}
+                          {formatPrice(
+                            convertUSDToCurrency(
+                              (BASE_MONTHLY_USD - tier.baseUSD) *
+                                tier.billingMonths,
+                              currency
+                            ),
+                            currency
+                          )}
+                        </p>
+                      )}
+                      {tier.savingsPercent === 0 && (
+                        <p className="text-sm text-transparent mt-2 select-none">
+                          Placeholder
+                        </p>
+                      )}
+                    </div>
+
+                    {/* CTA */}
+                    <Button
+                      className={`w-full mb-8 ${
+                        tier.highlight ? "" : "group-hover:bg-primary group-hover:text-primary-foreground"
+                      }`}
+                      variant={tier.highlight ? "hero" : "outline"}
+                      onClick={(e) => {
+                        e.stopPropagation();
+                        handleTierClick();
+                      }}
+                    >
+                      Get Started
+                    </Button>
+
+                    {/* Features */}
+                    <ul className="space-y-3">
+                      {tier.features.map((f, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground">{f}</span>
+                        </li>
+                      ))}
+                    </ul>
                   </div>
                 </div>
               </div>
@@ -113,8 +222,17 @@ export const PricingTiers: React.FC = () => {
           })}
         </div>
 
+        {/* Footer note */}
         <div className="text-center mt-12 md:mt-16">
-          <p className="text-sm text-muted-foreground max-w-2xl mx-auto">Need a more personalised mentorship? <a href="/waitlist" className="text-primary font-semibold hover:underline">Book a 1 to 1 here</a>.</p>
+          <p className="text-sm text-muted-foreground">
+            Seeking individualised guidance?{" "}
+            <a
+              href="/waitlist"
+              className="text-primary font-semibold hover:underline underline-offset-4"
+            >
+              Request private mentorship
+            </a>
+          </p>
         </div>
       </div>
     </section>

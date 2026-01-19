@@ -1,97 +1,106 @@
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,400;0,500;0,600;0,700;1,400;1,500&family=Plus+Jakarta+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,400&display=swap');
+
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
 
-/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
-All colors MUST be HSL.
-*/
+/* ============================================
+   OBSIDIAN LUXE DESIGN SYSTEM
+   Premium dark theme with gold accents
+   ============================================ */
 
 @layer base {
   :root {
-    --background: 0 0% 98%;
-    --foreground: 0 0% 10%;
+    /* Core palette - Light mode (inverted luxury) */
+    --background: 40 20% 97%;
+    --foreground: 30 10% 12%;
 
-    --card: 0 0% 100%;
-    --card-foreground: 0 0% 10%;
+    --card: 40 15% 99%;
+    --card-foreground: 30 10% 12%;
 
-    --popover: 0 0% 100%;
-    --popover-foreground: 0 0% 10%;
+    --popover: 40 15% 99%;
+    --popover-foreground: 30 10% 12%;
 
-    --primary: 140 45% 65%;
-    --primary-foreground: 0 0% 10%;
+    /* Gold/Amber primary */
+    --primary: 38 75% 55%;
+    --primary-foreground: 30 10% 8%;
 
-    --secondary: 140 30% 85%;
-    --secondary-foreground: 0 0% 10%;
+    --secondary: 35 20% 90%;
+    --secondary-foreground: 30 10% 20%;
 
-    --muted: 140 20% 90%;
-    --muted-foreground: 0 0% 45%;
+    --muted: 35 15% 92%;
+    --muted-foreground: 30 10% 45%;
 
-    --accent: 140 45% 65%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 38 65% 60%;
+    --accent-foreground: 30 10% 8%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 140 20% 85%;
-    --input: 140 20% 85%;
-    --ring: 140 45% 65%;
+    --border: 35 20% 88%;
+    --input: 35 20% 88%;
+    --ring: 38 75% 55%;
 
-    --radius: 0.5rem;
+    --radius: 0.625rem;
 
-    /* Custom design tokens */
-    --studio-light: 0 0% 98%;
-    --studio-dark: 0 0% 10%;
-    --studio-accent: 140 45% 65%;
-    --studio-accent-alt: 160 40% 70%;
-    --studio-muted: 140 20% 90%;
-    
+    /* Custom Obsidian Luxe tokens */
+    --obsidian: 220 15% 8%;
+    --obsidian-light: 220 12% 14%;
+    --obsidian-lighter: 220 10% 20%;
+    --gold: 38 75% 55%;
+    --gold-muted: 38 40% 70%;
+    --gold-bright: 42 90% 60%;
+    --cream: 40 30% 96%;
+    --cream-dark: 35 20% 90%;
+
     /* Gradients */
-    --gradient-accent: linear-gradient(135deg, hsl(140 45% 65%), hsl(160 40% 70%));
-    --glow-accent: 0 0 40px hsl(140 45% 65% / 0.4);
-    
+    --gradient-gold: linear-gradient(135deg, hsl(38 75% 55%), hsl(42 90% 60%));
+    --gradient-obsidian: linear-gradient(180deg, hsl(220 15% 8%), hsl(220 12% 4%));
+    --glow-gold: 0 0 60px hsl(38 75% 55% / 0.3);
+    --glow-gold-intense: 0 0 100px hsl(38 75% 55% / 0.5);
+
     /* Transitions */
-    --transition-smooth: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+    --transition-elegant: all 0.4s cubic-bezier(0.25, 0.1, 0.25, 1);
+    --transition-snap: all 0.2s cubic-bezier(0.4, 0, 0.2, 1);
   }
 
   .dark {
-    --background: 0 0% 8%;
-    --foreground: 0 0% 92%;
+    /* Dark mode - True Obsidian Luxe */
+    --background: 220 15% 6%;
+    --foreground: 40 20% 92%;
 
-    --card: 0 0% 10%;
-    --card-foreground: 0 0% 92%;
+    --card: 220 12% 10%;
+    --card-foreground: 40 20% 92%;
 
-    --popover: 0 0% 10%;
-    --popover-foreground: 0 0% 92%;
+    --popover: 220 12% 10%;
+    --popover-foreground: 40 20% 92%;
 
-    --primary: 140 45% 65%;
-    --primary-foreground: 0 0% 10%;
+    /* Gold remains consistent */
+    --primary: 38 75% 55%;
+    --primary-foreground: 220 15% 6%;
 
-    --secondary: 140 30% 35%;
-    --secondary-foreground: 0 0% 92%;
+    --secondary: 220 10% 18%;
+    --secondary-foreground: 40 15% 85%;
 
-    --muted: 0 0% 15%;
-    --muted-foreground: 0 0% 60%;
+    --muted: 220 10% 15%;
+    --muted-foreground: 40 10% 55%;
 
-    --accent: 140 45% 65%;
-    --accent-foreground: 0 0% 10%;
+    --accent: 38 65% 60%;
+    --accent-foreground: 220 15% 6%;
 
-    --destructive: 0 84.2% 60.2%;
+    --destructive: 0 72% 51%;
     --destructive-foreground: 0 0% 100%;
 
-    --border: 0 0% 15%;
-    --input: 0 0% 15%;
-    --ring: 140 45% 65%;
+    --border: 220 10% 18%;
+    --input: 220 10% 18%;
+    --ring: 38 75% 55%;
 
-    /* Custom design tokens */
-    --studio-dark: 0 0% 8%;
-    --studio-light: 0 0% 92%;
-    --studio-accent: 140 45% 65%;
-    --studio-accent-alt: 160 40% 70%;
-    --studio-muted: 0 0% 15%;
-    
-    /* Gradients */
-    --gradient-accent: linear-gradient(135deg, hsl(140 45% 65%), hsl(160 40% 70%));
-    --glow-accent: 0 0 40px hsl(140 45% 65% / 0.4);
+    /* Dark mode custom tokens */
+    --obsidian: 220 15% 6%;
+    --obsidian-light: 220 12% 10%;
+    --obsidian-lighter: 220 10% 15%;
+    --cream: 40 20% 92%;
+    --cream-dark: 40 15% 80%;
   }
 }
 
@@ -100,60 +109,293 @@ All colors MUST be HSL.
     @apply border-border;
   }
 
-  body {
-    @apply bg-background text-foreground font-body font-normal antialiased;
+  html {
+    scroll-behavior: smooth;
   }
 
+  body {
+    @apply bg-background text-foreground font-body antialiased;
+    font-feature-settings: "cv02", "cv03", "cv04", "cv11";
+  }
+
+  /* Premium typography hierarchy */
   h1, h2, h3 {
-    @apply font-heading font-bold;
+    @apply font-heading font-semibold tracking-tight;
+    text-rendering: optimizeLegibility;
+  }
+
+  h1 {
+    @apply text-4xl sm:text-5xl md:text-6xl lg:text-7xl;
+    letter-spacing: -0.02em;
+  }
+
+  h2 {
+    @apply text-3xl sm:text-4xl md:text-5xl;
+    letter-spacing: -0.015em;
+  }
+
+  h3 {
+    @apply text-xl sm:text-2xl md:text-3xl;
+    letter-spacing: -0.01em;
   }
 
   h4, h5, h6 {
-    @apply font-heading font-semibold;
+    @apply font-body font-semibold;
+  }
+
+  /* Elegant selection */
+  ::selection {
+    @apply bg-primary/30 text-foreground;
   }
 }
 
 @layer utilities {
+  /* Section spacing system */
   .section-spacing {
-    @apply py-12 md:py-20 lg:py-32;
+    @apply py-16 md:py-24 lg:py-32;
   }
 
+  .section-spacing-sm {
+    @apply py-12 md:py-16 lg:py-20;
+  }
+
+  /* Container */
   .container-studio {
-    @apply max-w-7xl mx-auto px-4 sm:px-6 md:px-8;
+    @apply max-w-7xl mx-auto px-5 sm:px-6 md:px-8;
   }
 
+  .container-narrow {
+    @apply max-w-4xl mx-auto px-5 sm:px-6 md:px-8;
+  }
+
+  /* Text utilities */
   .text-balance {
     text-wrap: balance;
   }
 
-  .glow-accent {
-    box-shadow: var(--glow-accent);
+  .text-gradient-gold {
+    @apply bg-gradient-to-r from-primary via-gold-bright to-primary bg-clip-text text-transparent;
+    background-size: 200% auto;
   }
 
-  .transition-studio {
-    transition: var(--transition-smooth);
+  /* Glow effects */
+  .glow-gold {
+    box-shadow: var(--glow-gold);
   }
 
-  /* Wavy animation for buttons */
-  @keyframes wave {
+  .glow-gold-intense {
+    box-shadow: var(--glow-gold-intense);
+  }
+
+  /* Glass morphism */
+  .glass {
+    @apply bg-card/80 backdrop-blur-xl border border-border/50;
+  }
+
+  .glass-dark {
+    background: hsl(var(--obsidian-light) / 0.8);
+    backdrop-filter: blur(20px);
+    @apply border border-white/5;
+  }
+
+  /* Transitions */
+  .transition-elegant {
+    transition: var(--transition-elegant);
+  }
+
+  .transition-snap {
+    transition: var(--transition-snap);
+  }
+
+  /* Grain texture overlay */
+  .grain {
+    position: relative;
+  }
+
+  .grain::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.85' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    opacity: 0.03;
+    pointer-events: none;
+    z-index: 1;
+  }
+
+  .dark .grain::before {
+    opacity: 0.04;
+  }
+
+  /* Premium card styles */
+  .card-obsidian {
+    @apply relative overflow-hidden rounded-xl border border-border/50 bg-card;
+    @apply transition-elegant hover:border-primary/30 hover:shadow-lg;
+  }
+
+  .dark .card-obsidian {
+    @apply bg-obsidian-light border-white/5;
+    @apply hover:border-primary/40 hover:shadow-primary/5;
+  }
+
+  /* Divider */
+  .divider-gold {
+    @apply w-16 h-0.5 bg-gradient-to-r from-primary to-primary/50 mx-auto;
+  }
+
+  /* Animated underline */
+  .underline-animated {
+    @apply relative;
+  }
+
+  .underline-animated::after {
+    content: "";
+    @apply absolute bottom-0 left-0 w-0 h-px bg-primary transition-all duration-300;
+  }
+
+  .underline-animated:hover::after {
+    @apply w-full;
+  }
+
+  /* Stats ticker animation */
+  @keyframes ticker {
     0% {
-      transform: translateX(0) translateY(0);
-    }
-    25% {
-      transform: translateX(2px) translateY(-2px);
-    }
-    50% {
-      transform: translateX(4px) translateY(0);
-    }
-    75% {
-      transform: translateX(2px) translateY(2px);
+      transform: translateX(0);
     }
     100% {
-      transform: translateX(0) translateY(0);
+      transform: translateX(-50%);
     }
   }
 
-  .wave-hover:hover {
-    animation: wave 0.8s ease-in-out infinite;
+  .animate-ticker {
+    animation: ticker 30s linear infinite;
   }
+
+  .animate-ticker:hover {
+    animation-play-state: paused;
+  }
+
+  /* Pulse glow for stats */
+  @keyframes pulse-glow {
+    0%, 100% {
+      box-shadow: 0 0 20px hsl(38 75% 55% / 0.2);
+    }
+    50% {
+      box-shadow: 0 0 40px hsl(38 75% 55% / 0.4);
+    }
+  }
+
+  .animate-pulse-glow {
+    animation: pulse-glow 3s ease-in-out infinite;
+  }
+
+  /* Count up animation helper */
+  @keyframes count-up {
+    from {
+      opacity: 0;
+      transform: translateY(10px);
+    }
+    to {
+      opacity: 1;
+      transform: translateY(0);
+    }
+  }
+
+  .animate-count-up {
+    animation: count-up 0.6s ease-out forwards;
+  }
+
+  /* Testimonial slide */
+  @keyframes slide-in-right {
+    from {
+      opacity: 0;
+      transform: translateX(30px);
+    }
+    to {
+      opacity: 1;
+      transform: translateX(0);
+    }
+  }
+
+  .animate-slide-in {
+    animation: slide-in-right 0.5s ease-out forwards;
+  }
+
+  /* Floating animation */
+  @keyframes float {
+    0%, 100% {
+      transform: translateY(0);
+    }
+    50% {
+      transform: translateY(-10px);
+    }
+  }
+
+  .animate-float {
+    animation: float 6s ease-in-out infinite;
+  }
+
+  /* Shimmer effect */
+  @keyframes shimmer-gold {
+    0% {
+      background-position: -200% center;
+    }
+    100% {
+      background-position: 200% center;
+    }
+  }
+
+  .animate-shimmer-gold {
+    background: linear-gradient(
+      90deg,
+      hsl(var(--foreground)) 0%,
+      hsl(var(--primary)) 50%,
+      hsl(var(--foreground)) 100%
+    );
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer-gold 4s linear infinite;
+  }
+}
+
+/* Custom scrollbar for dark mode */
+.dark {
+  scrollbar-width: thin;
+  scrollbar-color: hsl(var(--primary) / 0.3) transparent;
+}
+
+.dark::-webkit-scrollbar {
+  width: 8px;
+}
+
+.dark::-webkit-scrollbar-track {
+  background: transparent;
+}
+
+.dark::-webkit-scrollbar-thumb {
+  background: hsl(var(--primary) / 0.3);
+  border-radius: 4px;
+}
+
+.dark::-webkit-scrollbar-thumb:hover {
+  background: hsl(var(--primary) / 0.5);
+}
+
+/* Focus styles */
+:focus-visible {
+  @apply outline-none ring-2 ring-primary ring-offset-2 ring-offset-background;
+}
+
+/* Smooth image loading */
+img {
+  @apply transition-opacity duration-300;
+}
+
+img[loading] {
+  @apply opacity-0;
+}
+
+img.loaded {
+  @apply opacity-100;
 }

@@ -1,142 +1,153 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight } from "lucide-react";
+import { ArrowRight, Sparkles, Users, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
-import { useState } from "react";
 
 export const Offerings = () => {
   const navigate = useNavigate();
-  const [hoveredBox, setHoveredBox] = useState<string | null>(null);
+
+  const offerings = [
+    {
+      id: "accelerator",
+      icon: Sparkles,
+      badge: "Intensive Programme",
+      title: "30-Day Accelerator",
+      subtitle: "For committed beginners seeking structure over chaos.",
+      description:
+        "Construct your complete trading system in 30 focused days. Emerge with documented rules, defined risk parameters, and operational clarity.",
+      features: [
+        "Personalised trading blueprint",
+        "Risk framework & psychology protocols",
+        "Weekly live sessions & direct feedback",
+        "Prop firm readiness evaluation",
+      ],
+      cta: "Apply Now",
+      action: () => {
+        window.scrollTo(0, 0);
+        navigate("/start");
+      },
+      highlighted: false,
+    },
+    {
+      id: "community",
+      icon: Users,
+      badge: "Continuous Access",
+      title: "Premium Collective",
+      subtitle: "For traders who demand more than surface-level content.",
+      description:
+        "An exclusive environment of serious practitioners. Live analysis, advanced discussions, and the accountability that drives real progress.",
+      features: [
+        "Weekly live trading sessions",
+        "Institutional-grade market analysis",
+        "Advanced strategy deep-dives",
+        "Direct peer and mentor access",
+      ],
+      cta: "Join the Collective",
+      action: () => {
+        window.location.href =
+          "https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456";
+      },
+      highlighted: true,
+    },
+  ];
 
   return (
-    <section id="offerings" className="section-spacing bg-background">
-      <div className="container-studio">
-        <div className="text-center mb-12 md:mb-16 animate-fade-in">
-          <h2 className="text-2xl sm:text-4xl md:text-5xl lg:text-6xl font-bold">
-            Which Path Is For You?
+    <section id="offerings" className="section-spacing relative">
+      {/* Background */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
+
+      <div className="container-studio relative">
+        {/* Section Header */}
+        <div className="text-center mb-12 md:mb-16">
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 animate-fade-in">
+            Select Your Entry
+          </p>
+          <h2
+            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 animate-fade-in"
+            style={{ animationDelay: "0.1s" }}
+          >
+            Two Paths. <span className="text-primary">One Standard.</span>
           </h2>
         </div>
 
-        {/* SVG Paths Container */}
-        <div className="relative mb-12 md:mb-16 h-24 flex justify-center pointer-events-none">
-          <svg width="100%" height="100" viewBox="0 0 800 100" preserveAspectRatio="xMidYMid meet" className="absolute inset-0">
-            {/* Left path */}
-            <path
-              d="M 400 0 Q 300 30, 200 60"
-              stroke={hoveredBox === "accelerator" ? "rgb(34, 197, 94)" : "rgb(200, 200, 200)"}
-              strokeWidth="2"
-              fill="none"
-              className="transition-colors duration-300"
-              strokeLinecap="round"
-            />
-            {/* Right path */}
-            <path
-              d="M 400 0 Q 500 30, 600 60"
-              stroke={hoveredBox === "community" ? "rgb(34, 197, 94)" : "rgb(200, 200, 200)"}
-              strokeWidth="2"
-              fill="none"
-              className="transition-colors duration-300"
-              strokeLinecap="round"
-            />
-          </svg>
-        </div>
+        {/* Offerings Grid */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+          {offerings.map((offering, index) => {
+            const IconComponent = offering.icon;
+            return (
+              <div
+                key={offering.id}
+                className={`group relative animate-fade-in ${
+                  offering.highlighted ? "md:-mt-4 md:mb-4" : ""
+                }`}
+                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+              >
+                <div
+                  className={`relative h-full p-8 md:p-10 rounded-2xl border transition-all duration-500 ${
+                    offering.highlighted
+                      ? "border-primary/40 bg-primary/5 hover:border-primary/60 hover:bg-primary/10"
+                      : "border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card"
+                  } hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1`}
+                >
+                  {/* Badge */}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div
+                      className={`p-2 rounded-lg ${
+                        offering.highlighted
+                          ? "bg-primary/20"
+                          : "bg-primary/10"
+                      }`}
+                    >
+                      <IconComponent className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+                      {offering.badge}
+                    </span>
+                  </div>
 
-        <div className="grid md:grid-cols-2 gap-8 md:gap-12">
-          {/* 30-Day Accelerator */}
-          <div
-            className="animate-fade-in p-8 md:p-10 border-2 border-border rounded-lg bg-card hover:shadow-lg transition-shadow flex flex-col"
-            onMouseEnter={() => setHoveredBox("accelerator")}
-            onMouseLeave={() => setHoveredBox(null)}
-          >
-            <div className="mb-6">
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">
-                The 30-Day Trading Accelerator
-              </h3>
-              <p className="text-base md:text-lg text-muted-foreground mb-4">
-                For intelligent beginners who feel overwhelmed, inconsistent, or stuck guessing.
-              </p>
-              <p className="text-sm text-muted-foreground font-medium">
-                Build your complete trading process in 30 structured days. No shortcuts. No signals. Just discipline, rules, and clarity.
-              </p>
-            </div>
+                  {/* Content */}
+                  <h3 className="font-heading text-2xl md:text-3xl font-semibold mb-3 text-foreground">
+                    {offering.title}
+                  </h3>
+                  <p className="text-base md:text-lg text-muted-foreground mb-3">
+                    {offering.subtitle}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-8">
+                    {offering.description}
+                  </p>
 
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">One written trading blueprint</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">Defined risk framework & psychology</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">Weekly live Q&A & community support</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">Prop firm readiness assessment</p>
-              </li>
-            </ul>
+                  {/* Features */}
+                  <ul className="space-y-3 mb-8">
+                    {offering.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
 
-            <Button
-              className="w-full group wave-hover mt-auto"
-              onClick={() => {
-                window.scrollTo(0, 0);
-                navigate("/start");
-              }}
-            >
-              Apply to the Accelerator
-              <ArrowRight className="transition-transform group-hover:translate-x-1" />
-            </Button>
-          </div>
+                  {/* CTA */}
+                  <Button
+                    variant={offering.highlighted ? "hero" : "premium"}
+                    size="lg"
+                    className="w-full group/btn"
+                    onClick={offering.action}
+                  >
+                    {offering.cta}
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </Button>
 
-          {/* Exclusive Community */}
-          <div
-            className="animate-fade-in p-8 md:p-10 border-2 border-primary/20 rounded-lg bg-primary/5 hover:shadow-lg transition-shadow flex flex-col"
-            onMouseEnter={() => setHoveredBox("community")}
-            onMouseLeave={() => setHoveredBox(null)}
-          >
-            <div className="mb-6">
-              <h3 className="text-2xl md:text-3xl font-bold mb-3 text-foreground">
-                The Exclusive Community
-              </h3>
-              <p className="text-base md:text-lg text-muted-foreground mb-4">
-                For traders who've moved beyond the basics.
-              </p>
-              <p className="text-sm text-muted-foreground font-medium">
-                Join a curated community of serious traders with ongoing market analysis, live trading discussions, and advanced strategies.
-              </p>
-            </div>
-
-            <ul className="space-y-3 mb-8">
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">Weekly live trading streams</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">Detailed market breakdowns & analysis</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">Advanced webinars & strategy discussions</p>
-              </li>
-              <li className="flex items-start gap-3">
-                <div className="w-2 h-2 rounded-full bg-primary mt-1.5 flex-shrink-0" />
-                <p className="text-sm text-foreground">Direct access to trading community</p>
-              </li>
-            </ul>
-
-            <Button
-              className="w-full group wave-hover mt-auto"
-              onClick={() => {
-                window.location.href = 'https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456';
-              }}
-            >
-              Join the Community
-              <ArrowRight className="transition-transform group-hover:translate-x-1" />
-            </Button>
-          </div>
+                  {/* Highlighted indicator */}
+                  {offering.highlighted && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <span className="px-4 py-1 text-xs font-bold bg-primary text-primary-foreground rounded-full">
+                        Most Popular
+                      </span>
+                    </div>
+                  )}
+                </div>
+              </div>
+            );
+          })}
         </div>
       </div>
     </section>

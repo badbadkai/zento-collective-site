@@ -1,43 +1,232 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTheme } from "next-themes";
-import logoLight from "@/assets/logo-light.png";
-import logoDark from "@/assets/logo-dark.png";
+import logoMonogramLight from "@/assets/logo-monogram-light.svg";
+import logoMonogramDark from "@/assets/logo-monogram-dark.svg";
+import { useEffect, useRef, useState, useCallback } from "react";
+
+// Grid configuration
+const GRID_SIZE = 40;
+
+interface GridCell {
+  x: number;
+  y: number;
+  opacity: number;
+}
+
+const HoverGrid = () => {
+  const canvasRef = useRef<HTMLCanvasElement>(null);
+  const mouseRef = useRef({ x: -1000, y: -1000 });
+  const animationRef = useRef<number>();
+  const cellsRef = useRef<GridCell[]>([]);
+  const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  const initGrid = useCallback(() => {
+    const cols = Math.ceil(dimensions.width / GRID_SIZE) + 1;
+    const rows = Math.ceil(dimensions.height / GRID_SIZE) + 1;
+    const cells: GridCell[] = [];
+
+    for (let y = 0; y < rows; y++) {
+      for (let x = 0; x < cols; x++) {
+        cells.push({ x: x * GRID_SIZE, y: y * GRID_SIZE, opacity: 0 });
+      }
+    }
+    cellsRef.current = cells;
+  }, [dimensions]);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setDimensions({
+        width: window.innerWidth,
+        height: window.innerHeight,
+      });
+    };
+
+    handleResize();
+    window.addEventListener("resize", handleResize);
+    return () => window.removeEventListener("resize", handleResize);
+  }, []);
+
+  useEffect(() => {
+    if (dimensions.width > 0) {
+      initGrid();
+    }
+  }, [dimensions, initGrid]);
+
+  useEffect(() => {
+    const canvas = canvasRef.current;
+    if (!canvas) return;
+
+    const ctx = canvas.getContext("2d");
+    if (!ctx) return;
+
+    canvas.width = dimensions.width;
+    canvas.height = dimensions.height;
+
+    const animate = () => {
+      ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+      const mouseX = mouseRef.current.x;
+      const mouseY = mouseRef.current.y;
+      const radius = 200;
+
+      cellsRef.current.forEach((cell) => {
+        const cellCenterX = cell.x + GRID_SIZE / 2;
+        const cellCenterY = cell.y + GRID_SIZE / 2;
+        const distance = Math.sqrt(
+          Math.pow(mouseX - cellCenterX, 2) + Math.pow(mouseY - cellCenterY, 2)
+        );
+
+        // Calculate target opacity based on distance
+        const targetOpacity = distance < radius ? 1 - distance / radius : 0;
+
+        // Smooth transition
+        cell.opacity += (targetOpacity - cell.opacity) * 0.1;
+
+        if (cell.opacity > 0.01) {
+          // Draw cell border with gold color
+          ctx.strokeStyle = `hsla(38, 75%, 55%, ${cell.opacity * 0.4})`;
+          ctx.lineWidth = 1;
+          ctx.strokeRect(cell.x, cell.y, GRID_SIZE, GRID_SIZE);
+
+          // Fill with subtle gold
+          ctx.fillStyle = `hsla(38, 75%, 55%, ${cell.opacity * 0.08})`;
+          ctx.fillRect(cell.x, cell.y, GRID_SIZE, GRID_SIZE);
+        }
+      });
+
+      animationRef.current = requestAnimationFrame(animate);
+    };
+
+    animate();
+
+    return () => {
+      if (animationRef.current) {
+        cancelAnimationFrame(animationRef.current);
+      }
+    };
+  }, [dimensions]);
+
+  const handleMouseMove = (e: React.MouseEvent) => {
+    const rect = canvasRef.current?.getBoundingClientRect();
+    if (rect) {
+      mouseRef.current = {
+        x: e.clientX - rect.left,
+        y: e.clientY - rect.top,
+      };
+    }
+  };
+
+  const handleMouseLeave = () => {
+    mouseRef.current = { x: -1000, y: -1000 };
+  };
+
+  return (
+    <canvas
+      ref={canvasRef}
+      className="absolute inset-0 z-0"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    />
+  );
+};
+
 export const Hero = () => {
-  const {
-    theme
-  } = useTheme();
-  return <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Gradient overlay */}
-      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background" />
+  const { theme } = useTheme();
+
+  const scrollToOfferings = () => {
+    const offeringsSection = document.getElementById("offerings");
+    offeringsSection?.scrollIntoView({
+      behavior: "smooth",
+      block: "start",
+    });
+  };
+
+  return (
+    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Interactive Grid Background */}
+      <HoverGrid />
+
+      {/* Base gradient */}
+      <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none" />
+
+      {/* Subtle radial glow */}
+      <div className="absolute inset-0 bg-gradient-radial from-primary/5 via-transparent to-transparent opacity-40 pointer-events-none" />
+
+      {/* Grain texture */}
+      <div className="absolute inset-0 grain pointer-events-none" />
 
       {/* Content */}
-      <div className="container-studio relative z-10 text-center animate-fade-in px-4 sm:px-6 lg:px-8 py-12 md:py-16">
-        <img src={theme === "dark" ? logoLight : logoDark} alt="Greenridge Studios Logo" className="w-32 h-auto sm:w-44 md:w-56 mx-auto mb-8 md:mb-10 animate-fade-in" />
-        <h1 className="font-hero text-3xl sm:text-4xl md:text-6xl lg:text-7xl font-bold mb-5 md:mb-8 text-balance leading-tight">
-          Performance begins with yourself.
-    
+      <div className="container-studio relative z-10 text-center px-4 sm:px-6 lg:px-8 py-24 md:py-32">
+        {/* Logo */}
+        <div className="mb-10 md:mb-14 animate-fade-in">
+          <img
+            src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
+            alt="Greenridge Studios"
+            className="w-48 sm:w-56 md:w-72 h-auto mx-auto"
+          />
+        </div>
+
+        {/* Main Headline */}
+        <h1
+          className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold mb-6 md:mb-8 text-balance leading-[1.1] animate-fade-in"
+          style={{ animationDelay: "0.1s" }}
+        >
+          Master the process.
+          <br />
+          <span className="text-primary">Own the outcome.</span>
         </h1>
-        
-        <p className="text-base sm:text-lg md:text-2xl text-muted-foreground mb-8 md:mb-12 max-w-3xl mx-auto text-balance leading-relaxed text-center">
-          Develop mastery in trading through structured systems and disciplined execution with an exclusive community of traders in <span className="inline-block bg-gradient-to-r from-muted-foreground via-foreground to-muted-foreground bg-[length:200%_auto] text-transparent bg-clip-text animate-shimmer">Greenridge Studios</span>.
+
+        {/* Subheadline */}
+        <p
+          className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-10 md:mb-14 max-w-3xl mx-auto text-balance leading-relaxed animate-fade-in"
+          style={{ animationDelay: "0.2s" }}
+        >
+          A private trading collective focused on systematic execution,
+          psychological edge, and long-term consistency. No shortcuts. No signals.
+          Just{" "}
+          <span className="text-foreground font-medium">disciplined performance</span>.
         </p>
 
-        <div className="flex flex-col items-center gap-4">
-          <Button variant="hero" size="lg" className="group w-full sm:w-auto" onClick={() => {
-            const offeringsSection = document.getElementById('offerings');
-            offeringsSection?.scrollIntoView({
-              behavior: 'smooth',
-              block: 'start'
-            });
-          }}>
+        {/* CTA */}
+        <div
+          className="flex flex-col sm:flex-row items-center justify-center gap-4 animate-fade-in"
+          style={{ animationDelay: "0.3s" }}
+        >
+          <Button
+            variant="hero"
+            size="lg"
+            className="group w-full sm:w-auto min-w-[200px]"
+            onClick={scrollToOfferings}
+          >
             Get Started
-            <ArrowRight className="animate-arrow-bounce" />
+            <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
           </Button>
-          <p className="text-sm text-muted-foreground italic">
-            Instant access. Cancel anytime.
-          </p>
+        </div>
+
+        {/* Trust indicator */}
+        <p
+          className="mt-6 text-sm text-muted-foreground animate-fade-in"
+          style={{ animationDelay: "0.4s" }}
+        >
+          Instant access. Cancel anytime.
+        </p>
+
+        {/* Decorative divider */}
+        <div
+          className="mt-16 md:mt-24 animate-fade-in"
+          style={{ animationDelay: "0.5s" }}
+        >
+          <div className="divider-gold" />
         </div>
       </div>
-    </section>;
+
+      {/* Scroll indicator */}
+      <div className="absolute bottom-8 left-1/2 -translate-x-1/2 animate-fade-in z-10" style={{ animationDelay: "0.6s" }}>
+        <div className="w-6 h-10 border-2 border-muted-foreground/30 rounded-full flex justify-center">
+          <div className="w-1 h-2 bg-primary rounded-full mt-2 animate-bounce" />
+        </div>
+      </div>
+    </section>
+  );
 };
