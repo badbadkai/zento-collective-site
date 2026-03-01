@@ -1,14 +1,36 @@
 import { useEffect } from "react";
+import { Link } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
 import { Price } from "@/components/Price";
-import { Check, X, ArrowRight } from "lucide-react";
+import { usePricing } from "@/context/PricingContext";
+import { convertUSDToCurrency, formatPrice as formatPriceUtil, getCurrencySymbol } from "@/lib/pricing";
+import {
+  Accordion,
+  AccordionItem,
+  AccordionTrigger,
+  AccordionContent,
+} from "@/components/ui/accordion";
+import { Check, X, ArrowRight, Clock, Plus } from "lucide-react";
 
 const Start = () => {
+  const { currency, getPrice } = usePricing();
+
   useEffect(() => {
     document.title = "Trading Accelerator — Greenridge Studios";
   }, []);
+
+  const price = getPrice("accelerator");
+  const dailyCost = (price / 30).toFixed(2);
+  const symbol = getCurrencySymbol(currency);
+
+  const scrollToSection = (id: string) => {
+    const el = document.getElementById(id);
+    if (el) {
+      el.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <div className="min-h-screen bg-background">
@@ -19,9 +41,16 @@ const Start = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
         <div className="container-studio relative">
           <div className="max-w-3xl mx-auto text-center">
-            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-6 animate-fade-in">
-              30-Day Program
-            </p>
+            <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
+              <span className="text-primary font-medium text-sm tracking-widest uppercase">
+                30-Day Program
+              </span>
+              <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
+              <span className="flex items-center gap-1.5 text-muted-foreground text-sm">
+                <Clock className="w-3.5 h-3.5" />
+                ~5–7 hrs/week
+              </span>
+            </div>
             <h1
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 animate-fade-in"
               style={{ animationDelay: "0.1s" }}
@@ -46,12 +75,21 @@ const Start = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
               style={{ animationDelay: "0.4s" }}
             >
-              <Button variant="hero" size="lg" className="group">
+              <Button
+                variant="hero"
+                size="lg"
+                className="group"
+                onClick={() => scrollToSection("pricing")}
+              >
                 Join the Accelerator
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
-              <Button variant="outline" size="lg">
-                Learn More
+              <Button
+                variant="outline"
+                size="lg"
+                onClick={() => scrollToSection("curriculum")}
+              >
+                See the Curriculum
               </Button>
             </div>
           </div>
@@ -78,7 +116,7 @@ const Start = () => {
                   {[
                     "You're willing to do the work without guarantees",
                     "You want clear rules, not hope or signals",
-                    "You can follow a structured process for 30 days",
+                    "You can commit ~1 hour per day for 30 days",
                     "You understand risk before reward",
                     "You're ready to document what you learn",
                     "You see trading as a skill to build, not wealth to grab",
@@ -228,7 +266,7 @@ const Start = () => {
       </section>
 
       {/* Calendar Section */}
-      <section className="section-spacing">
+      <section id="curriculum" className="section-spacing">
         <div className="container-studio">
           <div className="max-w-5xl mx-auto">
             <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
@@ -466,7 +504,7 @@ const Start = () => {
       </section>
 
       {/* Pricing & Commitment */}
-      <section className="section-spacing">
+      <section id="pricing" className="section-spacing">
         <div className="container-studio">
           <div className="max-w-3xl mx-auto text-center">
             <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
@@ -481,47 +519,133 @@ const Start = () => {
               <p className="text-muted-foreground mb-6">
                 30 days. One coherent framework. Written rules for everything.
               </p>
+
+              {/* Value anchor */}
+              <p className="text-sm text-muted-foreground mb-3">
+                Most trading bootcamps charge {symbol}2,000–{symbol}5,000
+              </p>
+
               <Price
                 product="accelerator"
                 className="font-heading text-5xl md:text-6xl font-bold text-foreground mb-2 block"
               />
+
+              {/* Daily cost reframe */}
+              <p className="text-primary font-medium text-sm mb-4">
+                That's {symbol}{dailyCost}/day for 30 days of structured development
+              </p>
+
               <p className="text-muted-foreground">
                 One-time investment. Lifetime access to your work and community
                 support.
               </p>
             </div>
 
+            {/* Loss aversion frame */}
             <div className="p-8 rounded-2xl border border-primary/20 bg-primary/5 mb-10">
               <p className="text-foreground font-medium mb-4">
-                This price reflects what this program is: intensive, structured,
-                and focused.
+                One undisciplined trade without rules can cost more than this entire program.
               </p>
               <p className="text-muted-foreground text-sm">
-                It's not cheap because it requires effort. It's not expensive
-                because the real cost of trading without a system is far
-                higher—in capital lost, in time wasted, and in lessons relearned.
+                The real expense isn't the program—it's trading without a system.
+                Capital lost to emotional decisions, time wasted strategy-hopping,
+                and lessons you keep relearning. This investment pays for itself
+                the first time your rules save you from a bad trade.
               </p>
             </div>
 
             <div className="space-y-3 mb-12">
               {[
-                "30 days of structured curriculum",
-                "Weekly live Q&A sessions",
-                "Community access and backtesting support",
-                "All materials and templates included",
-                "Accountability check-ins",
+                "30 days of structured, daily curriculum",
+                "Weekly live Q&A sessions with guided backtesting",
+                "Private community access and peer accountability",
+                "All templates, frameworks, and journaling tools included",
+                "Lifetime access to your materials and community",
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-3 justify-center items-center">
-                  <Check className="w-5 h-5 text-primary" />
-                  <span className="text-foreground">{item}</span>
+                  <Check className="w-5 h-5 text-primary flex-shrink-0" />
+                  <span className="text-foreground text-sm">{item}</span>
                 </div>
               ))}
             </div>
 
-            <Button variant="hero" size="lg" className="group">
-              Join the Accelerator — <Price product="accelerator" />
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
+            <Link to="/waitlist">
+              <Button variant="hero" size="lg" className="group">
+                Join the Accelerator — <Price product="accelerator" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </Link>
+          </div>
+        </div>
+      </section>
+
+      {/* FAQ Section */}
+      <section className="section-spacing relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
+        <div className="container-studio relative">
+          <div className="text-center mb-12 md:mb-16">
+            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
+              Common Questions
+            </p>
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+              Before You <span className="text-primary">Commit</span>
+            </h2>
+            <p className="text-muted-foreground text-base max-w-xl mx-auto">
+              Straight answers so you can make an informed decision.
+            </p>
+          </div>
+
+          <div className="max-w-3xl mx-auto">
+            <Accordion type="single" collapsible className="space-y-4">
+              {[
+                {
+                  q: "How much time do I need each day?",
+                  a: "Plan for about 1 hour per day on weekdays — roughly 5–7 hours per week. Each day has a focused lesson and an action step. Some days are heavier (strategy building, journaling setup), some are lighter (reviews, community sessions). You can fit this around a full-time job.",
+                },
+                {
+                  q: "Do I need any prior trading experience?",
+                  a: "No. This program is designed for beginners or traders who've been stuck in the 'learning phase' without a system. We start from foundations and build up. If you already have some experience, weeks 1–2 will move quickly for you, and weeks 3–4 will push you further.",
+                },
+                {
+                  q: "What tools or platforms do I need?",
+                  a: "You'll need access to a charting platform (TradingView works — the free tier is fine) and a demo/paper trading account with any broker. We don't require specific paid software. You'll also need something to journal with — a spreadsheet or notebook works.",
+                },
+                {
+                  q: "What happens after the 30 days?",
+                  a: "You keep lifetime access to all your materials, templates, and the community. The program gives you a complete system — after 30 days, you either continue refining your strategy independently or pursue a prop firm evaluation with the framework you've built.",
+                },
+                {
+                  q: "Is there a refund policy?",
+                  a: "All sales are final. This is a program you engage with, not a product you consume. We're upfront about this because the value comes from doing the work. If you're unsure, read through the full curriculum breakdown above — it should make the scope of commitment clear.",
+                },
+                {
+                  q: "Will I be profitable after this?",
+                  a: "We don't promise profitability — nobody honestly can. What we promise is that you'll have a complete, written trading system with rules for entry, exit, risk, and psychology. Whether that system is profitable depends on your execution, discipline, and continued refinement. The program gives you the structure. The results depend on you.",
+                },
+              ].map((item, idx) => (
+                <AccordionItem
+                  key={idx}
+                  value={`faq-${idx}`}
+                  className="group border border-border/50 rounded-xl bg-card/30 overflow-hidden data-[state=open]:border-primary/30 transition-colors"
+                >
+                  <AccordionTrigger className="px-6 py-5 hover:no-underline group-data-[state=open]:text-primary transition-colors [&>svg]:hidden">
+                    <div className="flex items-center justify-between w-full">
+                      <span className="font-medium text-left text-base md:text-lg">
+                        {item.q}
+                      </span>
+                      <div className="flex-shrink-0 ml-4 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary/20 transition-colors">
+                        <Plus className="w-4 h-4 text-primary transition-transform duration-300 group-data-[state=open]:rotate-45" />
+                      </div>
+                    </div>
+                  </AccordionTrigger>
+                  <AccordionContent className="px-6 pb-5">
+                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                      {item.a}
+                    </p>
+                  </AccordionContent>
+                </AccordionItem>
+              ))}
+            </Accordion>
           </div>
         </div>
       </section>
@@ -548,13 +672,17 @@ const Start = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Button variant="hero" size="lg" className="group">
-                Start Your 30 Days
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Button>
-              <Button variant="outline" size="lg">
-                Questions? Contact Us
-              </Button>
+              <Link to="/waitlist">
+                <Button variant="hero" size="lg" className="group">
+                  Start Your 30 Days
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Button>
+              </Link>
+              <Link to="/contact">
+                <Button variant="outline" size="lg">
+                  Questions? Contact Us
+                </Button>
+              </Link>
             </div>
 
             <p className="text-sm text-muted-foreground italic">

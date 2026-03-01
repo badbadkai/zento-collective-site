@@ -14,10 +14,10 @@ const EUROZONE_COUNTRIES = new Set([
 // Fixed pricing table (in each currency)
 const PRICING_TABLE: Record<string, Record<string, number>> = {
   accelerator: {
-    USD: 210,
-    SGD: 275,
-    GBP: 167,
-    EUR: 191
+    USD: 197,
+    SGD: 259,
+    GBP: 149,
+    EUR: 179
   }
 };
 
