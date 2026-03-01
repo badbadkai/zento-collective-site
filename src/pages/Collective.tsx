@@ -91,7 +91,7 @@ const Collective = () => {
       icon: BarChart3,
       title: "Institutional-Grade Market Analysis",
       description:
-        "Daily and weekly market briefs covering macro context, key levels, and the setups worth watching — delivered with clarity.",
+        "Daily and weekly market briefs covering macro context, key levels, and the setups worth watching, delivered with clarity.",
     },
     {
       icon: Layers,
@@ -103,18 +103,18 @@ const Collective = () => {
       icon: MessageCircle,
       title: "Direct Peer & Mentor Access",
       description:
-        "Structured discussions, trade reviews, and accountability with a community of serious practitioners — not spectators.",
+        "Structured discussions, trade reviews, and accountability with a community of serious practitioners, not spectators.",
     },
   ];
 
   const faqItems = [
     {
       q: "Can I cancel anytime?",
-      a: "Monthly memberships can be cancelled anytime — no lock-in. Quarterly and annual plans are billed upfront for the full period at a discounted rate.",
+      a: "Monthly memberships can be cancelled anytime, no lock-in. Quarterly and annual plans are billed upfront for the full period at a discounted rate.",
     },
     {
       q: "What's different from the free community?",
-      a: "The Premium Collective includes live trading sessions, institutional-grade analysis, advanced strategy deep-dives, and direct mentor access. The free community is a starting point — this is where serious development happens.",
+      a: "The Premium Collective includes live trading sessions, institutional-grade analysis, advanced strategy deep-dives, and direct mentor access. The free community is a starting point. This is where serious development happens.",
     },
     {
       q: "Do I need to complete the Accelerator first?",
@@ -430,7 +430,7 @@ const Collective = () => {
 
             <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
               The Collective isn't another Discord group. It's a structured
-              environment where active traders sharpen their edge together —
+              environment where active traders sharpen their edge together,
               with live analysis, advanced strategy, and real accountability.
             </p>
 

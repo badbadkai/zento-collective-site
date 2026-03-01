@@ -123,7 +123,8 @@ export const Header = () => {
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {
-                  window.open("https://blog.greenridgestudios.com", "_blank");
+                  window.scrollTo(0, 0);
+                  navigate("/articles");
                 }}
                 className="cursor-pointer"
               >
@@ -206,10 +207,8 @@ export const Header = () => {
                     <SheetClose asChild>
                       <button
                         onClick={() => {
-                          window.open(
-                            "https://blog.greenridgestudios.com",
-                            "_blank"
-                          );
+                          window.scrollTo(0, 0);
+                          navigate("/articles");
                         }}
                         className="w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
                       >

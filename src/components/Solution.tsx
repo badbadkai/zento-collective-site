@@ -6,7 +6,7 @@ export const Solution = () => {
       icon: Compass,
       title: "Systematic Framework",
       description:
-        "A comprehensive trading architecture built around your edge — covering market conditions, setup criteria, risk parameters, and precise execution rules.",
+        "A comprehensive trading architecture built around your edge, covering market conditions, setup criteria, risk parameters, and precise execution rules.",
       number: "01",
     },
     {

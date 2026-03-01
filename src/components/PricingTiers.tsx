@@ -32,7 +32,7 @@ export const PricingTiers: React.FC = () => {
         "Complete resource library & templates",
         "Private community workspace",
         "Priority support channel",
-        "Full flexibility — cancel anytime",
+        "Full flexibility. Cancel anytime",
       ],
     },
     {
@@ -46,7 +46,7 @@ export const PricingTiers: React.FC = () => {
         "Complete resource library & templates",
         "Private community workspace",
         "Priority support channel",
-        "Full flexibility — cancel anytime",
+        "Full flexibility. Cancel anytime",
       ],
       highlight: true,
     },
@@ -61,7 +61,7 @@ export const PricingTiers: React.FC = () => {
         "Complete resource library & templates",
         "Private community workspace",
         "Priority support channel",
-        "Full flexibility — cancel anytime",
+        "Full flexibility. Cancel anytime",
       ],
     },
   ];

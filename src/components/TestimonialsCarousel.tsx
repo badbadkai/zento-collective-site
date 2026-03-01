@@ -13,7 +13,7 @@ const testimonials: Testimonial[] = [
   {
     id: 1,
     quote:
-      "The systematic approach fundamentally changed my relationship with the markets. No more reactive decisions — just clear framework execution.",
+      "The systematic approach fundamentally changed my relationship with the markets. No more reactive decisions. Just clear framework execution.",
     author: "Alex M.",
     role: "Prop Trader",
     result: "+32% in 3 months",
@@ -45,7 +45,7 @@ const testimonials: Testimonial[] = [
   {
     id: 5,
     quote:
-      "The Accelerator gave me a complete operating system — documented rules, risk protocols, and a repeatable process I can trust.",
+      "The Accelerator gave me a complete operating system: documented rules, risk protocols, and a repeatable process I can trust.",
     author: "Emma L.",
     role: "Futures Trader",
     result: "3 funded accounts",

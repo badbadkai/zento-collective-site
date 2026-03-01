@@ -15,6 +15,7 @@ import RefundPolicy from "./pages/RefundPolicy";
 import Contact from "./pages/Contact";
 import Start from "./pages/Start";
 import Collective from "./pages/Collective";
+import Articles from "./pages/Articles";
 import WaitlistPage from "./pages/WaitlistPage";
 import PageTransition from "./components/PageTransition";
 
@@ -40,6 +41,7 @@ const AnimatedRoutes = () => {
         <Route path="/start" element={<PageTransition><Start /></PageTransition>} />
         <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
+        <Route path="/articles" element={<PageTransition><Articles /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
         <Route path="/privacy_policy" element={<PageTransition><PrivacyPolicy /></PageTransition>} />

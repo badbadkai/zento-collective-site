@@ -99,7 +99,7 @@ const Terms = () => {
               <h2 className="text-2xl font-bold mb-4">5. Intellectual Property</h2>
               <div className="space-y-4">
                 <p>
-                  <strong>5.1</strong> All content included in or made available through the Product — including text, graphics, branding, logos, methodologies, frameworks, layouts, audiovisual materials, and software — is the exclusive property of Greenridge Studios and is protected by copyright, trademark, and other intellectual property laws.
+                  <strong>5.1</strong> All content included in or made available through the Product, including text, graphics, branding, logos, methodologies, frameworks, layouts, audiovisual materials, and software, is the exclusive property of Greenridge Studios and is protected by copyright, trademark, and other intellectual property laws.
                 </p>
                 <p>
                   <strong>5.2</strong> You are granted a limited, non-exclusive, non-transferable, revocable licence to access and use the Product for personal, non-commercial use only.

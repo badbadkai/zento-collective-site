@@ -14,7 +14,7 @@ export const ProcessTimeline = () => {
       step: "02",
       title: "Absorb the Foundations",
       description:
-        "Navigate our structured curriculum — from market mechanics and psychology to advanced risk protocols.",
+        "Navigate our structured curriculum, from market mechanics and psychology to advanced risk protocols.",
     },
     {
       icon: Target,

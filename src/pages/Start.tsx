@@ -404,7 +404,7 @@ const Start = () => {
 
             <p className="text-center text-muted-foreground text-sm mt-8 italic">
               These support structures exist to deepen your learning and keep you
-              disciplined—not to replace your own thinking or provide trading
+              disciplined, not to replace your own thinking or provide trading
               signals.
             </p>
           </div>
@@ -547,7 +547,7 @@ const Start = () => {
                 One undisciplined trade without rules can cost more than this entire program.
               </p>
               <p className="text-muted-foreground text-sm">
-                The real expense isn't the program—it's trading without a system.
+                The real expense isn't the program. It's trading without a system.
                 Capital lost to emotional decisions, time wasted strategy-hopping,
                 and lessons you keep relearning. This investment pays for itself
                 the first time your rules save you from a bad trade.
@@ -571,7 +571,7 @@ const Start = () => {
 
             <Link to="/waitlist">
               <Button variant="hero" size="lg" className="group">
-                Join the Accelerator — <Price product="accelerator" />
+                Join the Accelerator - <Price product="accelerator" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </Link>
@@ -600,7 +600,7 @@ const Start = () => {
               {[
                 {
                   q: "How much time do I need each day?",
-                  a: "Plan for about 1 hour per day on weekdays — roughly 5–7 hours per week. Each day has a focused lesson and an action step. Some days are heavier (strategy building, journaling setup), some are lighter (reviews, community sessions). You can fit this around a full-time job.",
+                  a: "Plan for about 1 hour per day on weekdays, roughly 5-7 hours per week. Each day has a focused lesson and an action step. Some days are heavier (strategy building, journaling setup), some are lighter (reviews, community sessions). You can fit this around a full-time job.",
                 },
                 {
                   q: "Do I need any prior trading experience?",
@@ -608,19 +608,19 @@ const Start = () => {
                 },
                 {
                   q: "What tools or platforms do I need?",
-                  a: "You'll need access to a charting platform (TradingView works — the free tier is fine) and a demo/paper trading account with any broker. We don't require specific paid software. You'll also need something to journal with — a spreadsheet or notebook works.",
+                  a: "You'll need access to a charting platform (TradingView works, the free tier is fine) and a demo/paper trading account with any broker. We don't require specific paid software. You'll also need something to journal with, and a spreadsheet or notebook works.",
                 },
                 {
                   q: "What happens after the 30 days?",
-                  a: "You keep lifetime access to all your materials, templates, and the community. The program gives you a complete system — after 30 days, you either continue refining your strategy independently or pursue a prop firm evaluation with the framework you've built.",
+                  a: "You keep lifetime access to all your materials, templates, and the community. The program gives you a complete system. After 30 days, you either continue refining your strategy independently or pursue a prop firm evaluation with the framework you've built.",
                 },
                 {
                   q: "Is there a refund policy?",
-                  a: "All sales are final. This is a program you engage with, not a product you consume. We're upfront about this because the value comes from doing the work. If you're unsure, read through the full curriculum breakdown above — it should make the scope of commitment clear.",
+                  a: "All sales are final. This is a program you engage with, not a product you consume. We're upfront about this because the value comes from doing the work. If you're unsure, read through the full curriculum breakdown above. It should make the scope of commitment clear.",
                 },
                 {
                   q: "Will I be profitable after this?",
-                  a: "We don't promise profitability — nobody honestly can. What we promise is that you'll have a complete, written trading system with rules for entry, exit, risk, and psychology. Whether that system is profitable depends on your execution, discipline, and continued refinement. The program gives you the structure. The results depend on you.",
+                  a: "We don't promise profitability, and nobody honestly can. What we promise is that you'll have a complete, written trading system with rules for entry, exit, risk, and psychology. Whether that system is profitable depends on your execution, discipline, and continued refinement. The program gives you the structure. The results depend on you.",
                 },
               ].map((item, idx) => (
                 <AccordionItem
