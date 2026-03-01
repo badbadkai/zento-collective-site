@@ -14,6 +14,7 @@ import RiskDisclaimer from "./pages/RiskDisclaimer";
 import RefundPolicy from "./pages/RefundPolicy";
 import Contact from "./pages/Contact";
 import Start from "./pages/Start";
+import Collective from "./pages/Collective";
 import WaitlistPage from "./pages/WaitlistPage";
 import PageTransition from "./components/PageTransition";
 
@@ -37,6 +38,7 @@ const AnimatedRoutes = () => {
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/start" element={<PageTransition><Start /></PageTransition>} />
+        <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />

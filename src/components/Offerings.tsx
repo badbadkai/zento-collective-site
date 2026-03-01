@@ -43,8 +43,8 @@ export const Offerings = () => {
       ],
       cta: "Join the Collective",
       action: () => {
-        window.location.href =
-          "https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456";
+        window.scrollTo(0, 0);
+        navigate("/collective");
       },
       highlighted: true,
     },
