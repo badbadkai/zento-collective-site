@@ -220,9 +220,8 @@ export const Hero = () => {
           className="text-base sm:text-lg md:text-xl lg:text-2xl text-muted-foreground mb-10 md:mb-14 max-w-3xl mx-auto text-balance leading-relaxed animate-fade-in"
           style={{ animationDelay: "0.2s" }}
         >
-          A private trading collective focused on systematic execution,
-          psychological edge, and long-term consistency. No shortcuts. No signals.
-          Just{" "}
+          Structure your trading with systematic execution, psychological
+          edge, and real accountability. Built for traders who value{" "}
           <span className="text-foreground font-medium">disciplined performance</span>.
         </p>
 
