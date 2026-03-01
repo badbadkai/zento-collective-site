@@ -141,22 +141,22 @@ const Collective = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
               <span className="text-primary font-medium text-sm tracking-widest uppercase">
-                Membership
+                The Premium Collective
               </span>
             </div>
             <h1
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 animate-fade-in"
               style={{ animationDelay: "0.1s" }}
             >
-              The Premium{" "}
-              <span className="text-primary">Collective</span>
+              Sharpen Your Edge.{" "}
+              <span className="text-primary">Every Week.</span>
             </h1>
             <p
               className="text-lg md:text-xl text-muted-foreground mb-10 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              Continuous access to live analysis, advanced strategy, and a
-              community of serious traders.
+              Weekly live analysis, advanced strategy, and a community of
+              serious traders who do the work.
             </p>
             <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
