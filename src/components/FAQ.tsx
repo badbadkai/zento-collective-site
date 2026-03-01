@@ -42,19 +42,17 @@ export const FAQ = () => {
       <div className="container-studio relative">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 animate-fade-in">
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             Common Questions
           </p>
           <h2
-            className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
-          >
+            className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4"
+>
             Before You <span className="text-primary">Decide</span>
           </h2>
           <p
-            className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
-          >
+            className="text-muted-foreground text-base md:text-lg max-w-xl mx-auto"
+>
             Clear answers to help you evaluate if this environment is right for you.
           </p>
         </div>
@@ -66,8 +64,7 @@ export const FAQ = () => {
               <AccordionItem
                 key={idx}
                 value={`item-${idx}`}
-                className="group border border-border/50 rounded-xl bg-card/30 backdrop-blur-sm overflow-hidden data-[state=open]:border-primary/30 transition-colors animate-fade-in"
-                style={{ animationDelay: `${0.2 + idx * 0.05}s` }}
+                className="group border border-border/50 rounded-xl bg-card/30 backdrop-blur-sm overflow-hidden data-[state=open]:border-primary/30 transition-colors"
               >
                 <AccordionTrigger className="px-6 py-5 hover:no-underline group-data-[state=open]:text-primary transition-colors [&>svg]:hidden">
                   <div className="flex items-center justify-between w-full">

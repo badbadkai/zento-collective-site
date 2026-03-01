@@ -30,20 +30,18 @@ export const Community = () => {
       <div className="container-studio relative">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 animate-fade-in">
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             The Environment
           </p>
           <h2
-            className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
-          >
+            className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4"
+>
             What You'll{" "}
             <span className="text-primary">Access</span>
           </h2>
           <p
-            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
-          >
+            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto"
+>
             A curated workspace designed for deliberate practice and measurable
             progression.
           </p>
@@ -56,8 +54,7 @@ export const Community = () => {
             return (
               <div
                 key={index}
-                className="group relative p-6 md:p-8 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/30 hover:bg-card/60 transition-all duration-300 animate-fade-in"
-                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                className="group relative p-6 md:p-8 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/30 hover:bg-card/60 transition-all duration-300"
               >
                 <div className="flex items-start gap-4 md:gap-6">
                   {/* Icon */}

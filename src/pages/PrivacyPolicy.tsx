@@ -1,7 +1,12 @@
+import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 
 const PrivacyPolicy = () => {
+  useEffect(() => {
+    document.title = "Privacy Policy — Greenridge Studios";
+  }, []);
+
   return (
     <div className="min-h-screen flex flex-col">
       <Header />

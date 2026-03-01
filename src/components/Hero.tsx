@@ -14,12 +14,18 @@ interface GridCell {
   opacity: number;
 }
 
-const HoverGrid = () => {
+const HoverGrid = ({ isVisible }: { isVisible: boolean }) => {
   const canvasRef = useRef<HTMLCanvasElement>(null);
   const mouseRef = useRef({ x: -1000, y: -1000 });
   const animationRef = useRef<number>();
   const cellsRef = useRef<GridCell[]>([]);
+  const isVisibleRef = useRef(isVisible);
   const [dimensions, setDimensions] = useState({ width: 0, height: 0 });
+
+  // Keep the ref in sync with the prop
+  useEffect(() => {
+    isVisibleRef.current = isVisible;
+  }, [isVisible]);
 
   const initGrid = useCallback(() => {
     const cols = Math.ceil(dimensions.width / GRID_SIZE) + 1;
@@ -64,6 +70,12 @@ const HoverGrid = () => {
     canvas.height = dimensions.height;
 
     const animate = () => {
+      // Pause the animation loop when the hero section is offscreen
+      if (!isVisibleRef.current) {
+        animationRef.current = requestAnimationFrame(animate);
+        return;
+      }
+
       ctx.clearRect(0, 0, canvas.width, canvas.height);
 
       const mouseX = mouseRef.current.x;
@@ -133,6 +145,32 @@ const HoverGrid = () => {
 
 export const Hero = () => {
   const { theme } = useTheme();
+  const sectionRef = useRef<HTMLElement>(null);
+  const [isVisible, setIsVisible] = useState(true);
+  const [isTouchDevice, setIsTouchDevice] = useState(false);
+
+  // Detect touch devices on mount — skip HoverGrid entirely on mobile
+  useEffect(() => {
+    const touch =
+      "ontouchstart" in window || navigator.maxTouchPoints > 0;
+    setIsTouchDevice(touch);
+  }, []);
+
+  // IntersectionObserver to pause canvas animation when hero is offscreen
+  useEffect(() => {
+    const section = sectionRef.current;
+    if (!section) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsVisible(entry.isIntersecting);
+      },
+      { threshold: 0 }
+    );
+
+    observer.observe(section);
+    return () => observer.disconnect();
+  }, []);
 
   const scrollToOfferings = () => {
     const offeringsSection = document.getElementById("offerings");
@@ -143,9 +181,9 @@ export const Hero = () => {
   };
 
   return (
-    <section className="relative min-h-screen flex items-center justify-center overflow-hidden">
-      {/* Interactive Grid Background */}
-      <HoverGrid />
+    <section ref={sectionRef} className="relative min-h-screen flex items-center justify-center overflow-hidden">
+      {/* Interactive Grid Background — only rendered on non-touch devices */}
+      {!isTouchDevice && <HoverGrid isVisible={isVisible} />}
 
       {/* Base gradient */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-background/95 to-background pointer-events-none" />

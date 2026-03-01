@@ -1,16 +1,40 @@
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { useState } from "react";
-import { ArrowRight, Check, Mail } from "lucide-react";
+import { ArrowRight, Check, Mail, Loader2 } from "lucide-react";
+import { toast } from "sonner";
 
 export const Newsletter = () => {
   const [email, setEmail] = useState("");
   const [submitted, setSubmitted] = useState(false);
+  const [isSubmitting, setIsSubmitting] = useState(false);
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    console.log("Newsletter signup:", email);
-    setSubmitted(true);
+    setIsSubmitting(true);
+
+    try {
+      const res = await fetch("/api/newsletter", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ email }),
+      });
+
+      const result = await res.json().catch(() => ({}));
+
+      if (!res.ok) {
+        const message = result?.error || "Something went wrong";
+        throw new Error(message);
+      }
+
+      setSubmitted(true);
+      toast.success("You're on the list.");
+    } catch (err: any) {
+      const message = err?.message || "Failed to subscribe";
+      toast.error(message);
+    } finally {
+      setIsSubmitting(false);
+    }
   };
 
   return (
@@ -49,19 +73,30 @@ export const Newsletter = () => {
                   className="w-full bg-background/50 border-border/50 focus:border-primary/50 h-12"
                   aria-label="Email address"
                   required
+                  disabled={isSubmitting}
                 />
                 <Button
                   type="submit"
                   variant="hero"
                   size="lg"
                   className="w-full sm:w-auto group"
+                  disabled={isSubmitting}
                 >
-                  Subscribe
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                  {isSubmitting ? (
+                    <>
+                      <Loader2 className="w-4 h-4 animate-spin" />
+                      Subscribing...
+                    </>
+                  ) : (
+                    <>
+                      Subscribe
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                    </>
+                  )}
                 </Button>
               </form>
             ) : (
-              <div className="flex items-center justify-center gap-2 text-primary font-medium animate-fade-in">
+              <div className="flex items-center justify-center gap-2 text-primary font-medium">
                 <div className="w-8 h-8 rounded-full bg-primary/20 flex items-center justify-center">
                   <Check className="w-4 h-4" />
                 </div>

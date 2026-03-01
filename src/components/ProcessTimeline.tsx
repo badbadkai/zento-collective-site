@@ -40,20 +40,18 @@ export const ProcessTimeline = () => {
       <div className="container-studio relative">
         {/* Section Header */}
         <div className="text-center mb-16 md:mb-20">
-          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 animate-fade-in">
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             The Progression
           </p>
           <h2
-            className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
-          >
+            className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4"
+>
             Four Phases to{" "}
             <span className="text-primary">Operational Mastery</span>
           </h2>
           <p
-            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
-          >
+            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto"
+>
             A systematic pathway from foundational understanding to
             confident, disciplined execution.
           </p>
@@ -72,8 +70,7 @@ export const ProcessTimeline = () => {
                 return (
                   <div
                     key={index}
-                    className="relative animate-fade-in"
-                    style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                    className="relative"
                   >
                     {/* Mobile connecting line */}
                     {index < steps.length - 1 && (

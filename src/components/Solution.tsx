@@ -34,22 +34,20 @@ export const Solution = () => {
         {/* Section Header */}
         <div className="max-w-3xl mx-auto text-center mb-16 md:mb-20">
           <p
-            className="text-primary font-medium text-sm tracking-widest uppercase mb-4 animate-fade-in"
-          >
+            className="text-primary font-medium text-sm tracking-widest uppercase mb-4"
+>
             The Foundation
           </p>
           <h2
-            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
-          >
+            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-6"
+>
             Structure Before
             <br />
             <span className="text-primary">Strategy</span>
           </h2>
           <p
-            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto animate-fade-in"
-            style={{ animationDelay: "0.2s" }}
-          >
+            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto"
+>
             Consistent results require consistent processes. We build the
             operational foundation that transforms reactive trading into
             deliberate execution.
@@ -63,8 +61,7 @@ export const Solution = () => {
             return (
               <div
                 key={index}
-                className="group relative animate-fade-in"
-                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
+                className="group relative"
               >
                 {/* Card */}
                 <div className="relative h-full p-8 md:p-10 rounded-2xl border border-border/50 bg-card/50 backdrop-blur-sm transition-all duration-500 hover:border-primary/30 hover:bg-card hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1">

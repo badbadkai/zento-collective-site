@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -5,6 +6,10 @@ import { Price } from "@/components/Price";
 import { Check, X, ArrowRight } from "lucide-react";
 
 const Start = () => {
+  useEffect(() => {
+    document.title = "Trading Accelerator — Greenridge Studios";
+  }, []);
+
   return (
     <div className="min-h-screen bg-background">
       <Header />

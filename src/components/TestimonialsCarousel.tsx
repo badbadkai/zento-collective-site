@@ -52,11 +52,8 @@ const testimonials: Testimonial[] = [
   },
 ];
 
-// Duplicate for seamless loop
-const duplicatedTestimonials = [...testimonials, ...testimonials];
-
 const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
-  <div className="flex-shrink-0 w-[350px] md:w-[400px] p-6 md:p-8 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm mx-3">
+  <div className="border border-border/50 bg-card/30 rounded-2xl p-6 md:p-8 hover:border-primary/30 hover:-translate-y-1 transition-all duration-300">
     {/* Quote icon */}
     <Quote className="w-8 h-8 text-primary/30 mb-4" />
 
@@ -66,10 +63,10 @@ const TestimonialCard = ({ testimonial }: { testimonial: Testimonial }) => (
     </blockquote>
 
     {/* Author info */}
-    <div className="flex items-center justify-between">
+    <div className="flex flex-wrap items-center justify-between gap-3">
       <div className="flex items-center gap-3">
         {/* Avatar */}
-        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center">
+        <div className="w-10 h-10 rounded-full bg-primary/20 flex items-center justify-center flex-shrink-0">
           <span className="text-primary font-bold text-sm">
             {testimonial.author.charAt(0)}
           </span>
@@ -113,22 +110,15 @@ export const TestimonialsCarousel = () => {
           </p>
         </div>
 
-        {/* Ticker Container */}
-        <div className="relative">
-          {/* Gradient masks */}
-          <div className="absolute left-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-r from-background to-transparent z-10 pointer-events-none" />
-          <div className="absolute right-0 top-0 bottom-0 w-20 md:w-40 bg-gradient-to-l from-background to-transparent z-10 pointer-events-none" />
-
-          {/* Scrolling ticker */}
-          <div className="overflow-hidden">
-            <div className="flex animate-ticker hover:pause">
-              {duplicatedTestimonials.map((testimonial, index) => (
-                <TestimonialCard
-                  key={`${testimonial.id}-${index}`}
-                  testimonial={testimonial}
-                />
-              ))}
-            </div>
+        {/* Testimonials Grid */}
+        <div className="container-studio">
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {testimonials.map((testimonial) => (
+              <TestimonialCard
+                key={testimonial.id}
+                testimonial={testimonial}
+              />
+            ))}
           </div>
         </div>
 

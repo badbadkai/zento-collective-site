@@ -58,13 +58,12 @@ export const Offerings = () => {
       <div className="container-studio relative">
         {/* Section Header */}
         <div className="text-center mb-12 md:mb-16">
-          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 animate-fade-in">
+          <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             Select Your Entry
           </p>
           <h2
-            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4 animate-fade-in"
-            style={{ animationDelay: "0.1s" }}
-          >
+            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4"
+>
             Two Paths. <span className="text-primary">One Standard.</span>
           </h2>
         </div>
@@ -76,10 +75,9 @@ export const Offerings = () => {
             return (
               <div
                 key={offering.id}
-                className={`group relative animate-fade-in ${
+                className={`group relative ${
                   offering.highlighted ? "md:-mt-4 md:mb-4" : ""
                 }`}
-                style={{ animationDelay: `${0.2 + index * 0.1}s` }}
               >
                 <div
                   className={`relative h-full p-8 md:p-10 rounded-2xl border transition-all duration-500 ${
