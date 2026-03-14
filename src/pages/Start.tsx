@@ -569,12 +569,12 @@ const Start = () => {
               ))}
             </div>
 
-            <Link to="/waitlist">
+            <a href="https://whop.com/greenridge-studios/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
               <Button variant="hero" size="lg" className="group">
                 Join the Accelerator - <Price product="accelerator" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
-            </Link>
+            </a>
           </div>
         </div>
       </section>
@@ -672,12 +672,12 @@ const Start = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link to="/waitlist">
+              <a href="https://whop.com/greenridge-studios/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
                 <Button variant="hero" size="lg" className="group">
                   Start Your 30 Days
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
-              </Link>
+              </a>
               <Link to="/contact">
                 <Button variant="outline" size="lg">
                   Questions? Contact Us
