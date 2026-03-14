@@ -20,22 +20,22 @@ const PRICING_TABLE: Record<string, Record<string, number>> = {
     EUR: 299
   },
   collective_monthly: {
-    USD: 39,
-    SGD: 51,
-    GBP: 29,
-    EUR: 35
+    USD: 52,
+    SGD: 69,
+    GBP: 39,
+    EUR: 47
   },
   collective_quarterly: {
-    USD: 97,
-    SGD: 127,
-    GBP: 73,
-    EUR: 87
+    USD: 130,
+    SGD: 171,
+    GBP: 98,
+    EUR: 117
   },
   collective_annual: {
-    USD: 297,
-    SGD: 389,
-    GBP: 224,
-    EUR: 267
+    USD: 399,
+    SGD: 523,
+    GBP: 301,
+    EUR: 359
   }
 };
 
