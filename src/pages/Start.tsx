@@ -612,7 +612,7 @@ const Start = () => {
                 },
                 {
                   q: "What happens after the 30 days?",
-                  a: "You keep lifetime access to all your materials, templates, and the community. The program gives you a complete system. After 30 days, you either continue refining your strategy independently or pursue a prop firm evaluation with the framework you've built.",
+                  a: "You keep lifetime access to all your materials and templates. To continue developing with live support, you can subscribe to the Premium Collective, our ongoing membership with weekly live trading sessions, institutional-grade market analysis, advanced strategy deep-dives, and direct peer and mentor access.",
                 },
                 {
                   q: "Is there a refund policy?",
