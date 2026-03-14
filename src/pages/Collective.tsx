@@ -66,7 +66,7 @@ const Collective = () => {
       perMonth: `${symbol}${quarterlyPerMonth}/mo`,
       savings: "Save ~17%",
       highlighted: true,
-      url: "#", /* TODO: Replace with Whop quarterly plan URL */
+      url: "https://whop.com/greenridge-studios/greenridge-studios-premium/",
     },
     {
       id: "annual",
@@ -76,7 +76,7 @@ const Collective = () => {
       perMonth: `${symbol}${annualPerMonth}/mo`,
       savings: "Save ~37%",
       highlighted: false,
-      url: "#", /* TODO: Replace with Whop annual plan URL */
+      url: "https://whop.com/greenridge-studios/greenridge-studios-premium/",
     },
   ];
 
