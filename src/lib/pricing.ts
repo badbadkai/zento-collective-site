@@ -14,10 +14,10 @@ const EUROZONE_COUNTRIES = new Set([
 // Fixed pricing table (in each currency)
 const PRICING_TABLE: Record<string, Record<string, number>> = {
   accelerator: {
-    USD: 197,
-    SGD: 259,
-    GBP: 149,
-    EUR: 179
+    USD: 329,
+    SGD: 433,
+    GBP: 249,
+    EUR: 299
   },
   collective_monthly: {
     USD: 39,
