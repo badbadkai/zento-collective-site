@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Mail, MessageSquare, Phone, MapPin, Clock } from "lucide-react";
+import { Mail, MessageSquare } from "lucide-react";
 
 const Contact = () => {
   useEffect(() => {
@@ -50,27 +50,6 @@ const Contact = () => {
                 </div>
               </div>
 
-              {/* Phone */}
-              <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Phone className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold mb-2">Phone</h3>
-                    <p className="text-muted-foreground text-sm mb-2">
-                      Call us during business hours:
-                    </p>
-                    <a
-                      href="tel:+4420XXXXXXXX"
-                      className="text-primary hover:underline font-medium text-sm"
-                    >
-                      +44 (0) 20 XXXX XXXX
-                    </a>
-                  </div>
-                </div>
-              </div>
-
               {/* Discord Community */}
               <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors">
                 <div className="flex gap-4">
@@ -92,53 +71,6 @@ const Contact = () => {
                     >
                       Discord Server
                     </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Address */}
-              <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <MapPin className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold mb-2">Address</h3>
-                    <p className="text-muted-foreground text-sm">
-                      Greenridge Studios
-                      <br />
-                      London, UK
-                      <br />
-                      (Placeholder Address)
-                    </p>
-                  </div>
-                </div>
-              </div>
-            </div>
-
-            {/* Business Hours */}
-            <div className="p-8 rounded-2xl border border-primary/20 bg-primary/5 mb-12">
-              <div className="flex gap-4">
-                <div className="w-12 h-12 rounded-xl bg-primary/20 flex items-center justify-center flex-shrink-0">
-                  <Clock className="h-6 w-6 text-primary" />
-                </div>
-                <div>
-                  <h3 className="font-heading text-lg font-semibold mb-3">
-                    Business Hours
-                  </h3>
-                  <div className="space-y-2 text-muted-foreground text-sm">
-                    <p>
-                      <strong className="text-foreground">Monday – Friday:</strong>{" "}
-                      9:00 AM – 6:00 PM (GMT)
-                    </p>
-                    <p>
-                      <strong className="text-foreground">Saturday – Sunday:</strong>{" "}
-                      Closed
-                    </p>
-                    <p className="pt-2 text-xs">
-                      Response times may vary during peak periods. We aim to respond
-                      within 24-48 hours.
-                    </p>
                   </div>
                 </div>
               </div>
