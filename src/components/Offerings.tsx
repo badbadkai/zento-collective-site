@@ -90,18 +90,16 @@ export const Offerings = () => {
         </div>
 
         {/* Offerings Grid */}
-        <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto items-stretch">
           {offerings.map((offering, index) => {
             const IconComponent = offering.icon;
             return (
               <div
                 key={offering.id}
-                className={`group relative ${
-                  offering.highlighted ? "md:-mt-4 md:mb-4" : ""
-                }`}
+                className="group relative"
               >
                 <div
-                  className={`relative h-full p-6 md:p-8 rounded-2xl border transition-all duration-500 ${
+                  className={`relative h-full flex flex-col p-6 md:p-8 rounded-2xl border transition-all duration-500 ${
                     offering.highlighted
                       ? "border-primary/40 bg-primary/5 hover:border-primary/60 hover:bg-primary/10"
                       : "border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card"
@@ -123,19 +121,23 @@ export const Offerings = () => {
                     </span>
                   </div>
 
-                  {/* Content */}
+                  {/* Title — fixed height to align across cards */}
                   <h3 className="font-heading text-2xl md:text-3xl font-semibold mb-3 text-foreground">
                     {offering.title}
                   </h3>
-                  <p className="text-base md:text-lg text-muted-foreground mb-3">
-                    {offering.subtitle}
-                  </p>
-                  <p className="text-sm text-muted-foreground mb-8">
-                    {offering.description}
-                  </p>
 
-                  {/* Features */}
-                  <ul className="space-y-3 mb-8">
+                  {/* Subtitle + Description — fixed min-height for alignment */}
+                  <div className="md:min-h-[140px]">
+                    <p className="text-base md:text-lg text-muted-foreground mb-3">
+                      {offering.subtitle}
+                    </p>
+                    <p className="text-sm text-muted-foreground">
+                      {offering.description}
+                    </p>
+                  </div>
+
+                  {/* Features — grows to fill space, pushing CTA to bottom */}
+                  <ul className="space-y-3 mt-8 mb-8 flex-grow">
                     {offering.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
                         <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -144,11 +146,11 @@ export const Offerings = () => {
                     ))}
                   </ul>
 
-                  {/* CTA */}
+                  {/* CTA — pinned to bottom */}
                   <Button
                     variant={offering.highlighted ? "hero" : "premium"}
                     size="lg"
-                    className="w-full group/btn"
+                    className="w-full group/btn mt-auto"
                     onClick={offering.action}
                   >
                     {offering.cta}
