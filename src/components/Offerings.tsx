@@ -41,7 +41,7 @@ export const Offerings = () => {
         "Daily journal review with personal feedback",
         "Prop firm challenge preparation",
       ],
-      cta: "Apply Now",
+      cta: "Join the Waitlist",
       action: () => {
         window.scrollTo(0, 0);
         navigate("/bootcamp");

@@ -81,7 +81,7 @@ const Bootcamp = () => {
                 className="group"
                 onClick={() => scrollToSection("pricing")}
               >
-                Apply Now
+                Join the Waitlist
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
               <Button
@@ -534,13 +534,12 @@ const Bootcamp = () => {
               ))}
             </div>
 
-            {/* TODO: Replace with actual Whop link for Bootcamp */}
-            <a href="#" target="_blank" rel="noopener noreferrer">
+            <Link to="/waitlist">
               <Button variant="hero" size="lg" className="group">
-                Apply Now - <Price product="bootcamp" />
+                Join the Waitlist - <Price product="bootcamp" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -638,13 +637,12 @@ const Bootcamp = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              {/* TODO: Replace with actual Whop link for Bootcamp */}
-              <a href="#" target="_blank" rel="noopener noreferrer">
+              <Link to="/waitlist">
                 <Button variant="hero" size="lg" className="group">
-                  Apply for the Bootcamp
+                  Join the Waitlist
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
-              </a>
+              </Link>
               <Link to="/contact">
                 <Button variant="outline" size="lg">
                   Questions? Contact Us

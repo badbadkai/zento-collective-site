@@ -9,28 +9,28 @@ import { Plus } from "lucide-react";
 export const FAQ = () => {
   const faqs = [
     {
-      q: "What exactly is Greenridge Studios?",
-      a: "Greenridge Studios is a private trading collective that integrates market education with psychological performance training. Our focus is developing systematic traders who execute with clarity, discipline, and measurable consistency.",
+      q: "What is Greenridge Studios?",
+      a: "Greenridge Studios is a trading education company focused on building disciplined, systematic traders. We offer structured programmes and an ongoing community designed to develop your process, risk management, and execution — not sell you signals or shortcuts.",
     },
     {
       q: "Is this suitable for beginners?",
-      a: "Absolutely. We welcome traders at every stage. Our structured curriculum provides clear progression paths, and our community offers supportive discussions designed to help you develop at your own pace.",
+      a: "Yes. If you're new to trading, the 30-Day Accelerator is built specifically for you. It takes you from zero to a complete trading system with written rules, risk frameworks, and a journaling process — all in 30 focused days.",
     },
     {
-      q: "What does free membership include?",
-      a: "Free members gain access to general discussion channels, community announcements, and select educational content. It's an ideal starting point to experience our environment before committing further.",
+      q: "I already know the basics but I'm not consistent. Which programme is right for me?",
+      a: "The 30-Day Bootcamp is designed for exactly this. It's a high-contact programme where we audit your current approach, rebuild what's broken, and develop your execution discipline through daily personal feedback and live trading sessions.",
+    },
+    {
+      q: "What is the Premium Collective?",
+      a: "The Collective is our ongoing monthly membership for active traders. It includes weekly live trading sessions, institutional-grade market analysis, advanced strategy deep-dives, and direct peer and mentor access. It's where traders go after completing a programme — or if they already have a system and want continuous sharpening.",
     },
     {
       q: "Do you provide trading signals?",
-      a: "We do not operate as a signals service. While analysts may share trade ideas at their discretion, our emphasis is on developing your independent analytical capability rather than creating dependency on external calls.",
-    },
-    {
-      q: "What educational resources are available?",
-      a: "Premium members access our complete educational library covering systematic frameworks, trading psychology, and risk management protocols. This includes recorded sessions, live breakdowns, and structured learning modules.",
+      a: "No. We don't tell you what to buy or sell. Every programme and the Collective itself is built around developing your independent decision-making. The goal is to make you self-sufficient, not dependent on someone else's calls.",
     },
     {
       q: "What is your refund policy?",
-      a: "All sales are final with no refunds offered. If uncertain, we recommend starting with a monthly subscription to evaluate whether our approach aligns with your development goals.",
+      a: "All sales are final. Our programmes require active engagement to deliver results, and we're upfront about this. If you're unsure which path is right for you, visit each programme's page for full details or contact us directly.",
     },
   ];
 
