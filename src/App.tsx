@@ -15,9 +15,11 @@ import RefundPolicy from "./pages/RefundPolicy";
 import Contact from "./pages/Contact";
 import Start from "./pages/Start";
 import Collective from "./pages/Collective";
+import Bootcamp from "./pages/Bootcamp";
 import Articles from "./pages/Articles";
 import WaitlistPage from "./pages/WaitlistPage";
 import PageTransition from "./components/PageTransition";
+import { ErrorBoundary } from "./components/ErrorBoundary";
 
 const queryClient = new QueryClient();
 
@@ -40,6 +42,7 @@ const AnimatedRoutes = () => {
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/start" element={<PageTransition><Start /></PageTransition>} />
         <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
+        <Route path="/bootcamp" element={<PageTransition><Bootcamp /></PageTransition>} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
         <Route path="/articles" element={<PageTransition><Articles /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
@@ -55,18 +58,20 @@ const AnimatedRoutes = () => {
 };
 
 const App = () => (
-  <QueryClientProvider client={queryClient}>
-    <ThemeProvider attribute="class" defaultTheme="light">
-      <TooltipProvider>
-        <Toaster />
-        <Sonner />
-        <BrowserRouter>
-          <ScrollToTop />
-          <AnimatedRoutes />
-        </BrowserRouter>
-      </TooltipProvider>
-    </ThemeProvider>
-  </QueryClientProvider>
+  <ErrorBoundary>
+    <QueryClientProvider client={queryClient}>
+      <ThemeProvider attribute="class" defaultTheme="light">
+        <TooltipProvider>
+          <Toaster />
+          <Sonner />
+          <BrowserRouter>
+            <ScrollToTop />
+            <AnimatedRoutes />
+          </BrowserRouter>
+        </TooltipProvider>
+      </ThemeProvider>
+    </QueryClientProvider>
+  </ErrorBoundary>
 );
 
 export default App;

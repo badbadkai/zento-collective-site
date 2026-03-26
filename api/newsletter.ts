@@ -7,6 +7,8 @@ const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 // Server-side Supabase client
 const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
+const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+
 export default async function handler(req: VercelRequest, res: VercelResponse) {
   if (req.method !== 'POST') {
     res.setHeader('Allow', 'POST');
@@ -21,6 +23,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
 
     if (!email) {
       return res.status(400).json({ error: 'Email is required' });
+    }
+
+    if (!EMAIL_REGEX.test(email)) {
+      return res.status(400).json({ error: 'Invalid email format' });
     }
 
     const { error } = await supabase.from('newsletter_signups').insert({

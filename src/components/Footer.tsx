@@ -1,4 +1,5 @@
 import { useTheme } from "next-themes";
+import { Link } from "react-router-dom";
 import logoMonogramLight from "@/assets/logo-monogram-light.svg";
 import logoMonogramDark from "@/assets/logo-monogram-dark.svg";
 
@@ -93,12 +94,12 @@ export const Footer = () => {
             <ul className="space-y-3">
               {links.slice(0, 3).map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -110,12 +111,12 @@ export const Footer = () => {
             <ul className="space-y-3">
               {links.slice(3).map((link) => (
                 <li key={link.label}>
-                  <a
-                    href={link.href}
+                  <Link
+                    to={link.href}
                     className="text-sm text-muted-foreground hover:text-primary transition-colors"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
             </ul>

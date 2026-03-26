@@ -249,14 +249,21 @@ const Collective = () => {
             </div>
 
             <p className="text-center text-muted-foreground text-sm">
-              New to trading?{" "}
+              Need structured training first? Start with the{" "}
               <Link
                 to="/start"
                 className="text-primary hover:underline font-medium"
               >
-                The 30-Day Accelerator
+                Accelerator
               </Link>{" "}
-              is designed to build your foundation first.
+              (beginners) or the{" "}
+              <Link
+                to="/bootcamp"
+                className="text-primary hover:underline font-medium"
+              >
+                Bootcamp
+              </Link>{" "}
+              (experienced traders).
             </p>
           </div>
         </div>

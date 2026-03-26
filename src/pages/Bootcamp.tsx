@@ -14,14 +14,14 @@ import {
 } from "@/components/ui/accordion";
 import { Check, X, ArrowRight, Clock, Plus } from "lucide-react";
 
-const Start = () => {
+const Bootcamp = () => {
   const { currency, getPrice } = usePricing();
 
   useEffect(() => {
-    document.title = "Trading Accelerator — Greenridge Studios";
+    document.title = "30-Day Bootcamp — Greenridge Studios";
   }, []);
 
-  const price = getPrice("accelerator");
+  const price = getPrice("bootcamp");
   const dailyCost = (price / 30).toFixed(2);
   const symbol = getCurrencySymbol(currency);
 
@@ -43,33 +43,33 @@ const Start = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
               <span className="text-primary font-medium text-sm tracking-widest uppercase">
-                30-Day Program
+                Performance Programme
               </span>
               <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
               <span className="flex items-center gap-1.5 text-muted-foreground text-sm">
                 <Clock className="w-3.5 h-3.5" />
-                ~5–7 hrs/week
+                ~7–10 hrs/week
               </span>
             </div>
             <h1
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 animate-fade-in"
               style={{ animationDelay: "0.1s" }}
             >
-              The Trading{" "}
-              <span className="text-primary">Accelerator</span>
+              30-Day{" "}
+              <span className="text-primary">Bootcamp</span>
             </h1>
             <p
               className="text-lg md:text-xl text-muted-foreground mb-6 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              A structured, beginner-focused program designed to help you build
-              a complete trading process that suits you.
+              You know the basics. Now build the edge.
             </p>
             <p
               className="text-base text-muted-foreground font-medium mb-10 animate-fade-in"
               style={{ animationDelay: "0.3s" }}
             >
-              No shortcuts. No signals. Just discipline, rules, and clarity.
+              For traders who understand the fundamentals but can't find
+              consistency. High-contact. Performance-focused. Results-driven.
             </p>
             <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
@@ -81,22 +81,22 @@ const Start = () => {
                 className="group"
                 onClick={() => scrollToSection("pricing")}
               >
-                Join the Accelerator
+                Apply Now
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
               <Button
                 variant="outline"
                 size="lg"
-                onClick={() => scrollToSection("curriculum")}
+                onClick={() => scrollToSection("programme")}
               >
-                See the Curriculum
+                See the Programme
               </Button>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Disqualification Section */}
+      {/* Who This Is For / Not For */}
       <section className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
@@ -114,12 +114,12 @@ const Start = () => {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "You're willing to do the work without guarantees",
-                    "You want clear rules, not hope or signals",
-                    "You can commit ~1 hour per day for 30 days",
-                    "You understand risk before reward",
-                    "You're ready to document what you learn",
-                    "You see trading as a skill to build, not wealth to grab",
+                    "You understand the basics but aren't consistently profitable",
+                    "You've taken a prop firm challenge and failed",
+                    "You know something is missing from your process",
+                    "You're willing to journal and review trades daily",
+                    "You want direct, personal feedback on your trading",
+                    "You're ready to commit fully for 30 days",
                   ].map((item, idx) => (
                     <li key={idx} className="flex gap-3 items-start">
                       <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -136,12 +136,12 @@ const Start = () => {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "You want guaranteed profits or shortcuts",
-                    "You expect someone to tell you when to trade",
-                    "You're not willing to paper trade first",
-                    "You can't tolerate losing trades",
-                    "You're looking for secrets or special indicators",
-                    "You want to start trading with real money immediately",
+                    "You're a complete beginner — start with the Accelerator",
+                    "You're looking for signals or copy trading",
+                    "You're not willing to journal and review daily",
+                    "You want guaranteed results without effort",
+                    "You can't commit 1–2 hours per day for 30 days",
+                    "You think you just need one more indicator",
                   ].map((item, idx) => (
                     <li key={idx} className="flex gap-3 items-start">
                       <X className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
@@ -151,11 +151,22 @@ const Start = () => {
                 </ul>
               </div>
             </div>
+
+            <p className="text-center text-muted-foreground text-sm mt-8">
+              Brand new to trading?{" "}
+              <Link
+                to="/start"
+                className="text-primary hover:underline font-medium"
+              >
+                The 30-Day Accelerator
+              </Link>{" "}
+              is designed to build your foundation first.
+            </p>
           </div>
         </div>
       </section>
 
-      {/* The Real Problem Section */}
+      {/* The Real Problem */}
       <section className="section-spacing">
         <div className="container-studio">
           <div className="max-w-3xl mx-auto">
@@ -163,31 +174,31 @@ const Start = () => {
               The Challenge
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              The Real Problem{" "}
-              <span className="text-primary">Beginners Face</span>
+              The Gap Between{" "}
+              <span className="text-primary">Knowing and Doing</span>
             </h2>
 
             <div className="space-y-4">
               {[
                 {
-                  title: "Overinformation",
+                  title: "Inconsistent Execution",
                   description:
-                    "Endless strategies, indicators, and YouTube videos. You don't need more information. You need one coherent framework.",
+                    "You know what a good setup looks like, but you still take bad trades. Your rules exist on paper but not in practice.",
                 },
                 {
-                  title: "Strategy Hopping",
+                  title: "No Feedback Loop",
                   description:
-                    "You test something, lose once, then abandon it for the next thing. You never develop mastery.",
+                    "You journal sporadically or not at all. Without systematic review, the same mistakes repeat. You can't fix what you don't measure.",
                 },
                 {
-                  title: "Emotional Decisions",
+                  title: "Prop Firm Failures",
                   description:
-                    "Without written rules, every trade becomes a vote based on how you feel. Fear and greed take over.",
+                    "You've attempted funded challenges and blown the drawdown limit. The strategy might work, but your risk management and psychology don't hold under pressure.",
                 },
                 {
-                  title: "No Operating Rules",
+                  title: "Trading in Isolation",
                   description:
-                    "You don't have answers to basic questions: When do I enter? When do I exit? How much do I risk? What's my max loss per day?",
+                    "No one reviews your trades. No one challenges your reasoning. You're operating in a vacuum where bad habits go unchecked.",
                 },
               ].map((item, idx) => (
                 <div
@@ -205,44 +216,56 @@ const Start = () => {
         </div>
       </section>
 
-      {/* What the Accelerator Builds */}
+      {/* What's Included */}
       <section className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
           <div className="max-w-3xl mx-auto">
             <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
-              The Outcome
+              What You Get
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              What You Build in{" "}
-              <span className="text-primary">30 Days</span>
+              Everything Inside the{" "}
+              <span className="text-primary">Bootcamp</span>
             </h2>
 
             <div className="space-y-4">
               {[
                 {
                   number: "01",
-                  title: "One Trading Blueprint",
+                  title: "Full Strategy Audit & Rebuild",
                   description:
-                    "A single, written strategy with specific entry logic, market conditions, and setup definitions. No ambiguity.",
+                    "We tear apart your current approach and rebuild it around a proven methodology. Clear entry logic, defined risk parameters, and a system you can actually execute.",
                 },
                 {
                   number: "02",
-                  title: "One Risk Framework",
+                  title: "Advanced Market Breakdowns",
                   description:
-                    "Defined position sizing, maximum daily loss, stop loss placement, and risk-to-reward requirements. Written.",
+                    "Systematic, institutional-level analysis that goes beyond surface patterns. Learn to read the market the way professionals do.",
                 },
                 {
                   number: "03",
-                  title: "One Psychological Operating System",
+                  title: "Weekly Live Trading Sessions",
                   description:
-                    "Rules for how you think, decide, and act when prices move. This replaces emotion with discipline.",
+                    "Trade together in real time. See how decisions are made under live conditions, ask questions, and get immediate feedback on your reads.",
                 },
                 {
                   number: "04",
-                  title: "One Journaling Process",
+                  title: "Daily Journal Review with Personal Feedback",
                   description:
-                    "A system to record every trade, decision, and lesson. This is your feedback loop. Without it, you repeat mistakes.",
+                    "Submit your trade journal daily. Receive direct, written feedback on your decisions, mistakes, and improvements. This is where the real development happens.",
+                },
+                {
+                  number: "05",
+                  title: "Prop Firm Challenge Preparation",
+                  description:
+                    "Simulated challenge conditions, drawdown management drills, and the mental framework to pass funded account evaluations.",
+                },
+                {
+                  number: "06",
+                  title: "Community Accountability",
+                  description:
+                    "Train alongside other Bootcamp traders. Shared accountability, peer reviews, and the pressure that drives real progress.",
                 },
               ].map((item, idx) => (
                 <div
@@ -265,61 +288,61 @@ const Start = () => {
         </div>
       </section>
 
-      {/* Calendar Section */}
-      <section id="curriculum" className="section-spacing">
+      {/* Programme Structure */}
+      <section id="programme" className="section-spacing">
         <div className="container-studio">
           <div className="max-w-5xl mx-auto">
             <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
               The Roadmap
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              Your <span className="text-primary">30-Day</span> Journey
+              Your <span className="text-primary">30-Day</span> Programme
             </h2>
 
             <div className="space-y-8">
               {[
                 {
                   week: "Week 1",
-                  title: "Market Literacy",
+                  title: "Audit & Reset",
                   days: [
-                    { day: "Mon", topic: "Financial Markets" },
-                    { day: "Tue", topic: "Reading Charts" },
-                    { day: "Wed", topic: "Order Types" },
-                    { day: "Thu", topic: "Risk & Leverage" },
-                    { day: "Fri", topic: "Platform Setup" },
+                    { day: "Mon", topic: "Strategy Deep Dive" },
+                    { day: "Tue", topic: "Journal Setup" },
+                    { day: "Wed", topic: "Risk Framework" },
+                    { day: "Thu", topic: "Process Mapping" },
+                    { day: "Fri", topic: "Live Session #1" },
                   ],
                 },
                 {
                   week: "Week 2",
-                  title: "How Markets Move",
+                  title: "Rebuild & Refine",
                   days: [
-                    { day: "Mon", topic: "Market Structure" },
-                    { day: "Tue", topic: "Liquidity & Volume" },
-                    { day: "Wed", topic: "Key Levels" },
-                    { day: "Thu", topic: "Sessions & Timing" },
-                    { day: "Fri", topic: "Chart Analysis" },
+                    { day: "Mon", topic: "Entry Logic Rebuild" },
+                    { day: "Tue", topic: "Exit & Target Rules" },
+                    { day: "Wed", topic: "Session Analysis" },
+                    { day: "Thu", topic: "Backtesting Drills" },
+                    { day: "Fri", topic: "Live Session #2" },
                   ],
                 },
                 {
                   week: "Week 3",
-                  title: "Building Your System",
+                  title: "Execution Under Pressure",
                   days: [
-                    { day: "Mon", topic: "Strategy Components" },
-                    { day: "Tue", topic: "Entry Logic" },
-                    { day: "Wed", topic: "Stops & Targets" },
-                    { day: "Thu", topic: "Position Sizing" },
-                    { day: "Fri", topic: "Strategy Assembly" },
+                    { day: "Mon", topic: "Drawdown Management" },
+                    { day: "Tue", topic: "Psychology Protocols" },
+                    { day: "Wed", topic: "Prop Firm Simulation" },
+                    { day: "Thu", topic: "Journal Deep Review" },
+                    { day: "Fri", topic: "Live Session #3" },
                   ],
                 },
                 {
                   week: "Week 4",
-                  title: "Execution & Discipline",
+                  title: "Performance & Launch",
                   days: [
-                    { day: "Mon", topic: "Demo Trading" },
-                    { day: "Tue", topic: "Trade Journaling" },
-                    { day: "Wed", topic: "Psychology & Errors" },
-                    { day: "Thu", topic: "Review & Refine" },
-                    { day: "Fri", topic: "Prop Readiness" },
+                    { day: "Mon", topic: "Full System Review" },
+                    { day: "Tue", topic: "Challenge Prep" },
+                    { day: "Wed", topic: "Edge Validation" },
+                    { day: "Thu", topic: "Final Adjustments" },
+                    { day: "Fri", topic: "Live Session #4" },
                   ],
                 },
               ].map((weekData, idx) => (
@@ -354,7 +377,7 @@ const Start = () => {
         </div>
       </section>
 
-      {/* Community & Support Section */}
+      {/* Support System */}
       <section className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
@@ -363,31 +386,31 @@ const Start = () => {
               Support System
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              Live & Community{" "}
+              High-Contact{" "}
               <span className="text-primary">Support</span>
             </h2>
 
             <div className="space-y-4">
               {[
                 {
-                  title: "Weekly Group Q&A",
+                  title: "Personal Journal Feedback",
                   description:
-                    "Live sessions to discuss concepts, test your understanding, and learn from peer questions.",
+                    "Every trade you log gets reviewed. Direct, written feedback on your decisions, not generic advice. This is the core of the programme.",
                 },
                 {
-                  title: "Structured Community Discussions",
+                  title: "Weekly Live Sessions",
                   description:
-                    "Guided conversations on trading psychology, risk management, and decision-making under pressure.",
+                    "Trade alongside your cohort in real time. Live analysis, real-time decision-making, and immediate feedback on your reads.",
                 },
                 {
-                  title: "Guided Backtesting Sessions",
+                  title: "Strategy Office Hours",
                   description:
-                    "Step through historical price action together. See how your rules would have performed in real market conditions.",
+                    "Dedicated time to work through your specific challenges. Bring your trade journal, your questions, and your edge for direct review.",
                 },
                 {
-                  title: "Accountability Check-Ins",
+                  title: "Cohort Accountability",
                   description:
-                    "Regular touchpoints to keep you on track, not to hold your hand. This program requires effort.",
+                    "You're not doing this alone. Your cohort keeps you honest, challenges your thinking, and creates the pressure that drives improvement.",
                 },
               ].map((item, idx) => (
                 <div
@@ -403,15 +426,14 @@ const Start = () => {
             </div>
 
             <p className="text-center text-muted-foreground text-sm mt-8 italic">
-              These support structures exist to deepen your learning and keep you
-              disciplined, not to replace your own thinking or provide trading
-              signals.
+              This is not a passive course. The Bootcamp demands daily engagement
+              and rewards it with personalised development you won't find anywhere else.
             </p>
           </div>
         </div>
       </section>
 
-      {/* Day 30 Deliverables */}
+      {/* Deliverables */}
       <section className="section-spacing">
         <div className="container-studio">
           <div className="max-w-3xl mx-auto">
@@ -425,11 +447,11 @@ const Start = () => {
 
             <div className="space-y-4">
               {[
-                "A written trading strategy with defined entry logic and market conditions",
-                "A risk management framework with position sizing and stop loss rules",
-                "Documented psychological operating rules for how you decide when to trade",
-                "A journaling system and 4 weeks of trade records showing your decision process",
-                "A clear assessment of whether you're ready for prop firm evaluation or need more practice",
+                "A rebuilt, battle-tested trading strategy with clear rules for every scenario",
+                "30 days of reviewed trade journals with personalised feedback and tracked improvement",
+                "A risk management system calibrated for prop firm challenge conditions",
+                "Documented psychological protocols for handling drawdowns, FOMO, and revenge trading",
+                "A clear, data-backed assessment of your readiness for funded account evaluation",
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -441,63 +463,6 @@ const Start = () => {
                   <p className="text-foreground text-sm pt-1">{item}</p>
                 </div>
               ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* What This Does NOT Promise */}
-      <section className="section-spacing relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
-        <div className="container-studio relative">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-destructive font-medium text-sm tracking-widest uppercase mb-4 text-center">
-              Important
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              What This Does{" "}
-              <span className="text-destructive">NOT Promise</span>
-            </h2>
-
-            <div className="space-y-4 mb-8">
-              {[
-                {
-                  title: "No Profit Guarantees",
-                  description:
-                    "Trading involves risk. You can lose money. We don't promise returns. We teach risk management.",
-                },
-                {
-                  title: "No Trading Signals",
-                  description:
-                    "You won't receive 'buy now' or 'sell now' messages. You'll learn how to make those decisions yourself.",
-                },
-                {
-                  title: "No Funded Account Promises",
-                  description:
-                    "Proprietary firms evaluate traders individually. This program prepares you. Passing their tests is your responsibility.",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-6 rounded-xl border border-destructive/20 bg-destructive/5"
-                >
-                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-
-            <div className="p-6 rounded-xl border border-border/50 bg-card/30">
-              <p className="text-foreground font-medium mb-2">
-                This clarity builds trust.
-              </p>
-              <p className="text-muted-foreground text-sm">
-                We're not interested in flashy promises. We're interested in
-                serious traders who want structure, discipline, and real skill
-                development.
-              </p>
             </div>
           </div>
         </div>
@@ -517,50 +482,50 @@ const Start = () => {
 
             <div className="mb-8">
               <p className="text-muted-foreground mb-6">
-                30 days. One coherent framework. Written rules for everything.
+                30 days. Personal feedback. Strategy rebuild. Prop firm ready.
               </p>
 
               {/* Value anchor */}
               <p className="text-sm text-muted-foreground mb-3">
-                Most trading bootcamps charge {symbol}2,000–{symbol}5,000
+                Private coaching typically runs {symbol}2,000–{symbol}5,000+ per month
               </p>
 
               <Price
-                product="accelerator"
+                product="bootcamp"
                 className="font-heading text-5xl md:text-6xl font-bold text-foreground mb-2 block"
               />
 
               {/* Daily cost reframe */}
               <p className="text-primary font-medium text-sm mb-4">
-                That's {symbol}{dailyCost}/day for 30 days of structured development
+                That's ~{symbol}{dailyCost}/day for 30 days of high-contact development
               </p>
 
               <p className="text-muted-foreground">
-                One-time investment. Lifetime access to your work and community
-                support.
+                One-time investment. Walk away with a complete, reviewed system.
               </p>
             </div>
 
             {/* Loss aversion frame */}
             <div className="p-8 rounded-2xl border border-primary/20 bg-primary/5 mb-10">
               <p className="text-foreground font-medium mb-4">
-                One undisciplined trade without rules can cost more than this entire program.
+                One failed prop firm challenge costs more than this programme.
               </p>
               <p className="text-muted-foreground text-sm">
-                The real expense isn't the program. It's trading without a system.
-                Capital lost to emotional decisions, time wasted strategy-hopping,
-                and lessons you keep relearning. This investment pays for itself
-                the first time your rules save you from a bad trade.
+                Between challenge fees, blown accounts, and months of wasted time,
+                the cost of staying inconsistent far exceeds the cost of fixing it.
+                This programme pays for itself the first time you pass a challenge
+                you would have previously failed.
               </p>
             </div>
 
             <div className="space-y-3 mb-12">
               {[
-                "30 days of structured, daily curriculum",
-                "Weekly live Q&A sessions with guided backtesting",
-                "Private community access and peer accountability",
-                "All templates, frameworks, and journaling tools included",
-                "Lifetime access to your materials and community",
+                "Full strategy audit and personalised rebuild",
+                "Daily trade journal review with written feedback",
+                "4 live trading sessions with real-time analysis",
+                "Prop firm challenge simulation and preparation",
+                "Cohort accountability and peer review",
+                "All frameworks, templates, and tools included",
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-3 justify-center items-center">
                   <Check className="w-5 h-5 text-primary flex-shrink-0" />
@@ -569,9 +534,10 @@ const Start = () => {
               ))}
             </div>
 
-            <a href="https://whop.com/greenridge-studios/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
+            {/* TODO: Replace with actual Whop link for Bootcamp */}
+            <a href="#" target="_blank" rel="noopener noreferrer">
               <Button variant="hero" size="lg" className="group">
-                Join the Accelerator - <Price product="accelerator" />
+                Apply Now - <Price product="bootcamp" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </a>
@@ -588,7 +554,7 @@ const Start = () => {
               Common Questions
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
-              Before You <span className="text-primary">Commit</span>
+              Before You <span className="text-primary">Apply</span>
             </h2>
             <p className="text-muted-foreground text-base max-w-xl mx-auto">
               Straight answers so you can make an informed decision.
@@ -599,28 +565,28 @@ const Start = () => {
             <Accordion type="single" collapsible className="space-y-4">
               {[
                 {
-                  q: "How much time do I need each day?",
-                  a: "Plan for about 1 hour per day on weekdays, roughly 5-7 hours per week. Each day has a focused lesson and an action step. Some days are heavier (strategy building, journaling setup), some are lighter (reviews, community sessions). You can fit this around a full-time job.",
+                  q: "How is this different from the Accelerator?",
+                  a: "The Accelerator is for beginners building their first trading system from scratch. The Bootcamp is for traders who already have experience but aren't consistent. It assumes you know the basics and focuses on auditing your existing approach, rebuilding what's broken, and developing execution discipline through daily personal feedback.",
                 },
                 {
-                  q: "Do I need any prior trading experience?",
-                  a: "No. This program is designed for beginners or traders who've been stuck in the 'learning phase' without a system. We start from foundations and build up. If you already have experience but struggle with consistency, the 30-Day Bootcamp might be a better fit — it's designed for traders who know the basics but need to rebuild their process.",
+                  q: "Do I need trading experience?",
+                  a: "Yes. This programme is designed for traders who understand basic market concepts, have traded before (even if unsuccessfully), and know what a strategy is even if theirs isn't working. If you're brand new, the 30-Day Accelerator is the right starting point.",
                 },
                 {
-                  q: "What tools or platforms do I need?",
-                  a: "You'll need access to a charting platform (TradingView works, the free tier is fine) and a demo/paper trading account with any broker. We don't require specific paid software. You'll also need something to journal with, and a spreadsheet or notebook works.",
+                  q: "What markets does this cover?",
+                  a: "The principles and methodology apply across forex, indices, and commodities. The focus is on developing your process and execution discipline, which transfers across any liquid market. During the programme, we'll work with whatever markets you're actively trading.",
                 },
                 {
-                  q: "What happens after the 30 days?",
-                  a: "You keep lifetime access to all your materials and templates. To continue developing with live support, you can subscribe to the Premium Collective, our ongoing membership with weekly live trading sessions, institutional-grade market analysis, advanced strategy deep-dives, and direct peer and mentor access.",
+                  q: "What happens after 30 days?",
+                  a: "You leave with a rebuilt strategy, 30 days of reviewed journals, and a clear assessment of your readiness. To continue developing with ongoing live sessions and advanced analysis, you can join the Premium Collective, our monthly membership for active traders.",
                 },
                 {
                   q: "Is there a refund policy?",
-                  a: "All sales are final. This is a program you engage with, not a product you consume. We're upfront about this because the value comes from doing the work. If you're unsure, read through the full curriculum breakdown above. It should make the scope of commitment clear.",
+                  a: "All sales are final. This is a high-contact programme with limited spots per cohort. We invest significant time in each participant from day one. If you're unsure, read through the full programme breakdown above and reach out with questions before committing.",
                 },
                 {
-                  q: "Will I be profitable after this?",
-                  a: "We don't promise profitability, and nobody honestly can. What we promise is that you'll have a complete, written trading system with rules for entry, exit, risk, and psychology. Whether that system is profitable depends on your execution, discipline, and continued refinement. The program gives you the structure. The results depend on you.",
+                  q: "How many hours per day does this take?",
+                  a: "Plan for 1–2 hours per day. This includes reviewing material, executing trades on your demo or live account, journaling, and engaging with feedback. The live sessions are weekly. The daily commitment is the journal review cycle, which is where most of the development happens.",
                 },
               ].map((item, idx) => (
                 <AccordionItem
@@ -656,25 +622,26 @@ const Start = () => {
         <div className="container-studio relative">
           <div className="max-w-3xl mx-auto text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
-              You're Ready to <span className="text-primary">Start</span>
+              Ready to Break{" "}
+              <span className="text-primary">Through</span>?
             </h2>
 
             <p className="text-lg text-muted-foreground mb-6">
-              Structure beats motivation. Rules beat hope. Discipline beats
-              guessing.
+              You've done the learning. Now it's time for the doing.
             </p>
 
             <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
-              You've spent enough time wondering if you can trade. Thirty days of
-              structured, focused work will answer that question. You'll either
-              have a system that works or clarity that you need more time. Either
-              way, you'll know.
+              Thirty days of personal feedback, live trading, and systematic
+              rebuilding. You'll either emerge with a system that performs or
+              have complete clarity on exactly what needs to change. Either way,
+              you stop guessing.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="https://whop.com/greenridge-studios/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
+              {/* TODO: Replace with actual Whop link for Bootcamp */}
+              <a href="#" target="_blank" rel="noopener noreferrer">
                 <Button variant="hero" size="lg" className="group">
-                  Start Your 30 Days
+                  Apply for the Bootcamp
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </a>
@@ -686,8 +653,8 @@ const Start = () => {
             </div>
 
             <p className="text-sm text-muted-foreground italic">
-              There's no refund because this isn't a product to consume. It's a
-              program to engage with. You get out what you put in.
+              Limited spots per cohort. We keep numbers small so every
+              participant gets genuine personal attention.
             </p>
           </div>
         </div>
@@ -698,4 +665,4 @@ const Start = () => {
   );
 };
 
-export default Start;
+export default Bootcamp;

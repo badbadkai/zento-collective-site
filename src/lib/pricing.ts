@@ -19,6 +19,12 @@ const PRICING_TABLE: Record<string, Record<string, number>> = {
     GBP: 249,
     EUR: 299
   },
+  bootcamp: {
+    USD: 599,
+    SGD: 779,
+    GBP: 449,
+    EUR: 539
+  },
   collective_monthly: {
     USD: 52,
     SGD: 69,

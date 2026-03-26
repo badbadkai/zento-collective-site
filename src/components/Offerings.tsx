@@ -1,5 +1,5 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Users, Check } from "lucide-react";
+import { ArrowRight, Sparkles, Target, Users, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 
 export const Offerings = () => {
@@ -24,6 +24,27 @@ export const Offerings = () => {
       action: () => {
         window.scrollTo(0, 0);
         navigate("/start");
+      },
+      highlighted: false,
+    },
+    {
+      id: "bootcamp",
+      icon: Target,
+      badge: "Performance Programme",
+      title: "30-Day Bootcamp",
+      subtitle: "For traders ready to break through.",
+      description:
+        "A high-contact, performance-focused programme for traders who already know the basics but aren't seeing the results they want.",
+      features: [
+        "Full strategy audit and rebuild",
+        "Weekly live trading sessions",
+        "Daily journal review with personal feedback",
+        "Prop firm challenge preparation",
+      ],
+      cta: "Apply Now",
+      action: () => {
+        window.scrollTo(0, 0);
+        navigate("/bootcamp");
       },
       highlighted: false,
     },
@@ -64,12 +85,12 @@ export const Offerings = () => {
           <h2
             className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4"
 >
-            Two Paths. <span className="text-primary">One Standard.</span>
+            Three Paths. <span className="text-primary">One Standard.</span>
           </h2>
         </div>
 
         {/* Offerings Grid */}
-        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto">
           {offerings.map((offering, index) => {
             const IconComponent = offering.icon;
             return (
@@ -80,7 +101,7 @@ export const Offerings = () => {
                 }`}
               >
                 <div
-                  className={`relative h-full p-8 md:p-10 rounded-2xl border transition-all duration-500 ${
+                  className={`relative h-full p-6 md:p-8 rounded-2xl border transition-all duration-500 ${
                     offering.highlighted
                       ? "border-primary/40 bg-primary/5 hover:border-primary/60 hover:bg-primary/10"
                       : "border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card"
