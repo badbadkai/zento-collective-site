@@ -112,21 +112,6 @@ export function getProductPrice(
 }
 
 /**
- * Convert an amount in USD to the target currency using the accelerator price table
- * This keeps regional pricing consistent with the accelerator mapping.
- */
-export function convertUSDToCurrency(amountUSD: number, currencyCode: CurrencyCode): number {
-  try {
-    const usdBase = PRICING_TABLE.accelerator.USD;
-    const target = PRICING_TABLE.accelerator[currencyCode] ?? usdBase;
-    const rate = target / usdBase;
-    return Math.round(amountUSD * rate);
-  } catch (e) {
-    return Math.round(amountUSD);
-  }
-}
-
-/**
  * Format price with currency symbol and no decimals
  * @param amount - Numeric price
  * @param currencyCode - Currency code

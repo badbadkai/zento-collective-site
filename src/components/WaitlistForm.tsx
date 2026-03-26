@@ -50,7 +50,6 @@ export const WaitlistForm = () => {
   const [currentStep, setCurrentStep] = useState(0);
   const [isComplete, setIsComplete] = useState(false);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const [submitError, setSubmitError] = useState<string | null>(null);
   const { toast } = useToast();
 
   const form = useForm<FormData>({
@@ -97,7 +96,6 @@ export const WaitlistForm = () => {
 
   const onSubmit = async (data: FormData) => {
     setIsSubmitting(true);
-    setSubmitError(null);
 
     try {
       const res = await fetch("/api/waitlist", {
@@ -121,7 +119,6 @@ export const WaitlistForm = () => {
       });
     } catch (err: any) {
       const message = err?.message || "Failed to join waitlist";
-      setSubmitError(message);
       toast({
         title: "Submission failed",
         description: message,
