@@ -53,7 +53,7 @@ export const Offerings = () => {
       icon: Users,
       badge: "Continuous Access",
       title: "Premium Collective",
-      subtitle: "For traders who demand more than surface-level content.",
+      subtitle: "For traders who want to keep sharpening their edge.",
       description:
         "An exclusive environment of serious practitioners. Live analysis, advanced discussions, and the accountability that drives real progress.",
       features: [
