@@ -201,7 +201,8 @@ export const Hero = () => {
           <img
             src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
             alt="Zentō Collective"
-            className="w-48 sm:w-56 md:w-72 h-auto mx-auto"
+            className="w-48 sm:w-56 md:w-72 h-auto mx-auto hover:scale-105 transition-transform duration-500"
+            style={{ animation: "logo-breathe 4s ease-in-out infinite, float 6s ease-in-out infinite" }}
           />
         </div>
 
