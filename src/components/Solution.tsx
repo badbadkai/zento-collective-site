@@ -147,8 +147,8 @@ export const Solution = () => {
             <ul className="space-y-4">
               {[
                 "Rule-based entries with a tested checklist",
-                "1% risk per trade, every time",
-                "Daily loss limit stops the spiral",
+                "Strict risk management on every trade",
+                "Mechanical, systematic execution",
                 "Journal every trade, review every week",
                 "Consistent process, compounding results",
               ].map((item, i) => (
