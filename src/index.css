@@ -359,6 +359,12 @@
   }
 }
 
+/* Typewriter cursor blink */
+@keyframes blink {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0; }
+}
+
 /* Logo breathing animation */
 @keyframes logo-breathe {
   0%, 100% {
