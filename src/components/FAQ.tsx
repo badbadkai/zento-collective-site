@@ -58,26 +58,26 @@ export const FAQ = () => {
         </div>
 
         {/* FAQ Accordion */}
-        <div className="max-w-3xl mx-auto">
-          <Accordion type="single" collapsible className="space-y-4">
+        <div className="max-w-4xl mx-auto">
+          <Accordion type="single" collapsible className="space-y-5">
             {faqs.map((item, idx) => (
               <AccordionItem
                 key={idx}
                 value={`item-${idx}`}
                 className="group border border-border/50 rounded-xl bg-card/30 backdrop-blur-sm overflow-hidden data-[state=open]:border-primary/30 transition-colors"
               >
-                <AccordionTrigger className="px-6 py-5 hover:no-underline group-data-[state=open]:text-primary transition-colors [&>svg]:hidden">
+                <AccordionTrigger className="px-8 py-6 hover:no-underline group-data-[state=open]:text-primary transition-colors [&>svg]:hidden">
                   <div className="flex items-center justify-between w-full">
-                    <span className="font-medium text-left text-base md:text-lg">
+                    <span className="font-medium text-left text-lg md:text-xl">
                       {item.q}
                     </span>
-                    <div className="flex-shrink-0 ml-4 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary/20 transition-colors">
+                    <div className="flex-shrink-0 ml-4 w-9 h-9 rounded-full bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary/20 transition-colors">
                       <Plus className="w-4 h-4 text-primary transition-transform duration-300 group-data-[state=open]:rotate-45" />
                     </div>
                   </div>
                 </AccordionTrigger>
-                <AccordionContent className="px-6 pb-5">
-                  <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                <AccordionContent className="px-8 pb-6">
+                  <p className="text-muted-foreground text-base md:text-lg leading-relaxed">
                     {item.a}
                   </p>
                 </AccordionContent>

@@ -28,17 +28,17 @@ const Contact = () => {
             </div>
 
             {/* Contact Cards */}
-            <div className="grid md:grid-cols-2 gap-6 mb-12">
-              {/* Email */}
+            <div className="grid md:grid-cols-3 gap-6 mb-12">
+              {/* Support Email */}
               <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors">
                 <div className="flex gap-4">
                   <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
                     <Mail className="h-6 w-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-heading text-lg font-semibold mb-2">Email</h3>
+                    <h3 className="font-heading text-lg font-semibold mb-2">Support</h3>
                     <p className="text-muted-foreground text-sm mb-2">
-                      For general inquiries and support:
+                      For general inquiries:
                     </p>
                     <a
                       href="mailto:support@zentocollective.com"
@@ -46,6 +46,32 @@ const Contact = () => {
                     >
                       support@zentocollective.com
                     </a>
+                  </div>
+                </div>
+              </div>
+
+              {/* Team */}
+              <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors">
+                <div className="flex gap-4">
+                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
+                    <Mail className="h-6 w-6 text-primary" />
+                  </div>
+                  <div>
+                    <h3 className="font-heading text-lg font-semibold mb-2">Team</h3>
+                    <div className="space-y-1">
+                      <div>
+                        <span className="text-muted-foreground text-sm">Kai — </span>
+                        <a href="mailto:kai@zentocollective.com" className="text-primary hover:underline font-medium text-sm">
+                          kai@zentocollective.com
+                        </a>
+                      </div>
+                      <div>
+                        <span className="text-muted-foreground text-sm">Djay — </span>
+                        <a href="mailto:djay@zentocollective.com" className="text-primary hover:underline font-medium text-sm">
+                          djay@zentocollective.com
+                        </a>
+                      </div>
+                    </div>
                   </div>
                 </div>
               </div>
@@ -58,13 +84,13 @@ const Contact = () => {
                   </div>
                   <div>
                     <h3 className="font-heading text-lg font-semibold mb-2">
-                      Discord Community
+                      Discord
                     </h3>
                     <p className="text-muted-foreground text-sm mb-2">
-                      Join our community for discussion:
+                      Join the community:
                     </p>
                     <a
-                      href="https://discord.gg/eeBpdpn5F5"
+                      href="https://discord.gg/PeNwXwknz2"
                       target="_blank"
                       rel="noopener noreferrer"
                       className="text-primary hover:underline font-medium text-sm"
