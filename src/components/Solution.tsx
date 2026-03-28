@@ -1,5 +1,5 @@
 import { X, Check } from "lucide-react";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useCallback } from "react";
 
 const useInView = (threshold = 0.3) => {
   const ref = useRef<HTMLDivElement>(null);
@@ -24,87 +24,98 @@ const useInView = (threshold = 0.3) => {
   return { ref, inView };
 };
 
-const TypeWriter = ({ text, speed = 45, onDone }: { text: string; speed?: number; onDone?: () => void }) => {
+const TypeWriter = ({
+  text,
+  speed = 35,
+  onDone,
+}: {
+  text: string;
+  speed?: number;
+  onDone?: () => void;
+}) => {
   const [displayed, setDisplayed] = useState("");
-  const [done, setDone] = useState(false);
-  const idx = useRef(0);
+  const [showCursor, setShowCursor] = useState(true);
+  const onDoneRef = useRef(onDone);
+  onDoneRef.current = onDone;
 
   useEffect(() => {
-    idx.current = 0;
+    let i = 0;
     setDisplayed("");
-    setDone(false);
+    setShowCursor(true);
 
     const interval = setInterval(() => {
-      idx.current++;
-      setDisplayed(text.slice(0, idx.current));
-      if (idx.current >= text.length) {
+      i++;
+      setDisplayed(text.slice(0, i));
+      if (i >= text.length) {
         clearInterval(interval);
-        setDone(true);
-        onDone?.();
+        onDoneRef.current?.();
+        // Hide cursor after a brief pause
+        setTimeout(() => setShowCursor(false), 800);
       }
     }, speed);
 
     return () => clearInterval(interval);
-  }, [text, speed, onDone]);
+  }, [text, speed]);
 
   return (
     <span>
       {displayed}
-      <span
-        className={`inline-block w-[3px] h-[0.85em] bg-primary align-middle ml-1 ${
-          done ? "animate-blink" : ""
-        }`}
-        style={{
-          animation: done ? "blink 1s step-end infinite" : "blink 0.6s step-end infinite",
-        }}
-      />
+      {showCursor && (
+        <span
+          className="inline-block w-[3px] h-[0.85em] bg-primary align-middle ml-1"
+          style={{ animation: "blink 0.6s step-end infinite" }}
+        />
+      )}
     </span>
   );
 };
 
 export const Solution = () => {
-  const headerView = useInView(0.5);
+  const sectionView = useInView(0.3);
   const [typingDone, setTypingDone] = useState(false);
-  const cardsView = useInView(0.2);
   const closerView = useInView(0.5);
+
+  const handleTypingDone = useCallback(() => {
+    setTypingDone(true);
+  }, []);
 
   return (
     <section id="solution" className="section-spacing relative">
       <div className="absolute inset-0 bg-gradient-to-b from-transparent via-muted/20 to-transparent" />
 
-      <div className="container-studio relative">
+      <div ref={sectionView.ref} className="container-studio relative">
         {/* Header with typewriter */}
-        <div ref={headerView.ref} className="max-w-3xl mx-auto text-center mb-14 md:mb-20">
+        <div className="max-w-3xl mx-auto text-center mb-14 md:mb-20">
           <p
             className={`text-primary font-medium text-sm tracking-widest uppercase mb-4 transition-all duration-700 ${
-              headerView.inView ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
+              sectionView.inView
+                ? "opacity-100 translate-y-0"
+                : "opacity-0 translate-y-4"
             }`}
           >
             The Problem
           </p>
           <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-6 min-h-[1.2em]">
-            {headerView.inView ? (
+            {sectionView.inView ? (
               <TypeWriter
                 text="Most traders fail because they skip the foundation."
-                speed={50}
-                onDone={() => setTypingDone(true)}
+                speed={35}
+                onDone={handleTypingDone}
               />
             ) : null}
           </h2>
         </div>
 
-        {/* Two-column contrast */}
-        <div
-          ref={cardsView.ref}
-          className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mb-16"
-        >
+        {/* Two-column contrast - fades in after typing */}
+        <div className="grid md:grid-cols-2 gap-6 lg:gap-8 max-w-5xl mx-auto mb-16">
           {/* WITHOUT */}
           <div
-            className={`relative p-8 md:p-10 rounded-2xl border border-destructive/20 bg-destructive/5 transition-all duration-700 delay-100 ${
-              cardsView.inView && typingDone
+            className={`relative p-8 md:p-10 rounded-2xl border border-destructive/20 bg-destructive/5 transition-all duration-700 ${
+              typingDone
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
+            style={{ transitionDelay: "100ms" }}
           >
             <span className="text-xs font-bold uppercase tracking-widest text-destructive/70 mb-6 block">
               Without structure
@@ -120,11 +131,11 @@ export const Solution = () => {
                 <li
                   key={i}
                   className={`flex items-start gap-3 transition-all duration-500 ${
-                    cardsView.inView && typingDone
+                    typingDone
                       ? "opacity-100 translate-x-0"
                       : "opacity-0 -translate-x-4"
                   }`}
-                  style={{ transitionDelay: `${200 + i * 100}ms` }}
+                  style={{ transitionDelay: `${300 + i * 80}ms` }}
                 >
                   <X className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-muted-foreground">{item}</span>
@@ -135,11 +146,12 @@ export const Solution = () => {
 
           {/* WITH */}
           <div
-            className={`relative p-8 md:p-10 rounded-2xl border border-primary/30 bg-primary/5 transition-all duration-700 delay-200 ${
-              cardsView.inView && typingDone
+            className={`relative p-8 md:p-10 rounded-2xl border border-primary/30 bg-primary/5 transition-all duration-700 ${
+              typingDone
                 ? "opacity-100 translate-y-0"
                 : "opacity-0 translate-y-8"
             }`}
+            style={{ transitionDelay: "200ms" }}
           >
             <span className="text-xs font-bold uppercase tracking-widest text-primary/70 mb-6 block">
               With structure
@@ -155,11 +167,11 @@ export const Solution = () => {
                 <li
                   key={i}
                   className={`flex items-start gap-3 transition-all duration-500 ${
-                    cardsView.inView && typingDone
+                    typingDone
                       ? "opacity-100 translate-x-0"
                       : "opacity-0 translate-x-4"
                   }`}
-                  style={{ transitionDelay: `${200 + i * 100}ms` }}
+                  style={{ transitionDelay: `${300 + i * 80}ms` }}
                 >
                   <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
                   <span className="text-sm text-foreground">{item}</span>
