@@ -5,7 +5,7 @@ import { Mail, MessageSquare } from "lucide-react";
 
 const Contact = () => {
   useEffect(() => {
-    document.title = "Contact Us — Greenridge Studios";
+    document.title = "Contact Us — Zentō Collective";
   }, []);
 
   return (
@@ -41,10 +41,10 @@ const Contact = () => {
                       For general inquiries and support:
                     </p>
                     <a
-                      href="mailto:support@greenridgestudios.com"
+                      href="mailto:support@zentocollective.com"
                       className="text-primary hover:underline font-medium text-sm"
                     >
-                      support@greenridgestudios.com
+                      support@zentocollective.com
                     </a>
                   </div>
                 </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                   {
                     title: "General Inquiries",
                     description:
-                      "For general questions about Greenridge Studios, our programs, or services, please email us at support@greenridgestudios.com.",
+                      "For general questions about Zentō Collective, our programs, or services, please email us at support@zentocollective.com.",
                   },
                   {
                     title: "Technical Support",

@@ -9,8 +9,8 @@ import { Plus } from "lucide-react";
 export const FAQ = () => {
   const faqs = [
     {
-      q: "What is Greenridge Studios?",
-      a: "Greenridge Studios is a trading education company focused on building disciplined, systematic traders. We offer structured programmes and an ongoing community designed to develop your process, risk management, and execution — not sell you signals or shortcuts.",
+      q: "What is Zentō Collective?",
+      a: "Zentō Collective is a trading education company focused on building disciplined, systematic traders. We offer structured programmes and an ongoing community designed to develop your process, risk management, and execution — not sell you signals or shortcuts.",
     },
     {
       q: "Is this suitable for beginners?",

@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const RefundPolicy = () => {
   useEffect(() => {
-    document.title = "Refund Policy — Greenridge Studios";
+    document.title = "Refund Policy — Zentō Collective";
   }, []);
 
   return (
@@ -17,7 +17,7 @@ const RefundPolicy = () => {
             <p className="text-sm italic text-muted-foreground mb-8">Last updated: 11 Jan 2026</p>
             
             <p className="text-lg mb-8">
-              This Refund Policy ("Policy") applies to all purchases made from Greenridge Studios ("Greenridge Studios", "we", "us", or "our") and governs refunds relating to our educational programs, courses, digital products, and services (collectively, the "Course").
+              This Refund Policy ("Policy") applies to all purchases made from Zentō Collective ("Zentō Collective", "we", "us", or "our") and governs refunds relating to our educational programs, courses, digital products, and services (collectively, the "Course").
             </p>
 
             <p className="text-lg mb-8">
@@ -48,7 +48,7 @@ const RefundPolicy = () => {
               <section>
                 <h2 className="text-2xl font-bold mb-4">2. Exceptional Circumstances</h2>
                 <p className="text-muted-foreground mb-4">
-                  Notwithstanding the above, Greenridge Studios may, at its sole discretion, consider refund requests in limited exceptional circumstances, including:
+                  Notwithstanding the above, Zentō Collective may, at its sole discretion, consider refund requests in limited exceptional circumstances, including:
                 </p>
 
                 <h3 className="text-xl font-semibold mb-3">Non-Delivery of Access</h3>
@@ -79,7 +79,7 @@ const RefundPolicy = () => {
                   All refund requests are assessed on a case-by-case basis. Submission of a request does not guarantee approval.
                 </p>
                 <p className="text-muted-foreground">
-                  Greenridge Studios reserves the right to request additional information and to deny any request that does not meet the criteria outlined above.
+                  Zentō Collective reserves the right to request additional information and to deny any request that does not meet the criteria outlined above.
                 </p>
               </section>
 
@@ -102,7 +102,7 @@ const RefundPolicy = () => {
               <section>
                 <h2 className="text-2xl font-bold mb-4">5. Chargebacks & Payment Disputes</h2>
                 <p className="text-muted-foreground mb-4">
-                  Initiating a chargeback or payment dispute without first contacting Greenridge Studios may result in immediate suspension or termination of access to the Course and associated services.
+                  Initiating a chargeback or payment dispute without first contacting Zentō Collective may result in immediate suspension or termination of access to the Course and associated services.
                 </p>
                 <p className="text-muted-foreground">
                   We reserve the right to contest chargebacks that violate this Policy.

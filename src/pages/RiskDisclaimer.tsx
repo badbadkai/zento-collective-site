@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const RiskDisclaimer = () => {
   useEffect(() => {
-    document.title = "Risk Disclaimer — Greenridge Studios";
+    document.title = "Risk Disclaimer — Zentō Collective";
   }, []);
 
   return (
@@ -17,7 +17,7 @@ const RiskDisclaimer = () => {
             <p className="text-sm italic text-muted-foreground mb-8">Last updated: 11 Jan 2026</p>
             
             <p className="text-lg mb-8">
-              This Risk Disclosure Statement applies to all content, programs, platforms, courses, tools, and services (collectively, the "Services") provided by Greenridge Studios ("Greenridge Studios", "we", "us", or "our").
+              This Risk Disclosure Statement applies to all content, programs, platforms, courses, tools, and services (collectively, the "Services") provided by Zentō Collective ("Zentō Collective", "we", "us", or "our").
             </p>
 
             <p className="text-lg mb-8">
@@ -76,10 +76,10 @@ const RiskDisclaimer = () => {
               <section>
                 <h2 className="text-2xl font-bold mb-4">4. Educational Use Only – No Advice</h2>
                 <p className="text-muted-foreground mb-4">
-                  All content provided by Greenridge Studios is intended solely for educational and informational purposes.
+                  All content provided by Zentō Collective is intended solely for educational and informational purposes.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Greenridge Studios does not:
+                  Zentō Collective does not:
                 </p>
                 <ul className="list-disc list-inside ml-4 space-y-2 text-muted-foreground mb-4">
                   <li>provide investment advice,</li>
@@ -109,7 +109,7 @@ const RiskDisclaimer = () => {
                   <li>fatigue, overtrading, and impaired judgment increase risk exposure.</li>
                 </ul>
                 <p className="text-muted-foreground">
-                  Greenridge Studios makes no representations regarding psychological suitability for trading.
+                  Zentō Collective makes no representations regarding psychological suitability for trading.
                 </p>
               </section>
 
@@ -129,7 +129,7 @@ const RiskDisclaimer = () => {
                   <li>latency or connectivity disruptions.</li>
                 </ul>
                 <p className="text-muted-foreground">
-                  Greenridge Studios is not responsible for losses resulting from technical or infrastructure failures beyond its control.
+                  Zentō Collective is not responsible for losses resulting from technical or infrastructure failures beyond its control.
                 </p>
               </section>
 
@@ -139,7 +139,7 @@ const RiskDisclaimer = () => {
                   Any references to third-party platforms, brokers, prop firms, or service providers are made for educational context only.
                 </p>
                 <p className="text-muted-foreground mb-4">
-                  Greenridge Studios:
+                  Zentō Collective:
                 </p>
                 <ul className="list-disc list-inside ml-4 space-y-2 text-muted-foreground mb-4">
                   <li>is not affiliated with, endorsed by, or responsible for third-party platforms,</li>
@@ -154,7 +154,7 @@ const RiskDisclaimer = () => {
               <section>
                 <h2 className="text-2xl font-bold mb-4">8. Jurisdictional & Regulatory Notice</h2>
                 <p className="text-muted-foreground mb-4">
-                  Greenridge Studios is not authorised or regulated by:
+                  Zentō Collective is not authorised or regulated by:
                 </p>
                 <ul className="list-disc list-inside ml-4 space-y-2 text-muted-foreground mb-4">
                   <li>the U.S. Commodity Futures Trading Commission (CFTC),</li>
@@ -169,7 +169,7 @@ const RiskDisclaimer = () => {
               <section>
                 <h2 className="text-2xl font-bold mb-4">9. Limitation of Liability</h2>
                 <p className="text-muted-foreground mb-4">
-                  To the fullest extent permitted by applicable law, Greenridge Studios shall not be liable for any losses, damages, or claims arising directly or indirectly from:
+                  To the fullest extent permitted by applicable law, Zentō Collective shall not be liable for any losses, damages, or claims arising directly or indirectly from:
                 </p>
                 <ul className="list-disc list-inside ml-4 space-y-2 text-muted-foreground mb-4">
                   <li>your use of the Services,</li>

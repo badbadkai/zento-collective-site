@@ -12,7 +12,7 @@ import { Footer } from "@/components/Footer";
 
 const Index = () => {
   useEffect(() => {
-    document.title = "Greenridge Studios — Master the Process";
+    document.title = "Zentō Collective — Master the Process";
   }, []);
 
   return (

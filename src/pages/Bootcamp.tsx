@@ -18,7 +18,7 @@ const Bootcamp = () => {
   const { currency, getPrice } = usePricing();
 
   useEffect(() => {
-    document.title = "30-Day Bootcamp — Greenridge Studios";
+    document.title = "30-Day Bootcamp — Zentō Collective";
   }, []);
 
   const price = getPrice("bootcamp");

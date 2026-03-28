@@ -18,7 +18,7 @@ const Start = () => {
   const { currency, getPrice } = usePricing();
 
   useEffect(() => {
-    document.title = "Trading Accelerator — Greenridge Studios";
+    document.title = "Trading Accelerator — Zentō Collective";
   }, []);
 
   const price = getPrice("accelerator");
@@ -569,7 +569,7 @@ const Start = () => {
               ))}
             </div>
 
-            <a href="https://whop.com/greenridge-studios/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
+            <a href="https://whop.com/zento-collective/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
               <Button variant="hero" size="lg" className="group">
                 Join the Accelerator - <Price product="accelerator" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -672,7 +672,7 @@ const Start = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="https://whop.com/greenridge-studios/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
+              <a href="https://whop.com/zento-collective/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
                 <Button variant="hero" size="lg" className="group">
                   Start Your 30 Days
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

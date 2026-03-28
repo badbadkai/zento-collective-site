@@ -200,7 +200,7 @@ export const Hero = () => {
         <div className="mb-10 md:mb-14 animate-fade-in">
           <img
             src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
-            alt="Greenridge Studios"
+            alt="Zentō Collective"
             className="w-48 sm:w-56 md:w-72 h-auto mx-auto"
           />
         </div>

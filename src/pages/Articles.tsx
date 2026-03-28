@@ -7,7 +7,7 @@ import { ArrowRight, FileText } from "lucide-react";
 
 const Articles = () => {
   useEffect(() => {
-    document.title = "Articles — Greenridge Studios";
+    document.title = "Articles — Zentō Collective";
   }, []);
 
   return (

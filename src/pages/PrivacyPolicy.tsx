@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
-    document.title = "Privacy Policy — Greenridge Studios";
+    document.title = "Privacy Policy — Zentō Collective";
   }, []);
 
   return (
@@ -17,7 +17,7 @@ const PrivacyPolicy = () => {
             <p className="text-sm italic text-muted-foreground mb-8">Last updated: 11 Jan 2026</p>
             
             <p className="text-lg mb-8">
-              This Privacy Policy explains how Greenridge Studios ("Greenridge Studios", "we", "us", or "our") collects, uses, stores, and protects your personal data when you access or use our products, programs, platforms, and services (collectively, the "Services").
+              This Privacy Policy explains how Zentō Collective ("Zentō Collective", "we", "us", or "our") collects, uses, stores, and protects your personal data when you access or use our products, programs, platforms, and services (collectively, the "Services").
             </p>
 
             <div className="space-y-8">
@@ -39,7 +39,7 @@ const PrivacyPolicy = () => {
                   <li>Communications you send to us (e.g. support requests)</li>
                 </ul>
                 <p className="text-muted-foreground mb-4">
-                  Payment card details are processed securely by third-party payment processors and are not stored directly by Greenridge Studios.
+                  Payment card details are processed securely by third-party payment processors and are not stored directly by Zentō Collective.
                 </p>
 
                 <h3 className="text-xl font-semibold mb-3">1.2 Information Collected via Third-Party Service Providers</h3>
@@ -82,7 +82,7 @@ const PrivacyPolicy = () => {
                 <ul className="list-disc list-inside ml-4 space-y-2 text-muted-foreground mb-4">
                   <li>With service providers acting as data processors on our behalf (e.g. payment and onboarding platforms)</li>
                   <li>Where required to comply with legal obligations, court orders, or regulatory requests</li>
-                  <li>To protect the rights, safety, or property of Greenridge Studios or its users</li>
+                  <li>To protect the rights, safety, or property of Zentō Collective or its users</li>
                 </ul>
                 <p className="text-muted-foreground">
                   All third-party service providers are contractually required to handle personal data securely and in accordance with applicable data protection laws.

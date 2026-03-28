@@ -23,14 +23,14 @@ import {
 } from "lucide-react";
 
 const WHOP_MONTHLY_URL =
-  "https://whop.com/greenridge-studios/greenridge-studios-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456";
+  "https://whop.com/zento-collective/zento-collective-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456";
 
 const Collective = () => {
   const { currency, getPrice } = usePricing();
   const symbol = getCurrencySymbol(currency);
 
   useEffect(() => {
-    document.title = "The Premium Collective — Greenridge Studios";
+    document.title = "The Premium Collective — Zentō Collective";
   }, []);
 
   const scrollToSection = (id: string) => {
@@ -66,7 +66,7 @@ const Collective = () => {
       perMonth: `${symbol}${quarterlyPerMonth}/mo`,
       savings: "Save ~17%",
       highlighted: true,
-      url: "https://whop.com/greenridge-studios/greenridge-studios-premium/",
+      url: "https://whop.com/zento-collective/zento-collective-premium/",
     },
     {
       id: "annual",
@@ -76,7 +76,7 @@ const Collective = () => {
       perMonth: `${symbol}${annualPerMonth}/mo`,
       savings: "Save ~37%",
       highlighted: false,
-      url: "https://whop.com/greenridge-studios/greenridge-studios-premium/",
+      url: "https://whop.com/zento-collective/zento-collective-premium/",
     },
   ];
 

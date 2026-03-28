@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const Terms = () => {
   useEffect(() => {
-    document.title = "Terms and Conditions — Greenridge Studios";
+    document.title = "Terms and Conditions — Zentō Collective";
   }, []);
 
   return (
@@ -17,7 +17,7 @@ const Terms = () => {
             <p className="text-sm italic text-muted-foreground mb-8">Last updated: 11 Jan 2026</p>
 
             <p className="text-lg mb-6">
-              These Terms and Conditions ("Terms") govern all access to and use of the products, programs, platforms, content, and services (collectively, the "Product") provided by Greenridge Studios ("Greenridge Studios", "we", "us", or "our").
+              These Terms and Conditions ("Terms") govern all access to and use of the products, programs, platforms, content, and services (collectively, the "Product") provided by Zentō Collective ("Zentō Collective", "we", "us", or "our").
             </p>
 
             <p className="text-lg mb-8">
@@ -31,7 +31,7 @@ const Terms = () => {
                   <strong>1.1</strong> All content provided through the Product is made available solely for educational and informational purposes. This includes, without limitation, market commentary, trading frameworks, methodologies, examples, simulations, hypothetical scenarios, and performance discussions.
                 </p>
                 <p>
-                  <strong>1.2</strong> Greenridge Studios is not authorised or regulated by the UK Financial Conduct Authority (FCA) or the Monetary Authority of Singapore (MAS), and does not provide regulated financial services.
+                  <strong>1.2</strong> Zentō Collective is not authorised or regulated by the UK Financial Conduct Authority (FCA) or the Monetary Authority of Singapore (MAS), and does not provide regulated financial services.
                 </p>
                 <p>
                   <strong>1.3</strong> Nothing contained in the Product constitutes, or should be construed as:
@@ -63,7 +63,7 @@ const Terms = () => {
                   <strong>2.2</strong> Any performance metrics, win rates, projections, or examples referenced within the Product are hypothetical or historical in nature and do not guarantee any specific outcome.
                 </p>
                 <p>
-                  <strong>2.3</strong> You acknowledge and agree that you are solely responsible for your trading decisions and outcomes. Greenridge Studios accepts no responsibility or liability for any losses incurred as a result of your use of the Product.
+                  <strong>2.3</strong> You acknowledge and agree that you are solely responsible for your trading decisions and outcomes. Zentō Collective accepts no responsibility or liability for any losses incurred as a result of your use of the Product.
                 </p>
               </div>
             </section>
@@ -75,7 +75,7 @@ const Terms = () => {
                   <strong>3.1</strong> All information is provided as of the date published and may be updated, amended, or withdrawn at any time without notice.
                 </p>
                 <p>
-                  <strong>3.2</strong> While reasonable efforts are made to ensure accuracy, Greenridge Studios makes no representations or warranties regarding the completeness, reliability, or timeliness of any information provided.
+                  <strong>3.2</strong> While reasonable efforts are made to ensure accuracy, Zentō Collective makes no representations or warranties regarding the completeness, reliability, or timeliness of any information provided.
                 </p>
               </div>
             </section>
@@ -99,13 +99,13 @@ const Terms = () => {
               <h2 className="text-2xl font-bold mb-4">5. Intellectual Property</h2>
               <div className="space-y-4">
                 <p>
-                  <strong>5.1</strong> All content included in or made available through the Product, including text, graphics, branding, logos, methodologies, frameworks, layouts, audiovisual materials, and software, is the exclusive property of Greenridge Studios and is protected by copyright, trademark, and other intellectual property laws.
+                  <strong>5.1</strong> All content included in or made available through the Product, including text, graphics, branding, logos, methodologies, frameworks, layouts, audiovisual materials, and software, is the exclusive property of Zentō Collective and is protected by copyright, trademark, and other intellectual property laws.
                 </p>
                 <p>
                   <strong>5.2</strong> You are granted a limited, non-exclusive, non-transferable, revocable licence to access and use the Product for personal, non-commercial use only.
                 </p>
                 <p>
-                  <strong>5.3</strong> You may not copy, reproduce, distribute, modify, reverse-engineer, republish, transmit, or exploit any portion of the Product, including underlying code or conceptual structures, without prior written consent from Greenridge Studios.
+                  <strong>5.3</strong> You may not copy, reproduce, distribute, modify, reverse-engineer, republish, transmit, or exploit any portion of the Product, including underlying code or conceptual structures, without prior written consent from Zentō Collective.
                 </p>
               </div>
             </section>
@@ -117,7 +117,7 @@ const Terms = () => {
                   <strong>6.1</strong> The Product is provided on an "as is" and "as available" basis, without warranties of any kind, whether express or implied.
                 </p>
                 <p>
-                  <strong>6.2</strong> Greenridge Studios does not warrant that:
+                  <strong>6.2</strong> Zentō Collective does not warrant that:
                 </p>
                 <ul className="list-disc list-inside ml-4 space-y-2">
                   <li>the Product will be uninterrupted, timely, secure, or error-free,</li>
@@ -131,7 +131,7 @@ const Terms = () => {
               <h2 className="text-2xl font-bold mb-4">7. Limitation of Liability</h2>
               <div className="space-y-4">
                 <p>
-                  <strong>7.1</strong> To the fullest extent permitted by applicable law, Greenridge Studios shall not be liable for any direct, indirect, incidental, consequential, special, or punitive damages arising out of or in connection with your use of, or inability to use, the Product.
+                  <strong>7.1</strong> To the fullest extent permitted by applicable law, Zentō Collective shall not be liable for any direct, indirect, incidental, consequential, special, or punitive damages arising out of or in connection with your use of, or inability to use, the Product.
                 </p>
                 <p>
                   <strong>7.2</strong> This limitation applies regardless of the legal theory relied upon, including contract, negligence, strict liability, or otherwise.
@@ -171,7 +171,7 @@ const Terms = () => {
               <h2 className="text-2xl font-bold mb-4">10. Modifications to Terms</h2>
               <div className="space-y-4">
                 <p>
-                  <strong>10.1</strong> Greenridge Studios reserves the right to amend or update these Terms at any time, at its sole discretion.
+                  <strong>10.1</strong> Zentō Collective reserves the right to amend or update these Terms at any time, at its sole discretion.
                 </p>
                 <p>
                   <strong>10.2</strong> Continued use of the Product following any changes constitutes acceptance of the revised Terms.
@@ -182,7 +182,7 @@ const Terms = () => {
             <section className="mb-8">
               <h2 className="text-2xl font-bold mb-4">11. Entire Agreement</h2>
               <p>
-                These Terms constitute the entire agreement between you and Greenridge Studios in relation to the Product and supersede all prior agreements, representations, or understandings.
+                These Terms constitute the entire agreement between you and Zentō Collective in relation to the Product and supersede all prior agreements, representations, or understandings.
               </p>
             </section>
           </div>

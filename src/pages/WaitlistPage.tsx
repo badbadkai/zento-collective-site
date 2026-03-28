@@ -5,7 +5,7 @@ import { Waitlist } from "@/components/Waitlist";
 
 const WaitlistPage: React.FC = () => {
   useEffect(() => {
-    document.title = "Join the Waitlist — Greenridge Studios";
+    document.title = "Join the Waitlist — Zentō Collective";
   }, []);
 
   return (

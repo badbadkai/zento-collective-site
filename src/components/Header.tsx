@@ -82,7 +82,7 @@ export const Header = () => {
         >
           <img
             src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
-            alt="Greenridge Studios"
+            alt="Zentō Collective"
             className="h-9 md:h-11 w-auto transition-all duration-300 group-hover:opacity-80"
           />
         </button>

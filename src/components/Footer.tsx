@@ -62,7 +62,7 @@ export const Footer = () => {
           <div className="lg:col-span-2">
             <img
               src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
-              alt="Greenridge Studios"
+              alt="Zentō Collective"
               className="h-10 w-auto mb-4"
             />
             <p className="text-sm text-muted-foreground max-w-sm mb-6">
@@ -127,7 +127,7 @@ export const Footer = () => {
         <div className="mt-12 pt-8 border-t border-border/50">
           <div className="flex flex-col sm:flex-row justify-between items-center gap-4">
             <p className="text-sm text-muted-foreground">
-              © {new Date().getFullYear()} Greenridge Studios. All rights
+              © {new Date().getFullYear()} Zentō Collective. All rights
               reserved.
             </p>
             <p className="text-xs text-muted-foreground/60">
