@@ -83,7 +83,8 @@ export const Header = () => {
           <img
             src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
             alt="Zentō Collective"
-            className="h-9 md:h-11 w-auto transition-all duration-300 group-hover:opacity-80"
+            className="h-9 md:h-11 w-auto transition-all duration-500 group-hover:scale-110 group-hover:brightness-125 group-hover:drop-shadow-[0_0_8px_rgba(212,160,51,0.4)] animate-pulse-subtle"
+            style={{ animation: "logo-breathe 4s ease-in-out infinite" }}
           />
         </button>
 

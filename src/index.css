@@ -359,6 +359,16 @@
   }
 }
 
+/* Logo breathing animation */
+@keyframes logo-breathe {
+  0%, 100% {
+    filter: brightness(1) drop-shadow(0 0 0px transparent);
+  }
+  50% {
+    filter: brightness(1.08) drop-shadow(0 0 6px rgba(212, 160, 51, 0.15));
+  }
+}
+
 /* Custom scrollbar for dark mode */
 .dark {
   scrollbar-width: thin;
