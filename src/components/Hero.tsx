@@ -210,9 +210,7 @@ export const Hero = () => {
           className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl xl:text-8xl font-semibold mb-6 md:mb-8 text-balance leading-[1.1] animate-fade-in"
           style={{ animationDelay: "0.1s" }}
         >
-          Master the process.
-          <br />
-          <span className="text-primary">Own the outcome.</span>
+          <span className="animate-shimmer-gold inline-block">Sharpen</span>{" "}your edge.
         </h1>
 
         {/* Subheadline */}
