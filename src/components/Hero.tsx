@@ -1,8 +1,8 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight } from "lucide-react";
 import { useTheme } from "next-themes";
-import logoMonogramLight from "@/assets/logo-light.png";
-import logoMonogramDark from "@/assets/logo-dark.png";
+import logoMonogramLight from "@/assets/logo-dark.png";
+import logoMonogramDark from "@/assets/logo-light.png";
 import { useEffect, useRef, useState, useCallback } from "react";
 
 // Grid configuration
