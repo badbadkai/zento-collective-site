@@ -1,5 +1,5 @@
-import logoMonogramLight from "@/assets/logo-monogram-light.svg";
-import logoMonogramDark from "@/assets/logo-monogram-dark.svg";
+import logoMonogramLight from "@/assets/logo-light.png";
+import logoMonogramDark from "@/assets/logo-dark.png";
 import { Moon, Sun, ChevronDown, Menu } from "lucide-react";
 import { useTheme } from "next-themes";
 import { Button } from "@/components/ui/button";
