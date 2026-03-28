@@ -137,7 +137,7 @@ const Contact = () => {
                     <User className="h-10 w-10 text-primary" />
                   </div>
                   <h3 className="font-heading text-xl font-semibold mb-1">Kai</h3>
-                  <p className="text-primary text-sm font-medium mb-3">Founder & Lead Mentor</p>
+                  <p className="text-primary text-sm font-medium mb-3">Founder</p>
                   <p className="text-muted-foreground text-sm mb-4">
                     Futures trader specialising in NQ and ES. Built Zentō Collective to systemise the path from beginner to funded trader.
                   </p>
@@ -155,7 +155,7 @@ const Contact = () => {
                     <User className="h-10 w-10 text-primary" />
                   </div>
                   <h3 className="font-heading text-xl font-semibold mb-1">Djay</h3>
-                  <p className="text-primary text-sm font-medium mb-3">Co-Founder</p>
+                  <p className="text-primary text-sm font-medium mb-3">Founder</p>
                   <p className="text-muted-foreground text-sm mb-4">
                     Driving operations and community growth at Zentō Collective.
                   </p>
