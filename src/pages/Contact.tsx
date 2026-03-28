@@ -1,7 +1,7 @@
 import { useEffect } from "react";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
-import { Mail, MessageSquare } from "lucide-react";
+import { Mail, MessageSquare, User } from "lucide-react";
 
 const Contact = () => {
   useEffect(() => {
@@ -27,8 +27,8 @@ const Contact = () => {
               </p>
             </div>
 
-            {/* Contact Cards */}
-            <div className="grid md:grid-cols-3 gap-6 mb-12">
+            {/* Contact Cards - Support & Discord */}
+            <div className="grid md:grid-cols-2 gap-6 mb-16">
               {/* Support Email */}
               <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors">
                 <div className="flex gap-4">
@@ -38,7 +38,7 @@ const Contact = () => {
                   <div>
                     <h3 className="font-heading text-lg font-semibold mb-2">Support</h3>
                     <p className="text-muted-foreground text-sm mb-2">
-                      For general inquiries:
+                      For general inquiries and support:
                     </p>
                     <a
                       href="mailto:support@zentocollective.com"
@@ -46,32 +46,6 @@ const Contact = () => {
                     >
                       support@zentocollective.com
                     </a>
-                  </div>
-                </div>
-              </div>
-
-              {/* Team */}
-              <div className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors">
-                <div className="flex gap-4">
-                  <div className="w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center flex-shrink-0">
-                    <Mail className="h-6 w-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-lg font-semibold mb-2">Team</h3>
-                    <div className="space-y-1">
-                      <div>
-                        <span className="text-muted-foreground text-sm">Kai — </span>
-                        <a href="mailto:kai@zentocollective.com" className="text-primary hover:underline font-medium text-sm">
-                          kai@zentocollective.com
-                        </a>
-                      </div>
-                      <div>
-                        <span className="text-muted-foreground text-sm">Djay — </span>
-                        <a href="mailto:djay@zentocollective.com" className="text-primary hover:underline font-medium text-sm">
-                          djay@zentocollective.com
-                        </a>
-                      </div>
-                    </div>
                   </div>
                 </div>
               </div>
@@ -103,7 +77,7 @@ const Contact = () => {
             </div>
 
             {/* Support Channels */}
-            <section>
+            <section className="mb-16">
               <h2 className="font-heading text-2xl font-semibold mb-6">
                 Support <span className="text-primary">Channels</span>
               </h2>
@@ -142,6 +116,56 @@ const Contact = () => {
                     </p>
                   </div>
                 ))}
+              </div>
+            </section>
+
+            {/* The Team */}
+            <section>
+              <div className="text-center mb-8">
+                <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
+                  Who We Are
+                </p>
+                <h2 className="font-heading text-2xl md:text-3xl font-semibold">
+                  The <span className="text-primary">Team</span>
+                </h2>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                {/* Kai */}
+                <div className="p-8 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors text-center">
+                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                    <User className="h-10 w-10 text-primary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold mb-1">Kai</h3>
+                  <p className="text-primary text-sm font-medium mb-3">Founder & Lead Mentor</p>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    Futures trader specialising in NQ and ES. Built Zentō Collective to systemise the path from beginner to funded trader.
+                  </p>
+                  <a
+                    href="mailto:kai@zentocollective.com"
+                    className="text-primary hover:underline font-medium text-sm"
+                  >
+                    kai@zentocollective.com
+                  </a>
+                </div>
+
+                {/* Djay */}
+                <div className="p-8 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors text-center">
+                  <div className="w-20 h-20 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-5">
+                    <User className="h-10 w-10 text-primary" />
+                  </div>
+                  <h3 className="font-heading text-xl font-semibold mb-1">Djay</h3>
+                  <p className="text-primary text-sm font-medium mb-3">Co-Founder</p>
+                  <p className="text-muted-foreground text-sm mb-4">
+                    Driving operations and community growth at Zentō Collective.
+                  </p>
+                  <a
+                    href="mailto:djay@zentocollective.com"
+                    className="text-primary hover:underline font-medium text-sm"
+                  >
+                    djay@zentocollective.com
+                  </a>
+                </div>
               </div>
             </section>
           </div>
