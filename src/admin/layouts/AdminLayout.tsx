@@ -40,9 +40,10 @@ export default function AdminLayout() {
       {/* Sidebar wrapper — group for hover detection on the collapse toggle */}
       <div className="relative group/sidebar shrink-0">
         <aside
-          className={`h-screen sticky top-0 border-r border-border/50 bg-card/30 flex flex-col transition-all duration-300 ease-in-out ${
+          className={`h-screen sticky top-0 border-r border-border/50 bg-card/30 flex flex-col overflow-hidden ${
             collapsed ? "w-16" : "w-64"
           }`}
+          style={{ transition: "width 400ms cubic-bezier(0.4, 0, 0.2, 1)" }}
         >
           {/* Header */}
           <div className={`border-b border-border/50 ${collapsed ? "px-3 py-4" : "px-5 py-4"}`}>
@@ -59,12 +60,12 @@ export default function AdminLayout() {
                   className={`absolute inset-0 h-7 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-0" : "opacity-100"}`}
                 />
               </div>
-              {!collapsed && (
-                <>
-                  <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap">Admin Portal</span>
-                  <span className="text-[10px] text-muted-foreground/50 ml-auto">v0.1</span>
-                </>
-              )}
+              <span className={`text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground whitespace-nowrap transition-opacity duration-300 ${collapsed ? "opacity-0" : "opacity-100"}`}>
+                Admin Portal
+              </span>
+              <span className={`text-[10px] text-muted-foreground/50 ml-auto whitespace-nowrap transition-opacity duration-300 ${collapsed ? "opacity-0" : "opacity-100"}`}>
+                v0.1
+              </span>
             </div>
           </div>
 
@@ -85,7 +86,7 @@ export default function AdminLayout() {
                 }
               >
                 <item.icon className="w-4 h-4 shrink-0" />
-                {!collapsed && <span>{item.label}</span>}
+                <span className={`whitespace-nowrap transition-opacity duration-300 ${collapsed ? "opacity-0 w-0 overflow-hidden" : "opacity-100"}`}>{item.label}</span>
               </NavLink>
             ))}
           </nav>
