@@ -9,7 +9,6 @@ import {
   FileCheck,
   UserPlus,
   UsersRound,
-  Settings,
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
@@ -25,7 +24,6 @@ const navItems = [
   { to: "/submissions", icon: FileCheck, label: "Submissions" },
   { to: "/enrollments", icon: UserPlus, label: "Enrollments" },
   { to: "/students", icon: UsersRound, label: "Students" },
-  { to: "/settings", icon: Settings, label: "Settings" },
 ];
 
 export default function AdminLayout() {
