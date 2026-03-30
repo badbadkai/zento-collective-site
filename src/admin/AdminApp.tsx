@@ -10,6 +10,7 @@ import Cohorts from "./pages/Cohorts";
 import Modules from "./pages/Modules";
 import Submissions from "./pages/Submissions";
 import Enrollments from "./pages/Enrollments";
+import Students from "./pages/Students";
 import Settings from "./pages/Settings";
 
 export default function AdminApp() {
@@ -25,6 +26,7 @@ export default function AdminApp() {
           <Route path="modules" element={<Modules />} />
           <Route path="submissions" element={<Submissions />} />
           <Route path="enrollments" element={<Enrollments />} />
+          <Route path="students" element={<Students />} />
           <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>

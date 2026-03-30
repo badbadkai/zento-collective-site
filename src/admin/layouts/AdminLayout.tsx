@@ -9,6 +9,7 @@ import {
   BookOpen,
   FileCheck,
   UserPlus,
+  UsersRound,
   Settings,
   LogOut,
   Moon,
@@ -27,6 +28,7 @@ const navItems = [
   { to: "/modules", icon: BookOpen, label: "Modules" },
   { to: "/submissions", icon: FileCheck, label: "Submissions" },
   { to: "/enrollments", icon: UserPlus, label: "Enrollments" },
+  { to: "/students", icon: UsersRound, label: "Students" },
   { to: "/settings", icon: Settings, label: "Settings" },
 ];
 
