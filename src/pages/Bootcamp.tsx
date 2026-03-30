@@ -166,55 +166,6 @@ const Bootcamp = () => {
         </div>
       </section>
 
-      {/* The Real Problem */}
-      <section className="section-spacing">
-        <div className="container-studio">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
-              The Challenge
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              The Gap Between{" "}
-              <span className="text-primary">Knowing and Doing</span>
-            </h2>
-
-            <div className="space-y-4">
-              {[
-                {
-                  title: "Inconsistent Execution",
-                  description:
-                    "You know what a good setup looks like, but you still take bad trades. Your rules exist on paper but not in practice.",
-                },
-                {
-                  title: "No Feedback Loop",
-                  description:
-                    "You journal sporadically or not at all. Without systematic review, the same mistakes repeat. You can't fix what you don't measure.",
-                },
-                {
-                  title: "Prop Firm Failures",
-                  description:
-                    "You've attempted funded challenges and blown the drawdown limit. The strategy might work, but your risk management and psychology don't hold under pressure.",
-                },
-                {
-                  title: "Trading in Isolation",
-                  description:
-                    "No one reviews your trades. No one challenges your reasoning. You're operating in a vacuum where bad habits go unchecked.",
-                },
-              ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-6 rounded-xl border border-border/50 bg-card/30 hover:border-primary/30 transition-colors"
-                >
-                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
-                    {item.title}
-                  </h3>
-                  <p className="text-muted-foreground text-sm">{item.description}</p>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 
       {/* What's Included */}
       <section className="section-spacing relative">
