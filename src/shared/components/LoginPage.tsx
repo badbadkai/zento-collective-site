@@ -19,26 +19,28 @@ interface LoginPageProps {
 
 export default function LoginPage({ portalName }: LoginPageProps) {
   const { theme } = useTheme();
-  const { sendOtp, verifyOtp, session } = useAuth();
+  const { sendOtp, verifyOtp, session, loading: authLoading } = useAuth();
   const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [rememberMe, setRememberMe] = useState(true);
   const [step, setStep] = useState<"email" | "code">("email");
-  const [code, setCode] = useState<string[]>(EMPTY_CODE);
+  const [code, setCode] = useState<string[]>([...EMPTY_CODE]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  // Redirect to dashboard once authenticated
+  // Redirect once fully authenticated (session exists and auth finished loading)
   useEffect(() => {
-    if (session) {
+    if (!authLoading && session) {
       navigate("/", { replace: true });
     }
-  }, [session, navigate]);
+  }, [session, authLoading, navigate]);
 
+  // Focus first code input when switching to code step
   useEffect(() => {
     if (step === "code") {
-      setTimeout(() => inputRefs.current[0]?.focus(), 100);
+      const timer = setTimeout(() => inputRefs.current[0]?.focus(), 150);
+      return () => clearTimeout(timer);
     }
   }, [step]);
 
@@ -47,15 +49,19 @@ export default function LoginPage({ portalName }: LoginPageProps) {
     setLoading(true);
     setError("");
 
-    const { error } = await sendOtp(email);
-
-    if (error) {
-      setError(error.message);
-    } else {
-      setStep("code");
+    try {
+      const result = await sendOtp(email);
+      if (result.error) {
+        setError(result.error.message);
+      } else {
+        setStep("code");
+        setCode([...EMPTY_CODE]);
+      }
+    } catch (err) {
+      setError("Failed to send code. Please try again.");
+    } finally {
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const submitCode = async (fullCode: string) => {
@@ -64,15 +70,22 @@ export default function LoginPage({ portalName }: LoginPageProps) {
     setLoading(true);
     setError("");
 
-    const { error } = await verifyOtp(email, fullCode, rememberMe);
-
-    if (error) {
-      setError("Invalid code. Please try again.");
-      setCode(EMPTY_CODE);
+    try {
+      const result = await verifyOtp(email, fullCode, rememberMe);
+      if (result.error) {
+        setError("Invalid code. Please try again.");
+        setCode([...EMPTY_CODE]);
+        inputRefs.current[0]?.focus();
+        setLoading(false);
+      }
+      // On success, the onAuthStateChange listener in useAuth will set session,
+      // which triggers the redirect useEffect above.
+    } catch (err) {
+      setError("Verification failed. Please try again.");
+      setCode([...EMPTY_CODE]);
       inputRefs.current[0]?.focus();
+      setLoading(false);
     }
-
-    setLoading(false);
   };
 
   const handleCodeInput = (index: number, value: string) => {
@@ -85,7 +98,6 @@ export default function LoginPage({ portalName }: LoginPageProps) {
       inputRefs.current[index + 1]?.focus();
     }
 
-    // Auto-submit when last digit entered
     if (digit && index === CODE_LENGTH - 1) {
       const full = newCode.join("");
       if (full.length === CODE_LENGTH) {
@@ -107,8 +119,7 @@ export default function LoginPage({ portalName }: LoginPageProps) {
     e.preventDefault();
     const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, CODE_LENGTH);
     if (pasted.length === CODE_LENGTH) {
-      const newCode = pasted.split("");
-      setCode(newCode);
+      setCode(pasted.split(""));
       inputRefs.current[CODE_LENGTH - 1]?.focus();
       submitCode(pasted);
     }
@@ -117,12 +128,26 @@ export default function LoginPage({ portalName }: LoginPageProps) {
   const handleResend = async () => {
     setError("");
     setLoading(true);
-    const { error } = await sendOtp(email);
-    if (error) {
-      setError(error.message);
+    try {
+      const result = await sendOtp(email);
+      if (result.error) {
+        setError(result.error.message);
+      }
+    } catch {
+      setError("Failed to resend code.");
+    } finally {
+      setLoading(false);
     }
-    setLoading(false);
   };
+
+  // Don't render login form if already authenticated
+  if (!authLoading && session) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background px-4">
@@ -170,7 +195,6 @@ export default function LoginPage({ portalName }: LoginPageProps) {
                 </div>
               </div>
 
-              {/* Remember me */}
               <label className="flex items-center gap-2 cursor-pointer select-none">
                 <input
                   type="checkbox"
@@ -206,17 +230,15 @@ export default function LoginPage({ portalName }: LoginPageProps) {
             </form>
           ) : (
             <div className="space-y-5">
-              {/* Back button */}
               <button
                 type="button"
-                onClick={() => { setStep("email"); setCode(EMPTY_CODE); setError(""); }}
+                onClick={() => { setStep("email"); setCode([...EMPTY_CODE]); setError(""); }}
                 className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 {email}
               </button>
 
-              {/* 8-digit code inputs */}
               <div className="flex justify-center gap-1.5" onPaste={handleCodePaste}>
                 {code.map((digit, i) => (
                   <input

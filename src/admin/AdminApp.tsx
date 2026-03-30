@@ -16,18 +16,12 @@ export default function AdminApp() {
       <Routes>
         <Route path="/login" element={<LoginPage portalName="Admin Portal" />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
-        <Route
-          element={
-            <RequireAuth requiredRole="admin">
-              <AdminLayout />
-            </RequireAuth>
-          }
-        >
+        <Route path="/" element={<RequireAuth requiredRole="admin"><AdminLayout /></RequireAuth>}>
           <Route index element={<Dashboard />} />
-          <Route path="/waitlist" element={<Waitlist />} />
-          <Route path="/cohorts" element={<Cohorts />} />
-          <Route path="/modules" element={<Modules />} />
-          <Route path="/submissions" element={<Submissions />} />
+          <Route path="waitlist" element={<Waitlist />} />
+          <Route path="cohorts" element={<Cohorts />} />
+          <Route path="modules" element={<Modules />} />
+          <Route path="submissions" element={<Submissions />} />
         </Route>
       </Routes>
     </AuthProvider>

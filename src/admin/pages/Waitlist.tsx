@@ -3,6 +3,7 @@ import { supabase } from "@/lib/supabase";
 import type { WaitlistEntry } from "@/shared/types/database";
 import { Search, ChevronDown, ChevronUp } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import React from "react";
 
 type SortField = "created_at" | "full_name" | "email" | "trading_experience";
 type SortDir = "asc" | "desc";
@@ -10,6 +11,7 @@ type SortDir = "asc" | "desc";
 export default function AdminWaitlist() {
   const [entries, setEntries] = useState<WaitlistEntry[]>([]);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState("");
   const [search, setSearch] = useState("");
   const [sortField, setSortField] = useState<SortField>("created_at");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
@@ -17,10 +19,15 @@ export default function AdminWaitlist() {
 
   useEffect(() => {
     const fetchEntries = async () => {
-      const { data } = await supabase
+      const { data, error: fetchError } = await supabase
         .from("bootcamp_waitlist")
         .select("*")
         .order(sortField, { ascending: sortDir === "asc" });
+
+      if (fetchError) {
+        setError("Failed to load waitlist entries.");
+        console.error("Waitlist fetch error:", fetchError);
+      }
 
       setEntries(data ?? []);
       setLoading(false);
@@ -72,7 +79,8 @@ export default function AdminWaitlist() {
         </h1>
       </div>
 
-      {/* Search */}
+      {error && <p className="text-sm text-destructive mb-4">{error}</p>}
+
       <div className="relative mb-4 max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input
@@ -83,59 +91,35 @@ export default function AdminWaitlist() {
         />
       </div>
 
-      {/* Table */}
       <div className="border border-border/50 rounded-xl overflow-hidden">
         <div className="overflow-x-auto">
           <table className="w-full text-sm">
             <thead>
               <tr className="border-b border-border/50 bg-muted/30">
-                <th
-                  className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground"
-                  onClick={() => toggleSort("full_name")}
-                >
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("full_name")}>
                   Name <SortIcon field="full_name" />
                 </th>
-                <th
-                  className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground"
-                  onClick={() => toggleSort("email")}
-                >
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("email")}>
                   Email <SortIcon field="email" />
                 </th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">
-                  Discord
-                </th>
-                <th
-                  className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground"
-                  onClick={() => toggleSort("trading_experience")}
-                >
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Discord</th>
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("trading_experience")}>
                   Experience <SortIcon field="trading_experience" />
                 </th>
-                <th
-                  className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground"
-                  onClick={() => toggleSort("created_at")}
-                >
+                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("created_at")}>
                   Date <SortIcon field="created_at" />
                 </th>
               </tr>
             </thead>
             <tbody>
               {loading ? (
-                <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">
-                    Loading...
-                  </td>
-                </tr>
+                <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">Loading...</td></tr>
               ) : filtered.length === 0 ? (
-                <tr>
-                  <td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">
-                    No entries found
-                  </td>
-                </tr>
+                <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">No entries found</td></tr>
               ) : (
                 filtered.map((entry) => (
-                  <>
+                  <React.Fragment key={entry.id}>
                     <tr
-                      key={entry.id}
                       className="border-b border-border/30 hover:bg-muted/20 cursor-pointer transition-colors"
                       onClick={() => setExpanded(expanded === entry.id ? null : entry.id)}
                     >
@@ -148,34 +132,26 @@ export default function AdminWaitlist() {
                         </span>
                       </td>
                       <td className="px-4 py-3 text-muted-foreground">
-                        {new Date(entry.created_at).toLocaleDateString("en-GB", {
-                          day: "numeric",
-                          month: "short",
-                          year: "numeric",
-                        })}
+                        {new Date(entry.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
                       </td>
                     </tr>
                     {expanded === entry.id && (
-                      <tr key={`${entry.id}-detail`}>
+                      <tr>
                         <td colSpan={5} className="px-4 py-4 bg-muted/10">
                           <div className="grid grid-cols-2 gap-4 text-sm">
                             <div>
-                              <p className="font-medium text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                                Prop Firm History
-                              </p>
+                              <p className="font-medium text-xs text-muted-foreground uppercase tracking-wider mb-1">Prop Firm History</p>
                               <p>{formatExp(entry.prop_firm_history)}</p>
                             </div>
                             <div>
-                              <p className="font-medium text-xs text-muted-foreground uppercase tracking-wider mb-1">
-                                Biggest Challenge
-                              </p>
+                              <p className="font-medium text-xs text-muted-foreground uppercase tracking-wider mb-1">Biggest Challenge</p>
                               <p>{entry.biggest_challenge}</p>
                             </div>
                           </div>
                         </td>
                       </tr>
                     )}
-                  </>
+                  </React.Fragment>
                 ))
               )}
             </tbody>

@@ -16,18 +16,12 @@ export default function PortalApp() {
       <Routes>
         <Route path="/login" element={<LoginPage portalName="Student Portal" />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
-        <Route
-          element={
-            <RequireAuth>
-              <PortalLayout />
-            </RequireAuth>
-          }
-        >
+        <Route path="/" element={<RequireAuth><PortalLayout /></RequireAuth>}>
           <Route index element={<Dashboard />} />
-          <Route path="/modules" element={<Modules />} />
-          <Route path="/modules/:moduleId" element={<ModuleView />} />
-          <Route path="/submissions" element={<Submissions />} />
-          <Route path="/profile" element={<Profile />} />
+          <Route path="modules" element={<Modules />} />
+          <Route path="modules/:moduleId" element={<ModuleView />} />
+          <Route path="submissions" element={<Submissions />} />
+          <Route path="profile" element={<Profile />} />
         </Route>
       </Routes>
     </AuthProvider>
