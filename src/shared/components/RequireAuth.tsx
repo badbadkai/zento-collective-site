@@ -1,6 +1,7 @@
 import { Navigate } from "react-router-dom";
 import { useAuth } from "@/shared/hooks/useAuth";
-import { Loader2 } from "lucide-react";
+import { Loader2, ShieldX } from "lucide-react";
+import { Button } from "@/components/ui/button";
 import type { UserRole } from "@/shared/types/database";
 
 interface RequireAuthProps {
@@ -9,7 +10,7 @@ interface RequireAuthProps {
 }
 
 export default function RequireAuth({ children, requiredRole }: RequireAuthProps) {
-  const { session, profile, loading } = useAuth();
+  const { session, profile, loading, signOut, user } = useAuth();
 
   if (loading) {
     return (
@@ -25,12 +26,21 @@ export default function RequireAuth({ children, requiredRole }: RequireAuthProps
 
   if (requiredRole && profile?.role !== requiredRole) {
     return (
-      <div className="min-h-screen flex items-center justify-center bg-background">
+      <div className="min-h-screen flex items-center justify-center bg-background px-4">
         <div className="text-center max-w-md">
-          <h1 className="text-2xl font-semibold mb-2">Access Denied</h1>
-          <p className="text-muted-foreground">
-            You don't have permission to access this area.
+          <div className="w-14 h-14 rounded-full bg-destructive/10 flex items-center justify-center mx-auto mb-5">
+            <ShieldX className="w-7 h-7 text-destructive" />
+          </div>
+          <h1 className="font-heading text-2xl font-semibold mb-2">Access Denied</h1>
+          <p className="text-muted-foreground mb-1">
+            <strong>{user?.email}</strong> is not a registered admin.
           </p>
+          <p className="text-muted-foreground text-sm mb-6">
+            If you believe this is an error, contact the team.
+          </p>
+          <Button variant="ghost" onClick={signOut}>
+            Sign out
+          </Button>
         </div>
       </div>
     );
