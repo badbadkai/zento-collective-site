@@ -9,6 +9,8 @@ import { Check } from "lucide-react";
 
 const BootcampWaitlist: React.FC = () => {
   const [submitted, setSubmitted] = useState(false);
+  const [submitting, setSubmitting] = useState(false);
+  const [error, setError] = useState("");
   const [form, setForm] = useState({
     name: "",
     email: "",
@@ -30,9 +32,36 @@ const BootcampWaitlist: React.FC = () => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  const handleSubmit = (e: React.FormEvent) => {
+  const handleSubmit = async (e: React.FormEvent) => {
     e.preventDefault();
-    setSubmitted(true);
+    setSubmitting(true);
+    setError("");
+
+    try {
+      const res = await fetch("/api/bootcamp-waitlist", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          full_name: form.name,
+          email: form.email,
+          discord: form.discord,
+          trading_experience: form.experience,
+          prop_firm_history: form.propFirm,
+          biggest_challenge: form.challenge,
+        }),
+      });
+
+      if (!res.ok) {
+        const result = await res.json().catch(() => ({}));
+        throw new Error(result?.error || "Something went wrong");
+      }
+
+      setSubmitted(true);
+    } catch (err: any) {
+      setError(err?.message || "Something went wrong. Please try again or contact us directly.");
+    } finally {
+      setSubmitting(false);
+    }
   };
 
   if (submitted) {
