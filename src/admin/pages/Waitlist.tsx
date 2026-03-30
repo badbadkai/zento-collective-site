@@ -1,9 +1,8 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { WaitlistEntry } from "@/shared/types/database";
-import { Search, ChevronDown, ChevronUp } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, User, Mail, MessageCircle, Clock, BarChart3, Target, HelpCircle } from "lucide-react";
 import { Input } from "@/components/ui/input";
-import React from "react";
 
 type SortField = "created_at" | "full_name" | "email" | "trading_experience";
 type SortDir = "asc" | "desc";
@@ -15,7 +14,12 @@ export default function AdminWaitlist() {
   const [search, setSearch] = useState("");
   const [sortField, setSortField] = useState<SortField>("created_at");
   const [sortDir, setSortDir] = useState<SortDir>("desc");
-  const [expanded, setExpanded] = useState<string | null>(null);
+  const [selected, setSelected] = useState<string | null>(null);
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    setTimeout(() => setVisible(true), 50);
+  }, []);
 
   useEffect(() => {
     const fetchEntries = async () => {
@@ -25,7 +29,7 @@ export default function AdminWaitlist() {
         .order(sortField, { ascending: sortDir === "asc" });
 
       if (fetchError) {
-        setError("Failed to load waitlist entries.");
+        setError("Failed to load waitlist entries: " + fetchError.message);
         console.error("Waitlist fetch error:", fetchError);
       }
 
@@ -41,7 +45,8 @@ export default function AdminWaitlist() {
     return (
       e.full_name.toLowerCase().includes(q) ||
       e.email.toLowerCase().includes(q) ||
-      e.discord.toLowerCase().includes(q)
+      e.discord.toLowerCase().includes(q) ||
+      (e.biggest_challenge?.toLowerCase().includes(q))
     );
   });
 
@@ -64,64 +69,80 @@ export default function AdminWaitlist() {
   };
 
   const formatExp = (v: string | null) => {
-    if (!v) return "-";
+    if (!v) return "Not specified";
     return v.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
   };
 
+  const formatPropFirm = (v: string | null) => {
+    if (!v) return "Not specified";
+    switch (v) {
+      case "no": return "No";
+      case "yes-passed": return "Yes — Passed";
+      case "yes-failed": return "Yes — Failed";
+      default: return v.replace(/-/g, " ").replace(/\b\w/g, (c) => c.toUpperCase());
+    }
+  };
+
+  const selectedEntry = entries.find((e) => e.id === selected);
+
   return (
-    <div>
+    <div
+      className="transition-all duration-700 ease-out"
+      style={{ opacity: visible ? 1 : 0, transform: visible ? "translateY(0)" : "translateY(20px)" }}
+    >
       <div className="flex items-center justify-between mb-6">
         <h1 className="font-heading text-2xl font-semibold">
           Waitlist
-          <span className="text-muted-foreground text-base font-normal ml-2">
-            ({filtered.length})
-          </span>
+          <span className="text-muted-foreground text-base font-normal ml-2">({filtered.length})</span>
         </h1>
       </div>
 
       {error && <p className="text-sm text-destructive mb-4">{error}</p>}
 
+      {/* Search */}
       <div className="relative mb-4 max-w-sm">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input
-          placeholder="Search by name, email, or discord..."
+          placeholder="Search name, email, discord..."
           value={search}
           onChange={(e) => setSearch(e.target.value)}
           className="pl-10"
         />
       </div>
 
-      <div className="border border-border/50 rounded-xl overflow-hidden">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm">
-            <thead>
-              <tr className="border-b border-border/50 bg-muted/30">
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("full_name")}>
-                  Name <SortIcon field="full_name" />
-                </th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("email")}>
-                  Email <SortIcon field="email" />
-                </th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground">Discord</th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("trading_experience")}>
-                  Experience <SortIcon field="trading_experience" />
-                </th>
-                <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("created_at")}>
-                  Date <SortIcon field="created_at" />
-                </th>
-              </tr>
-            </thead>
-            <tbody>
-              {loading ? (
-                <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">Loading...</td></tr>
-              ) : filtered.length === 0 ? (
-                <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">No entries found</td></tr>
-              ) : (
-                filtered.map((entry) => (
-                  <React.Fragment key={entry.id}>
+      <div className="flex gap-5">
+        {/* Table */}
+        <div className="flex-1 border border-border/50 rounded-xl overflow-hidden">
+          <div className="overflow-x-auto">
+            <table className="w-full text-sm">
+              <thead>
+                <tr className="border-b border-border/50 bg-muted/30">
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("full_name")}>
+                    Name <SortIcon field="full_name" />
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("email")}>
+                    Email <SortIcon field="email" />
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground">Discord</th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("trading_experience")}>
+                    Experience <SortIcon field="trading_experience" />
+                  </th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("created_at")}>
+                    Applied <SortIcon field="created_at" />
+                  </th>
+                </tr>
+              </thead>
+              <tbody>
+                {loading ? (
+                  <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">Loading...</td></tr>
+                ) : filtered.length === 0 ? (
+                  <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">No entries found</td></tr>
+                ) : (
+                  filtered.map((entry) => (
                     <tr
-                      className="border-b border-border/30 hover:bg-muted/20 cursor-pointer transition-colors"
-                      onClick={() => setExpanded(expanded === entry.id ? null : entry.id)}
+                      key={entry.id}
+                      className={`border-b border-border/30 cursor-pointer transition-colors ${selected === entry.id ? "bg-primary/5" : "hover:bg-muted/20"}`}
+                      onClick={() => setSelected(selected === entry.id ? null : entry.id)}
                     >
                       <td className="px-4 py-3 font-medium">{entry.full_name}</td>
                       <td className="px-4 py-3 text-muted-foreground">{entry.email}</td>
@@ -131,32 +152,80 @@ export default function AdminWaitlist() {
                           {formatExp(entry.trading_experience)}
                         </span>
                       </td>
-                      <td className="px-4 py-3 text-muted-foreground">
+                      <td className="px-4 py-3 text-muted-foreground text-xs">
                         {new Date(entry.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
                       </td>
                     </tr>
-                    {expanded === entry.id && (
-                      <tr>
-                        <td colSpan={5} className="px-4 py-4 bg-muted/10">
-                          <div className="grid grid-cols-2 gap-4 text-sm">
-                            <div>
-                              <p className="font-medium text-xs text-muted-foreground uppercase tracking-wider mb-1">Prop Firm History</p>
-                              <p>{formatExp(entry.prop_firm_history)}</p>
-                            </div>
-                            <div>
-                              <p className="font-medium text-xs text-muted-foreground uppercase tracking-wider mb-1">Biggest Challenge</p>
-                              <p>{entry.biggest_challenge}</p>
-                            </div>
-                          </div>
-                        </td>
-                      </tr>
-                    )}
-                  </React.Fragment>
-                ))
-              )}
-            </tbody>
-          </table>
+                  ))
+                )}
+              </tbody>
+            </table>
+          </div>
         </div>
+
+        {/* Detail panel */}
+        {selectedEntry && (
+          <div
+            className="w-80 shrink-0 border border-border/50 rounded-xl p-5 bg-card/30 self-start sticky top-8 transition-all duration-300"
+            style={{ opacity: 1 }}
+          >
+            <h2 className="font-heading text-lg font-semibold mb-4">{selectedEntry.full_name}</h2>
+
+            <div className="space-y-4">
+              <div className="flex items-start gap-3">
+                <Mail className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Email</p>
+                  <p className="text-sm">{selectedEntry.email}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <MessageCircle className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Discord</p>
+                  <p className="text-sm">{selectedEntry.discord}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <BarChart3 className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Trading Experience</p>
+                  <p className="text-sm">{formatExp(selectedEntry.trading_experience)}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Target className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Prop Firm History</p>
+                  <p className="text-sm">{formatPropFirm(selectedEntry.prop_firm_history)}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <HelpCircle className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Biggest Challenge</p>
+                  <p className="text-sm leading-relaxed">{selectedEntry.biggest_challenge}</p>
+                </div>
+              </div>
+
+              <div className="flex items-start gap-3">
+                <Clock className="w-4 h-4 text-muted-foreground mt-0.5 shrink-0" />
+                <div>
+                  <p className="text-xs text-muted-foreground uppercase tracking-wider mb-0.5">Applied</p>
+                  <p className="text-sm">
+                    {new Date(selectedEntry.created_at).toLocaleString("en-GB", {
+                      day: "numeric", month: "long", year: "numeric", hour: "2-digit", minute: "2-digit",
+                    })}
+                  </p>
+                </div>
+              </div>
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
