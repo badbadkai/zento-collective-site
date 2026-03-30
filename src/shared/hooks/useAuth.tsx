@@ -23,22 +23,34 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
 
   // Fetch or create profile
   const fetchProfile = async (userId: string) => {
-    const { data, error } = await supabase
-      .from("profiles")
-      .select("*")
-      .eq("id", userId)
-      .single();
-
-    if (error && error.code === "PGRST116") {
-      // Profile doesn't exist yet — create it as student
-      const { data: newProfile } = await supabase
+    try {
+      const { data, error } = await supabase
         .from("profiles")
-        .insert({ id: userId, role: "student" as UserRole })
-        .select()
+        .select("*")
+        .eq("id", userId)
         .single();
-      setProfile(newProfile);
-    } else {
-      setProfile(data);
+
+      if (error && error.code === "PGRST116") {
+        // Profile doesn't exist yet — create it as student
+        const { data: newProfile, error: insertError } = await supabase
+          .from("profiles")
+          .insert({ id: userId, role: "student" as UserRole })
+          .select()
+          .single();
+
+        if (insertError) {
+          console.error("Profile insert error:", insertError);
+        }
+        setProfile(newProfile);
+      } else if (error) {
+        console.error("Profile fetch error:", error);
+        setProfile(null);
+      } else {
+        setProfile(data);
+      }
+    } catch (err) {
+      console.error("Profile fetch exception:", err);
+      setProfile(null);
     }
   };
 
@@ -47,9 +59,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     supabase.auth.getSession().then(({ data: { session } }) => {
       setSession(session);
       if (session?.user) {
-        fetchProfile(session.user.id);
+        fetchProfile(session.user.id).finally(() => setLoading(false));
+      } else {
+        setLoading(false);
       }
-      setLoading(false);
     });
 
     // Listen for auth changes
@@ -57,11 +70,11 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
       async (_event, session) => {
         setSession(session);
         if (session?.user) {
-          await fetchProfile(session.user.id);
+          await fetchProfile(session.user.id).finally(() => setLoading(false));
         } else {
           setProfile(null);
+          setLoading(false);
         }
-        setLoading(false);
       }
     );
 
