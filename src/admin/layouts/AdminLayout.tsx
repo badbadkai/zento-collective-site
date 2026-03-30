@@ -47,6 +47,7 @@ export default function AdminLayout() {
               />
             </div>
             <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">Admin Portal</span>
+            <span className="text-[10px] text-muted-foreground/50 ml-auto">v0.1</span>
           </div>
         </div>
 
