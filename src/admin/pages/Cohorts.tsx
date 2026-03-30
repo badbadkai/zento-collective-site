@@ -4,7 +4,7 @@ import type { Cohort } from "@/shared/types/database";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
-import { Plus, Pencil, X } from "lucide-react";
+import { Plus, Pencil, X, Trash2 } from "lucide-react";
 
 export default function AdminCohorts() {
   const [cohorts, setCohorts] = useState<Cohort[]>([]);
@@ -12,6 +12,8 @@ export default function AdminCohorts() {
   const [error, setError] = useState("");
   const [showForm, setShowForm] = useState(false);
   const [editing, setEditing] = useState<Cohort | null>(null);
+  const [confirmDeleteId, setConfirmDeleteId] = useState<string | null>(null);
+  const [formErrors, setFormErrors] = useState<Record<string, string>>({});
   const [form, setForm] = useState({
     name: "",
     start_date: "",
@@ -43,10 +45,12 @@ export default function AdminCohorts() {
     setEditing(null);
     setShowForm(false);
     setError("");
+    setFormErrors({});
   };
 
   const handleSave = async () => {
     setError("");
+    if (!validateForm()) return;
     if (editing) {
       const { error: updateError } = await supabase.from("cohorts").update(form).eq("id", editing.id);
       if (updateError) {
@@ -74,6 +78,28 @@ export default function AdminCohorts() {
     });
     setEditing(cohort);
     setShowForm(true);
+  };
+
+  const handleDelete = async (cohortId: string) => {
+    setError("");
+    const { error: deleteError } = await supabase.from("cohorts").delete().eq("id", cohortId);
+    if (deleteError) {
+      setError("Failed to delete cohort: " + deleteError.message);
+    }
+    setConfirmDeleteId(null);
+    fetchCohorts();
+  };
+
+  const validateForm = (): boolean => {
+    const errors: Record<string, string> = {};
+    if (!form.name.trim()) errors.name = "Name is required.";
+    if (!form.start_date) errors.start_date = "Start date is required.";
+    if (!form.end_date) errors.end_date = "End date is required.";
+    if (form.start_date && form.end_date && form.start_date >= form.end_date) {
+      errors.end_date = "End date must be after start date.";
+    }
+    setFormErrors(errors);
+    return Object.keys(errors).length === 0;
   };
 
   const statusColor = (s: string) => {
@@ -107,14 +133,17 @@ export default function AdminCohorts() {
             <div className="col-span-2 space-y-2">
               <Label>Cohort Name</Label>
               <Input value={form.name} onChange={(e) => setForm({ ...form, name: e.target.value })} placeholder="e.g. Cohort 1 — March 2026" />
+              {formErrors.name && <p className="text-sm text-destructive">{formErrors.name}</p>}
             </div>
             <div className="space-y-2">
               <Label>Start Date</Label>
               <Input type="date" value={form.start_date} onChange={(e) => setForm({ ...form, start_date: e.target.value })} />
+              {formErrors.start_date && <p className="text-sm text-destructive">{formErrors.start_date}</p>}
             </div>
             <div className="space-y-2">
               <Label>End Date</Label>
               <Input type="date" value={form.end_date} onChange={(e) => setForm({ ...form, end_date: e.target.value })} />
+              {formErrors.end_date && <p className="text-sm text-destructive">{formErrors.end_date}</p>}
             </div>
             <div className="space-y-2">
               <Label>Max Seats</Label>
@@ -144,19 +173,32 @@ export default function AdminCohorts() {
         ) : (
           cohorts.map((cohort) => (
             <div key={cohort.id} className="flex items-center justify-between p-4 rounded-xl border border-border/50 bg-card/30 hover:bg-card/50 transition-colors">
-              <div>
-                <h3 className="font-medium">{cohort.name}</h3>
-                <p className="text-sm text-muted-foreground">
-                  {new Date(cohort.start_date).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
-                  {" — "}
-                  {new Date(cohort.end_date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
-                  {" · "}{cohort.max_seats} seats
-                </p>
-              </div>
-              <div className="flex items-center gap-3">
-                <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor(cohort.status)}`}>{cohort.status}</span>
-                <Button variant="ghost" size="icon" onClick={() => startEdit(cohort)}><Pencil className="w-4 h-4" /></Button>
-              </div>
+              {confirmDeleteId === cohort.id ? (
+                <>
+                  <p className="text-sm text-destructive">Are you sure? This will delete the cohort and all its modules.</p>
+                  <div className="flex items-center gap-2">
+                    <Button variant="ghost" size="sm" onClick={() => setConfirmDeleteId(null)}>Cancel</Button>
+                    <Button variant="destructive" size="sm" onClick={() => handleDelete(cohort.id)}>Delete</Button>
+                  </div>
+                </>
+              ) : (
+                <>
+                  <div>
+                    <h3 className="font-medium">{cohort.name}</h3>
+                    <p className="text-sm text-muted-foreground">
+                      {new Date(cohort.start_date).toLocaleDateString("en-GB", { day: "numeric", month: "short" })}
+                      {" — "}
+                      {new Date(cohort.end_date).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                      {" · "}{cohort.max_seats} seats
+                    </p>
+                  </div>
+                  <div className="flex items-center gap-3">
+                    <span className={`px-2.5 py-0.5 rounded-full text-xs font-medium ${statusColor(cohort.status)}`}>{cohort.status}</span>
+                    <Button variant="ghost" size="icon" onClick={() => startEdit(cohort)}><Pencil className="w-4 h-4" /></Button>
+                    <Button variant="ghost" size="icon" onClick={() => setConfirmDeleteId(cohort.id)}><Trash2 className="w-4 h-4" /></Button>
+                  </div>
+                </>
+              )}
             </div>
           ))
         )}
