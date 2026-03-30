@@ -9,7 +9,8 @@ interface AuthState {
   profile: Profile | null;
   role: UserRole | null;
   loading: boolean;
-  signInWithMagicLink: (email: string, rememberMe: boolean) => Promise<{ error: Error | null }>;
+  sendOtp: (email: string) => Promise<{ error: Error | null }>;
+  verifyOtp: (email: string, token: string, rememberMe: boolean) => Promise<{ error: Error | null }>;
   signOut: () => Promise<void>;
 }
 
@@ -67,21 +68,24 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     return () => subscription.unsubscribe();
   }, []);
 
-  const signInWithMagicLink = async (email: string, rememberMe: boolean) => {
-    // Determine the redirect URL based on current hostname
-    const hostname = window.location.hostname;
-    const protocol = window.location.protocol;
-    const port = window.location.port ? `:${window.location.port}` : "";
-    const redirectTo = `${protocol}//${hostname}${port}/auth/callback`;
-
+  const sendOtp = async (email: string) => {
     const { error } = await supabase.auth.signInWithOtp({
       email,
       options: {
-        emailRedirectTo: redirectTo,
+        shouldCreateUser: true,
       },
     });
 
-    // Store remember-me preference for use after callback
+    return { error: error ? new Error(error.message) : null };
+  };
+
+  const verifyOtp = async (email: string, token: string, rememberMe: boolean) => {
+    const { error } = await supabase.auth.verifyOtp({
+      email,
+      token,
+      type: "email",
+    });
+
     if (!error) {
       localStorage.setItem("zento_remember_me", rememberMe ? "true" : "false");
     }
@@ -104,7 +108,8 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         profile,
         role: profile?.role ?? null,
         loading,
-        signInWithMagicLink,
+        sendOtp,
+        verifyOtp,
         signOut,
       }}
     >

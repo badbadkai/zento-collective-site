@@ -1,9 +1,9 @@
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
 import { useAuth } from "@/shared/hooks/useAuth";
-import { Check, Loader2, Mail } from "lucide-react";
+import { Loader2, Mail, ArrowLeft } from "lucide-react";
 import logoLight from "@/assets/logo-dark.png";
 import logoDark from "@/assets/logo-light.png";
 import { useTheme } from "next-themes";
@@ -15,26 +15,103 @@ interface LoginPageProps {
 
 export default function LoginPage({ portalName }: LoginPageProps) {
   const { theme } = useTheme();
-  const { signInWithMagicLink } = useAuth();
+  const { sendOtp, verifyOtp } = useAuth();
   const [email, setEmail] = useState("");
   const [rememberMe, setRememberMe] = useState(true);
-  const [sent, setSent] = useState(false);
+  const [step, setStep] = useState<"email" | "code">("email");
+  const [code, setCode] = useState(["", "", "", "", "", ""]);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  const handleSubmit = async (e: React.FormEvent) => {
+  // Auto-focus first code input when step changes
+  useEffect(() => {
+    if (step === "code") {
+      setTimeout(() => inputRefs.current[0]?.focus(), 100);
+    }
+  }, [step]);
+
+  const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
     setLoading(true);
     setError("");
 
-    const { error } = await signInWithMagicLink(email, rememberMe);
+    const { error } = await sendOtp(email);
 
     if (error) {
       setError(error.message);
     } else {
-      setSent(true);
+      setStep("code");
     }
 
+    setLoading(false);
+  };
+
+  const handleVerifyCode = async (fullCode?: string) => {
+    const codeStr = fullCode || code.join("");
+    if (codeStr.length !== 6) return;
+
+    setLoading(true);
+    setError("");
+
+    const { error } = await verifyOtp(email, codeStr, rememberMe);
+
+    if (error) {
+      setError("Invalid code. Please try again.");
+      setCode(["", "", "", "", "", ""]);
+      inputRefs.current[0]?.focus();
+    }
+
+    setLoading(false);
+  };
+
+  const handleCodeInput = (index: number, value: string) => {
+    // Only allow digits
+    const digit = value.replace(/\D/g, "").slice(-1);
+    const newCode = [...code];
+    newCode[index] = digit;
+    setCode(newCode);
+
+    // Auto-advance to next input
+    if (digit && index < 5) {
+      inputRefs.current[index + 1]?.focus();
+    }
+
+    // Auto-submit when all 6 digits entered
+    if (digit && index === 5) {
+      const fullCode = newCode.join("");
+      if (fullCode.length === 6) {
+        handleVerifyCode(fullCode);
+      }
+    }
+  };
+
+  const handleCodeKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === "Backspace" && !code[index] && index > 0) {
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handleCodePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, 6);
+    if (pasted.length === 6) {
+      const newCode = pasted.split("");
+      setCode(newCode);
+      inputRefs.current[5]?.focus();
+      handleVerifyCode(pasted);
+    }
+  };
+
+  const handleResend = async () => {
+    setError("");
+    setLoading(true);
+    const { error } = await sendOtp(email);
+    if (error) {
+      setError(error.message);
+    } else {
+      setError("");
+    }
     setLoading(false);
   };
 
@@ -60,21 +137,13 @@ export default function LoginPage({ portalName }: LoginPageProps) {
         <GlitchBorder>
           <div className="text-center mb-8">
             <h1 className="font-heading text-2xl font-semibold mb-1">{portalName}</h1>
-            <p className="text-muted-foreground text-sm">Sign in with your email</p>
+            <p className="text-muted-foreground text-sm">
+              {step === "email" ? "Sign in with your email" : "Enter your verification code"}
+            </p>
           </div>
 
-          {sent ? (
-            <div className="text-center p-6 rounded-xl border border-primary/20 bg-primary/5">
-              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-                <Check className="w-6 h-6 text-primary" />
-              </div>
-              <h2 className="font-semibold text-lg mb-2">Check your inbox</h2>
-              <p className="text-muted-foreground text-sm">
-                We sent a login code to <strong>{email}</strong>. Enter the code below to sign in.
-              </p>
-            </div>
-          ) : (
-            <form onSubmit={handleSubmit} className="space-y-4">
+          {step === "email" ? (
+            <form onSubmit={handleSendCode} className="space-y-4">
               <div className="space-y-2">
                 <Label htmlFor="email">Email address</Label>
                 <div className="relative">
@@ -119,13 +188,64 @@ export default function LoginPage({ portalName }: LoginPageProps) {
                 {loading ? (
                   <>
                     <Loader2 className="w-4 h-4 animate-spin" />
-                    Sending...
+                    Sending code...
                   </>
                 ) : (
-                  "Sign In with Email"
+                  "Continue"
                 )}
               </Button>
             </form>
+          ) : (
+            <div className="space-y-6">
+              {/* Back button */}
+              <button
+                onClick={() => { setStep("email"); setCode(["", "", "", "", "", ""]); setError(""); }}
+                className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
+              >
+                <ArrowLeft className="w-3.5 h-3.5" />
+                {email}
+              </button>
+
+              {/* 6-digit code input */}
+              <div className="flex justify-center gap-2" onPaste={handleCodePaste}>
+                {code.map((digit, i) => (
+                  <input
+                    key={i}
+                    ref={(el) => { inputRefs.current[i] = el; }}
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={1}
+                    value={digit}
+                    onChange={(e) => handleCodeInput(i, e.target.value)}
+                    onKeyDown={(e) => handleCodeKeyDown(i, e)}
+                    disabled={loading}
+                    className="w-11 h-13 text-center text-xl font-semibold rounded-lg border border-input bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                  />
+                ))}
+              </div>
+
+              {error && (
+                <p className="text-sm text-destructive text-center">{error}</p>
+              )}
+
+              {loading && (
+                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Verifying...
+                </div>
+              )}
+
+              <p className="text-center text-sm text-muted-foreground">
+                Didn't receive a code?{" "}
+                <button
+                  onClick={handleResend}
+                  disabled={loading}
+                  className="text-primary hover:underline"
+                >
+                  Resend
+                </button>
+              </p>
+            </div>
           )}
         </GlitchBorder>
       </div>
