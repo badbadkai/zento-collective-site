@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/shared/hooks/useAuth";
 import { Button } from "@/components/ui/button";
@@ -8,6 +8,8 @@ import { Check, Loader2 } from "lucide-react";
 
 export default function PortalProfile() {
   const { user, profile } = useAuth();
+
+  useEffect(() => { document.title = "Profile — Student Portal"; }, []);
   const [fullName, setFullName] = useState(profile?.full_name ?? "");
   const [discord, setDiscord] = useState(profile?.discord ?? "");
   const [saving, setSaving] = useState(false);

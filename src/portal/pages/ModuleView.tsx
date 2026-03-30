@@ -20,6 +20,8 @@ export default function ModuleView() {
   const { user } = useAuth();
   const navigate = useNavigate();
   const [module_, setModule] = useState<Module | null>(null);
+
+  useEffect(() => { document.title = "Module — Student Portal"; }, []);
   const [materials, setMaterials] = useState<Material[]>([]);
   const [submission, setSubmission] = useState<Submission | null>(null);
   const [uploading, setUploading] = useState(false);

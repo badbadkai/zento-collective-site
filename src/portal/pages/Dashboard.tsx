@@ -8,6 +8,8 @@ import { BookOpen, Lock, ArrowRight } from "lucide-react";
 export default function PortalDashboard() {
   const { user, profile } = useAuth();
   const navigate = useNavigate();
+
+  useEffect(() => { document.title = "Dashboard — Student Portal"; }, []);
   const [enrollment, setEnrollment] = useState<(Enrollment & { cohorts: Cohort }) | null>(null);
   const [modules, setModules] = useState<Module[]>([]);
   const [completedCount, setCompletedCount] = useState(0);

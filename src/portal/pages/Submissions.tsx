@@ -14,6 +14,8 @@ export default function PortalSubmissions() {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
 
+  useEffect(() => { document.title = "Submissions — Student Portal"; }, []);
+
   useEffect(() => {
     if (!user) return;
 
