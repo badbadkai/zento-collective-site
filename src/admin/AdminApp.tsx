@@ -9,6 +9,7 @@ import Waitlist from "./pages/Waitlist";
 import Cohorts from "./pages/Cohorts";
 import Modules from "./pages/Modules";
 import Submissions from "./pages/Submissions";
+import Settings from "./pages/Settings";
 
 export default function AdminApp() {
   return (
@@ -22,6 +23,7 @@ export default function AdminApp() {
           <Route path="cohorts" element={<Cohorts />} />
           <Route path="modules" element={<Modules />} />
           <Route path="submissions" element={<Submissions />} />
+          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </AuthProvider>

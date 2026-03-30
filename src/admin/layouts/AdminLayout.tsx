@@ -8,6 +8,7 @@ import {
   GraduationCap,
   BookOpen,
   FileCheck,
+  Settings,
   LogOut,
   Moon,
   Sun,
@@ -24,6 +25,7 @@ const navItems = [
   { to: "/cohorts", icon: GraduationCap, label: "Cohorts" },
   { to: "/modules", icon: BookOpen, label: "Modules" },
   { to: "/submissions", icon: FileCheck, label: "Submissions" },
+  { to: "/settings", icon: Settings, label: "Settings" },
 ];
 
 export default function AdminLayout() {
