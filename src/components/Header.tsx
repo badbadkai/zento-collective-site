@@ -116,11 +116,11 @@ export const Header = () => {
               <DropdownMenuItem
                 onClick={() => {
                   window.scrollTo(0, 0);
-                  navigate("/waitlist");
+                  navigate("/bootcamp-waitlist");
                 }}
                 className="cursor-pointer"
               >
-                Waitlist
+                Bootcamp Waitlist
               </DropdownMenuItem>
               <DropdownMenuItem
                 onClick={() => {
@@ -198,11 +198,11 @@ export const Header = () => {
                       <button
                         onClick={() => {
                           window.scrollTo(0, 0);
-                          navigate("/waitlist");
+                          navigate("/bootcamp-waitlist");
                         }}
                         className="w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
                       >
-                        Waitlist
+                        Bootcamp Waitlist
                       </button>
                     </SheetClose>
                     <SheetClose asChild>

@@ -288,88 +288,55 @@ const Bootcamp = () => {
         </div>
       </section>
 
-      {/* Programme Structure */}
+      {/* What You'll Master */}
       <section id="programme" className="section-spacing">
         <div className="container-studio">
-          <div className="max-w-5xl mx-auto">
+          <div className="max-w-3xl mx-auto">
             <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
-              The Roadmap
+              The Curriculum
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              Your <span className="text-primary">30-Day</span> Programme
+              What You'll <span className="text-primary">Master</span>
             </h2>
 
-            <div className="space-y-8">
+            <div className="grid sm:grid-cols-2 gap-4">
               {[
                 {
-                  week: "Week 1",
-                  title: "Audit & Reset",
-                  days: [
-                    { day: "Mon", topic: "Strategy Deep Dive" },
-                    { day: "Tue", topic: "Journal Setup" },
-                    { day: "Wed", topic: "Risk Framework" },
-                    { day: "Thu", topic: "Process Mapping" },
-                    { day: "Fri", topic: "Live Session #1" },
-                  ],
+                  title: "Advanced Risk Management",
+                  description:
+                    "Frameworks for position sizing, drawdown control, and capital preservation under real trading conditions.",
                 },
                 {
-                  week: "Week 2",
-                  title: "Rebuild & Refine",
-                  days: [
-                    { day: "Mon", topic: "Entry Logic Rebuild" },
-                    { day: "Tue", topic: "Exit & Target Rules" },
-                    { day: "Wed", topic: "Session Analysis" },
-                    { day: "Thu", topic: "Backtesting Drills" },
-                    { day: "Fri", topic: "Live Session #2" },
-                  ],
+                  title: "Trading Psychology",
+                  description:
+                    "Protocols for emotional discipline, handling losses, and eliminating revenge trading and FOMO.",
                 },
                 {
-                  week: "Week 3",
-                  title: "Execution Under Pressure",
-                  days: [
-                    { day: "Mon", topic: "Drawdown Management" },
-                    { day: "Tue", topic: "Psychology Protocols" },
-                    { day: "Wed", topic: "Prop Firm Simulation" },
-                    { day: "Thu", topic: "Journal Deep Review" },
-                    { day: "Fri", topic: "Live Session #3" },
-                  ],
+                  title: "Proprietary Trading Model",
+                  description:
+                    "Technical concepts and our proprietary methodology for reading and executing in live markets.",
                 },
                 {
-                  week: "Week 4",
-                  title: "Performance & Launch",
-                  days: [
-                    { day: "Mon", topic: "Full System Review" },
-                    { day: "Tue", topic: "Challenge Prep" },
-                    { day: "Wed", topic: "Edge Validation" },
-                    { day: "Thu", topic: "Final Adjustments" },
-                    { day: "Fri", topic: "Live Session #4" },
-                  ],
+                  title: "Prop Firm Readiness",
+                  description:
+                    "Challenge preparation, drawdown management drills, and the mental framework to pass funded evaluations.",
                 },
-              ].map((weekData, idx) => (
-                <div key={idx}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-bold text-primary uppercase tracking-wider">
-                      {weekData.week}
-                    </span>
-                    <h3 className="font-heading text-lg font-semibold text-foreground">
-                      {weekData.title}
-                    </h3>
-                  </div>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    {weekData.days.map((item, dayIdx) => (
-                      <div
-                        key={dayIdx}
-                        className="p-4 rounded-xl border border-border/50 bg-card/30 text-center hover:border-primary/30 transition-colors"
-                      >
-                        <p className="text-xs font-semibold text-primary uppercase mb-2">
-                          {item.day}
-                        </p>
-                        <p className="text-sm font-medium text-foreground">
-                          {item.topic}
-                        </p>
-                      </div>
-                    ))}
-                  </div>
+                {
+                  title: "Journal Review & Feedback",
+                  description:
+                    "Daily trade journal review with personalised feedback loops to accelerate your development.",
+                },
+              ].map((item, idx) => (
+                <div
+                  key={idx}
+                  className={`p-6 rounded-xl border border-primary/20 bg-primary/5 hover:border-primary/40 transition-colors${idx === 4 ? " sm:col-span-2 sm:max-w-md sm:mx-auto" : ""}`}
+                >
+                  <h3 className="font-heading text-lg font-semibold text-foreground mb-2">
+                    {item.title}
+                  </h3>
+                  <p className="text-muted-foreground text-sm">
+                    {item.description}
+                  </p>
                 </div>
               ))}
             </div>
@@ -534,7 +501,7 @@ const Bootcamp = () => {
               ))}
             </div>
 
-            <Link to="/waitlist">
+            <Link to="/bootcamp-waitlist">
               <Button variant="hero" size="lg" className="group">
                 Join the Waitlist - <Price product="bootcamp" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -637,7 +604,7 @@ const Bootcamp = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link to="/waitlist">
+              <Link to="/bootcamp-waitlist">
                 <Button variant="hero" size="lg" className="group">
                   Join the Waitlist
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

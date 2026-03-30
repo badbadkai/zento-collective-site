@@ -18,6 +18,7 @@ import Collective from "./pages/Collective";
 import Bootcamp from "./pages/Bootcamp";
 import Articles from "./pages/Articles";
 import WaitlistPage from "./pages/WaitlistPage";
+import BootcampWaitlist from "./pages/BootcampWaitlist";
 import PageTransition from "./components/PageTransition";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
@@ -44,6 +45,7 @@ const AnimatedRoutes = () => {
         <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
         <Route path="/bootcamp" element={<PageTransition><Bootcamp /></PageTransition>} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
+        <Route path="/bootcamp-waitlist" element={<PageTransition><BootcampWaitlist /></PageTransition>} />
         <Route path="/articles" element={<PageTransition><Articles /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />
