@@ -37,6 +37,10 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
         .single();
 
       if (error && error.code === "PGRST116") {
+        // Get the user's email to check if they have pre-existing enrollments
+        const { data: { user } } = await supabase.auth.getUser();
+        const userEmail = user?.email?.toLowerCase();
+
         const { data: newProfile, error: insertErr } = await supabase
           .from("profiles")
           .insert({ id: userId, role: "student" as UserRole })
@@ -44,6 +48,15 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
           .single();
         if (insertErr) console.error("Profile create error:", insertErr);
         setProfile(newProfile);
+
+        // Link any enrollments created by email to this new user_id
+        if (userEmail) {
+          await supabase
+            .from("enrollments")
+            .update({ user_id: userId })
+            .eq("email", userEmail)
+            .is("user_id", null);
+        }
       } else if (error) {
         console.error("Profile fetch error:", error);
         setProfile(null);

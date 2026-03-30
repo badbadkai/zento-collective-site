@@ -87,7 +87,8 @@ export interface Cohort {
 
 export interface Enrollment {
   id: string;
-  user_id: string;
+  user_id: string | null;
+  email: string | null;
   cohort_id: string;
   enrolled_at: string;
   payment_status: PaymentStatus;

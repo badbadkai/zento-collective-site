@@ -14,7 +14,7 @@ export default function PortalApp() {
   return (
     <AuthProvider>
       <Routes>
-        <Route path="/login" element={<LoginPage portalName="Student Portal" />} />
+        <Route path="/login" element={<LoginPage portalName="Student Portal" requireWhitelist />} />
         <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/" element={<RequireAuth><PortalLayout /></RequireAuth>}>
           <Route index element={<Dashboard />} />
