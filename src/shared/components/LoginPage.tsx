@@ -66,9 +66,9 @@ export default function LoginPage({ portalName }: LoginPageProps) {
             <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
               <Check className="w-6 h-6 text-primary" />
             </div>
-            <h2 className="font-semibold text-lg mb-2">Check your email</h2>
+            <h2 className="font-semibold text-lg mb-2">Check your inbox</h2>
             <p className="text-muted-foreground text-sm">
-              We sent a magic link to <strong>{email}</strong>. Click the link to sign in.
+              We sent a login link to <strong>{email}</strong>. Click the link to sign in.
             </p>
           </div>
         ) : (
@@ -117,10 +117,10 @@ export default function LoginPage({ portalName }: LoginPageProps) {
               {loading ? (
                 <>
                   <Loader2 className="w-4 h-4 animate-spin" />
-                  Sending link...
+                  Sending...
                 </>
               ) : (
-                "Send Magic Link"
+                "Sign In with Email"
               )}
             </Button>
           </form>
