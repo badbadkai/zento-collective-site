@@ -1,5 +1,27 @@
 -- Zento Collective Portal Database Schema
 -- Run this in Supabase SQL Editor (Dashboard → SQL Editor → New Query)
+--
+-- IMPORTANT: If you already ran the previous schema, run the migration
+-- at the bottom of this file (Section 9) to fix existing policies.
+
+-- ============================================
+-- 0. ADMIN CHECK FUNCTION (breaks RLS recursion)
+-- ============================================
+-- This function uses SECURITY DEFINER to bypass RLS when checking
+-- if a user is an admin. Without this, any RLS policy that checks
+-- "is this user an admin?" on the profiles table would recurse infinitely.
+
+create or replace function public.is_admin()
+returns boolean
+language sql
+security definer
+set search_path = public
+as $$
+  select exists (
+    select 1 from public.profiles
+    where id = auth.uid() and role = 'admin'
+  );
+$$;
 
 -- ============================================
 -- 1. PROFILES (extends auth.users)
@@ -31,15 +53,10 @@ create policy "Allow insert for own profile"
   on public.profiles for insert
   with check (auth.uid() = id);
 
--- Admins can view all profiles
+-- Admins can view all profiles (uses function to avoid recursion)
 create policy "Admins can view all profiles"
   on public.profiles for select
-  using (
-    exists (
-      select 1 from public.profiles
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+  using (public.is_admin());
 
 -- ============================================
 -- 2. COHORTS
@@ -56,20 +73,21 @@ create table if not exists public.cohorts (
 
 alter table public.cohorts enable row level security;
 
--- Anyone authenticated can view cohorts
 create policy "Authenticated users can view cohorts"
   on public.cohorts for select
   using (auth.uid() is not null);
 
--- Only admins can modify cohorts
-create policy "Admins can manage cohorts"
-  on public.cohorts for all
-  using (
-    exists (
-      select 1 from public.profiles
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+create policy "Admins can insert cohorts"
+  on public.cohorts for insert
+  with check (public.is_admin());
+
+create policy "Admins can update cohorts"
+  on public.cohorts for update
+  using (public.is_admin());
+
+create policy "Admins can delete cohorts"
+  on public.cohorts for delete
+  using (public.is_admin());
 
 -- ============================================
 -- 3. ENROLLMENTS
@@ -85,20 +103,25 @@ create table if not exists public.enrollments (
 
 alter table public.enrollments enable row level security;
 
--- Students can view their own enrollments
 create policy "Students can view own enrollments"
   on public.enrollments for select
   using (auth.uid() = user_id);
 
--- Admins can manage all enrollments
-create policy "Admins can manage enrollments"
-  on public.enrollments for all
-  using (
-    exists (
-      select 1 from public.profiles
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+create policy "Admins can view all enrollments"
+  on public.enrollments for select
+  using (public.is_admin());
+
+create policy "Admins can insert enrollments"
+  on public.enrollments for insert
+  with check (public.is_admin());
+
+create policy "Admins can update enrollments"
+  on public.enrollments for update
+  using (public.is_admin());
+
+create policy "Admins can delete enrollments"
+  on public.enrollments for delete
+  using (public.is_admin());
 
 -- ============================================
 -- 4. MODULES
@@ -117,7 +140,7 @@ create table if not exists public.modules (
 
 alter table public.modules enable row level security;
 
--- Enrolled students can view modules for their cohort (if unlocked)
+-- Students see unlocked modules for their cohort
 create policy "Students can view unlocked modules"
   on public.modules for select
   using (
@@ -130,15 +153,22 @@ create policy "Students can view unlocked modules"
     and unlock_date <= current_date
   );
 
--- Admins can manage all modules
-create policy "Admins can manage modules"
-  on public.modules for all
-  using (
-    exists (
-      select 1 from public.profiles
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+-- Admins see all modules
+create policy "Admins can view all modules"
+  on public.modules for select
+  using (public.is_admin());
+
+create policy "Admins can insert modules"
+  on public.modules for insert
+  with check (public.is_admin());
+
+create policy "Admins can update modules"
+  on public.modules for update
+  using (public.is_admin());
+
+create policy "Admins can delete modules"
+  on public.modules for delete
+  using (public.is_admin());
 
 -- ============================================
 -- 5. MATERIALS
@@ -155,7 +185,6 @@ create table if not exists public.materials (
 
 alter table public.materials enable row level security;
 
--- Students can view materials for modules they can access
 create policy "Students can view materials"
   on public.materials for select
   using (
@@ -169,15 +198,21 @@ create policy "Students can view materials"
     )
   );
 
--- Admins can manage all materials
-create policy "Admins can manage materials"
-  on public.materials for all
-  using (
-    exists (
-      select 1 from public.profiles
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+create policy "Admins can view all materials"
+  on public.materials for select
+  using (public.is_admin());
+
+create policy "Admins can insert materials"
+  on public.materials for insert
+  with check (public.is_admin());
+
+create policy "Admins can update materials"
+  on public.materials for update
+  using (public.is_admin());
+
+create policy "Admins can delete materials"
+  on public.materials for delete
+  using (public.is_admin());
 
 -- ============================================
 -- 6. SUBMISSIONS
@@ -196,7 +231,6 @@ create table if not exists public.submissions (
 
 alter table public.submissions enable row level security;
 
--- Students can view and create their own submissions
 create policy "Students can view own submissions"
   on public.submissions for select
   using (auth.uid() = user_id);
@@ -209,21 +243,17 @@ create policy "Students can update own submissions"
   on public.submissions for update
   using (auth.uid() = user_id);
 
--- Admins can view and update all submissions
-create policy "Admins can manage submissions"
-  on public.submissions for all
-  using (
-    exists (
-      select 1 from public.profiles
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+create policy "Admins can view all submissions"
+  on public.submissions for select
+  using (public.is_admin());
+
+create policy "Admins can update submissions"
+  on public.submissions for update
+  using (public.is_admin());
 
 -- ============================================
 -- 7. UPDATE EXISTING TABLES
 -- ============================================
-
--- Add 'converted' column to bootcamp_waitlist if it doesn't exist
 do $$
 begin
   if not exists (
@@ -234,27 +264,40 @@ begin
   end if;
 end $$;
 
--- Ensure admins can read bootcamp_waitlist
+-- Drop old policy if exists, then create with is_admin()
+drop policy if exists "Admins can view waitlist" on public.bootcamp_waitlist;
 create policy "Admins can view waitlist"
   on public.bootcamp_waitlist for select
-  using (
-    exists (
-      select 1 from public.profiles
-      where id = auth.uid() and role = 'admin'
-    )
-  );
+  using (public.is_admin());
 
 -- ============================================
 -- 8. STORAGE BUCKET FOR WORKSHEETS
 -- ============================================
--- Run this separately if needed:
--- insert into storage.buckets (id, name, public) values ('worksheets', 'worksheets', true);
-
--- Storage policies:
+-- Create bucket manually in Supabase Dashboard → Storage → New Bucket
+-- Name: worksheets, Public: Yes
+-- Then run these storage policies:
+--
 -- create policy "Students can upload worksheets"
 --   on storage.objects for insert
---   with check (bucket_id = 'worksheets' and auth.uid()::text = (storage.foldername(name))[2]);
+--   with check (bucket_id = 'worksheets' and auth.uid() is not null);
 --
--- create policy "Anyone can view worksheets"
+-- create policy "Anyone authenticated can view worksheets"
 --   on storage.objects for select
---   using (bucket_id = 'worksheets');
+--   using (bucket_id = 'worksheets' and auth.uid() is not null);
+
+-- ============================================
+-- 9. MIGRATION: Fix existing policies
+-- ============================================
+-- If you already ran the old schema, run this section to replace
+-- the broken self-referencing policies with is_admin() versions.
+
+-- Drop old broken policies (ignore errors if they don't exist)
+drop policy if exists "Admins can manage cohorts" on public.cohorts;
+drop policy if exists "Admins can manage enrollments" on public.enrollments;
+drop policy if exists "Admins can manage modules" on public.modules;
+drop policy if exists "Admins can manage materials" on public.materials;
+drop policy if exists "Admins can manage submissions" on public.submissions;
+
+-- The new individual policies (insert/update/delete) are created above.
+-- If tables already exist, the CREATE TABLE IF NOT EXISTS will skip,
+-- but the policies will be created fresh.
