@@ -15,6 +15,8 @@ interface SubmissionWithDetails extends Submission {
 
 export default function AdminSubmissions() {
   const { user } = useAuth();
+  useEffect(() => { document.title = "Submissions — Admin Portal"; }, []);
+
   const [submissions, setSubmissions] = useState<SubmissionWithDetails[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");

@@ -22,8 +22,9 @@ export default function AdminDashboard() {
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
 
+  useEffect(() => { document.title = "Dashboard — Admin Portal"; }, []);
+
   useEffect(() => {
-    // Trigger fade-in
     const timer = setTimeout(() => setVisible(true), 50);
     return () => clearTimeout(timer);
   }, []);

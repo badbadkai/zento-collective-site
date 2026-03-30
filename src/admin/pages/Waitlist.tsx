@@ -17,28 +17,42 @@ export default function AdminWaitlist() {
   const [selected, setSelected] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
 
+  useEffect(() => { document.title = "Waitlist — Admin Portal"; }, []);
+
   useEffect(() => {
     setTimeout(() => setVisible(true), 50);
   }, []);
 
+  const fetchEntries = async () => {
+    const { data, error: fetchError } = await supabase
+      .from("bootcamp_waitlist")
+      .select("*")
+      .order(sortField, { ascending: sortDir === "asc" });
+
+    if (fetchError) {
+      setError("Failed to load waitlist entries: " + fetchError.message);
+      console.error("Waitlist fetch error:", fetchError);
+    }
+
+    setEntries(data ?? []);
+    setLoading(false);
+  };
+
   useEffect(() => {
-    const fetchEntries = async () => {
-      const { data, error: fetchError } = await supabase
-        .from("bootcamp_waitlist")
-        .select("*")
-        .order(sortField, { ascending: sortDir === "asc" });
-
-      if (fetchError) {
-        setError("Failed to load waitlist entries: " + fetchError.message);
-        console.error("Waitlist fetch error:", fetchError);
-      }
-
-      setEntries(data ?? []);
-      setLoading(false);
-    };
-
     fetchEntries();
   }, [sortField, sortDir]);
+
+  // Real-time subscription for new waitlist entries
+  useEffect(() => {
+    const channel = supabase
+      .channel("waitlist-changes")
+      .on("postgres_changes", { event: "INSERT", schema: "public", table: "bootcamp_waitlist" }, (payload) => {
+        setEntries((prev) => [payload.new as WaitlistEntry, ...prev]);
+      })
+      .subscribe();
+
+    return () => { supabase.removeChannel(channel); };
+  }, []);
 
   const filtered = entries.filter((e) => {
     const q = search.toLowerCase();

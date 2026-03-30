@@ -25,6 +25,8 @@ export default function AdminModules() {
   const [showModuleForm, setShowModuleForm] = useState(false);
   const [showMaterialForm, setShowMaterialForm] = useState<string | null>(null);
 
+  useEffect(() => { document.title = "Modules — Admin Portal"; }, []);
+
   const [moduleForm, setModuleForm] = useState({
     day_number: 1, title: "", description: "", unlock_date: "", is_rest_day: false,
   });
