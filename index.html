@@ -3,7 +3,15 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Zentō Collective — Sharpen Your Edge</title>
+    <title>Zentō Collective</title>
+    <script>
+      (function(){
+        var h = location.hostname;
+        if (h.indexOf('admin') === 0) document.title = 'Admin Portal';
+        else if (h.indexOf('portal') === 0) document.title = 'Student Portal';
+        else document.title = 'Zentō Collective — Sharpen Your Edge';
+      })();
+    </script>
     <meta name="description" content="Stop guessing. Start executing. Zentō Collective builds disciplined traders through structured systems, real accountability, and proven frameworks. Your edge starts here." />
     <meta name="author" content="Zentō Collective" />
 
