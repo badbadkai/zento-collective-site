@@ -1,21 +1,17 @@
 import { useState } from "react";
 import { NavLink, Outlet } from "react-router-dom";
-import { useAuth } from "@/shared/hooks/useAuth";
 import { useTheme } from "next-themes";
 import {
   LayoutDashboard,
   BookOpen,
   Upload,
   User,
-  LogOut,
-  Moon,
-  Sun,
   ChevronsLeft,
   ChevronsRight,
 } from "lucide-react";
-import { Button } from "@/components/ui/button";
 import logoLight from "@/assets/logo-dark.png";
 import logoDark from "@/assets/logo-light.png";
+import UserMenu from "@/shared/components/UserMenu";
 
 const navItems = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
@@ -25,8 +21,7 @@ const navItems = [
 ];
 
 export default function PortalLayout() {
-  const { profile, signOut } = useAuth();
-  const { theme, setTheme } = useTheme();
+  const { theme } = useTheme();
   const [collapsed, setCollapsed] = useState(false);
 
   return (
@@ -82,57 +77,11 @@ export default function PortalLayout() {
             ))}
           </nav>
 
-          {/* Footer */}
-          <div className={`border-t border-border/50 ${collapsed ? "p-2 space-y-1" : "p-4 space-y-2"}`}>
-            {collapsed ? (
-              <>
-                <button
-                  onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  className="flex items-center justify-center w-10 h-10 mx-auto rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-                  title="Toggle theme"
-                >
-                  <Sun className="h-4 w-4 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                  <Moon className="absolute h-4 w-4 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                </button>
-                <button
-                  onClick={signOut}
-                  className="flex items-center justify-center w-10 h-10 mx-auto rounded-lg text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors"
-                  title="Sign out"
-                >
-                  <LogOut className="w-4 h-4" />
-                </button>
-              </>
-            ) : (
-              <>
-                <div className="flex items-center justify-between">
-                  <span className="text-xs text-muted-foreground truncate">
-                    {profile?.full_name || "Student"}
-                  </span>
-                  <Button
-                    variant="ghost"
-                    size="icon"
-                    className="h-8 w-8"
-                    onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-                  >
-                    <Sun className="h-3.5 w-3.5 rotate-0 scale-100 transition-all dark:-rotate-90 dark:scale-0" />
-                    <Moon className="absolute h-3.5 w-3.5 rotate-90 scale-0 transition-all dark:rotate-0 dark:scale-100" />
-                  </Button>
-                </div>
-                <Button
-                  variant="ghost"
-                  size="sm"
-                  className="w-full justify-start text-muted-foreground"
-                  onClick={signOut}
-                >
-                  <LogOut className="w-4 h-4 mr-2" />
-                  Sign out
-                </Button>
-              </>
-            )}
-          </div>
+          {/* User menu */}
+          <UserMenu collapsed={collapsed} settingsPath="/profile" />
         </aside>
 
-        {/* Collapse toggle — hover-appear on sidebar border */}
+        {/* Collapse toggle */}
         <button
           onClick={() => setCollapsed(!collapsed)}
           className="absolute top-1/2 -translate-y-1/2 -right-3 z-20 w-6 h-6 rounded-full bg-card border border-border/50 flex items-center justify-center text-muted-foreground hover:text-foreground hover:bg-muted shadow-sm opacity-0 group-hover/sidebar:opacity-100 transition-opacity duration-200"
@@ -142,7 +91,7 @@ export default function PortalLayout() {
         </button>
       </div>
 
-      {/* Main content — centred */}
+      {/* Main content */}
       <main className="flex-1 overflow-auto flex flex-col">
         <div className="flex-1 flex items-start justify-center p-6 md:p-8">
           <div className="w-full max-w-5xl">
