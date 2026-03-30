@@ -7,6 +7,7 @@ import { Check, Loader2, Mail } from "lucide-react";
 import logoLight from "@/assets/logo-dark.png";
 import logoDark from "@/assets/logo-light.png";
 import { useTheme } from "next-themes";
+import GlitchBorder from "./GlitchBorder";
 
 interface LoginPageProps {
   portalName: string;
@@ -56,75 +57,77 @@ export default function LoginPage({ portalName }: LoginPageProps) {
           </div>
         </div>
 
-        <div className="text-center mb-8">
-          <h1 className="font-heading text-2xl font-semibold mb-1">{portalName}</h1>
-          <p className="text-muted-foreground text-sm">Sign in with your email</p>
-        </div>
-
-        {sent ? (
-          <div className="text-center p-6 rounded-xl border border-primary/20 bg-primary/5">
-            <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
-              <Check className="w-6 h-6 text-primary" />
-            </div>
-            <h2 className="font-semibold text-lg mb-2">Check your inbox</h2>
-            <p className="text-muted-foreground text-sm">
-              We sent a login link to <strong>{email}</strong>. Click the link to sign in.
-            </p>
+        <GlitchBorder>
+          <div className="text-center mb-8">
+            <h1 className="font-heading text-2xl font-semibold mb-1">{portalName}</h1>
+            <p className="text-muted-foreground text-sm">Sign in with your email</p>
           </div>
-        ) : (
-          <form onSubmit={handleSubmit} className="space-y-4">
-            <div className="space-y-2">
-              <Label htmlFor="email">Email address</Label>
-              <div className="relative">
-                <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
-                <Input
-                  id="email"
-                  type="email"
-                  required
-                  placeholder="you@email.com"
-                  value={email}
-                  onChange={(e) => setEmail(e.target.value)}
-                  className="pl-10"
-                  disabled={loading}
-                />
+
+          {sent ? (
+            <div className="text-center p-6 rounded-xl border border-primary/20 bg-primary/5">
+              <div className="w-12 h-12 rounded-full bg-primary/10 flex items-center justify-center mx-auto mb-4">
+                <Check className="w-6 h-6 text-primary" />
               </div>
+              <h2 className="font-semibold text-lg mb-2">Check your inbox</h2>
+              <p className="text-muted-foreground text-sm">
+                We sent a login code to <strong>{email}</strong>. Enter the code below to sign in.
+              </p>
             </div>
+          ) : (
+            <form onSubmit={handleSubmit} className="space-y-4">
+              <div className="space-y-2">
+                <Label htmlFor="email">Email address</Label>
+                <div className="relative">
+                  <Mail className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
+                  <Input
+                    id="email"
+                    type="email"
+                    required
+                    placeholder="you@email.com"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                    className="pl-10"
+                    disabled={loading}
+                  />
+                </div>
+              </div>
 
-            {/* Remember me */}
-            <label className="flex items-center gap-2 cursor-pointer select-none">
-              <input
-                type="checkbox"
-                checked={rememberMe}
-                onChange={(e) => setRememberMe(e.target.checked)}
-                className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
-              />
-              <span className="text-sm text-muted-foreground">
-                Remember me for 30 days
-              </span>
-            </label>
+              {/* Remember me */}
+              <label className="flex items-center gap-2 cursor-pointer select-none">
+                <input
+                  type="checkbox"
+                  checked={rememberMe}
+                  onChange={(e) => setRememberMe(e.target.checked)}
+                  className="w-4 h-4 rounded border-border text-primary focus:ring-primary"
+                />
+                <span className="text-sm text-muted-foreground">
+                  Remember me for 30 days
+                </span>
+              </label>
 
-            {error && (
-              <p className="text-sm text-destructive">{error}</p>
-            )}
-
-            <Button
-              type="submit"
-              variant="hero"
-              size="lg"
-              className="w-full"
-              disabled={loading}
-            >
-              {loading ? (
-                <>
-                  <Loader2 className="w-4 h-4 animate-spin" />
-                  Sending...
-                </>
-              ) : (
-                "Sign In with Email"
+              {error && (
+                <p className="text-sm text-destructive">{error}</p>
               )}
-            </Button>
-          </form>
-        )}
+
+              <Button
+                type="submit"
+                variant="hero"
+                size="lg"
+                className="w-full"
+                disabled={loading}
+              >
+                {loading ? (
+                  <>
+                    <Loader2 className="w-4 h-4 animate-spin" />
+                    Sending...
+                  </>
+                ) : (
+                  "Sign In with Email"
+                )}
+              </Button>
+            </form>
+          )}
+        </GlitchBorder>
       </div>
     </div>
   );
