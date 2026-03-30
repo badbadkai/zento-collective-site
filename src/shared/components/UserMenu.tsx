@@ -47,7 +47,7 @@ export default function UserMenu({ collapsed = false, settingsPath = "/settings"
           side="top"
           align={collapsed ? "center" : "start"}
           sideOffset={8}
-          className="w-56 bg-card/95 backdrop-blur-xl border-border/50"
+          className="w-56 bg-card/95 backdrop-blur-xl border-border/50 !animate-none !data-[state=open]:animate-none !data-[state=closed]:animate-none user-menu-dropdown"
         >
           {/* User info header */}
           <div className="px-3 py-2 border-b border-border/50">
