@@ -29,20 +29,22 @@ export default function PortalLayout() {
     <div className="min-h-screen flex bg-background">
       {/* Sidebar */}
       <aside className="w-64 border-r border-border/50 bg-card/30 flex flex-col shrink-0">
-        <div className="p-6 border-b border-border/50">
-          <div className="relative h-8">
-            <img
-              src={logoLight}
-              alt="Zento"
-              className={`h-8 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
-            />
-            <img
-              src={logoDark}
-              alt=""
-              className={`absolute inset-0 h-8 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-0" : "opacity-100"}`}
-            />
+        <div className="px-5 py-4 border-b border-border/50">
+          <div className="flex items-center gap-3">
+            <div className="relative h-7 w-7 shrink-0">
+              <img
+                src={logoLight}
+                alt=""
+                className={`h-7 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
+              />
+              <img
+                src={logoDark}
+                alt=""
+                className={`absolute inset-0 h-7 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-0" : "opacity-100"}`}
+              />
+            </div>
+            <span className="text-xs font-semibold tracking-[0.2em] uppercase text-muted-foreground">Student Portal</span>
           </div>
-          <p className="text-xs text-muted-foreground mt-1">Student Portal</p>
         </div>
 
         <nav className="flex-1 p-3 space-y-1">
