@@ -142,7 +142,7 @@ const BootcampWaitlist: React.FC = () => {
                   name="discord"
                   type="text"
                   required
-                  placeholder="username#0000"
+                  placeholder="Your username"
                   value={form.discord}
                   onChange={handleChange}
                 />
