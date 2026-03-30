@@ -1,4 +1,5 @@
 import { useState, useRef, useEffect } from "react";
+import { useNavigate } from "react-router-dom";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -18,7 +19,8 @@ interface LoginPageProps {
 
 export default function LoginPage({ portalName }: LoginPageProps) {
   const { theme } = useTheme();
-  const { sendOtp, verifyOtp } = useAuth();
+  const { sendOtp, verifyOtp, session } = useAuth();
+  const navigate = useNavigate();
   const [email, setEmail] = useState("");
   const [rememberMe, setRememberMe] = useState(true);
   const [step, setStep] = useState<"email" | "code">("email");
@@ -26,6 +28,13 @@ export default function LoginPage({ portalName }: LoginPageProps) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  // Redirect to dashboard once authenticated
+  useEffect(() => {
+    if (session) {
+      navigate("/", { replace: true });
+    }
+  }, [session, navigate]);
 
   useEffect(() => {
     if (step === "code") {
