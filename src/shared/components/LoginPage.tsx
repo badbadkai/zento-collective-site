@@ -1,4 +1,4 @@
-import { useState, useRef } from "react";
+import { useState, useRef, useEffect } from "react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
@@ -8,6 +8,9 @@ import logoLight from "@/assets/logo-dark.png";
 import logoDark from "@/assets/logo-light.png";
 import { useTheme } from "next-themes";
 import GlitchBorder from "./GlitchBorder";
+
+const CODE_LENGTH = 8;
+const EMPTY_CODE = Array(CODE_LENGTH).fill("");
 
 interface LoginPageProps {
   portalName: string;
@@ -19,10 +22,16 @@ export default function LoginPage({ portalName }: LoginPageProps) {
   const [email, setEmail] = useState("");
   const [rememberMe, setRememberMe] = useState(true);
   const [step, setStep] = useState<"email" | "code">("email");
-  const [code, setCode] = useState("");
+  const [code, setCode] = useState<string[]>(EMPTY_CODE);
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState("");
-  const codeRef = useRef<HTMLInputElement>(null);
+  const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
+
+  useEffect(() => {
+    if (step === "code") {
+      setTimeout(() => inputRefs.current[0]?.focus(), 100);
+    }
+  }, [step]);
 
   const handleSendCode = async (e: React.FormEvent) => {
     e.preventDefault();
@@ -35,28 +44,65 @@ export default function LoginPage({ portalName }: LoginPageProps) {
       setError(error.message);
     } else {
       setStep("code");
-      setTimeout(() => codeRef.current?.focus(), 100);
     }
 
     setLoading(false);
   };
 
-  const handleVerifyCode = async (e: React.FormEvent) => {
-    e.preventDefault();
-    if (code.length < 6) return;
+  const submitCode = async (fullCode: string) => {
+    if (fullCode.length !== CODE_LENGTH) return;
 
     setLoading(true);
     setError("");
 
-    const { error } = await verifyOtp(email, code, rememberMe);
+    const { error } = await verifyOtp(email, fullCode, rememberMe);
 
     if (error) {
       setError("Invalid code. Please try again.");
-      setCode("");
-      codeRef.current?.focus();
+      setCode(EMPTY_CODE);
+      inputRefs.current[0]?.focus();
     }
 
     setLoading(false);
+  };
+
+  const handleCodeInput = (index: number, value: string) => {
+    const digit = value.replace(/\D/g, "").slice(-1);
+    const newCode = [...code];
+    newCode[index] = digit;
+    setCode(newCode);
+
+    if (digit && index < CODE_LENGTH - 1) {
+      inputRefs.current[index + 1]?.focus();
+    }
+
+    // Auto-submit when last digit entered
+    if (digit && index === CODE_LENGTH - 1) {
+      const full = newCode.join("");
+      if (full.length === CODE_LENGTH) {
+        submitCode(full);
+      }
+    }
+  };
+
+  const handleCodeKeyDown = (index: number, e: React.KeyboardEvent) => {
+    if (e.key === "Backspace" && !code[index] && index > 0) {
+      const newCode = [...code];
+      newCode[index - 1] = "";
+      setCode(newCode);
+      inputRefs.current[index - 1]?.focus();
+    }
+  };
+
+  const handleCodePaste = (e: React.ClipboardEvent) => {
+    e.preventDefault();
+    const pasted = e.clipboardData.getData("text").replace(/\D/g, "").slice(0, CODE_LENGTH);
+    if (pasted.length === CODE_LENGTH) {
+      const newCode = pasted.split("");
+      setCode(newCode);
+      inputRefs.current[CODE_LENGTH - 1]?.focus();
+      submitCode(pasted);
+    }
   };
 
   const handleResend = async () => {
@@ -150,55 +196,46 @@ export default function LoginPage({ portalName }: LoginPageProps) {
               </Button>
             </form>
           ) : (
-            <form onSubmit={handleVerifyCode} className="space-y-5">
+            <div className="space-y-5">
               {/* Back button */}
               <button
                 type="button"
-                onClick={() => { setStep("email"); setCode(""); setError(""); }}
+                onClick={() => { setStep("email"); setCode(EMPTY_CODE); setError(""); }}
                 className="flex items-center gap-1.5 text-sm text-muted-foreground hover:text-foreground transition-colors"
               >
                 <ArrowLeft className="w-3.5 h-3.5" />
                 {email}
               </button>
 
-              {/* Code input */}
-              <div className="space-y-2">
-                <Label htmlFor="otp-code">Verification code</Label>
-                <Input
-                  ref={codeRef}
-                  id="otp-code"
-                  type="text"
-                  inputMode="numeric"
-                  required
-                  placeholder="Enter your code"
-                  value={code}
-                  onChange={(e) => setCode(e.target.value.replace(/\D/g, ""))}
-                  disabled={loading}
-                  className="text-center text-xl font-semibold tracking-[0.3em]"
-                  autoComplete="one-time-code"
-                />
+              {/* 8-digit code inputs */}
+              <div className="flex justify-center gap-1.5" onPaste={handleCodePaste}>
+                {code.map((digit, i) => (
+                  <input
+                    key={i}
+                    ref={(el) => { inputRefs.current[i] = el; }}
+                    type="text"
+                    inputMode="numeric"
+                    maxLength={1}
+                    value={digit}
+                    onChange={(e) => handleCodeInput(i, e.target.value)}
+                    onKeyDown={(e) => handleCodeKeyDown(i, e)}
+                    disabled={loading}
+                    autoComplete={i === 0 ? "one-time-code" : "off"}
+                    className="w-10 h-12 text-center text-lg font-semibold rounded-lg border border-input bg-background focus:border-primary focus:ring-2 focus:ring-primary/20 outline-none transition-all"
+                  />
+                ))}
               </div>
 
               {error && (
                 <p className="text-sm text-destructive text-center">{error}</p>
               )}
 
-              <Button
-                type="submit"
-                variant="hero"
-                size="lg"
-                className="w-full"
-                disabled={loading || code.length < 6}
-              >
-                {loading ? (
-                  <>
-                    <Loader2 className="w-4 h-4 animate-spin" />
-                    Verifying...
-                  </>
-                ) : (
-                  "Verify"
-                )}
-              </Button>
+              {loading && (
+                <div className="flex items-center justify-center gap-2 text-sm text-muted-foreground">
+                  <Loader2 className="w-4 h-4 animate-spin" />
+                  Verifying...
+                </div>
+              )}
 
               <p className="text-center text-sm text-muted-foreground">
                 Didn't receive a code?{" "}
@@ -211,7 +248,7 @@ export default function LoginPage({ portalName }: LoginPageProps) {
                   Resend
                 </button>
               </p>
-            </form>
+            </div>
           )}
         </GlitchBorder>
       </div>
