@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useRef, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { Session, User } from "@supabase/supabase-js";
 import type { Profile, UserRole } from "@/shared/types/database";
@@ -16,35 +16,32 @@ interface AuthState {
 
 const AuthContext = createContext<AuthState | null>(null);
 
-/** Fetch with a timeout so we never hang forever */
-async function withTimeout<T>(promise: Promise<T>, ms: number): Promise<T> {
-  const timeout = new Promise<never>((_, reject) =>
-    setTimeout(() => reject(new Error("Request timed out")), ms)
-  );
-  return Promise.race([promise, timeout]);
-}
-
 export function AuthProvider({ children }: { children: React.ReactNode }) {
   const [session, setSession] = useState<Session | null>(null);
   const [profile, setProfile] = useState<Profile | null>(null);
   const [loading, setLoading] = useState(true);
+  const fetchingRef = useRef(false);
+  const lastUserIdRef = useRef<string | null>(null);
 
   const fetchProfile = async (userId: string) => {
+    // Prevent duplicate concurrent fetches for the same user
+    if (fetchingRef.current && lastUserIdRef.current === userId) return;
+    fetchingRef.current = true;
+    lastUserIdRef.current = userId;
+
     try {
-      const { data, error } = await withTimeout(
-        supabase.from("profiles").select("*").eq("id", userId).single(),
-        8000
-      );
+      const { data, error } = await supabase
+        .from("profiles")
+        .select("*")
+        .eq("id", userId)
+        .single();
 
       if (error && error.code === "PGRST116") {
-        // Profile doesn't exist — create it
-        const { data: newProfile, error: insertErr } = await withTimeout(
-          supabase.from("profiles")
-            .insert({ id: userId, role: "student" as UserRole })
-            .select()
-            .single(),
-          8000
-        );
+        const { data: newProfile, error: insertErr } = await supabase
+          .from("profiles")
+          .insert({ id: userId, role: "student" as UserRole })
+          .select()
+          .single();
         if (insertErr) console.error("Profile create error:", insertErr);
         setProfile(newProfile);
       } else if (error) {
@@ -56,24 +53,32 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     } catch (err) {
       console.error("Profile fetch failed:", err);
       setProfile(null);
+    } finally {
+      fetchingRef.current = false;
+      setLoading(false);
     }
   };
 
   useEffect(() => {
-    supabase.auth.getSession().then(({ data: { session } }) => {
-      setSession(session);
-      if (session?.user) {
-        fetchProfile(session.user.id).finally(() => setLoading(false));
+    // Initial session check
+    supabase.auth.getSession().then(({ data: { session: s } }) => {
+      setSession(s);
+      if (s?.user) {
+        fetchProfile(s.user.id);
       } else {
         setLoading(false);
       }
     });
 
+    // Listen for changes (login, logout, token refresh)
     const { data: { subscription } } = supabase.auth.onAuthStateChange(
-      async (_event, session) => {
-        setSession(session);
-        if (session?.user) {
-          await fetchProfile(session.user.id).finally(() => setLoading(false));
+      (_event, s) => {
+        setSession(s);
+        if (s?.user) {
+          // Only re-fetch if user changed
+          if (s.user.id !== lastUserIdRef.current || !profile) {
+            fetchProfile(s.user.id);
+          }
         } else {
           setProfile(null);
           setLoading(false);
@@ -108,6 +113,7 @@ export function AuthProvider({ children }: { children: React.ReactNode }) {
     await supabase.auth.signOut();
     setSession(null);
     setProfile(null);
+    lastUserIdRef.current = null;
     localStorage.removeItem("zento_remember_me");
   };
 

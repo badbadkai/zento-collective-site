@@ -12,6 +12,7 @@ interface RequireAuthProps {
 export default function RequireAuth({ children, requiredRole }: RequireAuthProps) {
   const { session, profile, loading, signOut, user } = useAuth();
 
+  // Still loading auth state or profile — show spinner
   if (loading) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background">
@@ -20,10 +21,22 @@ export default function RequireAuth({ children, requiredRole }: RequireAuthProps
     );
   }
 
+  // Not logged in
   if (!session) {
     return <Navigate to="/login" replace />;
   }
 
+  // Session exists but profile hasn't loaded yet — keep showing spinner
+  // This prevents the "Access Denied" flash while profile is being fetched
+  if (requiredRole && profile === null) {
+    return (
+      <div className="min-h-screen flex items-center justify-center bg-background">
+        <Loader2 className="w-8 h-8 animate-spin text-primary" />
+      </div>
+    );
+  }
+
+  // Profile loaded but wrong role
   if (requiredRole && profile?.role !== requiredRole) {
     return (
       <div className="min-h-screen flex items-center justify-center bg-background px-4">
