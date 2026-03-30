@@ -70,14 +70,14 @@ export default function AdminDashboard() {
 
   return (
     <div
-      className="max-w-4xl mx-auto transition-all duration-700 ease-out"
+      className="max-w-4xl mx-auto flex flex-col items-center justify-center min-h-[calc(100vh-6rem)] transition-all duration-700 ease-out"
       style={{
         opacity: visible ? 1 : 0,
         transform: visible ? "translateY(0)" : "translateY(20px)",
       }}
     >
       {/* Welcome */}
-      <div className="text-center mb-10">
+      <div className="text-center mb-12">
         <h1 className="font-heading text-3xl md:text-4xl font-semibold mb-2">
           Welcome to your Dashboard, {firstName}.
         </h1>
