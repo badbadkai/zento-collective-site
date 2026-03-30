@@ -42,16 +42,16 @@ export default function LoginPage({ portalName }: LoginPageProps) {
       <div className="w-full max-w-sm">
         {/* Logo */}
         <div className="flex justify-center mb-8">
-          <div className="relative h-14">
+          <div className="relative h-20">
             <img
               src={logoLight}
               alt="Zento Collective"
-              className={`h-14 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
+              className={`h-20 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
             />
             <img
               src={logoDark}
               alt=""
-              className={`absolute inset-0 h-14 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-0" : "opacity-100"}`}
+              className={`absolute inset-0 h-20 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-0" : "opacity-100"}`}
             />
           </div>
         </div>
