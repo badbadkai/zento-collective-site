@@ -54,6 +54,12 @@ export interface Database {
   };
 }
 
+export interface NotificationPreferences {
+  feedback_received: boolean;
+  module_unlocked: boolean;
+  announcements: boolean;
+}
+
 export interface Profile {
   id: string;
   full_name: string | null;
@@ -64,6 +70,7 @@ export interface Profile {
   bio: string | null;
   timezone: string | null;
   trading_style: string | null;
+  notification_preferences: NotificationPreferences | null;
   created_at: string;
   updated_at: string | null;
 }
