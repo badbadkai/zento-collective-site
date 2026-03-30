@@ -1,4 +1,5 @@
 import { BarChart3, BookOpen, FileText } from "lucide-react";
+import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 
 export const Community = () => {
   const channels = [
@@ -29,7 +30,7 @@ export const Community = () => {
 
       <div className="container-studio relative">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <ScrollReveal className="text-center mb-12 md:mb-16">
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             The Environment
           </p>
@@ -45,10 +46,10 @@ export const Community = () => {
             A curated workspace designed for deliberate practice and measurable
             progression.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Channels */}
-        <div className="max-w-3xl mx-auto space-y-4">
+        <ScrollRevealGroup className="max-w-3xl mx-auto space-y-4" staggerDelay={120}>
           {channels.map((channel, index) => {
             const IconComponent = channel.icon;
             return (
@@ -78,7 +79,7 @@ export const Community = () => {
               </div>
             );
           })}
-        </div>
+        </ScrollRevealGroup>
       </div>
     </section>
   );

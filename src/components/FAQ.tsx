@@ -5,6 +5,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { Plus } from "lucide-react";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export const FAQ = () => {
   const faqs = [
@@ -41,7 +42,7 @@ export const FAQ = () => {
 
       <div className="container-studio relative">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <ScrollReveal className="text-center mb-12 md:mb-16">
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             Common Questions
           </p>
@@ -55,10 +56,10 @@ export const FAQ = () => {
 >
             Clear answers to help you evaluate if this environment is right for you.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* FAQ Accordion */}
-        <div className="max-w-4xl mx-auto">
+        <ScrollReveal className="max-w-4xl mx-auto" delay={100}>
           <Accordion type="single" collapsible className="space-y-5">
             {faqs.map((item, idx) => (
               <AccordionItem
@@ -84,7 +85,7 @@ export const FAQ = () => {
               </AccordionItem>
             ))}
           </Accordion>
-        </div>
+        </ScrollReveal>
       </div>
     </section>
   );

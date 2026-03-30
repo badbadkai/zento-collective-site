@@ -2,10 +2,11 @@ import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { useEffect } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "next-themes";
+import { Loader2 } from "lucide-react";
 import Index from "./pages/Index";
 import NotFound from "./pages/NotFound";
 import Terms from "./pages/Terms";
@@ -22,7 +23,25 @@ import BootcampWaitlist from "./pages/BootcampWaitlist";
 import PageTransition from "./components/PageTransition";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 
+// Lazy-loaded portal modules — not included in marketing site bundle
+const AdminApp = lazy(() => import("./admin/AdminApp"));
+const PortalApp = lazy(() => import("./portal/PortalApp"));
+
 const queryClient = new QueryClient();
+
+const FullScreenLoader = () => (
+  <div className="min-h-screen flex items-center justify-center bg-background">
+    <Loader2 className="w-8 h-8 animate-spin text-primary" />
+  </div>
+);
+
+/** Detect which app to render based on hostname */
+function getAppMode(): "admin" | "portal" | "marketing" {
+  const hostname = window.location.hostname;
+  if (hostname.startsWith("admin")) return "admin";
+  if (hostname.startsWith("portal")) return "portal";
+  return "marketing";
+}
 
 const ScrollToTop = () => {
   const location = useLocation();
@@ -34,7 +53,7 @@ const ScrollToTop = () => {
   return null;
 };
 
-const AnimatedRoutes = () => {
+const MarketingRoutes = () => {
   const location = useLocation();
 
   return (
@@ -59,21 +78,35 @@ const AnimatedRoutes = () => {
   );
 };
 
-const App = () => (
-  <ErrorBoundary>
-    <QueryClientProvider client={queryClient}>
-      <ThemeProvider attribute="class" defaultTheme="light">
-        <TooltipProvider>
-          <Toaster />
-          <Sonner />
-          <BrowserRouter>
-            <ScrollToTop />
-            <AnimatedRoutes />
-          </BrowserRouter>
-        </TooltipProvider>
-      </ThemeProvider>
-    </QueryClientProvider>
-  </ErrorBoundary>
-);
+const App = () => {
+  const appMode = getAppMode();
+
+  return (
+    <ErrorBoundary>
+      <QueryClientProvider client={queryClient}>
+        <ThemeProvider attribute="class" defaultTheme={appMode === "marketing" ? "light" : "dark"}>
+          <TooltipProvider>
+            <Toaster />
+            <Sonner />
+            <BrowserRouter>
+              <ScrollToTop />
+              {appMode === "admin" && (
+                <Suspense fallback={<FullScreenLoader />}>
+                  <AdminApp />
+                </Suspense>
+              )}
+              {appMode === "portal" && (
+                <Suspense fallback={<FullScreenLoader />}>
+                  <PortalApp />
+                </Suspense>
+              )}
+              {appMode === "marketing" && <MarketingRoutes />}
+            </BrowserRouter>
+          </TooltipProvider>
+        </ThemeProvider>
+      </QueryClientProvider>
+    </ErrorBoundary>
+  );
+};
 
 export default App;

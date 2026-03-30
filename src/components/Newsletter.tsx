@@ -3,6 +3,7 @@ import { Input } from "@/components/ui/input";
 import { useState } from "react";
 import { ArrowRight, Check, Mail, Loader2 } from "lucide-react";
 import { toast } from "sonner";
+import { ScrollReveal } from "@/components/ScrollReveal";
 
 export const Newsletter = () => {
   const [email, setEmail] = useState("");
@@ -45,7 +46,7 @@ export const Newsletter = () => {
       <div className="container-studio relative">
         <div className="max-w-2xl mx-auto">
           {/* Card */}
-          <div className="relative p-8 md:p-12 rounded-2xl border border-primary/20 bg-card/30 backdrop-blur-sm text-center">
+          <ScrollReveal className="relative p-8 md:p-12 rounded-2xl border border-primary/20 bg-card/30 backdrop-blur-sm text-center">
             {/* Icon */}
             <div className="w-14 h-14 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center">
               <Mail className="w-7 h-7 text-primary" />
@@ -106,7 +107,7 @@ export const Newsletter = () => {
 
             {/* Decorative glow */}
             <div className="absolute inset-0 rounded-2xl bg-primary/5 blur-2xl -z-10 opacity-50" />
-          </div>
+          </ScrollReveal>
         </div>
       </div>
     </section>

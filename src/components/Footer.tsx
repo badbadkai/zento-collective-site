@@ -60,11 +60,18 @@ export const Footer = () => {
         <div className="grid gap-8 md:grid-cols-2 lg:grid-cols-4">
           {/* Brand */}
           <div className="lg:col-span-2">
-            <img
-              src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
-              alt="Zentō Collective"
-              className="h-10 w-auto mb-4"
-            />
+            <div className="relative h-10 w-fit mb-4">
+              <img
+                src={logoMonogramLight}
+                alt="Zentō Collective"
+                className={`h-10 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
+              />
+              <img
+                src={logoMonogramDark}
+                alt=""
+                className={`absolute inset-0 h-10 w-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-0" : "opacity-100"}`}
+              />
+            </div>
             <p className="text-sm text-muted-foreground max-w-sm mb-6">
               Where process meets performance. Developing disciplined traders
               through structured frameworks and psychological mastery.

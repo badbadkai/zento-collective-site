@@ -1,6 +1,7 @@
 import { Button } from "@/components/ui/button";
 import { ArrowRight, Sparkles, Target, Users, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
+import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 
 export const Offerings = () => {
   const navigate = useNavigate();
@@ -78,7 +79,7 @@ export const Offerings = () => {
 
       <div className="container-studio relative">
         {/* Section Header */}
-        <div className="text-center mb-12 md:mb-16">
+        <ScrollReveal className="text-center mb-12 md:mb-16">
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             Select Your Entry
           </p>
@@ -87,10 +88,10 @@ export const Offerings = () => {
 >
             Three Paths. <span className="text-primary">One Standard.</span>
           </h2>
-        </div>
+        </ScrollReveal>
 
         {/* Offerings Grid */}
-        <div className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto items-stretch">
+        <ScrollRevealGroup className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto items-stretch" staggerDelay={150}>
           {offerings.map((offering, index) => {
             const IconComponent = offering.icon;
             return (
@@ -169,7 +170,7 @@ export const Offerings = () => {
               </div>
             );
           })}
-        </div>
+        </ScrollRevealGroup>
       </div>
     </section>
   );

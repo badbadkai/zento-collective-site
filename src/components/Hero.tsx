@@ -196,14 +196,23 @@ export const Hero = () => {
 
       {/* Content */}
       <div className="container-studio relative z-10 text-center px-4 sm:px-6 lg:px-8 py-24 md:py-32">
-        {/* Logo */}
+        {/* Logo — both images stacked, crossfade on theme switch */}
         <div className="mb-10 md:mb-14 animate-fade-in">
-          <img
-            src={theme === "dark" ? logoMonogramLight : logoMonogramDark}
-            alt="Zentō Collective"
-            className="w-48 sm:w-56 md:w-72 h-auto mx-auto hover:scale-105 transition-transform duration-500"
+          <div
+            className="relative w-48 sm:w-56 md:w-72 mx-auto hero-logo-hover"
             style={{ animation: "logo-breathe 4s ease-in-out infinite, float 6s ease-in-out infinite" }}
-          />
+          >
+            <img
+              src={logoMonogramLight}
+              alt="Zentō Collective"
+              className={`w-full h-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-100" : "opacity-0"}`}
+            />
+            <img
+              src={logoMonogramDark}
+              alt=""
+              className={`absolute inset-0 w-full h-auto transition-opacity duration-500 ${theme === "dark" ? "opacity-0" : "opacity-100"}`}
+            />
+          </div>
         </div>
 
         {/* Main Headline */}

@@ -1,4 +1,5 @@
 import { UserPlus, BookOpen, Target, TrendingUp } from "lucide-react";
+import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 
 export const ProcessTimeline = () => {
   const steps = [
@@ -39,7 +40,7 @@ export const ProcessTimeline = () => {
 
       <div className="container-studio relative">
         {/* Section Header */}
-        <div className="text-center mb-16 md:mb-20">
+        <ScrollReveal className="text-center mb-16 md:mb-20">
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             The Progression
           </p>
@@ -55,7 +56,7 @@ export const ProcessTimeline = () => {
             A systematic pathway from foundational understanding to
             confident, disciplined execution.
           </p>
-        </div>
+        </ScrollReveal>
 
         {/* Timeline */}
         <div className="max-w-4xl mx-auto">
@@ -64,7 +65,7 @@ export const ProcessTimeline = () => {
             <div className="hidden md:block absolute top-8 left-8 right-8 h-0.5 bg-gradient-to-r from-primary/20 via-primary/40 to-primary/20" />
 
             {/* Steps */}
-            <div className="grid md:grid-cols-4 gap-8 md:gap-4">
+            <ScrollRevealGroup className="grid md:grid-cols-4 gap-8 md:gap-4" staggerDelay={150}>
               {steps.map((item, index) => {
                 const IconComponent = item.icon;
                 return (
@@ -103,7 +104,7 @@ export const ProcessTimeline = () => {
                   </div>
                 );
               })}
-            </div>
+            </ScrollRevealGroup>
           </div>
         </div>
       </div>
