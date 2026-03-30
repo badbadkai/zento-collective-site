@@ -17,7 +17,7 @@ export default function AdminWaitlist() {
   const [selected, setSelected] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => { document.title = "Waitlist — Admin Portal"; }, []);
+  useEffect(() => { document.title = "Waitlist | Admin Portal"; }, []);
 
   useEffect(() => {
     setTimeout(() => setVisible(true), 50);

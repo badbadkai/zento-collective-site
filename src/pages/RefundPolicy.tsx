@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const RefundPolicy = () => {
   useEffect(() => {
-    document.title = "Refund Policy — Zentō Collective";
+    document.title = "Refund Policy | Zentō Collective";
   }, []);
 
   return (

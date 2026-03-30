@@ -9,7 +9,7 @@ import { Check, Loader2 } from "lucide-react";
 export default function PortalProfile() {
   const { user, profile } = useAuth();
 
-  useEffect(() => { document.title = "Profile — Student Portal"; }, []);
+  useEffect(() => { document.title = "Profile | Student Portal"; }, []);
   const [fullName, setFullName] = useState(profile?.full_name ?? "");
   const [discord, setDiscord] = useState(profile?.discord ?? "");
   const [saving, setSaving] = useState(false);

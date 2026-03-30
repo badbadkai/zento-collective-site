@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const RiskDisclaimer = () => {
   useEffect(() => {
-    document.title = "Risk Disclaimer — Zentō Collective";
+    document.title = "Risk Disclaimer | Zentō Collective";
   }, []);
 
   return (

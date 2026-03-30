@@ -29,7 +29,7 @@ export default function LoginPage({ portalName }: LoginPageProps) {
   const [error, setError] = useState("");
   const inputRefs = useRef<(HTMLInputElement | null)[]>([]);
 
-  useEffect(() => { document.title = `${portalName} — Sign In`; }, [portalName]);
+  useEffect(() => { document.title = `${portalName} | Sign In`; }, [portalName]);
 
   // Redirect once fully authenticated (session exists and auth finished loading)
   useEffect(() => {

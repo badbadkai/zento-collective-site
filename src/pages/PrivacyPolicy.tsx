@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const PrivacyPolicy = () => {
   useEffect(() => {
-    document.title = "Privacy Policy — Zentō Collective";
+    document.title = "Privacy Policy | Zentō Collective";
   }, []);
 
   return (

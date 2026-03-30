@@ -15,7 +15,7 @@ export default function AdminSettings() {
   const [error, setError] = useState("");
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => { document.title = "Settings — Admin Portal"; }, []);
+  useEffect(() => { document.title = "Settings | Admin Portal"; }, []);
   useEffect(() => { setTimeout(() => setVisible(true), 50); }, []);
 
   // Sync state if profile loads after mount

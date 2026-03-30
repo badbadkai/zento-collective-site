@@ -11,7 +11,7 @@ export default function PortalModules() {
   const [modules, setModules] = useState<Module[]>([]);
   const [loading, setLoading] = useState(true);
 
-  useEffect(() => { document.title = "Modules — Student Portal"; }, []);
+  useEffect(() => { document.title = "Modules | Student Portal"; }, []);
   const [error, setError] = useState("");
   const [submittedModules, setSubmittedModules] = useState<Set<string>>(new Set());
 

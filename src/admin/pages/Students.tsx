@@ -15,7 +15,7 @@ export default function AdminStudents() {
   const [search, setSearch] = useState("");
   const [visible, setVisible] = useState(false);
 
-  useEffect(() => { document.title = "Students — Admin Portal"; }, []);
+  useEffect(() => { document.title = "Students | Admin Portal"; }, []);
   useEffect(() => { setTimeout(() => setVisible(true), 50); }, []);
 
   useEffect(() => {

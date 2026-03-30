@@ -18,7 +18,7 @@ const Start = () => {
   const { currency, getPrice } = usePricing();
 
   useEffect(() => {
-    document.title = "Trading Accelerator — Zentō Collective";
+    document.title = "Trading Accelerator | Zentō Collective";
   }, []);
 
   const price = getPrice("accelerator");

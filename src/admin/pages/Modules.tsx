@@ -30,7 +30,7 @@ export default function AdminModules() {
   const [confirmDeleteMaterial, setConfirmDeleteMaterial] = useState<string | null>(null);
   const [formErrors, setFormErrors] = useState<Record<string, string>>({});
 
-  useEffect(() => { document.title = "Modules — Admin Portal"; }, []);
+  useEffect(() => { document.title = "Modules | Admin Portal"; }, []);
 
   const [moduleForm, setModuleForm] = useState({
     day_number: 1, title: "", description: "", unlock_date: "", is_rest_day: false,

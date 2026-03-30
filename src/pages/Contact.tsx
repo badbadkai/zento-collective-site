@@ -5,7 +5,7 @@ import { Mail, MessageSquare, User } from "lucide-react";
 
 const Contact = () => {
   useEffect(() => {
-    document.title = "Contact Us — Zentō Collective";
+    document.title = "Contact Us | Zentō Collective";
   }, []);
 
   return (

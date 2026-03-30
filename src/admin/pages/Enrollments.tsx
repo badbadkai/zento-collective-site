@@ -31,7 +31,7 @@ export default function Enrollments() {
   });
 
   useEffect(() => {
-    document.title = "Enrollments — Admin Portal";
+    document.title = "Enrollments | Admin Portal";
   }, []);
 
   useEffect(() => {

@@ -22,7 +22,7 @@ export default function AdminCohorts() {
     status: "upcoming" as Cohort["status"],
   });
 
-  useEffect(() => { document.title = "Cohorts — Admin Portal"; }, []);
+  useEffect(() => { document.title = "Cohorts | Admin Portal"; }, []);
 
   const fetchCohorts = async () => {
     const { data, error: fetchError } = await supabase

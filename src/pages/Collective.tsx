@@ -30,7 +30,7 @@ const Collective = () => {
   const symbol = getCurrencySymbol(currency);
 
   useEffect(() => {
-    document.title = "The Premium Collective — Zentō Collective";
+    document.title = "The Premium Collective | Zentō Collective";
   }, []);
 
   const scrollToSection = (id: string) => {

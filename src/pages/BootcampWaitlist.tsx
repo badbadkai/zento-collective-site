@@ -21,7 +21,7 @@ const BootcampWaitlist: React.FC = () => {
   });
 
   useEffect(() => {
-    document.title = "Bootcamp Waitlist — Zento Collective";
+    document.title = "Bootcamp Waitlist | Zento Collective";
   }, []);
 
   const handleChange = (

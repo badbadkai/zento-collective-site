@@ -4,7 +4,7 @@ import { Footer } from "@/components/Footer";
 
 const Terms = () => {
   useEffect(() => {
-    document.title = "Terms and Conditions — Zentō Collective";
+    document.title = "Terms and Conditions | Zentō Collective";
   }, []);
 
   return (
