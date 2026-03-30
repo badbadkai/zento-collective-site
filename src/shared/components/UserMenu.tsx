@@ -7,7 +7,7 @@ import {
   DropdownMenuContent,
   DropdownMenuItem,
 } from "@/components/ui/dropdown-menu";
-import { Settings, LogOut, Moon, Sun, ChevronUp, User } from "lucide-react";
+import { Settings, LogOut, Moon, Sun, ChevronUp } from "lucide-react";
 
 interface UserMenuProps {
   collapsed?: boolean;
@@ -21,6 +21,7 @@ export default function UserMenu({ collapsed = false, settingsPath = "/settings"
 
   const displayName = profile?.full_name || "User";
   const initials = displayName.split(" ").map((n) => n[0]).join("").toUpperCase().slice(0, 2);
+  const isDark = theme === "dark";
 
   return (
     <div className={`border-t border-border/50 ${collapsed ? "p-2" : "p-3"}`}>
@@ -47,35 +48,45 @@ export default function UserMenu({ collapsed = false, settingsPath = "/settings"
           side="top"
           align={collapsed ? "center" : "start"}
           sideOffset={8}
-          className="w-56 bg-card/95 backdrop-blur-xl border-border/50 !animate-none !data-[state=open]:animate-none !data-[state=closed]:animate-none user-menu-dropdown"
+          className="w-56 bg-card/95 backdrop-blur-xl border-border/50 user-menu-dropdown"
         >
-          {/* User info header */}
+          {/* User info */}
           <div className="px-3 py-2 border-b border-border/50">
             <p className="text-sm font-medium">{displayName}</p>
             <p className="text-xs text-muted-foreground truncate">{profile?.role === "admin" ? "Administrator" : "Student"}</p>
           </div>
 
+          {/* Theme switch */}
+          <div className="px-3 py-2">
+            <button
+              onClick={() => setTheme(isDark ? "light" : "dark")}
+              className="flex items-center justify-between w-full group"
+            >
+              <span className="text-sm text-muted-foreground">Theme</span>
+              <div className="flex items-center gap-1.5 bg-muted/50 rounded-full p-0.5">
+                <div className={`flex items-center justify-center w-6 h-6 rounded-full transition-all duration-300 ${!isDark ? "bg-background shadow-sm" : ""}`}>
+                  <Sun className={`w-3 h-3 transition-colors ${!isDark ? "text-amber-500" : "text-muted-foreground"}`} />
+                </div>
+                <div className={`flex items-center justify-center w-6 h-6 rounded-full transition-all duration-300 ${isDark ? "bg-background shadow-sm" : ""}`}>
+                  <Moon className={`w-3 h-3 transition-colors ${isDark ? "text-blue-400" : "text-muted-foreground"}`} />
+                </div>
+              </div>
+            </button>
+          </div>
+
+          <div className="border-t border-border/50" />
+
           <DropdownMenuItem
             onClick={() => navigate(settingsPath)}
-            className="cursor-pointer gap-2 mt-1"
+            className="cursor-pointer gap-2"
           >
             <Settings className="w-4 h-4" />
             Account Settings
           </DropdownMenuItem>
 
           <DropdownMenuItem
-            onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
-            className="cursor-pointer gap-2"
-          >
-            {theme === "dark" ? <Sun className="w-4 h-4" /> : <Moon className="w-4 h-4" />}
-            {theme === "dark" ? "Light Mode" : "Dark Mode"}
-          </DropdownMenuItem>
-
-          <div className="border-t border-border/50 mt-1" />
-
-          <DropdownMenuItem
             onClick={signOut}
-            className="cursor-pointer gap-2 text-destructive focus:text-destructive mt-1"
+            className="cursor-pointer gap-2 text-destructive focus:text-destructive"
           >
             <LogOut className="w-4 h-4" />
             Sign Out

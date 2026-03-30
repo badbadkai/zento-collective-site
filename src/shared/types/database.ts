@@ -60,7 +60,12 @@ export interface Profile {
   role: UserRole;
   discord: string | null;
   avatar_url: string | null;
+  phone: string | null;
+  bio: string | null;
+  timezone: string | null;
+  trading_style: string | null;
   created_at: string;
+  updated_at: string | null;
 }
 
 export interface Cohort {
