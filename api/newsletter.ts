@@ -25,12 +25,14 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Email is required' });
     }
 
-    if (!EMAIL_REGEX.test(email)) {
+    const normalizedEmail = email.toLowerCase().trim();
+
+    if (!EMAIL_REGEX.test(normalizedEmail)) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
     const { error } = await supabase.from('newsletter_signups').insert({
-      email,
+      email: normalizedEmail,
       source: source || 'website',
     });
 

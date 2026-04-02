@@ -40,8 +40,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Also check if this email belongs to an existing admin
-    const { data: users } = await supabase.auth.admin.listUsers();
-    const existingUser = users?.users?.find(u => u.email?.toLowerCase() === normalizedEmail);
+    const { data: { user: existingUser } } = await supabase.auth.admin.getUserByEmail(normalizedEmail);
 
     if (existingUser) {
       const { data: profile } = await supabase

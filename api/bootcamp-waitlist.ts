@@ -21,13 +21,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Required fields missing' });
     }
 
-    if (!EMAIL_REGEX.test(email)) {
+    const normalizedEmail = email.toLowerCase().trim();
+
+    if (!EMAIL_REGEX.test(normalizedEmail)) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
     const { error } = await supabase.from('bootcamp_waitlist').insert({
       full_name,
-      email,
+      email: normalizedEmail,
       discord,
       trading_experience: trading_experience || null,
       prop_firm_history: prop_firm_history || null,

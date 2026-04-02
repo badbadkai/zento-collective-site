@@ -76,22 +76,10 @@ export default function Enrollments() {
       return;
     }
 
-    // Check if this email already has an auth account + profile
-    // If so, link the user_id directly
-    let userId: string | null = null;
-
-    const { data: existingProfiles } = await supabase
-      .from("profiles")
-      .select("id")
-      .limit(100);
-
-    // We can't query auth.users from the client, but we can check if any
-    // profile has this email by checking enrollments with user_id set
-    // For now, just insert with email only. user_id gets linked on first login.
-
+    // user_id gets linked on first login
     const { error: insertErr } = await supabase.from("enrollments").insert({
       email,
-      user_id: userId,
+      user_id: null,
       cohort_id: form.cohort_id,
       payment_status: form.payment_status,
     });

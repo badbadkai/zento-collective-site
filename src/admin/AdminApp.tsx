@@ -1,7 +1,6 @@
 import { Routes, Route } from "react-router-dom";
 import { AuthProvider } from "@/shared/hooks/useAuth";
 import RequireAuth from "@/shared/components/RequireAuth";
-import AuthCallback from "@/shared/components/AuthCallback";
 import LoginPage from "@/shared/components/LoginPage";
 import AdminLayout from "./layouts/AdminLayout";
 import Dashboard from "./pages/Dashboard";
@@ -18,7 +17,6 @@ export default function AdminApp() {
     <AuthProvider>
       <Routes>
         <Route path="/login" element={<LoginPage portalName="Admin Portal" />} />
-        <Route path="/auth/callback" element={<AuthCallback />} />
         <Route path="/" element={<RequireAuth requiredRole="admin"><AdminLayout /></RequireAuth>}>
           <Route index element={<Dashboard />} />
           <Route path="waitlist" element={<Waitlist />} />
