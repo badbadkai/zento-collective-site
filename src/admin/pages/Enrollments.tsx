@@ -214,8 +214,10 @@ export default function Enrollments() {
                   {enrollment.user_id ? (
                     <>
                       <UserCheck className="w-3.5 h-3.5 text-emerald-500" />
-                      <span className="font-medium">{enrollment.profiles?.full_name ?? "Unnamed"}</span>
-                      {enrollment.profiles?.discord && <span className="text-xs text-muted-foreground">@{enrollment.profiles.discord}</span>}
+                      <span className="font-medium">{enrollment.profiles?.full_name || enrollment.email}</span>
+                      {enrollment.profiles?.full_name && enrollment.email && (
+                        <span className="text-xs text-muted-foreground">{enrollment.email}</span>
+                      )}
                     </>
                   ) : (
                     <>
