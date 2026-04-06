@@ -279,64 +279,72 @@ const Start = () => {
             <div className="space-y-8">
               {[
                 {
-                  week: "Week 1",
-                  title: "Market Literacy",
+                  section: "Section 1",
+                  title: "Foundation",
                   days: [
-                    { day: "Mon", topic: "Financial Markets" },
-                    { day: "Tue", topic: "Reading Charts" },
-                    { day: "Wed", topic: "Order Types" },
-                    { day: "Thu", topic: "Risk & Leverage" },
-                    { day: "Fri", topic: "Platform Setup" },
+                    { day: "Day 1", topic: "Financial Markets" },
+                    { day: "Day 2", topic: "Risk Foundations" },
+                    { day: "Day 3", topic: "Trader Psychology" },
+                    { day: "Day 4", topic: "Platform & Charts" },
+                    { day: "Day 5", topic: "Market Structure" },
+                    { day: "Day 6–7", topic: "Consolidation" },
                   ],
                 },
                 {
-                  week: "Week 2",
-                  title: "How Markets Move",
+                  section: "Section 2",
+                  title: "Strategy",
                   days: [
-                    { day: "Mon", topic: "Market Structure" },
-                    { day: "Tue", topic: "Liquidity & Volume" },
-                    { day: "Wed", topic: "Key Levels" },
-                    { day: "Thu", topic: "Sessions & Timing" },
-                    { day: "Fri", topic: "Chart Analysis" },
+                    { day: "Day 8", topic: "Market Environment" },
+                    { day: "Day 9", topic: "Setup Logic" },
+                    { day: "Day 10", topic: "Entry Framework" },
+                    { day: "Day 11", topic: "Risk & Exit Rules" },
+                    { day: "Day 12", topic: "Trading Blueprint" },
+                    { day: "Day 13–14", topic: "Consolidation" },
                   ],
                 },
                 {
-                  week: "Week 3",
-                  title: "Building Your System",
+                  section: "Section 3",
+                  title: "Execution",
                   days: [
-                    { day: "Mon", topic: "Strategy Components" },
-                    { day: "Tue", topic: "Entry Logic" },
-                    { day: "Wed", topic: "Stops & Targets" },
-                    { day: "Thu", topic: "Position Sizing" },
-                    { day: "Fri", topic: "Strategy Assembly" },
+                    { day: "Day 15", topic: "Demo Execution" },
+                    { day: "Day 16", topic: "Journaling System" },
+                    { day: "Day 17", topic: "Error Tracking" },
+                    { day: "Day 18", topic: "Loss Management" },
+                    { day: "Day 19", topic: "Consistency Check" },
+                    { day: "Day 20–21", topic: "Consolidation" },
                   ],
                 },
                 {
-                  week: "Week 4",
-                  title: "Execution & Discipline",
+                  section: "Section 4",
+                  title: "Refinement",
                   days: [
-                    { day: "Mon", topic: "Demo Trading" },
-                    { day: "Tue", topic: "Trade Journaling" },
-                    { day: "Wed", topic: "Psychology & Errors" },
-                    { day: "Thu", topic: "Review & Refine" },
-                    { day: "Fri", topic: "Prop Readiness" },
+                    { day: "Day 22", topic: "Expectancy Review" },
+                    { day: "Day 23", topic: "Drawdown Rules" },
+                    { day: "Day 24", topic: "Prop Simulation" },
+                    { day: "Day 25", topic: "Strategy Lock" },
+                    { day: "Day 26", topic: "90-Day Plan" },
+                    { day: "Day 27–28", topic: "Consolidation" },
                   ],
                 },
-              ].map((weekData, idx) => (
+              ].map((sectionData, idx) => (
                 <div key={idx}>
                   <div className="flex items-center gap-3 mb-4">
                     <span className="text-xs font-bold text-primary uppercase tracking-wider">
-                      {weekData.week}
+                      {sectionData.section}
                     </span>
                     <h3 className="font-heading text-lg font-semibold text-foreground">
-                      {weekData.title}
+                      {sectionData.title}
                     </h3>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-5 gap-3">
-                    {weekData.days.map((item, dayIdx) => (
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                    {sectionData.days.map((item, dayIdx) => (
                       <div
                         key={dayIdx}
-                        className="p-4 rounded-xl border border-border/50 bg-card/30 text-center hover:border-primary/30 transition-colors"
+                        className={`p-4 rounded-xl border text-center transition-colors ${
+                          item.topic === "Consolidation"
+                            ? "border-primary/20 bg-primary/5 hover:border-primary/40"
+                            : "border-border/50 bg-card/30 hover:border-primary/30"
+                        }`}
                       >
                         <p className="text-xs font-semibold text-primary uppercase mb-2">
                           {item.day}
