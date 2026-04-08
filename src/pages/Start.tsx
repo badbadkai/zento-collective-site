@@ -279,35 +279,29 @@ const Start = () => {
             <div className="space-y-8">
               {[
                 {
-                  section: "Days 1–4",
+                  section: "Days 1–7",
                   title: "Foundation",
                   days: [
-                    { day: "Day 1", topic: "How Markets Work" },
-                    { day: "Day 2", topic: "Reading Price Charts" },
-                    { day: "Day 3", topic: "Market Structure" },
-                    { day: "Day 4", topic: "Risk Fundamentals" },
+                    { day: "Day 1", topic: "Market Foundations" },
+                    { day: "Day 2", topic: "Platform Setup" },
+                    { day: "Day 3", topic: "Order Types" },
+                    { day: "Day 4", topic: "Psychology" },
+                    { day: "Day 5", topic: "Risk Management" },
+                    { day: "Day 6", topic: "Price Phases & Sessions" },
+                    { day: "Day 7", topic: "Live Webinar & Q&A" },
                   ],
                 },
                 {
-                  section: "Days 5–8",
-                  title: "Strategy",
+                  section: "Days 8–14",
+                  title: "Strategy & Execution",
                   days: [
-                    { day: "Day 5", topic: "What Makes a Setup" },
-                    { day: "Day 6", topic: "Entry & Exit Rules" },
-                    { day: "Day 7", topic: "Your Trading Plan" },
-                    { day: "Day 8", topic: "Consolidation" },
-                  ],
-                },
-                {
-                  section: "Days 9–14",
-                  title: "Execution",
-                  days: [
-                    { day: "Day 9", topic: "Platform & Demo Setup" },
-                    { day: "Day 10", topic: "Demo Trading" },
-                    { day: "Day 11", topic: "Demo + Journal Review" },
-                    { day: "Day 12", topic: "Psychology Essentials" },
-                    { day: "Day 13", topic: "Demo + Plan Refinement" },
-                    { day: "Day 14", topic: "Graduation & Next Steps" },
+                    { day: "Day 8", topic: "Candlestick Anatomy" },
+                    { day: "Day 9", topic: "Basic Market Structure" },
+                    { day: "Day 10", topic: "Entry & Exit Rules" },
+                    { day: "Day 11", topic: "Your Trading Plan" },
+                    { day: "Day 12", topic: "Journaling" },
+                    { day: "Day 13", topic: "Demo & Backtesting" },
+                    { day: "Day 14", topic: "Prop Firms & Live Webinar" },
                   ],
                 },
               ].map((sectionData, idx) => (
@@ -320,7 +314,7 @@ const Start = () => {
                       {sectionData.title}
                     </h3>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
                     {sectionData.days.map((item, dayIdx) => (
                       <div
                         key={dayIdx}
@@ -561,12 +555,12 @@ const Start = () => {
               ))}
             </div>
 
-            <a href="https://whop.com/zento-collective/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
+            <Link to="/apply?programme=accelerator">
               <Button variant="hero" size="lg" className="group">
                 Join the Accelerator - <Price product="accelerator" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
-            </a>
+            </Link>
           </div>
         </div>
       </section>
@@ -664,12 +658,12 @@ const Start = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <a href="https://whop.com/zento-collective/30-day-accelerator-programme/" target="_blank" rel="noopener noreferrer">
+              <Link to="/apply?programme=accelerator">
                 <Button variant="hero" size="lg" className="group">
                   Start Your 14 Days
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
-              </a>
+              </Link>
               <Link to="/contact">
                 <Button variant="outline" size="lg">
                   Questions? Contact Us

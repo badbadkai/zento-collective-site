@@ -1,4 +1,5 @@
 import React, { useEffect, useState } from "react";
+import { useSearchParams } from "react-router-dom";
 import { Header } from "@/components/Header";
 import { Footer } from "@/components/Footer";
 import { Button } from "@/components/ui/button";
@@ -7,7 +8,8 @@ import { Textarea } from "@/components/ui/textarea";
 import { Label } from "@/components/ui/label";
 import { Check } from "lucide-react";
 
-const BootcampWaitlist: React.FC = () => {
+const Apply: React.FC = () => {
+  const [searchParams] = useSearchParams();
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
@@ -15,13 +17,14 @@ const BootcampWaitlist: React.FC = () => {
     name: "",
     email: "",
     discord: "",
+    programme: searchParams.get("programme") || "",
     experience: "",
     propFirm: "",
     challenge: "",
   });
 
   useEffect(() => {
-    document.title = "Bootcamp Waitlist | Zento Collective";
+    document.title = "Apply | Zentō Collective";
   }, []);
 
   const handleChange = (
@@ -45,6 +48,7 @@ const BootcampWaitlist: React.FC = () => {
           full_name: form.name,
           email: form.email,
           discord: form.discord,
+          programme_interest: form.programme,
           trading_experience: form.experience,
           prop_firm_history: form.propFirm,
           biggest_challenge: form.challenge,
@@ -100,7 +104,7 @@ const BootcampWaitlist: React.FC = () => {
                 Apply Now
               </p>
               <h1 className="font-heading text-4xl md:text-5xl font-semibold mb-4">
-                Bootcamp <span className="text-primary">Waitlist</span>
+                Join the <span className="text-primary">Waitlist</span>
               </h1>
               <p className="text-muted-foreground text-lg">
                 Tell us a bit about yourself so we can prepare for your cohort.
@@ -149,6 +153,26 @@ const BootcampWaitlist: React.FC = () => {
               </div>
 
               <div className="space-y-2">
+                <Label htmlFor="programme">
+                  Which programme are you interested in?
+                </Label>
+                <select
+                  id="programme"
+                  name="programme"
+                  required
+                  value={form.programme}
+                  onChange={handleChange}
+                  className="flex h-10 w-full rounded-md border border-input bg-background px-3 py-2 text-sm ring-offset-background placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2"
+                >
+                  <option value="" disabled>
+                    Select a programme
+                  </option>
+                  <option value="accelerator">The Accelerator (14-day beginner intensive)</option>
+                  <option value="bootcamp">The Bootcamp (30-day advanced programme)</option>
+                </select>
+              </div>
+
+              <div className="space-y-2">
                 <Label htmlFor="experience">
                   How long have you been trading?
                 </Label>
@@ -163,6 +187,7 @@ const BootcampWaitlist: React.FC = () => {
                   <option value="" disabled>
                     Select an option
                   </option>
+                  <option value="no-experience">No experience yet</option>
                   <option value="less-than-6-months">Less than 6 months</option>
                   <option value="6-12-months">6-12 months</option>
                   <option value="1-2-years">1-2 years</option>
@@ -206,13 +231,18 @@ const BootcampWaitlist: React.FC = () => {
                 />
               </div>
 
+              {error && (
+                <p className="text-sm text-destructive">{error}</p>
+              )}
+
               <Button
                 type="submit"
                 variant="hero"
                 size="lg"
                 className="w-full"
+                disabled={submitting}
               >
-                Join the Waitlist
+                {submitting ? "Submitting..." : "Join the Waitlist"}
               </Button>
             </form>
           </div>
@@ -223,4 +253,4 @@ const BootcampWaitlist: React.FC = () => {
   );
 };
 
-export default BootcampWaitlist;
+export default Apply;

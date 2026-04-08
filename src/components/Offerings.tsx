@@ -57,6 +57,7 @@ export const Offerings = () => {
       subtitle: "For traders who want to keep sharpening their edge.",
       description:
         "An exclusive environment of serious practitioners. Live analysis, advanced discussions, and the accountability that drives real progress.",
+      featuresLabel: "Join The Collective to unlock:",
       features: [
         "Weekly live trading sessions",
         "Institutional-grade market analysis",
@@ -138,7 +139,10 @@ export const Offerings = () => {
                   </div>
 
                   {/* Features — grows to fill space, pushing CTA to bottom */}
-                  <ul className="space-y-3 mt-8 mb-8 flex-grow">
+                  {"featuresLabel" in offering && offering.featuresLabel && (
+                    <p className="text-sm font-medium text-foreground mt-8 mb-3">{offering.featuresLabel}</p>
+                  )}
+                  <ul className={`space-y-3 ${"featuresLabel" in offering && offering.featuresLabel ? "" : "mt-8"} mb-8 flex-grow`}>
                     {offering.features.map((feature, idx) => (
                       <li key={idx} className="flex items-start gap-3">
                         <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />

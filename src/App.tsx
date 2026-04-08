@@ -22,6 +22,7 @@ import WaitlistPage from "./pages/WaitlistPage";
 import BootcampWaitlist from "./pages/BootcampWaitlist";
 import PageTransition from "./components/PageTransition";
 import { ErrorBoundary } from "./components/ErrorBoundary";
+import { Analytics } from "@vercel/analytics/react";
 
 // Lazy-loaded portal modules — not included in marketing site bundle
 const AdminApp = lazy(() => import("./admin/AdminApp"));
@@ -64,6 +65,7 @@ const MarketingRoutes = () => {
         <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
         <Route path="/bootcamp" element={<PageTransition><Bootcamp /></PageTransition>} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
+        <Route path="/apply" element={<PageTransition><BootcampWaitlist /></PageTransition>} />
         <Route path="/bootcamp-waitlist" element={<PageTransition><BootcampWaitlist /></PageTransition>} />
         <Route path="/articles" element={<PageTransition><Articles /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
@@ -101,6 +103,7 @@ const App = () => {
                 </Suspense>
               )}
               {appMode === "marketing" && <MarketingRoutes />}
+              <Analytics />
             </BrowserRouter>
           </TooltipProvider>
         </ThemeProvider>

@@ -15,7 +15,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { full_name, email, discord, trading_experience, prop_firm_history, biggest_challenge } = req.body;
+    const { full_name, email, discord, programme_interest, trading_experience, prop_firm_history, biggest_challenge } = req.body;
 
     if (!full_name || !email || !discord || !biggest_challenge) {
       return res.status(400).json({ error: 'Required fields missing' });
@@ -31,6 +31,7 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       full_name,
       email: normalizedEmail,
       discord,
+      programme_interest: programme_interest || null,
       trading_experience: trading_experience || null,
       prop_firm_history: prop_firm_history || null,
       biggest_challenge,
@@ -40,6 +41,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       console.error('Supabase insert error:', error);
       return res.status(500).json({ error: 'Failed to save application' });
     }
+
+    // Send confirmation email (non-blocking)
+    const { sendEmail } = await import('./_lib/email');
+    const { bootcampWaitlistConfirmation } = await import('./_lib/templates');
+    sendEmail({
+      to: normalizedEmail,
+      subject: "Bootcamp application received — Zentō Collective",
+      html: bootcampWaitlistConfirmation(full_name),
+    });
 
     return res.status(200).json({ ok: true });
   } catch (err) {

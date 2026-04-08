@@ -452,7 +452,7 @@ const Bootcamp = () => {
               ))}
             </div>
 
-            <Link to="/bootcamp-waitlist">
+            <Link to="/apply?programme=bootcamp">
               <Button variant="hero" size="lg" className="group">
                 Join the Waitlist - <Price product="bootcamp" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
@@ -555,7 +555,7 @@ const Bootcamp = () => {
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
-              <Link to="/bootcamp-waitlist">
+              <Link to="/apply?programme=bootcamp">
                 <Button variant="hero" size="lg" className="group">
                   Join the Waitlist
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />

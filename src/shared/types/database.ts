@@ -132,6 +132,7 @@ export interface WaitlistEntry {
   full_name: string;
   email: string;
   discord: string;
+  programme_interest: string | null;
   trading_experience: string | null;
   prop_firm_history: string | null;
   biggest_challenge: string;
@@ -142,5 +143,34 @@ export interface WaitlistEntry {
 export interface NewsletterSignup {
   id: string;
   email: string;
+  created_at: string;
+}
+
+export interface MainWaitlistEntry {
+  id: string;
+  email: string;
+  name: string | null;
+  source: string | null;
+  social_handle: string | null;
+  peak_performance: string | null;
+  trading_approach: string | null;
+  trading_duration: string | null;
+  tracking_method: string | null;
+  review_frequency: string | null;
+  main_limit: string | null;
+  improvement_area: string | null;
+  decision_style: string | null;
+  learning_style: string | null;
+  tracking_value: string | null;
+  upgrade_intent: string | null;
+  created_at: string;
+}
+
+export interface ContactSubmission {
+  id: string;
+  name: string;
+  email: string;
+  subject: string;
+  message: string;
   created_at: string;
 }

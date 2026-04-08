@@ -1,10 +1,11 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import type { WaitlistEntry } from "@/shared/types/database";
-import { Search, ChevronDown, ChevronUp, User, Mail, MessageCircle, Clock, BarChart3, Target, HelpCircle } from "lucide-react";
+import { Search, ChevronDown, ChevronUp, User, Mail, MessageCircle, Clock, BarChart3, Target, HelpCircle, CheckCircle, Circle } from "lucide-react";
 import { Input } from "@/components/ui/input";
+import { Button } from "@/components/ui/button";
 
-type SortField = "created_at" | "full_name" | "email" | "trading_experience";
+type SortField = "created_at" | "full_name" | "email" | "programme_interest" | "trading_experience";
 type SortDir = "asc" | "desc";
 
 export default function AdminWaitlist() {
@@ -16,6 +17,8 @@ export default function AdminWaitlist() {
   const [sortDir, setSortDir] = useState<SortDir>("desc");
   const [selected, setSelected] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
+  const [filterConverted, setFilterConverted] = useState<"all" | "converted" | "pending">("all");
+  const [filterProgramme, setFilterProgramme] = useState<"all" | "accelerator" | "bootcamp">("all");
 
   useEffect(() => { document.title = "Waitlist | Admin Portal"; }, []);
 
@@ -56,13 +59,35 @@ export default function AdminWaitlist() {
 
   const filtered = entries.filter((e) => {
     const q = search.toLowerCase();
-    return (
+    const matchesSearch =
       e.full_name.toLowerCase().includes(q) ||
       e.email.toLowerCase().includes(q) ||
       e.discord.toLowerCase().includes(q) ||
-      (e.biggest_challenge?.toLowerCase().includes(q))
-    );
+      (e.biggest_challenge?.toLowerCase().includes(q));
+
+    const matchesProgramme =
+      filterProgramme === "all" || e.programme_interest === filterProgramme;
+
+    if (filterConverted === "converted") return matchesSearch && matchesProgramme && e.converted;
+    if (filterConverted === "pending") return matchesSearch && matchesProgramme && !e.converted;
+    return matchesSearch && matchesProgramme;
   });
+
+  const toggleConverted = async (id: string, current: boolean) => {
+    const { error: updateError } = await supabase
+      .from("bootcamp_waitlist")
+      .update({ converted: !current })
+      .eq("id", id);
+
+    if (updateError) {
+      console.error("Failed to update converted status:", updateError);
+      return;
+    }
+
+    setEntries((prev) =>
+      prev.map((e) => (e.id === id ? { ...e, converted: !current } : e))
+    );
+  };
 
   const toggleSort = (field: SortField) => {
     if (sortField === field) {
@@ -113,8 +138,9 @@ export default function AdminWaitlist() {
 
       {error && <p className="text-sm text-destructive mb-4">{error}</p>}
 
-      {/* Search */}
-      <div className="relative mb-4 max-w-sm">
+      {/* Filters */}
+      <div className="flex items-center gap-3 mb-4">
+        <div className="relative max-w-sm flex-1">
         <Search className="absolute left-3 top-1/2 -translate-y-1/2 w-4 h-4 text-muted-foreground" />
         <Input
           placeholder="Search name, email, discord..."
@@ -122,6 +148,33 @@ export default function AdminWaitlist() {
           onChange={(e) => setSearch(e.target.value)}
           className="pl-10"
         />
+        </div>
+        <div className="flex items-center gap-1">
+          {(["all", "accelerator", "bootcamp"] as const).map((f) => (
+            <Button
+              key={f}
+              variant={filterProgramme === f ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setFilterProgramme(f)}
+              className="text-xs capitalize"
+            >
+              {f}
+            </Button>
+          ))}
+        </div>
+        <div className="flex items-center gap-1">
+          {(["all", "pending", "converted"] as const).map((f) => (
+            <Button
+              key={f}
+              variant={filterConverted === f ? "default" : "ghost"}
+              size="sm"
+              onClick={() => setFilterConverted(f)}
+              className="text-xs capitalize"
+            >
+              {f}
+            </Button>
+          ))}
+        </div>
       </div>
 
       <div className="flex gap-5">
@@ -137,20 +190,23 @@ export default function AdminWaitlist() {
                   <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("email")}>
                     Email <SortIcon field="email" />
                   </th>
-                  <th className="text-left px-4 py-3 font-medium text-muted-foreground">Discord</th>
+                  <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("programme_interest")}>
+                    Programme <SortIcon field="programme_interest" />
+                  </th>
                   <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("trading_experience")}>
                     Experience <SortIcon field="trading_experience" />
                   </th>
                   <th className="text-left px-4 py-3 font-medium text-muted-foreground cursor-pointer hover:text-foreground" onClick={() => toggleSort("created_at")}>
                     Applied <SortIcon field="created_at" />
                   </th>
+                  <th className="text-center px-4 py-3 font-medium text-muted-foreground w-20">Status</th>
                 </tr>
               </thead>
               <tbody>
                 {loading ? (
-                  <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">Loading...</td></tr>
+                  <tr><td colSpan={7} className="px-4 py-8 text-center text-muted-foreground">Loading...</td></tr>
                 ) : filtered.length === 0 ? (
-                  <tr><td colSpan={5} className="px-4 py-8 text-center text-muted-foreground">No entries found</td></tr>
+                  <tr><td colSpan={7} className="px-4 py-8 text-center text-muted-foreground">No entries found</td></tr>
                 ) : (
                   filtered.map((entry) => (
                     <tr
@@ -160,7 +216,19 @@ export default function AdminWaitlist() {
                     >
                       <td className="px-4 py-3 font-medium">{entry.full_name}</td>
                       <td className="px-4 py-3 text-muted-foreground">{entry.email}</td>
-                      <td className="px-4 py-3 text-muted-foreground">{entry.discord}</td>
+                      <td className="px-4 py-3">
+                        {entry.programme_interest ? (
+                          <span className={`px-2 py-0.5 rounded-full text-xs ${
+                            entry.programme_interest === "accelerator"
+                              ? "bg-blue-500/10 text-blue-500"
+                              : "bg-orange-500/10 text-orange-500"
+                          }`}>
+                            {entry.programme_interest === "accelerator" ? "Accelerator" : "Bootcamp"}
+                          </span>
+                        ) : (
+                          <span className="text-xs text-muted-foreground">-</span>
+                        )}
+                      </td>
                       <td className="px-4 py-3">
                         <span className="px-2 py-0.5 rounded-full text-xs bg-primary/10 text-primary">
                           {formatExp(entry.trading_experience)}
@@ -168,6 +236,18 @@ export default function AdminWaitlist() {
                       </td>
                       <td className="px-4 py-3 text-muted-foreground text-xs">
                         {new Date(entry.created_at).toLocaleDateString("en-GB", { day: "numeric", month: "short", year: "numeric" })}
+                      </td>
+                      <td className="px-4 py-3 text-center">
+                        <button
+                          onClick={(e) => { e.stopPropagation(); toggleConverted(entry.id, entry.converted); }}
+                          title={entry.converted ? "Mark as pending" : "Mark as converted"}
+                        >
+                          {entry.converted ? (
+                            <CheckCircle className="w-4 h-4 text-emerald-500 mx-auto" />
+                          ) : (
+                            <Circle className="w-4 h-4 text-muted-foreground/40 mx-auto hover:text-muted-foreground" />
+                          )}
+                        </button>
                       </td>
                     </tr>
                   ))
