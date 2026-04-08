@@ -81,7 +81,7 @@ const Start = () => {
                 className="group"
                 onClick={() => scrollToSection("pricing")}
               >
-                Join the Accelerator
+                Join the Waitlist
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
               <Button
@@ -557,7 +557,7 @@ const Start = () => {
 
             <Link to="/apply?programme=accelerator">
               <Button variant="hero" size="lg" className="group">
-                Join the Accelerator - <Price product="accelerator" />
+                Join the Waitlist - <Price product="accelerator" />
                 <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
               </Button>
             </Link>

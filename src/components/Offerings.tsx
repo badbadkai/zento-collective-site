@@ -22,7 +22,7 @@ export const Offerings = () => {
         "Hands-on demo trading experience",
         "Clear path to advanced development",
       ],
-      cta: "Apply Now",
+      cta: "Learn More",
       action: () => {
         window.scrollTo(0, 0);
         navigate("/start");
@@ -44,7 +44,7 @@ export const Offerings = () => {
         "Daily journal review with personal feedback",
         "Prop firm challenge preparation",
       ],
-      cta: "Join the Waitlist",
+      cta: "Learn More",
       action: () => {
         window.scrollTo(0, 0);
         navigate("/bootcamp");
