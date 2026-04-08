@@ -43,8 +43,8 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
     }
 
     // Send confirmation email (non-blocking)
-    const { sendEmail } = await import('./_lib/email');
-    const { bootcampWaitlistConfirmation } = await import('./_lib/templates');
+    const { sendEmail } = await import('./_lib/email.js');
+    const { bootcampWaitlistConfirmation } = await import('./_lib/templates.js');
     sendEmail({
       to: normalizedEmail,
       subject: "Bootcamp application received — Zentō Collective",

@@ -67,6 +67,15 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(500).json({ error: 'Failed to save signup' });
     }
 
+    // Send confirmation email (non-blocking)
+    const { sendEmail } = await import('./_lib/email.js');
+    const { waitlistConfirmation } = await import('./_lib/templates.js');
+    sendEmail({
+      to: email,
+      subject: "You're on the Zentō Collective waitlist",
+      html: waitlistConfirmation(fullName || name || ''),
+    });
+
     return res.status(200).json({ ok: true });
   } catch (err) {
     console.error('Waitlist handler error:', err);

@@ -4,7 +4,6 @@ import { createClient } from '@supabase/supabase-js';
 const supabaseUrl = process.env.SUPABASE_URL!;
 const supabaseServiceRoleKey = process.env.SUPABASE_SERVICE_ROLE_KEY!;
 
-// Server-side Supabase client
 const supabase = createClient(supabaseUrl, supabaseServiceRoleKey);
 
 const EMAIL_REGEX = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
@@ -16,13 +15,10 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
   }
 
   try {
-    const { email, source } = req.body as {
-      email?: string;
-      source?: string;
-    };
+    const { name, email, subject, message } = req.body as Record<string, string | undefined>;
 
-    if (!email) {
-      return res.status(400).json({ error: 'Email is required' });
+    if (!name || !email || !subject || !message) {
+      return res.status(400).json({ error: 'All fields are required' });
     }
 
     const normalizedEmail = email.toLowerCase().trim();
@@ -31,33 +27,37 @@ export default async function handler(req: VercelRequest, res: VercelResponse) {
       return res.status(400).json({ error: 'Invalid email format' });
     }
 
-    const { error } = await supabase.from('newsletter_signups').insert({
+    // Save to Supabase
+    const { error } = await supabase.from('contact_submissions').insert({
+      name,
       email: normalizedEmail,
-      source: source || 'website',
+      subject,
+      message,
     });
 
     if (error) {
-      // PostgreSQL unique violation — duplicate email
-      if (error.code === '23505') {
-        return res.status(409).json({ error: 'This email is already subscribed' });
-      }
-
       console.error('Supabase insert error:', error);
-      return res.status(500).json({ error: 'Failed to save signup' });
+      return res.status(500).json({ error: 'Failed to save message' });
     }
 
-    // Send confirmation email (non-blocking)
-    const { sendEmail } = await import('./_lib/email.js');
-    const { newsletterConfirmation } = await import('./_lib/templates.js');
+    // Send notification to admin + auto-reply to user (non-blocking)
+    const { sendEmail, sendNotification } = await import('./_lib/email.js');
+    const { contactNotification, contactAutoReply } = await import('./_lib/templates.js');
+
+    sendNotification({
+      subject: `Contact: ${subject}`,
+      html: contactNotification({ name, email: normalizedEmail, subject, message }),
+    });
+
     sendEmail({
       to: normalizedEmail,
-      subject: "Subscribed — Zentō Collective",
-      html: newsletterConfirmation(),
+      subject: "Message received — Zentō Collective",
+      html: contactAutoReply(name),
     });
 
     return res.status(200).json({ ok: true });
   } catch (err) {
-    console.error('Newsletter handler error:', err);
+    console.error('Contact handler error:', err);
     return res.status(400).json({ error: 'Invalid request' });
   }
 }
