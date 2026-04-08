@@ -94,78 +94,21 @@ export const Offerings = () => {
         </ScrollReveal>
 
         {/* Offerings Grid */}
-        <ScrollRevealGroup className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto items-stretch" staggerDelay={150}>
+        <ScrollRevealGroup className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto" staggerDelay={150}>
           {offerings.map((offering, index) => {
             const IconComponent = offering.icon;
             return (
               <div
                 key={offering.id}
-                className="group relative"
+                className="group relative h-full"
               >
                 <div
-                  className={`relative h-full flex flex-col p-6 md:p-8 rounded-2xl border transition-all duration-500 ${
+                  className={`relative flex flex-col h-full p-6 md:p-8 rounded-2xl border transition-all duration-500 ${
                     offering.highlighted
                       ? "border-primary/40 bg-primary/5 hover:border-primary/60 hover:bg-primary/10"
                       : "border-border/50 bg-card/50 hover:border-primary/30 hover:bg-card"
                   } hover:shadow-xl hover:shadow-primary/5 hover:-translate-y-1`}
                 >
-                  {/* Badge */}
-                  <div className="flex items-center gap-2 mb-6">
-                    <div
-                      className={`p-2 rounded-lg ${
-                        offering.highlighted
-                          ? "bg-primary/20"
-                          : "bg-primary/10"
-                      }`}
-                    >
-                      <IconComponent className="w-5 h-5 text-primary" />
-                    </div>
-                    <span className="text-xs font-semibold text-primary uppercase tracking-wider">
-                      {offering.badge}
-                    </span>
-                  </div>
-
-                  {/* Title — fixed height to align across cards */}
-                  <h3 className="font-heading text-2xl md:text-3xl font-semibold mb-3 text-foreground">
-                    {offering.title}
-                  </h3>
-
-                  {/* Subtitle + Description — fixed min-height for alignment */}
-                  <div className="md:min-h-[140px]">
-                    <p className="text-base md:text-lg text-muted-foreground mb-3">
-                      {offering.subtitle}
-                    </p>
-                    <p className="text-sm text-muted-foreground">
-                      {offering.description}
-                    </p>
-                  </div>
-
-                  {/* Features */}
-                  <div className="mt-8">
-                    {offering.featuresLabel ? (
-                      <p className="text-sm font-medium text-foreground mb-3">{offering.featuresLabel}</p>
-                    ) : null}
-                    <ul className="space-y-3">
-                      {offering.features.map((feature, idx) => (
-                        <li key={idx} className="flex items-start gap-3">
-                          <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                          <span className="text-sm text-foreground">{feature}</span>
-                        </li>
-                      ))}
-                    </ul>
-                  </div>
-
-                  {/* CTA — always at bottom */}
-                  <Button
-                    variant={offering.highlighted ? "hero" : "premium"}
-                    size="lg"
-                    className="w-full group/btn mt-auto"
-                    onClick={offering.action}
-                  >
-                    {offering.cta}
-                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                  </Button>
-
                   {/* Highlighted indicator */}
                   {offering.highlighted && (
                     <div className="absolute -top-3 left-1/2 -translate-x-1/2">
@@ -174,6 +117,54 @@ export const Offerings = () => {
                       </span>
                     </div>
                   )}
+
+                  {/* Badge */}
+                  <div className="flex items-center gap-2 mb-6">
+                    <div className={`p-2 rounded-lg ${offering.highlighted ? "bg-primary/20" : "bg-primary/10"}`}>
+                      <IconComponent className="w-5 h-5 text-primary" />
+                    </div>
+                    <span className="text-xs font-semibold text-primary uppercase tracking-wider">
+                      {offering.badge}
+                    </span>
+                  </div>
+
+                  {/* Title */}
+                  <h3 className="font-heading text-2xl md:text-3xl font-semibold mb-3 text-foreground">
+                    {offering.title}
+                  </h3>
+
+                  {/* Subtitle + Description */}
+                  <p className="text-base md:text-lg text-muted-foreground mb-2">
+                    {offering.subtitle}
+                  </p>
+                  <p className="text-sm text-muted-foreground mb-8">
+                    {offering.description}
+                  </p>
+
+                  {/* Features */}
+                  {offering.featuresLabel ? (
+                    <p className="text-sm font-medium text-foreground mb-3">{offering.featuresLabel}</p>
+                  ) : null}
+                  <ul className="space-y-3">
+                    {offering.features.map((feature, idx) => (
+                      <li key={idx} className="flex items-start gap-3">
+                        <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  {/* Spacer + CTA pinned to bottom */}
+                  <div className="flex-1 min-h-8" />
+                  <Button
+                    variant={offering.highlighted ? "hero" : "premium"}
+                    size="lg"
+                    className="w-full group/btn"
+                    onClick={offering.action}
+                  >
+                    {offering.cta}
+                    <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                  </Button>
                 </div>
               </div>
             );
