@@ -140,12 +140,12 @@ export const Offerings = () => {
                     </p>
                   </div>
 
-                  {/* Features — fixed top margin, grows to fill space */}
-                  <div className="mt-8 flex-grow flex flex-col">
+                  {/* Features */}
+                  <div className="mt-8">
                     {offering.featuresLabel ? (
                       <p className="text-sm font-medium text-foreground mb-3">{offering.featuresLabel}</p>
                     ) : null}
-                    <ul className="space-y-3 mb-8">
+                    <ul className="space-y-3">
                       {offering.features.map((feature, idx) => (
                         <li key={idx} className="flex items-start gap-3">
                           <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -155,11 +155,11 @@ export const Offerings = () => {
                     </ul>
                   </div>
 
-                  {/* CTA — pinned to bottom via mt-auto on parent flex */}
+                  {/* CTA — always at bottom */}
                   <Button
                     variant={offering.highlighted ? "hero" : "premium"}
                     size="lg"
-                    className="w-full group/btn"
+                    className="w-full group/btn mt-auto"
                     onClick={offering.action}
                   >
                     {offering.cta}
