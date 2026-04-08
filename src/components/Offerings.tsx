@@ -62,7 +62,7 @@ export const Offerings = () => {
       featuresLabel: "Join The Collective to unlock:",
       features: [
         "Weekly live trading sessions",
-        "Institutional-grade market analysis",
+        "Market analysis and breakdowns",
         "Advanced strategy deep-dives",
         "Direct peer and mentor access",
       ],
@@ -140,24 +140,26 @@ export const Offerings = () => {
                     </p>
                   </div>
 
-                  {/* Features — grows to fill space, pushing CTA to bottom */}
-                  {offering.featuresLabel ? (
-                    <p className="text-sm font-medium text-foreground mt-8 mb-3">{offering.featuresLabel}</p>
-                  ) : null}
-                  <ul className={`space-y-3 ${offering.featuresLabel ? "" : "mt-8"} mb-8 flex-grow`}>
-                    {offering.features.map((feature, idx) => (
-                      <li key={idx} className="flex items-start gap-3">
-                        <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-foreground">{feature}</span>
-                      </li>
-                    ))}
-                  </ul>
+                  {/* Features — fixed top margin, grows to fill space */}
+                  <div className="mt-8 flex-grow flex flex-col">
+                    {offering.featuresLabel ? (
+                      <p className="text-sm font-medium text-foreground mb-3">{offering.featuresLabel}</p>
+                    ) : null}
+                    <ul className="space-y-3 mb-8">
+                      {offering.features.map((feature, idx) => (
+                        <li key={idx} className="flex items-start gap-3">
+                          <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                          <span className="text-sm text-foreground">{feature}</span>
+                        </li>
+                      ))}
+                    </ul>
+                  </div>
 
-                  {/* CTA — pinned to bottom */}
+                  {/* CTA — pinned to bottom via mt-auto on parent flex */}
                   <Button
                     variant={offering.highlighted ? "hero" : "premium"}
                     size="lg"
-                    className="w-full group/btn mt-auto"
+                    className="w-full group/btn"
                     onClick={offering.action}
                   >
                     {offering.cta}
