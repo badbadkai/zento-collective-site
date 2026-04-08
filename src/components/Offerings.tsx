@@ -11,15 +11,15 @@ export const Offerings = () => {
       id: "accelerator",
       icon: Sparkles,
       badge: "Intensive Programme",
-      title: "30-Day Accelerator",
-      subtitle: "For committed beginners seeking structure over chaos.",
+      title: "The Accelerator",
+      subtitle: "For complete beginners ready to build real foundations.",
       description:
-        "Construct your complete trading system in 30 focused days. Emerge with documented rules, defined risk parameters, and operational clarity.",
+        "A 14-day intensive programme that equips you with the absolute basics of trading: how markets work, how to read charts, how to manage risk, and how to build and execute a simple trading plan.",
       features: [
-        "Personalised trading blueprint",
-        "Risk framework & psychology protocols",
-        "Weekly live sessions & direct feedback",
-        "Prop firm readiness evaluation",
+        "Written trading plan with defined rules",
+        "Risk framework & position sizing",
+        "Hands-on demo trading experience",
+        "Clear path to advanced development",
       ],
       cta: "Apply Now",
       action: () => {

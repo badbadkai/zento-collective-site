@@ -158,7 +158,7 @@ const Bootcamp = () => {
                 to="/start"
                 className="text-primary hover:underline font-medium"
               >
-                The 30-Day Accelerator
+                The Accelerator
               </Link>{" "}
               is designed to build your foundation first.
             </p>
@@ -487,7 +487,7 @@ const Bootcamp = () => {
                 },
                 {
                   q: "Do I need trading experience?",
-                  a: "Yes. This programme is designed for traders who understand basic market concepts, have traded before (even if unsuccessfully), and know what a strategy is even if theirs isn't working. If you're brand new, the 30-Day Accelerator is the right starting point.",
+                  a: "Yes. This programme is designed for traders who understand basic market concepts, have traded before (even if unsuccessfully), and know what a strategy is even if theirs isn't working. If you're brand new, the Accelerator is the right starting point — it's a 14-day intensive that covers the absolute basics.",
                 },
                 {
                   q: "What markets does this cover?",

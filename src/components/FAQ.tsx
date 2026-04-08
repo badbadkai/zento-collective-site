@@ -15,7 +15,7 @@ export const FAQ = () => {
     },
     {
       q: "Is this suitable for beginners?",
-      a: "Yes. If you're new to trading, the 30-Day Accelerator is built specifically for you. It takes you from zero to a complete trading system with written rules, risk frameworks, and a journaling process — all in 30 focused days.",
+      a: "Yes. If you're new to trading, the Accelerator is built specifically for you. It's a 14-day intensive that takes you from zero to a working trading plan with written rules, risk management, and demo trading experience.",
     },
     {
       q: "I already know the basics but I'm not consistent. Which programme is right for me?",

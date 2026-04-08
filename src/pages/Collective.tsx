@@ -118,7 +118,7 @@ const Collective = () => {
     },
     {
       q: "Do I need to complete the Accelerator first?",
-      a: "No, the Collective is open to all active traders. That said, if you're a complete beginner, the 30-Day Accelerator will give you the foundational structure to get the most out of the Collective.",
+      a: "No, the Collective is open to all active traders. That said, if you're a complete beginner, the Accelerator will give you the foundational structure to get the most out of the Collective.",
     },
     {
       q: "What platforms do you use?",
