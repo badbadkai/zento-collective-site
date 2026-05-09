@@ -1,18 +1,15 @@
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
 import { useAuth } from "@/shared/hooks/useAuth";
 import { useTheme } from "next-themes";
-import { Settings, LogOut, Moon, Sun, ChevronUp } from "lucide-react";
+import { LogOut, Moon, Sun, ChevronUp } from "lucide-react";
 
 interface UserMenuProps {
   collapsed?: boolean;
-  settingsPath?: string;
 }
 
-export default function UserMenu({ collapsed = false, settingsPath = "/settings" }: UserMenuProps) {
+export default function UserMenu({ collapsed = false }: UserMenuProps) {
   const { profile, signOut } = useAuth();
   const { theme, setTheme } = useTheme();
-  const navigate = useNavigate();
   const [open, setOpen] = useState(false);
 
   const displayName = profile?.full_name || "User";
@@ -37,18 +34,6 @@ export default function UserMenu({ collapsed = false, settingsPath = "/settings"
           >
             {isDark ? <Sun className="w-4 h-4 shrink-0" /> : <Moon className="w-4 h-4 shrink-0" />}
             {!collapsed && <span>{isDark ? "Light Mode" : "Dark Mode"}</span>}
-          </button>
-
-          {/* Settings */}
-          <button
-            onClick={() => { navigate(settingsPath); setOpen(false); }}
-            className={`flex items-center w-full rounded-lg text-sm text-muted-foreground hover:text-foreground hover:bg-muted/50 transition-colors ${
-              collapsed ? "justify-center w-10 h-10 mx-auto" : "gap-3 px-3 py-2"
-            }`}
-            title={collapsed ? "Account Settings" : undefined}
-          >
-            <Settings className="w-4 h-4 shrink-0" />
-            {!collapsed && <span>Account Settings</span>}
           </button>
 
           {/* Sign out */}

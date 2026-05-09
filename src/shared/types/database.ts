@@ -1,8 +1,6 @@
 export type UserRole = "admin" | "student";
 export type CohortStatus = "upcoming" | "active" | "completed";
 export type PaymentStatus = "pending" | "paid" | "refunded";
-export type SubmissionStatus = "pending" | "reviewed";
-export type MaterialType = "video" | "slides" | "handout" | "worksheet_template";
 
 export interface Database {
   public: {
@@ -22,21 +20,6 @@ export interface Database {
         Insert: Omit<Enrollment, "id" | "enrolled_at">;
         Update: Partial<Omit<Enrollment, "id">>;
       };
-      modules: {
-        Row: Module;
-        Insert: Omit<Module, "id" | "created_at">;
-        Update: Partial<Omit<Module, "id">>;
-      };
-      materials: {
-        Row: Material;
-        Insert: Omit<Material, "id" | "created_at">;
-        Update: Partial<Omit<Material, "id">>;
-      };
-      submissions: {
-        Row: Submission;
-        Insert: Omit<Submission, "id" | "submitted_at">;
-        Update: Partial<Omit<Submission, "id">>;
-      };
       bootcamp_waitlist: {
         Row: WaitlistEntry;
         Insert: Omit<WaitlistEntry, "id" | "created_at">;
@@ -54,12 +37,6 @@ export interface Database {
   };
 }
 
-export interface NotificationPreferences {
-  feedback_received: boolean;
-  module_unlocked: boolean;
-  announcements: boolean;
-}
-
 export interface Profile {
   id: string;
   full_name: string | null;
@@ -73,6 +50,12 @@ export interface Profile {
   notification_preferences: NotificationPreferences | null;
   created_at: string;
   updated_at: string | null;
+}
+
+export interface NotificationPreferences {
+  feedback_received: boolean;
+  module_unlocked: boolean;
+  announcements: boolean;
 }
 
 export interface Cohort {
@@ -92,39 +75,6 @@ export interface Enrollment {
   cohort_id: string;
   enrolled_at: string;
   payment_status: PaymentStatus;
-}
-
-export interface Module {
-  id: string;
-  cohort_id: string;
-  day_number: number;
-  title: string;
-  description: string | null;
-  unlock_date: string;
-  is_rest_day: boolean;
-  created_at: string;
-}
-
-export interface Material {
-  id: string;
-  module_id: string;
-  type: MaterialType;
-  title: string;
-  url: string;
-  sort_order: number;
-  created_at: string;
-}
-
-export interface Submission {
-  id: string;
-  user_id: string;
-  module_id: string;
-  file_url: string;
-  submitted_at: string;
-  status: SubmissionStatus;
-  feedback: string | null;
-  reviewed_by: string | null;
-  reviewed_at: string | null;
 }
 
 export interface WaitlistEntry {

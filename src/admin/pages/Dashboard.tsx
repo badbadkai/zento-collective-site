@@ -1,12 +1,11 @@
 import { useEffect, useState } from "react";
 import { supabase } from "@/lib/supabase";
 import { useAuth } from "@/shared/hooks/useAuth";
-import { Users, ClipboardList, FileCheck, GraduationCap } from "lucide-react";
+import { Users, ClipboardList, GraduationCap } from "lucide-react";
 
 interface Stats {
   waitlistCount: number;
   studentCount: number;
-  pendingSubmissions: number;
   activeCohorts: number;
 }
 
@@ -15,7 +14,6 @@ export default function AdminDashboard() {
   const [stats, setStats] = useState<Stats>({
     waitlistCount: 0,
     studentCount: 0,
-    pendingSubmissions: 0,
     activeCohorts: 0,
   });
   const [loading, setLoading] = useState(true);
@@ -32,21 +30,19 @@ export default function AdminDashboard() {
   useEffect(() => {
     const fetchStats = async () => {
       try {
-        const [waitlist, students, submissions, cohorts] = await Promise.all([
+        const [waitlist, students, cohorts] = await Promise.all([
           supabase.from("bootcamp_waitlist").select("id", { count: "exact", head: true }),
           supabase.from("profiles").select("id", { count: "exact", head: true }).eq("role", "student"),
-          supabase.from("submissions").select("id", { count: "exact", head: true }).eq("status", "pending"),
           supabase.from("cohorts").select("id", { count: "exact", head: true }).eq("status", "active"),
         ]);
 
-        if (waitlist.error || students.error || submissions.error || cohorts.error) {
-          console.error("Dashboard stats errors:", { waitlist: waitlist.error, students: students.error, submissions: submissions.error, cohorts: cohorts.error });
+        if (waitlist.error || students.error || cohorts.error) {
+          console.error("Dashboard stats errors:", { waitlist: waitlist.error, students: students.error, cohorts: cohorts.error });
         }
 
         setStats({
           waitlistCount: waitlist.count ?? 0,
           studentCount: students.count ?? 0,
-          pendingSubmissions: submissions.count ?? 0,
           activeCohorts: cohorts.count ?? 0,
         });
       } catch (err) {
@@ -65,7 +61,6 @@ export default function AdminDashboard() {
   const cards = [
     { label: "Waitlist Entries", value: stats.waitlistCount, icon: ClipboardList, color: "text-amber-500", bg: "bg-amber-500/10" },
     { label: "Active Students", value: stats.studentCount, icon: Users, color: "text-emerald-500", bg: "bg-emerald-500/10" },
-    { label: "Pending Reviews", value: stats.pendingSubmissions, icon: FileCheck, color: "text-blue-500", bg: "bg-blue-500/10" },
     { label: "Active Cohorts", value: stats.activeCohorts, icon: GraduationCap, color: "text-purple-500", bg: "bg-purple-500/10" },
   ];
 
@@ -90,7 +85,7 @@ export default function AdminDashboard() {
       {error && <p className="text-sm text-destructive mb-4 text-center">{error}</p>}
 
       {/* Stats */}
-      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-3 gap-4">
         {cards.map((card, i) => (
           <div
             key={card.label}

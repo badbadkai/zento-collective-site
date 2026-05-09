@@ -5,8 +5,6 @@ import {
   LayoutDashboard,
   Users,
   GraduationCap,
-  BookOpen,
-  FileCheck,
   UserPlus,
   UsersRound,
   ChevronsLeft,
@@ -20,8 +18,6 @@ const navItems = [
   { to: "/", icon: LayoutDashboard, label: "Dashboard" },
   { to: "/waitlist", icon: Users, label: "Waitlist" },
   { to: "/cohorts", icon: GraduationCap, label: "Cohorts" },
-  { to: "/modules", icon: BookOpen, label: "Modules" },
-  { to: "/submissions", icon: FileCheck, label: "Submissions" },
   { to: "/enrollments", icon: UserPlus, label: "Enrollments" },
   { to: "/students", icon: UsersRound, label: "Students" },
 ];
@@ -87,7 +83,7 @@ export default function AdminLayout() {
           </nav>
 
           {/* User menu */}
-          <UserMenu collapsed={collapsed} settingsPath="/settings" />
+          <UserMenu collapsed={collapsed} />
         </aside>
 
         {/* Collapse toggle — appears on hover near the sidebar border */}

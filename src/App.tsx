@@ -24,9 +24,8 @@ import PageTransition from "./components/PageTransition";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Analytics } from "@vercel/analytics/react";
 
-// Lazy-loaded portal modules — not included in marketing site bundle
+// Lazy-loaded admin module — not included in marketing site bundle
 const AdminApp = lazy(() => import("./admin/AdminApp"));
-const PortalApp = lazy(() => import("./portal/PortalApp"));
 
 const queryClient = new QueryClient();
 
@@ -37,10 +36,9 @@ const FullScreenLoader = () => (
 );
 
 /** Detect which app to render based on hostname */
-function getAppMode(): "admin" | "portal" | "marketing" {
+function getAppMode(): "admin" | "marketing" {
   const hostname = window.location.hostname;
   if (hostname.startsWith("admin")) return "admin";
-  if (hostname.startsWith("portal")) return "portal";
   return "marketing";
 }
 
@@ -95,11 +93,6 @@ const App = () => {
               {appMode === "admin" && (
                 <Suspense fallback={<FullScreenLoader />}>
                   <AdminApp />
-                </Suspense>
-              )}
-              {appMode === "portal" && (
-                <Suspense fallback={<FullScreenLoader />}>
-                  <PortalApp />
                 </Suspense>
               )}
               {appMode === "marketing" && <MarketingRoutes />}

@@ -15,11 +15,9 @@ const EMPTY_CODE = Array(CODE_LENGTH).fill("");
 
 interface LoginPageProps {
   portalName: string;
-  /** If true, check whitelist before sending OTP */
-  requireWhitelist?: boolean;
 }
 
-export default function LoginPage({ portalName, requireWhitelist = false }: LoginPageProps) {
+export default function LoginPage({ portalName }: LoginPageProps) {
   const { theme } = useTheme();
   const { sendOtp, verifyOtp, session, loading: authLoading } = useAuth();
   const navigate = useNavigate();
@@ -54,22 +52,6 @@ export default function LoginPage({ portalName, requireWhitelist = false }: Logi
     setError("");
 
     try {
-      // Check whitelist if required (student portal only)
-      if (requireWhitelist) {
-        const res = await fetch("/api/check-whitelist", {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({ email: email.toLowerCase().trim() }),
-        });
-        const data = await res.json();
-
-        if (!data.allowed) {
-          setError("This email is not registered. If you believe this is an error, contact the team.");
-          setLoading(false);
-          return;
-        }
-      }
-
       const result = await sendOtp(email);
       if (result.error) {
         setError(result.error.message);

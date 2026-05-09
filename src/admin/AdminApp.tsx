@@ -6,11 +6,8 @@ import AdminLayout from "./layouts/AdminLayout";
 import Dashboard from "./pages/Dashboard";
 import Waitlist from "./pages/Waitlist";
 import Cohorts from "./pages/Cohorts";
-import Modules from "./pages/Modules";
-import Submissions from "./pages/Submissions";
 import Enrollments from "./pages/Enrollments";
 import Students from "./pages/Students";
-import Settings from "./pages/Settings";
 
 export default function AdminApp() {
   return (
@@ -21,11 +18,8 @@ export default function AdminApp() {
           <Route index element={<Dashboard />} />
           <Route path="waitlist" element={<Waitlist />} />
           <Route path="cohorts" element={<Cohorts />} />
-          <Route path="modules" element={<Modules />} />
-          <Route path="submissions" element={<Submissions />} />
           <Route path="enrollments" element={<Enrollments />} />
           <Route path="students" element={<Students />} />
-          <Route path="settings" element={<Settings />} />
         </Route>
       </Routes>
     </AuthProvider>

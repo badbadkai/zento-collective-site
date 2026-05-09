@@ -150,7 +150,7 @@ export default function Enrollments() {
             <Button variant="ghost" size="icon" onClick={resetForm}><X className="w-4 h-4" /></Button>
           </div>
           <p className="text-sm text-muted-foreground mb-4">
-            Enter the student's email. They will be able to log in to the student portal once enrolled.
+            Enter the student's email to add them to the cohort.
           </p>
           <div className="grid grid-cols-3 gap-4">
             <div className="space-y-2">
