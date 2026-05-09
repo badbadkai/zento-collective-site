@@ -280,7 +280,8 @@ const Start = () => {
               <div className="space-y-2.5 text-left max-w-sm mx-auto mb-8">
                 {[
                   "30 days of structured daily lessons",
-                  "Weekly live Q&A and backtesting sessions",
+                  "Weekly 1-to-1 coaching sessions",
+                  "Live Q&A and backtesting sessions",
                   "Private community and peer accountability",
                   "All templates, frameworks, and tools",
                   "Demo execution with review and feedback",

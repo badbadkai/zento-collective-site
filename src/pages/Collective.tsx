@@ -83,21 +83,21 @@ const Collective = () => {
   const features = [
     {
       icon: Radio,
-      title: "Weekly Live Trading Sessions",
+      title: "Live Trading Sessions",
       description:
         "Real-time market analysis with annotated setups, live Q&A, and post-session recordings so you never miss a beat.",
     },
     {
       icon: BarChart3,
-      title: "Institutional-Grade Market Analysis",
+      title: "Trade Recaps & Market Breakdowns",
       description:
-        "Daily and weekly market briefs covering macro context, key levels, and the setups worth watching, delivered with clarity.",
+        "Detailed post-session recaps, market context, key levels, and the reasoning behind each setup. Learn from real trades, not theory.",
     },
     {
       icon: Layers,
-      title: "Advanced Strategy Deep-Dives",
+      title: "Resources & Learning Reinforcement",
       description:
-        "Systematic frameworks, edge refinement techniques, and multi-timeframe analysis that goes far beyond surface-level content.",
+        "Strategy deep-dives, structured activities, and practice exercises designed to reinforce concepts and sharpen your edge over time.",
     },
     {
       icon: MessageCircle,
@@ -114,7 +114,7 @@ const Collective = () => {
     },
     {
       q: "What's different from the free community?",
-      a: "The Premium Collective includes live trading sessions, institutional-grade analysis, advanced strategy deep-dives, and direct mentor access. The free community is a starting point. This is where serious development happens.",
+      a: "The Premium Collective includes live trading sessions, trade recaps, strategy deep-dives, learning reinforcement activities, and direct mentor access. The free community is a starting point. This is where serious development happens.",
     },
     {
       q: "Do I need to complete the Accelerator first?",
@@ -340,9 +340,9 @@ const Collective = () => {
                   {/* Feature summary */}
                   <ul className="space-y-3 mb-8">
                     {[
-                      "Weekly live trading sessions",
-                      "Market analysis & briefs",
-                      "Strategy deep-dives",
+                      "Live trading sessions",
+                      "Trade recaps & breakdowns",
+                      "Resources & reinforcement activities",
                       "Peer & mentor access",
                     ].map((feature, idx) => (
                       <li key={idx} className="flex gap-2.5 items-start">

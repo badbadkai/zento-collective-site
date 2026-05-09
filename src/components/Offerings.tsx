@@ -26,6 +26,7 @@ export const Offerings = () => {
         "Risk management framework",
         "Psychology and discipline system",
         "Demo execution practice",
+        "Weekly 1-to-1 coaching sessions",
       ],
       price: acceleratorPrice,
       priceNote: "one-time",
@@ -44,9 +45,10 @@ export const Offerings = () => {
       subtitle: "For traders who want ongoing sharpening, community, and advanced resources.",
       featuresLabel: "",
       features: [
-        "Weekly live trading sessions",
-        "Market analysis and breakdowns",
-        "Advanced strategy deep-dives",
+        "Live trading sessions",
+        "Trade recaps and market breakdowns",
+        "Strategy deep-dives and resources",
+        "Activities for learning reinforcement",
         "Direct peer and mentor access",
       ],
       price: collectivePrice,
@@ -71,9 +73,7 @@ export const Offerings = () => {
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             Select Your Entry
           </p>
-          <h2
-            className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4"
->
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4">
             Two Paths. <span className="text-primary">One Standard.</span>
           </h2>
         </ScrollReveal>
@@ -119,7 +119,7 @@ export const Offerings = () => {
                   </h3>
 
                   {/* Subtitle */}
-                  <p className="text-base md:text-lg text-muted-foreground mb-2">
+                  <p className="text-sm md:text-base text-muted-foreground mb-4">
                     {offering.subtitle}
                   </p>
 
