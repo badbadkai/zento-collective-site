@@ -11,6 +11,14 @@ const EUROZONE_COUNTRIES = new Set([
   "IT", "LV", "LT", "LU", "MT", "NL", "PT", "SK", "SI", "ES"
 ]);
 
+// Old combined price (Accelerator + Bootcamp before merge) — used for strikethrough display
+const OLD_COMBINED_PRICE: Record<string, number> = {
+  USD: 928,   // old accelerator $329 + old bootcamp $599
+  SGD: 1212,  // old accelerator S$433 + old bootcamp S$779
+  GBP: 698,   // old accelerator £249 + old bootcamp £449
+  EUR: 838    // old accelerator €299 + old bootcamp €539
+};
+
 // Fixed pricing table (in each currency)
 const PRICING_TABLE: Record<string, Record<string, number>> = {
   accelerator: {
@@ -103,6 +111,14 @@ export function getProductPrice(
   currencyCode: CurrencyCode
 ): number {
   return PRICING_TABLE[product]?.[currencyCode] ?? PRICING_TABLE[product]?.USD ?? 0;
+}
+
+/**
+ * Get the old combined price (pre-merge Accelerator + Bootcamp)
+ * Used for strikethrough pricing display
+ */
+export function getOldCombinedPrice(currencyCode: CurrencyCode): number {
+  return OLD_COMBINED_PRICE[currencyCode] ?? OLD_COMBINED_PRICE.USD;
 }
 
 /**

@@ -1,15 +1,16 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Users, Check } from "lucide-react";
+import { ArrowRight, Sparkles, Users, Check, Info } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 import { usePricing } from "@/context/PricingContext";
 
 export const Offerings = () => {
   const navigate = useNavigate();
-  const { formatPrice } = usePricing();
+  const { formatPrice, formatOldCombinedPrice } = usePricing();
 
   const acceleratorPrice = formatPrice("accelerator");
   const collectivePrice = formatPrice("collective_monthly");
+  const oldCombinedPrice = formatOldCombinedPrice();
 
   const offerings = [
     {
@@ -123,12 +124,25 @@ export const Offerings = () => {
                   </p>
 
                   {/* Price */}
-                  <p className="text-2xl font-semibold text-foreground mb-6">
-                    {offering.price}
-                    <span className="text-sm font-normal text-muted-foreground ml-1">
-                      {offering.priceNote}
-                    </span>
-                  </p>
+                  <div className="mb-6">
+                    {offering.id === "accelerator" && (
+                      <div className="flex items-center gap-2 mb-1">
+                        <span className="text-base text-muted-foreground line-through">{oldCombinedPrice}</span>
+                        <div className="relative group/tip">
+                          <Info className="w-3.5 h-3.5 text-muted-foreground/60 cursor-help" />
+                          <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 rounded-lg bg-popover border border-border text-xs text-popover-foreground opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 pointer-events-none z-10 text-center shadow-lg">
+                            Previously offered as two separate courses. Now combined into a single 30-day programme at a lower price.
+                          </div>
+                        </div>
+                      </div>
+                    )}
+                    <p className="text-2xl font-semibold text-foreground">
+                      {offering.price}
+                      <span className="text-sm font-normal text-muted-foreground ml-1">
+                        {offering.priceNote}
+                      </span>
+                    </p>
+                  </div>
 
                   {/* Features */}
                   {offering.featuresLabel ? (

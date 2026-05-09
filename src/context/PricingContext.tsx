@@ -5,7 +5,8 @@ import {
   GeoData,
   mapRegionToCurrency,
   formatPrice,
-  getProductPrice
+  getProductPrice,
+  getOldCombinedPrice
 } from "@/lib/pricing";
 
 interface PricingContextType {
@@ -15,6 +16,7 @@ interface PricingContextType {
   isLoading: boolean;
   formatPrice: (product: string) => string;
   getPrice: (product: string) => number;
+  formatOldCombinedPrice: () => string;
 }
 
 const PricingContext = createContext<PricingContextType | undefined>(undefined);
@@ -77,6 +79,10 @@ export const PricingProvider: React.FC<PricingProviderProps> = ({ children }) =>
     },
     getPrice: (product: string) => {
       return getProductPrice(product, currency);
+    },
+    formatOldCombinedPrice: () => {
+      const oldPrice = getOldCombinedPrice(currency);
+      return formatPrice(oldPrice, currency);
     }
   };
 

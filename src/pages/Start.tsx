@@ -12,10 +12,10 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { Check, X, ArrowRight, Clock, Plus } from "lucide-react";
+import { Check, X, ArrowRight, Clock, Plus, Info } from "lucide-react";
 
 const Start = () => {
-  const { currency, getPrice } = usePricing();
+  const { currency, getPrice, formatOldCombinedPrice } = usePricing();
 
   useEffect(() => {
     document.title = "Trading Accelerator | Zentō Collective";
@@ -543,9 +543,19 @@ const Start = () => {
                 Most structured trading programmes charge {symbol}2,000–{symbol}5,000
               </p>
 
+              <div className="flex items-center justify-center gap-3 mb-2">
+                <span className="text-xl text-muted-foreground line-through">{formatOldCombinedPrice()}</span>
+                <div className="relative group/tip inline-flex">
+                  <Info className="w-4 h-4 text-muted-foreground/60 cursor-help" />
+                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 rounded-lg bg-popover border border-border text-xs text-popover-foreground opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 pointer-events-none z-10 text-center shadow-lg">
+                    Previously offered as two separate courses. Now combined into a single 30-day programme at a lower price.
+                  </div>
+                </div>
+              </div>
+
               <Price
                 product="accelerator"
-                className="font-heading text-5xl md:text-6xl font-bold text-foreground mb-2 block"
+                className="font-heading text-5xl md:text-6xl font-bold text-foreground block"
               />
 
               {/* Daily cost reframe */}
