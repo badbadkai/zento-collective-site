@@ -13,6 +13,7 @@ import {
   AccordionContent,
 } from "@/components/ui/accordion";
 import { Check, ArrowRight, Clock, Plus, Info } from "lucide-react";
+import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 
 const Start = () => {
   const { currency, getPrice, formatOldCombinedPrice } = usePricing();
@@ -101,11 +102,13 @@ const Start = () => {
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-10 text-center">
-              What You Walk Away With
-            </h2>
+            <ScrollReveal className="mb-10 text-center">
+              <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+                What You Walk Away With
+              </h2>
+            </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 gap-4">
+            <ScrollRevealGroup className="grid md:grid-cols-2 gap-4" staggerDelay={80}>
               {[
                 {
                   title: "Trading Blueprint",
@@ -142,7 +145,7 @@ const Start = () => {
                   <p className="text-muted-foreground text-sm">{item.description}</p>
                 </div>
               ))}
-            </div>
+            </ScrollRevealGroup>
           </div>
         </div>
       </section>
@@ -151,11 +154,13 @@ const Start = () => {
       <section id="curriculum" className="section-spacing">
         <div className="container-studio">
           <div className="max-w-5xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-10 text-center">
-              The <span className="text-primary">30-Day</span> Curriculum
-            </h2>
+            <ScrollReveal className="mb-10 text-center">
+              <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+                The <span className="text-primary">30-Day</span> Curriculum
+              </h2>
+            </ScrollReveal>
 
-            <div className="space-y-8">
+            <ScrollRevealGroup className="space-y-8" staggerDelay={150}>
               {[
                 {
                   section: "Week 1 — Days 1–5",
@@ -236,7 +241,7 @@ const Start = () => {
                   </div>
                 </div>
               ))}
-            </div>
+            </ScrollRevealGroup>
           </div>
         </div>
       </section>
@@ -245,7 +250,7 @@ const Start = () => {
       <section id="pricing" className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
-          <div className="max-w-2xl mx-auto">
+          <ScrollReveal className="max-w-2xl mx-auto">
             <div className="p-8 md:p-12 rounded-2xl border border-primary/30 bg-primary/5 text-center">
               <p className="text-primary font-medium text-sm tracking-widest uppercase mb-6">
                 Investment
@@ -316,7 +321,7 @@ const Start = () => {
                 {" "}&mdash; ongoing live sessions, advanced analysis, and community.
               </p>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -324,10 +329,13 @@ const Start = () => {
       <section className="section-spacing">
         <div className="container-studio">
           <div className="max-w-3xl mx-auto">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-10 text-center">
-              Common <span className="text-primary">Questions</span>
-            </h2>
+            <ScrollReveal className="mb-10 text-center">
+              <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+                Common <span className="text-primary">Questions</span>
+              </h2>
+            </ScrollReveal>
 
+            <ScrollReveal>
             <Accordion type="single" collapsible className="space-y-4">
               {[
                 {
@@ -370,6 +378,7 @@ const Start = () => {
                 </AccordionItem>
               ))}
             </Accordion>
+            </ScrollReveal>
           </div>
         </div>
       </section>
@@ -378,7 +387,7 @@ const Start = () => {
       <section className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
         <div className="container-studio relative">
-          <div className="max-w-2xl mx-auto text-center">
+          <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
               Ready to <span className="text-primary">Start</span>?
             </h2>
@@ -399,7 +408,7 @@ const Start = () => {
                 </Button>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 

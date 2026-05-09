@@ -6,6 +6,7 @@ import { Button } from "@/components/ui/button";
 import { Price } from "@/components/Price";
 import { usePricing } from "@/context/PricingContext";
 import { getCurrencySymbol } from "@/lib/pricing";
+import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 import {
   Accordion,
   AccordionItem,
@@ -134,29 +135,29 @@ const Collective = () => {
     <div className="min-h-screen bg-background">
       <Header />
 
-      {/* Hero Section */}
+      {/* Hero */}
       <section className="pt-32 pb-20 md:pt-40 md:pb-28 relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
         <div className="container-studio relative">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
               <span className="text-primary font-medium text-sm tracking-widest uppercase">
-                The Premium Collective
+                Monthly Membership
               </span>
             </div>
             <h1
               className="font-heading text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-semibold mb-6 animate-fade-in"
               style={{ animationDelay: "0.1s" }}
             >
-              Sharpen Your Edge.{" "}
-              <span className="text-primary">Every Week.</span>
+              The Premium{" "}
+              <span className="text-primary">Collective</span>
             </h1>
             <p
               className="text-lg md:text-xl text-muted-foreground mb-4 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              Weekly live analysis, advanced strategy, and a community of
-              serious traders who do the work.
+              Live analysis, advanced strategy, and a community of traders who
+              take their craft seriously.
             </p>
             <p
               className="text-sm text-muted-foreground mb-10 animate-fade-in"
@@ -189,20 +190,116 @@ const Collective = () => {
         </div>
       </section>
 
-      {/* What's Inside */}
-      <section id="whats-inside" className="section-spacing relative">
+      {/* Pricing — immediately after hero */}
+      <section id="pricing" className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
-          <div className="max-w-4xl mx-auto">
-            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
-              What You Get
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              What's Inside the{" "}
-              <span className="text-primary">Collective</span>
-            </h2>
+          <div className="max-w-5xl mx-auto">
+            <ScrollReveal className="text-center mb-12">
+              <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
+                Choose Your Commitment
+              </p>
+              <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+                Simple, Transparent{" "}
+                <span className="text-primary">Pricing</span>
+              </h2>
+              <p className="text-muted-foreground max-w-xl mx-auto">
+                Same access at every tier. Commit longer, pay less.
+              </p>
+            </ScrollReveal>
 
-            <div className="grid md:grid-cols-2 gap-6">
+            <ScrollRevealGroup className="grid grid-cols-1 md:grid-cols-3 gap-6" staggerDelay={120}>
+              {tiers.map((tier) => (
+                <div
+                  key={tier.id}
+                  className={`relative rounded-2xl border p-8 transition-all duration-300 ${
+                    tier.highlighted
+                      ? "border-primary/40 bg-primary/5 md:-mt-4 md:mb-4 shadow-lg shadow-primary/10"
+                      : "border-border/50 bg-card/30 hover:border-primary/20"
+                  }`}
+                >
+                  {tier.highlighted && (
+                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
+                      <span className="px-4 py-1 text-xs font-bold bg-primary text-primary-foreground rounded-full whitespace-nowrap">
+                        Best Value
+                      </span>
+                    </div>
+                  )}
+
+                  <h3 className="font-heading text-xl font-semibold text-foreground mb-4">
+                    {tier.name}
+                  </h3>
+
+                  <div className="mb-2">
+                    <Price
+                      product={tier.product}
+                      className="font-heading text-4xl font-bold text-foreground"
+                    />
+                    <span className="text-muted-foreground text-lg ml-1">
+                      {tier.period}
+                    </span>
+                  </div>
+
+                  {tier.perMonth && (
+                    <p className="text-sm text-muted-foreground mb-1">
+                      {tier.perMonth}
+                    </p>
+                  )}
+
+                  {tier.savings && (
+                    <span className="inline-block mt-1 mb-4 px-3 py-1 text-xs font-semibold text-primary bg-primary/10 rounded-full">
+                      {tier.savings}
+                    </span>
+                  )}
+
+                  {!tier.savings && <div className="mb-4 mt-5" />}
+
+                  <ul className="space-y-3 mb-8">
+                    {[
+                      "Live trading sessions",
+                      "Trade recaps & breakdowns",
+                      "Resources & reinforcement activities",
+                      "Peer & mentor access",
+                    ].map((feature, idx) => (
+                      <li key={idx} className="flex gap-2.5 items-start">
+                        <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
+                        <span className="text-sm text-foreground">{feature}</span>
+                      </li>
+                    ))}
+                  </ul>
+
+                  <a href={tier.url} target="_blank" rel="noopener noreferrer">
+                    <Button
+                      variant={tier.highlighted ? "hero" : "premium"}
+                      size="lg"
+                      className="w-full group/btn"
+                    >
+                      Get Started
+                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
+                    </Button>
+                  </a>
+                </div>
+              ))}
+            </ScrollRevealGroup>
+          </div>
+        </div>
+      </section>
+
+      {/* What's Inside */}
+      <section id="whats-inside" className="section-spacing">
+        <div className="container-studio">
+          <div className="max-w-4xl mx-auto">
+            <ScrollReveal className="text-center mb-12">
+              <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
+                What You Get
+              </p>
+              <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+                What's Inside the{" "}
+                <span className="text-primary">Collective</span>
+              </h2>
+            </ScrollReveal>
+
+            <ScrollRevealGroup className="grid md:grid-cols-2 gap-6" staggerDelay={100}>
               {features.map((feature, idx) => {
                 const IconComponent = feature.icon;
                 return (
@@ -222,201 +319,70 @@ const Collective = () => {
                   </div>
                 );
               })}
-            </div>
+            </ScrollRevealGroup>
           </div>
         </div>
       </section>
 
       {/* Who This Is For */}
-      <section className="section-spacing">
-        <div className="container-studio">
-          <div className="max-w-3xl mx-auto">
-            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
-              Is This You?
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              Built for{" "}
-              <span className="text-primary">Active Traders</span>
-            </h2>
-
-            <div className="p-8 rounded-2xl border border-primary/20 bg-primary/5 mb-6">
-              <ul className="space-y-4">
-                {[
-                  "Accelerator graduates ready to keep building momentum",
-                  "You've moved past the basics and want ongoing sharpening",
-                  "You want live market context, not just recorded content",
-                  "You value discipline and peer accountability",
-                ].map((item, idx) => (
-                  <li key={idx} className="flex gap-3 items-start">
-                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                    <span className="text-foreground text-sm">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </div>
-
-            <p className="text-center text-muted-foreground text-sm">
-              New to trading? The{" "}
-              <Link
-                to="/start"
-                className="text-primary hover:underline font-medium"
-              >
-                Accelerator
-              </Link>{" "}
-              builds your foundation in 30 days. The Collective is where you go next.
-            </p>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing Tiers */}
-      <section id="pricing" className="section-spacing relative">
+      <section className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
-          <div className="max-w-5xl mx-auto">
-            <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4 text-center">
-              Choose Your Commitment
-            </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4 text-center">
-              Simple, Transparent{" "}
-              <span className="text-primary">Pricing</span>
-            </h2>
-            <p className="text-muted-foreground text-center mb-12 max-w-xl mx-auto">
-              Same access at every tier. Commit longer, pay less.
-            </p>
+          <div className="max-w-3xl mx-auto">
+            <ScrollReveal className="text-center mb-10">
+              <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+                Built for{" "}
+                <span className="text-primary">Active Traders</span>
+              </h2>
+            </ScrollReveal>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-              {tiers.map((tier) => (
-                <div
-                  key={tier.id}
-                  className={`relative rounded-2xl border p-8 transition-all duration-300 ${
-                    tier.highlighted
-                      ? "border-primary/40 bg-primary/5 md:-mt-4 md:mb-4 shadow-lg shadow-primary/10"
-                      : "border-border/50 bg-card/30 hover:border-primary/20"
-                  }`}
-                >
-                  {/* Best Value badge */}
-                  {tier.highlighted && (
-                    <div className="absolute -top-3 left-1/2 -translate-x-1/2">
-                      <span className="px-4 py-1 text-xs font-bold bg-primary text-primary-foreground rounded-full whitespace-nowrap">
-                        Best Value
-                      </span>
-                    </div>
-                  )}
+            <ScrollReveal>
+              <div className="p-8 rounded-2xl border border-primary/20 bg-primary/5 mb-6">
+                <ul className="space-y-4">
+                  {[
+                    "Accelerator graduates ready to keep building momentum",
+                    "You've moved past the basics and want ongoing sharpening",
+                    "You want live market context, not just recorded content",
+                    "You value discipline and peer accountability",
+                  ].map((item, idx) => (
+                    <li key={idx} className="flex gap-3 items-start">
+                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                      <span className="text-foreground text-sm">{item}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-                  {/* Tier name */}
-                  <h3 className="font-heading text-xl font-semibold text-foreground mb-4">
-                    {tier.name}
-                  </h3>
-
-                  {/* Price */}
-                  <div className="mb-2">
-                    <Price
-                      product={tier.product}
-                      className="font-heading text-4xl font-bold text-foreground"
-                    />
-                    <span className="text-muted-foreground text-lg">
-                      {tier.period}
-                    </span>
-                  </div>
-
-                  {/* Per-month breakdown */}
-                  {tier.perMonth && (
-                    <p className="text-sm text-muted-foreground mb-1">
-                      {tier.perMonth}
-                    </p>
-                  )}
-
-                  {/* Savings badge */}
-                  {tier.savings && (
-                    <span className="inline-block mt-1 mb-4 px-3 py-1 text-xs font-semibold text-primary bg-primary/10 rounded-full">
-                      {tier.savings}
-                    </span>
-                  )}
-
-                  {/* Spacer for monthly (no savings/perMonth) */}
-                  {!tier.savings && <div className="mb-4 mt-5" />}
-
-                  {/* Feature summary */}
-                  <ul className="space-y-3 mb-8">
-                    {[
-                      "Live trading sessions",
-                      "Trade recaps & breakdowns",
-                      "Resources & reinforcement activities",
-                      "Peer & mentor access",
-                    ].map((feature, idx) => (
-                      <li key={idx} className="flex gap-2.5 items-start">
-                        <Check className="w-4 h-4 text-primary flex-shrink-0 mt-0.5" />
-                        <span className="text-sm text-foreground">
-                          {feature}
-                        </span>
-                      </li>
-                    ))}
-                  </ul>
-
-                  {/* CTA */}
-                  <a
-                    href={tier.url}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    <Button
-                      variant={tier.highlighted ? "hero" : "premium"}
-                      size="lg"
-                      className="w-full group/btn"
-                    >
-                      Get Started
-                      <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover/btn:translate-x-1" />
-                    </Button>
-                  </a>
-                </div>
-              ))}
-            </div>
+              <p className="text-center text-muted-foreground text-sm">
+                New to trading? The{" "}
+                <Link to="/start" className="text-primary hover:underline font-medium">
+                  Accelerator
+                </Link>{" "}
+                builds your foundation in 30 days. The Collective is where you go next.
+              </p>
+            </ScrollReveal>
           </div>
         </div>
       </section>
 
-      {/* FAQ Section */}
+      {/* FAQ */}
       <section className="section-spacing">
         <div className="container-studio">
-          <div className="text-center mb-12 md:mb-16">
+          <ScrollReveal className="text-center mb-12">
             <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
               Common Questions
             </p>
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold">
               Before You <span className="text-primary">Join</span>
             </h2>
-            <p className="text-muted-foreground text-base max-w-xl mx-auto">
-              Straight answers so you can make an informed decision.
-            </p>
-          </div>
+          </ScrollReveal>
 
           <div className="max-w-3xl mx-auto">
-            <Accordion type="single" collapsible className="space-y-4">
+            <ScrollRevealGroup className="space-y-4" staggerDelay={80}>
               {faqItems.map((item, idx) => (
-                <AccordionItem
-                  key={idx}
-                  value={`faq-${idx}`}
-                  className="group border border-border/50 rounded-xl bg-card/30 overflow-hidden data-[state=open]:border-primary/30 transition-colors"
-                >
-                  <AccordionTrigger className="px-6 py-5 hover:no-underline group-data-[state=open]:text-primary transition-colors [&>svg]:hidden">
-                    <div className="flex items-center justify-between w-full">
-                      <span className="font-medium text-left text-base md:text-lg">
-                        {item.q}
-                      </span>
-                      <div className="flex-shrink-0 ml-4 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary/20 transition-colors">
-                        <Plus className="w-4 h-4 text-primary transition-transform duration-300 group-data-[state=open]:rotate-45" />
-                      </div>
-                    </div>
-                  </AccordionTrigger>
-                  <AccordionContent className="px-6 pb-5">
-                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
-                      {item.a}
-                    </p>
-                  </AccordionContent>
-                </AccordionItem>
+                <AccordionWrapper key={idx} item={item} idx={idx} />
               ))}
-            </Accordion>
+            </ScrollRevealGroup>
           </div>
         </div>
       </section>
@@ -425,23 +391,15 @@ const Collective = () => {
       <section className="section-spacing relative">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
         <div className="container-studio relative">
-          <div className="max-w-3xl mx-auto text-center">
+          <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
-              Ready to <span className="text-primary">Level Up</span>?
+              Ready to <span className="text-primary">Join</span>?
             </h2>
-
-            <p className="text-lg text-muted-foreground mb-6">
+            <p className="text-muted-foreground mb-8">
               Stop consuming. Start developing. Join traders who take their
               craft seriously.
             </p>
-
-            <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
-              The Collective isn't another Discord group. It's a structured
-              environment where active traders sharpen their edge together,
-              with live analysis, advanced strategy, and real accountability.
-            </p>
-
-            <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
                 variant="hero"
                 size="lg"
@@ -457,7 +415,7 @@ const Collective = () => {
                 </Button>
               </Link>
             </div>
-          </div>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -465,5 +423,31 @@ const Collective = () => {
     </div>
   );
 };
+
+/** Accordion needs to be wrapped separately to work with ScrollRevealGroup */
+const AccordionWrapper = ({ item, idx }: { item: { q: string; a: string }; idx: number }) => (
+  <Accordion type="single" collapsible>
+    <AccordionItem
+      value={`faq-${idx}`}
+      className="group border border-border/50 rounded-xl bg-card/30 overflow-hidden data-[state=open]:border-primary/30 transition-colors"
+    >
+      <AccordionTrigger className="px-6 py-5 hover:no-underline group-data-[state=open]:text-primary transition-colors [&>svg]:hidden">
+        <div className="flex items-center justify-between w-full">
+          <span className="font-medium text-left text-base md:text-lg">
+            {item.q}
+          </span>
+          <div className="flex-shrink-0 ml-4 w-8 h-8 rounded-full bg-primary/10 flex items-center justify-center group-data-[state=open]:bg-primary/20 transition-colors">
+            <Plus className="w-4 h-4 text-primary transition-transform duration-300 group-data-[state=open]:rotate-45" />
+          </div>
+        </div>
+      </AccordionTrigger>
+      <AccordionContent className="px-6 pb-5">
+        <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+          {item.a}
+        </p>
+      </AccordionContent>
+    </AccordionItem>
+  </Accordion>
+);
 
 export default Collective;
