@@ -1,27 +1,33 @@
 import { Button } from "@/components/ui/button";
-import { ArrowRight, Sparkles, Target, Users, Check } from "lucide-react";
+import { ArrowRight, Sparkles, Users, Check } from "lucide-react";
 import { useNavigate } from "react-router-dom";
 import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
+import { usePricing } from "@/context/PricingContext";
 
 export const Offerings = () => {
   const navigate = useNavigate();
+  const { formatPrice } = usePricing();
+
+  const acceleratorPrice = formatPrice("accelerator");
+  const collectivePrice = formatPrice("collective_monthly");
 
   const offerings = [
     {
       id: "accelerator",
       icon: Sparkles,
-      badge: "Intensive Programme",
+      badge: "30-Day Programme",
       title: "The Accelerator",
-      subtitle: "For complete beginners ready to build real foundations.",
-      description:
-        "A 14-day intensive programme that equips you with the absolute basics of trading: how markets work, how to read charts, how to manage risk, and how to build and execute a simple trading plan.",
+      subtitle: "For complete beginners ready to build real trading foundations in 30 days.",
       featuresLabel: "",
       features: [
-        "Written trading plan with defined rules",
-        "Risk framework & position sizing",
-        "Hands-on demo trading experience",
-        "Clear path to advanced development",
+        "Structured daily lessons",
+        "Complete trading blueprint",
+        "Risk management framework",
+        "Psychology and discipline system",
+        "Demo execution practice",
       ],
+      price: acceleratorPrice,
+      priceNote: "one-time",
       cta: "Learn More",
       action: () => {
         window.scrollTo(0, 0);
@@ -30,42 +36,20 @@ export const Offerings = () => {
       highlighted: false,
     },
     {
-      id: "bootcamp",
-      icon: Target,
-      badge: "Performance Programme",
-      title: "30-Day Bootcamp",
-      subtitle: "For traders ready to break through.",
-      description:
-        "A high-contact, performance-focused programme for traders who already know the basics but aren't seeing the results they want.",
-      featuresLabel: "",
-      features: [
-        "Full strategy audit and rebuild",
-        "Weekly live trading sessions",
-        "Daily journal review with personal feedback",
-        "Prop firm challenge preparation",
-      ],
-      cta: "Learn More",
-      action: () => {
-        window.scrollTo(0, 0);
-        navigate("/bootcamp");
-      },
-      highlighted: false,
-    },
-    {
       id: "community",
       icon: Users,
-      badge: "Continuous Access",
-      title: "Premium Collective",
-      subtitle: "For traders who want to keep sharpening their edge.",
-      description:
-        "An exclusive environment of serious practitioners. Live analysis, advanced discussions, and the accountability that drives real progress.",
-      featuresLabel: "Join The Collective to unlock:",
+      badge: "Monthly Membership",
+      title: "The Collective",
+      subtitle: "For traders who want ongoing sharpening, community, and advanced resources.",
+      featuresLabel: "",
       features: [
         "Weekly live trading sessions",
         "Market analysis and breakdowns",
         "Advanced strategy deep-dives",
         "Direct peer and mentor access",
       ],
+      price: collectivePrice,
+      priceNote: "/mo",
       cta: "Join the Collective",
       action: () => {
         window.scrollTo(0, 0);
@@ -89,13 +73,13 @@ export const Offerings = () => {
           <h2
             className="font-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-semibold mb-4"
 >
-            Three Paths. <span className="text-primary">One Standard.</span>
+            Two Paths. <span className="text-primary">One Standard.</span>
           </h2>
         </ScrollReveal>
 
         {/* Offerings Grid */}
-        <ScrollRevealGroup className="grid md:grid-cols-3 gap-5 lg:gap-6 max-w-6xl mx-auto" staggerDelay={150}>
-          {offerings.map((offering, index) => {
+        <ScrollRevealGroup className="grid md:grid-cols-2 gap-5 lg:gap-6 max-w-4xl mx-auto" staggerDelay={150}>
+          {offerings.map((offering) => {
             const IconComponent = offering.icon;
             return (
               <div
@@ -133,12 +117,17 @@ export const Offerings = () => {
                     {offering.title}
                   </h3>
 
-                  {/* Subtitle + Description */}
+                  {/* Subtitle */}
                   <p className="text-base md:text-lg text-muted-foreground mb-2">
                     {offering.subtitle}
                   </p>
-                  <p className="text-sm text-muted-foreground mb-8">
-                    {offering.description}
+
+                  {/* Price */}
+                  <p className="text-2xl font-semibold text-foreground mb-6">
+                    {offering.price}
+                    <span className="text-sm font-normal text-muted-foreground ml-1">
+                      {offering.priceNote}
+                    </span>
                   </p>
 
                   {/* Features */}
@@ -170,6 +159,13 @@ export const Offerings = () => {
             );
           })}
         </ScrollRevealGroup>
+
+        {/* Progression note */}
+        <ScrollReveal className="text-center mt-8">
+          <p className="text-sm text-muted-foreground">
+            Complete the Accelerator, then continue with the Collective.
+          </p>
+        </ScrollReveal>
       </div>
     </section>
   );

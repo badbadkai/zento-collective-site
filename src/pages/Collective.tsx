@@ -64,7 +64,7 @@ const Collective = () => {
       product: "collective_quarterly",
       period: "/qtr",
       perMonth: `${symbol}${quarterlyPerMonth}/mo`,
-      savings: "Save ~17%",
+      savings: "Save ~10%",
       highlighted: true,
       url: "https://whop.com/zento-collective/zento-collective-premium/",
     },
@@ -74,7 +74,7 @@ const Collective = () => {
       product: "collective_annual",
       period: "/yr",
       perMonth: `${symbol}${annualPerMonth}/mo`,
-      savings: "Save ~37%",
+      savings: "Save ~25%",
       highlighted: false,
       url: "https://whop.com/zento-collective/zento-collective-premium/",
     },
@@ -152,11 +152,17 @@ const Collective = () => {
               <span className="text-primary">Every Week.</span>
             </h1>
             <p
-              className="text-lg md:text-xl text-muted-foreground mb-10 animate-fade-in"
+              className="text-lg md:text-xl text-muted-foreground mb-4 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
               Weekly live analysis, advanced strategy, and a community of
               serious traders who do the work.
+            </p>
+            <p
+              className="text-sm text-muted-foreground mb-10 animate-fade-in"
+              style={{ animationDelay: "0.25s" }}
+            >
+              Finished the Accelerator? This is where the real development continues.
             </p>
             <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
@@ -236,6 +242,7 @@ const Collective = () => {
             <div className="p-8 rounded-2xl border border-primary/20 bg-primary/5 mb-6">
               <ul className="space-y-4">
                 {[
+                  "Accelerator graduates ready to keep building momentum",
                   "You've moved past the basics and want ongoing sharpening",
                   "You want live market context, not just recorded content",
                   "You value discipline and peer accountability",
@@ -249,21 +256,14 @@ const Collective = () => {
             </div>
 
             <p className="text-center text-muted-foreground text-sm">
-              Need structured training first? Start with the{" "}
+              New to trading? The{" "}
               <Link
                 to="/start"
                 className="text-primary hover:underline font-medium"
               >
                 Accelerator
               </Link>{" "}
-              (beginners) or the{" "}
-              <Link
-                to="/bootcamp"
-                className="text-primary hover:underline font-medium"
-              >
-                Bootcamp
-              </Link>{" "}
-              (experienced traders).
+              builds your foundation in 30 days. The Collective is where you go next.
             </p>
           </div>
         </div>

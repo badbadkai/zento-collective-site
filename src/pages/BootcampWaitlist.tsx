@@ -167,8 +167,8 @@ const Apply: React.FC = () => {
                   <option value="" disabled>
                     Select a programme
                   </option>
-                  <option value="accelerator">The Accelerator (14-day beginner intensive)</option>
-                  <option value="bootcamp">The Bootcamp (30-day advanced programme)</option>
+                  <option value="accelerator">The Accelerator (30-day programme)</option>
+                  <option value="collective">The Collective (monthly membership)</option>
                 </select>
               </div>
 

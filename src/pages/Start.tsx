@@ -22,7 +22,7 @@ const Start = () => {
   }, []);
 
   const price = getPrice("accelerator");
-  const dailyCost = (price / 14).toFixed(2);
+  const dailyCost = (price / 30).toFixed(2);
   const symbol = getCurrencySymbol(currency);
 
   const scrollToSection = (id: string) => {
@@ -43,12 +43,12 @@ const Start = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
               <span className="text-primary font-medium text-sm tracking-widest uppercase">
-                14-Day Intensive
+                30-Day Programme
               </span>
               <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
               <span className="flex items-center gap-1.5 text-muted-foreground text-sm">
                 <Clock className="w-3.5 h-3.5" />
-                ~1 hr/day
+                ~1-2 hrs/day
               </span>
             </div>
             <h1
@@ -62,8 +62,8 @@ const Start = () => {
               className="text-lg md:text-xl text-muted-foreground mb-6 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              A 14-day intensive programme that equips complete beginners with the
-              foundations of trading, a written strategy, and the discipline to execute it.
+              A 30-day programme that takes complete beginners from zero to a
+              written strategy, real demo experience, and the discipline to execute it.
             </p>
             <p
               className="text-base text-muted-foreground font-medium mb-10 animate-fade-in"
@@ -114,11 +114,11 @@ const Start = () => {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "You're willing to do the work without guarantees",
-                    "You want clear rules, not hope or signals",
-                    "You can commit ~1 hour per day for 2 weeks",
-                    "You understand risk before reward",
-                    "You're ready to document what you learn",
+                    "You're a complete beginner who wants to learn trading properly from scratch",
+                    "You're changing careers and need a structured path into the markets",
+                    "You've tried before, got burned, and want to start again with a real system",
+                    "You want structure, rules, and accountability, not tips and signals",
+                    "You can commit ~1-2 hours per day for 30 days",
                     "You see trading as a skill to build, not wealth to grab",
                   ].map((item, idx) => (
                     <li key={idx} className="flex gap-3 items-start">
@@ -136,12 +136,12 @@ const Start = () => {
                 </h3>
                 <ul className="space-y-4">
                   {[
-                    "You want guaranteed profits or shortcuts",
-                    "You expect someone to tell you when to trade",
-                    "You're not willing to paper trade first",
-                    "You can't tolerate losing trades",
+                    "You're looking for signals, alerts, or someone to tell you when to trade",
+                    "You're not willing to put in the daily work for 30 days",
+                    "You expect guaranteed profits or a magic system",
+                    "You want to get rich quick",
+                    "You can't tolerate losing trades or accept that losses are part of the process",
                     "You're looking for secrets or special indicators",
-                    "You want to start trading with real money immediately",
                   ].map((item, idx) => (
                     <li key={idx} className="flex gap-3 items-start">
                       <X className="w-5 h-5 text-destructive flex-shrink-0 mt-0.5" />
@@ -215,34 +215,40 @@ const Start = () => {
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
               What You Build in{" "}
-              <span className="text-primary">14 Days</span>
+              <span className="text-primary">30 Days</span>
             </h2>
 
             <div className="space-y-4">
               {[
                 {
                   number: "01",
-                  title: "One Trading Blueprint",
+                  title: "Complete Trading Blueprint",
                   description:
-                    "A single, written strategy with specific entry logic, market conditions, and setup definitions. No ambiguity.",
+                    "Your personal strategy document. Specific entry logic, market conditions, setup definitions, and trade management rules. No ambiguity.",
                 },
                 {
                   number: "02",
-                  title: "One Risk Framework",
+                  title: "Risk Management Framework",
                   description:
-                    "Defined position sizing, maximum daily loss, stop loss placement, and risk-to-reward requirements. Written.",
+                    "Position sizing rules, daily loss limits, drawdown thresholds, and stop loss placement. Written down, non-negotiable.",
                 },
                 {
                   number: "03",
-                  title: "One Psychological Operating System",
+                  title: "Psychology & Discipline System",
                   description:
-                    "Rules for how you think, decide, and act when prices move. This replaces emotion with discipline.",
+                    "If/then rules for every emotional scenario. What to do when you're angry, when you're on a streak, when you want to revenge trade. Protocols, not willpower.",
                 },
                 {
                   number: "04",
-                  title: "One Journaling Process",
+                  title: "Journaling & Review System",
                   description:
-                    "A system to record every trade, decision, and lesson. This is your feedback loop. Without it, you repeat mistakes.",
+                    "Trade logging, error tracking, and pattern recognition. This is the feedback loop that turns experience into skill. Without it, you repeat mistakes.",
+                },
+                {
+                  number: "05",
+                  title: "Demo Execution Track Record",
+                  description:
+                    "Real trades taken on demo, logged, reviewed, and critiqued. Not theory. Actual evidence of your system in action.",
                 },
               ].map((item, idx) => (
                 <div
@@ -273,35 +279,57 @@ const Start = () => {
               The Roadmap
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
-              Your <span className="text-primary">14-Day</span> Journey
+              Your <span className="text-primary">30-Day</span> Journey
             </h2>
 
             <div className="space-y-8">
               {[
                 {
-                  section: "Days 1–7",
-                  title: "Foundation",
+                  section: "Week 1 — Days 1–5",
+                  title: "Foundations",
                   days: [
-                    { day: "Day 1", topic: "Market Foundations" },
-                    { day: "Day 2", topic: "Platform Setup" },
-                    { day: "Day 3", topic: "Order Types" },
-                    { day: "Day 4", topic: "Psychology" },
-                    { day: "Day 5", topic: "Risk Management" },
-                    { day: "Day 6", topic: "Price Phases & Sessions" },
-                    { day: "Day 7", topic: "Live Webinar & Q&A" },
+                    { day: "Day 1", topic: "Market Foundations", weekend: false },
+                    { day: "Day 2", topic: "Risk & Capital", weekend: false },
+                    { day: "Day 3", topic: "Trading Psychology", weekend: false },
+                    { day: "Day 4", topic: "Charts & Price Action", weekend: false },
+                    { day: "Day 5", topic: "Structure & Routine", weekend: false },
+                    { day: "Days 6–7", topic: "Weekend Review Pack", weekend: true },
                   ],
                 },
                 {
-                  section: "Days 8–14",
-                  title: "Strategy & Execution",
+                  section: "Week 2 — Days 8–12",
+                  title: "Strategy",
                   days: [
-                    { day: "Day 8", topic: "Candlestick Anatomy" },
-                    { day: "Day 9", topic: "Basic Market Structure" },
-                    { day: "Day 10", topic: "Entry & Exit Rules" },
-                    { day: "Day 11", topic: "Your Trading Plan" },
-                    { day: "Day 12", topic: "Journaling" },
-                    { day: "Day 13", topic: "Demo & Backtesting" },
-                    { day: "Day 14", topic: "Prop Firms & Live Webinar" },
+                    { day: "Day 8", topic: "Market Environment", weekend: false },
+                    { day: "Day 9", topic: "Setup Identification", weekend: false },
+                    { day: "Day 10", topic: "Entry Rules", weekend: false },
+                    { day: "Day 11", topic: "Exit & Management", weekend: false },
+                    { day: "Day 12", topic: "Blueprint Assembly", weekend: false },
+                    { day: "Days 13–14", topic: "Weekend Review Pack", weekend: true },
+                  ],
+                },
+                {
+                  section: "Week 3 — Days 15–19",
+                  title: "Execution",
+                  days: [
+                    { day: "Day 15", topic: "Demo Trading Begins", weekend: false },
+                    { day: "Day 16", topic: "Trade Journaling", weekend: false },
+                    { day: "Day 17", topic: "Error Tracking", weekend: false },
+                    { day: "Day 18", topic: "Loss Management", weekend: false },
+                    { day: "Day 19", topic: "Consistency Protocol", weekend: false },
+                    { day: "Days 20–21", topic: "Weekend Review Pack", weekend: true },
+                  ],
+                },
+                {
+                  section: "Week 4 — Days 22–26",
+                  title: "Performance",
+                  days: [
+                    { day: "Day 22", topic: "Expectancy & Edge", weekend: false },
+                    { day: "Day 23", topic: "Drawdown Rules", weekend: false },
+                    { day: "Day 24", topic: "Prop Firm Simulation", weekend: false },
+                    { day: "Day 25", topic: "Strategy Lock-In", weekend: false },
+                    { day: "Day 26", topic: "90-Day Plan", weekend: false },
+                    { day: "Days 27–30", topic: "Final Review & Buffer", weekend: true },
                   ],
                 },
               ].map((sectionData, idx) => (
@@ -314,12 +342,12 @@ const Start = () => {
                       {sectionData.title}
                     </h3>
                   </div>
-                  <div className="grid grid-cols-2 md:grid-cols-4 lg:grid-cols-7 gap-3">
+                  <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-3">
                     {sectionData.days.map((item, dayIdx) => (
                       <div
                         key={dayIdx}
                         className={`p-4 rounded-xl border text-center transition-colors ${
-                          item.topic === "Consolidation"
+                          item.weekend
                             ? "border-primary/20 bg-primary/5 hover:border-primary/40"
                             : "border-border/50 bg-card/30 hover:border-primary/30"
                         }`}
@@ -336,6 +364,10 @@ const Start = () => {
                 </div>
               ))}
             </div>
+
+            <p className="text-center text-muted-foreground text-sm mt-6 italic">
+              Weekend packs between each week include review exercises, practice drills, and consolidation work. The curriculum is structured around weekdays with weekends for reinforcement.
+            </p>
           </div>
         </div>
       </section>
@@ -406,16 +438,16 @@ const Start = () => {
             </p>
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-12 text-center">
               What You'll Have by{" "}
-              <span className="text-primary">Day 14</span>
+              <span className="text-primary">Day 30</span>
             </h2>
 
             <div className="space-y-4">
               {[
-                "A written trading plan with defined entry logic, exit rules, and market conditions",
-                "A risk management framework with position sizing and stop loss rules",
-                "Practical demo trading experience with a basic trade journal",
-                "The psychological foundations to avoid revenge trading, FOMO, and overtrading",
-                "A clear path forward: continue independently, or join the Bootcamp for advanced development",
+                "A complete trading blueprint with defined entry logic, exit rules, market conditions, and trade management",
+                "A risk management framework with position sizing, daily limits, and drawdown rules",
+                "A psychology and discipline system with if/then protocols for every emotional scenario",
+                "A journaling and review system for trade logging, error tracking, and pattern recognition",
+                "A demo execution track record with real trades logged, reviewed, and critiqued",
               ].map((item, idx) => (
                 <div
                   key={idx}
@@ -503,12 +535,12 @@ const Start = () => {
 
             <div className="mb-8">
               <p className="text-muted-foreground mb-6">
-                14 days. One coherent framework. Written rules for everything.
+                30 days. One coherent framework. Written rules for everything. Demo execution included.
               </p>
 
               {/* Value anchor */}
               <p className="text-sm text-muted-foreground mb-3">
-                Most trading bootcamps charge {symbol}2,000–{symbol}5,000
+                Most structured trading programmes charge {symbol}2,000–{symbol}5,000
               </p>
 
               <Price
@@ -518,7 +550,7 @@ const Start = () => {
 
               {/* Daily cost reframe */}
               <p className="text-primary font-medium text-sm mb-4">
-                That's {symbol}{dailyCost}/day for 14 days of structured development
+                That's {symbol}{dailyCost}/day for 30 days of guided training
               </p>
 
               <p className="text-muted-foreground">
@@ -542,10 +574,11 @@ const Start = () => {
 
             <div className="space-y-3 mb-12">
               {[
-                "14 days of structured, daily curriculum",
+                "30 days of structured, daily curriculum across 4 weeks",
                 "Weekly live Q&A sessions with guided backtesting",
                 "Private community access and peer accountability",
                 "All templates, frameworks, and journaling tools included",
+                "Demo trading execution with review and feedback",
                 "Lifetime access to your materials and community",
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-3 justify-center items-center">
@@ -586,19 +619,19 @@ const Start = () => {
               {[
                 {
                   q: "How much time do I need each day?",
-                  a: "Plan for about 1 hour per day. Each day has a focused lesson and an action step. Some days are heavier (strategy building, demo trading), some are lighter (reviews, consolidation). You can fit this around a full-time job.",
+                  a: "Plan for 1-2 hours per day. Each weekday has a focused lesson and an action step. Some days are heavier (strategy building, demo trading), some are lighter (reviews, consolidation). Weekends include optional review packs. You can fit this around a full-time job.",
                 },
                 {
                   q: "Do I need any prior trading experience?",
-                  a: "No. The Accelerator is designed specifically for complete beginners. We start from the absolute basics and build up to a working trading plan in 14 days. If you already have experience but struggle with consistency, the Bootcamp is a better fit — it's designed for traders who know the basics but need to rebuild their process.",
+                  a: "No. The Accelerator is designed specifically for complete beginners. We start from the absolute basics and build up to a working trading plan, a demo track record, and the discipline to execute it over 30 days.",
                 },
                 {
                   q: "What tools or platforms do I need?",
                   a: "You'll need access to a charting platform (TradingView works, the free tier is fine) and a demo/paper trading account with any broker. We don't require specific paid software. You'll also need something to journal with, and a spreadsheet or notebook works.",
                 },
                 {
-                  q: "What happens after the 14 days?",
-                  a: "You keep lifetime access to all your materials and templates. If you want to go deeper, the Bootcamp picks up where the Accelerator leaves off — advanced strategy work, daily journal reviews, and prop firm preparation. You can also join the Premium Collective for ongoing live sessions and community support.",
+                  q: "What happens after the 30 days?",
+                  a: "After 30 days, you'll have everything you need to trade independently. Your blueprint, risk rules, journal system, and demo track record are yours to keep. If you want to keep sharpening, join the Collective ($99/mo) for ongoing live sessions, advanced analysis, and community.",
                 },
                 {
                   q: "Is there a refund policy?",
@@ -606,7 +639,7 @@ const Start = () => {
                 },
                 {
                   q: "Will I be profitable after this?",
-                  a: "We don't promise profitability, and nobody honestly can. What we promise is that you'll have a complete, written trading system with rules for entry, exit, risk, and psychology. Whether that system is profitable depends on your execution, discipline, and continued refinement. The program gives you the structure. The results depend on you.",
+                  a: "We don't promise profitability, and nobody honestly can. What we promise is that you'll have a complete, written trading system with rules for entry, exit, risk, and psychology, plus a demo track record proving you can follow it. Whether that system is profitable depends on your execution, discipline, and continued refinement. The program gives you the structure. The results depend on you.",
                 },
               ].map((item, idx) => (
                 <AccordionItem
@@ -651,16 +684,16 @@ const Start = () => {
             </p>
 
             <p className="text-muted-foreground mb-12 max-w-2xl mx-auto">
-              You've spent enough time wondering if you can trade. Two weeks of
+              You've spent enough time wondering if you can trade. 30 days of
               structured, focused work will give you the foundations, a written
-              plan, and real demo experience. You'll know where you stand and
+              plan, and a real demo track record. You'll know where you stand and
               what to do next.
             </p>
 
             <div className="flex flex-col sm:flex-row gap-4 justify-center mb-8">
               <Link to="/apply?programme=accelerator">
                 <Button variant="hero" size="lg" className="group">
-                  Start Your 14 Days
+                  Applications Are Open
                   <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
                 </Button>
               </Link>

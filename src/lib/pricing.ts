@@ -14,34 +14,28 @@ const EUROZONE_COUNTRIES = new Set([
 // Fixed pricing table (in each currency)
 const PRICING_TABLE: Record<string, Record<string, number>> = {
   accelerator: {
-    USD: 329,
-    SGD: 433,
-    GBP: 249,
-    EUR: 299
-  },
-  bootcamp: {
-    USD: 599,
-    SGD: 779,
-    GBP: 449,
-    EUR: 539
+    USD: 399,
+    SGD: 519,
+    GBP: 299,
+    EUR: 359
   },
   collective_monthly: {
-    USD: 129,
-    SGD: 169,
-    GBP: 99,
-    EUR: 119
+    USD: 99,
+    SGD: 129,
+    GBP: 75,
+    EUR: 89
   },
   collective_quarterly: {
-    USD: 329,
-    SGD: 429,
-    GBP: 249,
-    EUR: 299
+    USD: 269,
+    SGD: 349,
+    GBP: 199,
+    EUR: 239
   },
   collective_annual: {
-    USD: 999,
-    SGD: 1299,
-    GBP: 749,
-    EUR: 899
+    USD: 899,
+    SGD: 1169,
+    GBP: 679,
+    EUR: 809
   }
 };
 

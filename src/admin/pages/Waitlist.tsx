@@ -18,7 +18,7 @@ export default function AdminWaitlist() {
   const [selected, setSelected] = useState<string | null>(null);
   const [visible, setVisible] = useState(false);
   const [filterConverted, setFilterConverted] = useState<"all" | "converted" | "pending">("all");
-  const [filterProgramme, setFilterProgramme] = useState<"all" | "accelerator" | "bootcamp">("all");
+  const [filterProgramme, setFilterProgramme] = useState<"all" | "accelerator" | "collective" | "bootcamp">("all");
 
   useEffect(() => { document.title = "Waitlist | Admin Portal"; }, []);
 
@@ -150,7 +150,7 @@ export default function AdminWaitlist() {
         />
         </div>
         <div className="flex items-center gap-1">
-          {(["all", "accelerator", "bootcamp"] as const).map((f) => (
+          {(["all", "accelerator", "collective", "bootcamp"] as const).map((f) => (
             <Button
               key={f}
               variant={filterProgramme === f ? "default" : "ghost"}
@@ -223,7 +223,7 @@ export default function AdminWaitlist() {
                               ? "bg-blue-500/10 text-blue-500"
                               : "bg-orange-500/10 text-orange-500"
                           }`}>
-                            {entry.programme_interest === "accelerator" ? "Accelerator" : "Bootcamp"}
+                            {entry.programme_interest === "accelerator" ? "Accelerator" : entry.programme_interest === "collective" ? "Collective" : "Bootcamp (legacy)"}
                           </span>
                         ) : (
                           <span className="text-xs text-muted-foreground">-</span>

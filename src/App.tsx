@@ -16,7 +16,6 @@ import RefundPolicy from "./pages/RefundPolicy";
 import Contact from "./pages/Contact";
 import Start from "./pages/Start";
 import Collective from "./pages/Collective";
-import Bootcamp from "./pages/Bootcamp";
 import Articles from "./pages/Articles";
 import WaitlistPage from "./pages/WaitlistPage";
 import BootcampWaitlist from "./pages/BootcampWaitlist";
@@ -61,7 +60,6 @@ const MarketingRoutes = () => {
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
         <Route path="/start" element={<PageTransition><Start /></PageTransition>} />
         <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
-        <Route path="/bootcamp" element={<PageTransition><Bootcamp /></PageTransition>} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
         <Route path="/apply" element={<PageTransition><BootcampWaitlist /></PageTransition>} />
         <Route path="/bootcamp-waitlist" element={<PageTransition><BootcampWaitlist /></PageTransition>} />
