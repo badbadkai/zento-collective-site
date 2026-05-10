@@ -70,7 +70,7 @@ const Start = () => {
               className="text-base text-muted-foreground mb-10 animate-fade-in"
               style={{ animationDelay: "0.3s" }}
             >
-              No shortcuts. No signals. Just structure, rules, and clarity.
+              Most traders never write their rules down. You will.
             </p>
             <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
