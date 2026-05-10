@@ -44,7 +44,7 @@ const Start = () => {
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
               <span className="text-primary font-medium text-sm tracking-widest uppercase">
-                30-Day Programme
+                5-Week Programme
               </span>
               <span className="w-1 h-1 rounded-full bg-muted-foreground/40" />
               <span className="flex items-center gap-1.5 text-muted-foreground text-sm">
@@ -64,7 +64,7 @@ const Start = () => {
               style={{ animationDelay: "0.2s" }}
             >
               Complete beginner to written strategy, demo execution, and the
-              discipline to follow it. In 30 days.
+              discipline to follow it.
             </p>
             <p
               className="text-base text-muted-foreground font-medium mb-10 animate-fade-in"
@@ -76,15 +76,12 @@ const Start = () => {
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
               style={{ animationDelay: "0.4s" }}
             >
-              <Button
-                variant="hero"
-                size="lg"
-                className="group"
-                onClick={() => scrollToSection("pricing")}
-              >
-                See Pricing
-                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-              </Button>
+              <Link to="/apply?programme=accelerator">
+                <Button variant="hero" size="lg" className="group">
+                  Join the Waitlist
+                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+                </Button>
+              </Link>
               <Button
                 variant="outline"
                 size="lg"
@@ -94,6 +91,79 @@ const Start = () => {
               </Button>
             </div>
           </div>
+        </div>
+      </section>
+
+      {/* Pricing */}
+      <section id="pricing" className="section-spacing relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
+        <div className="container-studio relative">
+          <ScrollReveal className="max-w-3xl mx-auto text-center">
+            <p className="text-xs font-semibold text-primary uppercase tracking-widest mb-8">
+              Investment
+            </p>
+
+            <p className="text-sm text-muted-foreground mb-3">
+              Most structured trading programmes charge {symbol}2,000–{symbol}5,000
+            </p>
+
+            <div className="flex items-center justify-center gap-2 mb-1">
+              <span className="text-lg text-muted-foreground line-through">{formatOldCombinedPrice()}</span>
+              <div className="relative group/tip inline-flex">
+                <Info className="w-3.5 h-3.5 text-muted-foreground/50 cursor-help" />
+                <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 rounded-lg bg-popover border border-border text-xs text-popover-foreground opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 pointer-events-none z-10 text-center shadow-lg">
+                  Previously two separate courses. Now combined into one programme at a lower price.
+                </div>
+              </div>
+            </div>
+
+            <Price
+              product="accelerator"
+              className="font-heading text-6xl md:text-7xl font-bold text-foreground block mt-1 mb-2"
+            />
+
+            <p className="text-primary font-medium text-sm mb-10">
+              {symbol}{dailyCost}/day &middot; one-time payment
+            </p>
+
+            <div className="grid sm:grid-cols-2 gap-x-16 gap-y-2.5 max-w-lg mx-auto text-left mb-10">
+              {[
+                "30 days of structured daily lessons",
+                "Weekly 1-to-1 coaching sessions",
+                "Live Q&A and backtesting sessions",
+                "Private community and peer accountability",
+                "All templates, frameworks, and tools",
+                "Demo execution with review and feedback",
+                "Lifetime access to your materials",
+              ].map((item, idx) => (
+                <div key={idx} className="flex gap-2.5 items-center">
+                  <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
+                  <span className="text-foreground text-sm">{item}</span>
+                </div>
+              ))}
+            </div>
+
+            <Link to="/apply?programme=accelerator">
+              <Button variant="hero" size="lg" className="group">
+                Join the Waitlist &mdash; <Price product="accelerator" />
+                <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
+              </Button>
+            </Link>
+
+            <p className="text-xs text-muted-foreground mt-4">
+              No refunds. This is a programme you engage with, not a product you consume.
+            </p>
+          </ScrollReveal>
+
+          <ScrollReveal className="mt-10 text-center">
+            <p className="text-sm text-muted-foreground">
+              After the Accelerator, continue with the{" "}
+              <Link to="/collective" className="text-primary hover:underline font-medium">
+                Collective ({symbol}99/mo)
+              </Link>
+              {" "}&mdash; ongoing live sessions, advanced analysis, and community.
+            </p>
+          </ScrollReveal>
         </div>
       </section>
 
@@ -137,7 +207,7 @@ const Start = () => {
               ].map((item, idx) => (
                 <div
                   key={idx}
-                  className="p-5 rounded-xl border border-primary/20 bg-primary/5 hover:border-primary/40 transition-colors"
+                  className="p-5 rounded-xl border border-primary/20 bg-primary/5 hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
                 >
                   <h3 className="font-heading text-base font-semibold text-foreground mb-1.5">
                     {item.title}
@@ -150,133 +220,109 @@ const Start = () => {
         </div>
       </section>
 
-      {/* Curriculum */}
+      {/* Curriculum — progression timeline */}
       <section id="curriculum" className="section-spacing">
         <div className="container-studio">
-          <div className="max-w-2xl mx-auto">
-            <ScrollReveal className="mb-12 text-center">
-              <h2 className="font-heading text-3xl md:text-4xl font-semibold">
-                The <span className="text-primary">5-Week</span> Curriculum
-              </h2>
-            </ScrollReveal>
+          <ScrollReveal className="mb-14 text-center">
+            <h2 className="font-heading text-3xl md:text-4xl font-semibold">
+              The <span className="text-primary">Programme</span>
+            </h2>
+          </ScrollReveal>
 
-            <ScrollRevealGroup className="divide-y divide-border/40" staggerDelay={100}>
-              {[
-                {
-                  week: "Week 1",
-                  title: "Foundations",
-                  description: "Markets, sessions, and instruments. Platform setup, position sizing, risk management, and trading psychology. Closes with a live lesson and Q&A.",
-                },
-                {
-                  week: "Week 2",
-                  title: "Technicals",
-                  description: "Timeframe alignment, liquidity, and market structure. Power of 3, high-impact news, FVGs, IFVGs, and entry and execution frameworks. Live lesson and Q&A.",
-                },
-                {
-                  week: "Week 3",
-                  title: "Optimisation",
-                  description: "Build your written strategy, learn to journal and backtest, then review and refine. Closes with demo trading preparation and a live Q&A.",
-                },
-                {
-                  week: "Week 4",
-                  title: "Prop Firms & Team Models",
-                  description: "How prop firms work, scaling plans, and advanced risk. DJay's model, Kai's model, and full Tradovate setup for a live prop firm account.",
-                },
-                {
-                  week: "Week 5",
-                  title: "Live Trading",
-                  description: "A full week of live sessions trading together. Your transition into the Collective — ongoing analysis, live sessions, and community.",
-                },
-              ].map((item, idx) => (
-                <div key={idx} className="flex gap-8 py-7">
-                  <div className="w-20 flex-shrink-0 pt-0.5">
-                    <span className="text-xs font-semibold text-primary uppercase tracking-widest">{item.week}</span>
-                  </div>
-                  <div>
-                    <h3 className="font-heading text-base font-semibold text-foreground mb-1.5">{item.title}</h3>
-                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
-                  </div>
-                </div>
-              ))}
-            </ScrollRevealGroup>
-          </div>
-        </div>
-      </section>
-
-      {/* Pricing */}
-      <section id="pricing" className="section-spacing relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
-        <div className="container-studio relative">
-          <ScrollReveal className="max-w-2xl mx-auto">
-            <div className="p-8 md:p-12 rounded-2xl border border-primary/30 bg-primary/5 text-center">
-              <p className="text-primary font-medium text-sm tracking-widest uppercase mb-6">
-                Investment
-              </p>
-
-              <p className="text-sm text-muted-foreground mb-4">
-                Most structured trading programmes charge {symbol}2,000–{symbol}5,000
-              </p>
-
-              {/* Old price strikethrough */}
-              <div className="flex items-center justify-center gap-2 mb-1">
-                <span className="text-lg text-muted-foreground line-through">{formatOldCombinedPrice()}</span>
-                <div className="relative group/tip inline-flex">
-                  <Info className="w-3.5 h-3.5 text-muted-foreground/50 cursor-help" />
-                  <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 rounded-lg bg-popover border border-border text-xs text-popover-foreground opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 pointer-events-none z-10 text-center shadow-lg">
-                    Previously two separate courses. Now combined into one 30-day programme at a lower price.
-                  </div>
-                </div>
-              </div>
-
-              {/* Current price */}
-              <Price
-                product="accelerator"
-                className="font-heading text-5xl md:text-6xl font-bold text-foreground block mb-2"
-              />
-
-              <p className="text-primary font-medium text-sm mb-6">
-                {symbol}{dailyCost}/day &middot; one-time payment
-              </p>
-
-              {/* What's included */}
-              <div className="space-y-2.5 text-left max-w-sm mx-auto mb-8">
+          <ScrollReveal>
+            <div className="max-w-4xl mx-auto">
+              {/* Desktop horizontal timeline */}
+              <div className="hidden md:flex">
                 {[
-                  "30 days of structured daily lessons",
-                  "Weekly 1-to-1 coaching sessions",
-                  "Live Q&A and backtesting sessions",
-                  "Private community and peer accountability",
-                  "All templates, frameworks, and tools",
-                  "Demo execution with review and feedback",
-                  "Lifetime access to your materials",
-                ].map((item, idx) => (
-                  <div key={idx} className="flex gap-3 items-center">
-                    <Check className="w-4 h-4 text-primary flex-shrink-0" />
-                    <span className="text-foreground text-sm">{item}</span>
+                  {
+                    phase: "01",
+                    title: "Foundations",
+                    description: "Markets, sessions, instruments, platform setup, risk management, and trading psychology.",
+                  },
+                  {
+                    phase: "02",
+                    title: "Technicals",
+                    description: "Timeframe alignment, market structure, liquidity, Power of 3, FVGs, and entry frameworks.",
+                  },
+                  {
+                    phase: "03",
+                    title: "Optimisation",
+                    description: "Build, journal, backtest, and refine your strategy. Preparation for demo trading.",
+                  },
+                  {
+                    phase: "04",
+                    title: "Prop Firms",
+                    description: "Prop firm mechanics, scaling plans, DJay's and Kai's models, and Tradovate setup.",
+                  },
+                  {
+                    phase: "05",
+                    title: "Live Trading",
+                    description: "A full week of live sessions together, transitioning into the Collective.",
+                  },
+                ].map((item, idx, arr) => (
+                  <div key={idx} className="relative flex-1 flex flex-col items-center text-center px-3">
+                    {idx > 0 && (
+                      <div className="absolute top-[9px] left-0 right-1/2 h-px bg-border/50" />
+                    )}
+                    {idx < arr.length - 1 && (
+                      <div className="absolute top-[9px] left-1/2 right-0 h-px bg-border/50" />
+                    )}
+                    <div className="relative z-10 w-[18px] h-[18px] rounded-full border-2 border-primary/60 bg-background mb-5 flex items-center justify-center flex-shrink-0">
+                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                    </div>
+                    <p className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-1.5">{item.phase}</p>
+                    <h3 className="font-heading text-sm font-semibold text-foreground mb-2">{item.title}</h3>
+                    <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
                 ))}
               </div>
 
-              <Link to="/apply?programme=accelerator">
-                <Button variant="hero" size="lg" className="group w-full sm:w-auto">
-                  Join the Waitlist &mdash; <Price product="accelerator" />
-                  <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-                </Button>
-              </Link>
-
-              <p className="text-xs text-muted-foreground mt-4">
-                No refunds. This is a programme you engage with, not a product you consume.
-              </p>
-            </div>
-
-            {/* Post-programme path */}
-            <div className="mt-6 p-5 rounded-xl border border-border/50 bg-card/30 text-center">
-              <p className="text-sm text-muted-foreground">
-                After the Accelerator, continue developing with the{" "}
-                <Link to="/collective" className="text-primary hover:underline font-medium">
-                  Collective ({symbol}99/mo)
-                </Link>
-                {" "}&mdash; ongoing live sessions, advanced analysis, and community.
-              </p>
+              {/* Mobile vertical timeline */}
+              <div className="md:hidden flex flex-col max-w-sm mx-auto">
+                {[
+                  {
+                    phase: "01",
+                    title: "Foundations",
+                    description: "Markets, sessions, instruments, platform setup, risk management, and trading psychology.",
+                  },
+                  {
+                    phase: "02",
+                    title: "Technicals",
+                    description: "Timeframe alignment, market structure, liquidity, Power of 3, FVGs, and entry frameworks.",
+                  },
+                  {
+                    phase: "03",
+                    title: "Optimisation",
+                    description: "Build, journal, backtest, and refine your strategy. Preparation for demo trading.",
+                  },
+                  {
+                    phase: "04",
+                    title: "Prop Firms",
+                    description: "Prop firm mechanics, scaling plans, DJay's and Kai's models, and Tradovate setup.",
+                  },
+                  {
+                    phase: "05",
+                    title: "Live Trading",
+                    description: "A full week of live sessions together, transitioning into the Collective.",
+                  },
+                ].map((item, idx, arr) => (
+                  <div key={idx} className="flex gap-5">
+                    <div className="flex flex-col items-center flex-shrink-0">
+                      <div className="w-[18px] h-[18px] rounded-full border-2 border-primary/60 bg-background flex items-center justify-center flex-shrink-0 mt-0.5">
+                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                      </div>
+                      {idx < arr.length - 1 && (
+                        <div className="w-px flex-1 bg-border/50 my-1.5" />
+                      )}
+                    </div>
+                    <div className={idx < arr.length - 1 ? "pb-7" : ""}>
+                      <p className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-1">{item.phase}</p>
+                      <h3 className="font-heading text-sm font-semibold text-foreground mb-1.5">{item.title}</h3>
+                      <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
             </div>
           </ScrollReveal>
         </div>
