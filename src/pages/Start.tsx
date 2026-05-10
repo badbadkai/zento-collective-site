@@ -12,7 +12,7 @@ import {
   AccordionTrigger,
   AccordionContent,
 } from "@/components/ui/accordion";
-import { Check, ArrowRight, Clock, Plus, Info } from "lucide-react";
+import { Check, ArrowRight, Clock, Plus, Info, ChevronDown } from "lucide-react";
 import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 
 const Start = () => {
@@ -38,9 +38,9 @@ const Start = () => {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 relative">
+      <section className="min-h-[100svh] flex flex-col items-center justify-center relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
-        <div className="container-studio relative">
+        <div className="container-studio relative w-full">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
               <span className="text-primary font-medium text-sm tracking-widest uppercase">
@@ -60,14 +60,14 @@ const Start = () => {
               <span className="text-primary">Accelerator</span>
             </h1>
             <p
-              className="text-lg md:text-xl text-muted-foreground mb-6 animate-fade-in"
+              className="text-xl md:text-2xl text-muted-foreground mb-4 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
               Complete beginner to written strategy, demo execution, and the
               discipline to follow it.
             </p>
             <p
-              className="text-base text-muted-foreground font-medium mb-10 animate-fade-in"
+              className="text-base text-muted-foreground mb-10 animate-fade-in"
               style={{ animationDelay: "0.3s" }}
             >
               No shortcuts. No signals. Just structure, rules, and clarity.
@@ -92,10 +92,17 @@ const Start = () => {
             </div>
           </div>
         </div>
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in"
+          style={{ animationDelay: "1s" }}
+        >
+          <span className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground/40">Scroll</span>
+          <ChevronDown className="w-4 h-4 text-muted-foreground/30 animate-bounce" />
+        </div>
       </section>
 
       {/* Pricing */}
-      <section id="pricing" className="section-spacing relative">
+      <section id="pricing" className="section-spacing relative border-t border-border/20">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
           <ScrollReveal className="max-w-3xl mx-auto text-center">
@@ -103,12 +110,12 @@ const Start = () => {
               Investment
             </p>
 
-            <p className="text-sm text-muted-foreground mb-3">
+            <p className="text-base text-muted-foreground mb-3">
               Most structured trading programmes charge {symbol}2,000–{symbol}5,000
             </p>
 
             <div className="flex items-center justify-center gap-2 mb-1">
-              <span className="text-lg text-muted-foreground line-through">{formatOldCombinedPrice()}</span>
+              <span className="text-xl text-muted-foreground line-through">{formatOldCombinedPrice()}</span>
               <div className="relative group/tip inline-flex">
                 <Info className="w-3.5 h-3.5 text-muted-foreground/50 cursor-help" />
                 <div className="absolute bottom-full left-1/2 -translate-x-1/2 mb-2 w-56 px-3 py-2 rounded-lg bg-popover border border-border text-xs text-popover-foreground opacity-0 invisible group-hover/tip:opacity-100 group-hover/tip:visible transition-all duration-200 pointer-events-none z-10 text-center shadow-lg">
@@ -122,11 +129,11 @@ const Start = () => {
               className="font-heading text-6xl md:text-7xl font-bold text-foreground block mt-1 mb-2"
             />
 
-            <p className="text-primary font-medium text-sm mb-10">
+            <p className="text-primary font-medium text-base mb-10">
               {symbol}{dailyCost}/day &middot; one-time payment
             </p>
 
-            <div className="grid sm:grid-cols-2 gap-x-16 gap-y-2.5 max-w-lg mx-auto text-left mb-10">
+            <div className="grid sm:grid-cols-2 gap-x-16 gap-y-3 max-w-lg mx-auto text-left mb-10">
               {[
                 "30 days of structured daily lessons",
                 "Weekly 1-to-1 coaching sessions",
@@ -138,7 +145,7 @@ const Start = () => {
               ].map((item, idx) => (
                 <div key={idx} className="flex gap-2.5 items-center">
                   <Check className="w-3.5 h-3.5 text-primary flex-shrink-0" />
-                  <span className="text-foreground text-sm">{item}</span>
+                  <span className="text-foreground text-base">{item}</span>
                 </div>
               ))}
             </div>
@@ -150,13 +157,13 @@ const Start = () => {
               </Button>
             </Link>
 
-            <p className="text-xs text-muted-foreground mt-4">
+            <p className="text-sm text-muted-foreground mt-4">
               No refunds. This is a programme you engage with, not a product you consume.
             </p>
           </ScrollReveal>
 
           <ScrollReveal className="mt-10 text-center">
-            <p className="text-sm text-muted-foreground">
+            <p className="text-base text-muted-foreground">
               After the Accelerator, continue with the{" "}
               <Link to="/collective" className="text-primary hover:underline font-medium">
                 Collective ({symbol}99/mo)
@@ -168,17 +175,16 @@ const Start = () => {
       </section>
 
       {/* What You Build */}
-      <section className="section-spacing relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
+      <section className="section-spacing relative border-t border-border/20">
         <div className="container-studio relative">
           <div className="max-w-3xl mx-auto">
-            <ScrollReveal className="mb-10 text-center">
+            <ScrollReveal className="mb-12 text-center">
               <h2 className="font-heading text-3xl md:text-4xl font-semibold">
                 What You Walk Away With
               </h2>
             </ScrollReveal>
 
-            <ScrollRevealGroup className="grid md:grid-cols-2 gap-4" staggerDelay={80}>
+            <ScrollRevealGroup className="grid md:grid-cols-2 gap-x-12 gap-y-10" staggerDelay={80}>
               {[
                 {
                   title: "Trading Blueprint",
@@ -205,14 +211,12 @@ const Start = () => {
                   description: "What to do after the programme. Clear next steps for independent trading or prop firm preparation.",
                 },
               ].map((item, idx) => (
-                <div
-                  key={idx}
-                  className="p-5 rounded-xl border border-primary/20 bg-primary/5 hover:border-primary/40 hover:-translate-y-0.5 transition-all duration-200 cursor-default"
-                >
-                  <h3 className="font-heading text-base font-semibold text-foreground mb-1.5">
+                <div key={idx} className="group">
+                  <div className="w-8 h-px bg-primary/50 mb-4 transition-all duration-300 group-hover:w-14 group-hover:bg-primary" />
+                  <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
                     {item.title}
                   </h3>
-                  <p className="text-muted-foreground text-sm">{item.description}</p>
+                  <p className="text-muted-foreground text-base leading-relaxed">{item.description}</p>
                 </div>
               ))}
             </ScrollRevealGroup>
@@ -221,7 +225,7 @@ const Start = () => {
       </section>
 
       {/* Curriculum — progression timeline */}
-      <section id="curriculum" className="section-spacing">
+      <section id="curriculum" className="section-spacing border-t border-border/20">
         <div className="container-studio">
           <ScrollReveal className="mb-14 text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold">
@@ -229,107 +233,86 @@ const Start = () => {
             </h2>
           </ScrollReveal>
 
-          <ScrollReveal>
-            <div className="max-w-4xl mx-auto">
-              {/* Desktop horizontal timeline */}
-              <div className="hidden md:flex">
-                {[
-                  {
-                    phase: "01",
-                    title: "Foundations",
-                    description: "Markets, sessions, instruments, platform setup, risk management, and trading psychology.",
-                  },
-                  {
-                    phase: "02",
-                    title: "Technicals",
-                    description: "Timeframe alignment, market structure, liquidity, Power of 3, FVGs, and entry frameworks.",
-                  },
-                  {
-                    phase: "03",
-                    title: "Optimisation",
-                    description: "Build, journal, backtest, and refine your strategy. Preparation for demo trading.",
-                  },
-                  {
-                    phase: "04",
-                    title: "Prop Firms",
-                    description: "Prop firm mechanics, scaling plans, DJay's and Kai's models, and Tradovate setup.",
-                  },
-                  {
-                    phase: "05",
-                    title: "Live Trading",
-                    description: "A full week of live sessions together, transitioning into the Collective.",
-                  },
-                ].map((item, idx, arr) => (
-                  <div key={idx} className="relative flex-1 flex flex-col items-center text-center px-3">
-                    {idx > 0 && (
-                      <div className="absolute top-[9px] left-0 right-1/2 h-px bg-border/50" />
-                    )}
-                    {idx < arr.length - 1 && (
-                      <div className="absolute top-[9px] left-1/2 right-0 h-px bg-border/50" />
-                    )}
-                    <div className="relative z-10 w-[18px] h-[18px] rounded-full border-2 border-primary/60 bg-background mb-5 flex items-center justify-center flex-shrink-0">
-                      <div className="w-1.5 h-1.5 rounded-full bg-primary" />
-                    </div>
-                    <p className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-1.5">{item.phase}</p>
-                    <h3 className="font-heading text-sm font-semibold text-foreground mb-2">{item.title}</h3>
-                    <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
-                  </div>
-                ))}
-              </div>
-
-              {/* Mobile vertical timeline */}
-              <div className="md:hidden flex flex-col max-w-sm mx-auto">
-                {[
-                  {
-                    phase: "01",
-                    title: "Foundations",
-                    description: "Markets, sessions, instruments, platform setup, risk management, and trading psychology.",
-                  },
-                  {
-                    phase: "02",
-                    title: "Technicals",
-                    description: "Timeframe alignment, market structure, liquidity, Power of 3, FVGs, and entry frameworks.",
-                  },
-                  {
-                    phase: "03",
-                    title: "Optimisation",
-                    description: "Build, journal, backtest, and refine your strategy. Preparation for demo trading.",
-                  },
-                  {
-                    phase: "04",
-                    title: "Prop Firms",
-                    description: "Prop firm mechanics, scaling plans, DJay's and Kai's models, and Tradovate setup.",
-                  },
-                  {
-                    phase: "05",
-                    title: "Live Trading",
-                    description: "A full week of live sessions together, transitioning into the Collective.",
-                  },
-                ].map((item, idx, arr) => (
-                  <div key={idx} className="flex gap-5">
-                    <div className="flex flex-col items-center flex-shrink-0">
-                      <div className="w-[18px] h-[18px] rounded-full border-2 border-primary/60 bg-background flex items-center justify-center flex-shrink-0 mt-0.5">
-                        <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+          {(() => {
+            const phases = [
+              {
+                phase: "01",
+                title: "Foundations",
+                description: "Markets, sessions, instruments, platform setup, risk management, and trading psychology.",
+              },
+              {
+                phase: "02",
+                title: "Technicals",
+                description: "Timeframe alignment, market structure, liquidity, Power of 3, FVGs, and entry frameworks.",
+              },
+              {
+                phase: "03",
+                title: "Optimisation",
+                description: "Build, journal, backtest, and refine your strategy. Preparation for demo trading.",
+              },
+              {
+                phase: "04",
+                title: "Prop Firms",
+                description: "Prop firm mechanics, scaling plans, the team's strategies, and Tradovate setup.",
+              },
+              {
+                phase: "05",
+                title: "Live Trading",
+                description: "A full week of live sessions together, transitioning into the Collective.",
+              },
+            ];
+            return (
+              <ScrollReveal>
+                <div className="max-w-4xl mx-auto">
+                  {/* Desktop horizontal timeline */}
+                  <div className="hidden md:flex">
+                    {phases.map((item, idx, arr) => (
+                      <div key={idx} className="relative flex-1 flex flex-col items-center text-center px-4">
+                        {idx > 0 && (
+                          <div className="absolute top-[9px] left-0 right-1/2 h-px bg-border/50" />
+                        )}
+                        {idx < arr.length - 1 && (
+                          <div className="absolute top-[9px] left-1/2 right-0 h-px bg-border/50" />
+                        )}
+                        <div className="relative z-10 w-[18px] h-[18px] rounded-full border-2 border-primary/60 bg-background mb-5 flex items-center justify-center flex-shrink-0">
+                          <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                        </div>
+                        <p className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-2">{item.phase}</p>
+                        <h3 className="font-heading text-base font-semibold text-foreground mb-2">{item.title}</h3>
+                        <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                       </div>
-                      {idx < arr.length - 1 && (
-                        <div className="w-px flex-1 bg-border/50 my-1.5" />
-                      )}
-                    </div>
-                    <div className={idx < arr.length - 1 ? "pb-7" : ""}>
-                      <p className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-1">{item.phase}</p>
-                      <h3 className="font-heading text-sm font-semibold text-foreground mb-1.5">{item.title}</h3>
-                      <p className="text-xs text-muted-foreground leading-relaxed">{item.description}</p>
-                    </div>
+                    ))}
                   </div>
-                ))}
-              </div>
-            </div>
-          </ScrollReveal>
+
+                  {/* Mobile vertical timeline */}
+                  <div className="md:hidden flex flex-col max-w-sm mx-auto">
+                    {phases.map((item, idx, arr) => (
+                      <div key={idx} className="flex gap-5">
+                        <div className="flex flex-col items-center flex-shrink-0">
+                          <div className="w-[18px] h-[18px] rounded-full border-2 border-primary/60 bg-background flex items-center justify-center flex-shrink-0 mt-0.5">
+                            <div className="w-1.5 h-1.5 rounded-full bg-primary" />
+                          </div>
+                          {idx < arr.length - 1 && (
+                            <div className="w-px flex-1 bg-border/50 my-1.5" />
+                          )}
+                        </div>
+                        <div className={idx < arr.length - 1 ? "pb-8" : ""}>
+                          <p className="text-[10px] font-bold text-primary/60 uppercase tracking-widest mb-1">{item.phase}</p>
+                          <h3 className="font-heading text-base font-semibold text-foreground mb-1.5">{item.title}</h3>
+                          <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
+                        </div>
+                      </div>
+                    ))}
+                  </div>
+                </div>
+              </ScrollReveal>
+            );
+          })()}
         </div>
       </section>
 
       {/* FAQ */}
-      <section className="section-spacing">
+      <section className="section-spacing border-t border-border/20">
         <div className="container-studio">
           <div className="max-w-3xl mx-auto">
             <ScrollReveal className="mb-10 text-center">
@@ -343,15 +326,15 @@ const Start = () => {
               {[
                 {
                   q: "Do I need any experience?",
-                  a: "No. The Accelerator starts from zero. We cover markets, risk, psychology, and charts before moving into strategy and execution. The only requirement is the willingness to put in 1-2 hours per day for 30 days.",
+                  a: "No. The Accelerator starts from zero. We cover markets, risk, psychology, and charts before moving into strategy and execution. The only requirement is the willingness to put in 1-2 hours per day.",
                 },
                 {
                   q: "What tools do I need?",
                   a: "A charting platform (TradingView free tier works), a demo trading account with any broker, and something to journal with. No paid software required.",
                 },
                 {
-                  q: "What happens after the 30 days?",
-                  a: "Everything you build is yours to keep. Your blueprint, risk rules, journal system, and demo track record. If you want ongoing live sessions and community, the Collective is $99/mo. It's optional.",
+                  q: "What happens after the programme?",
+                  a: "Everything you build is yours to keep. Your blueprint, risk rules, journal system, and demo track record. If you want ongoing live sessions and community, the Collective is available. It's optional.",
                 },
                 {
                   q: "Will I be profitable?",
@@ -374,7 +357,7 @@ const Start = () => {
                     </div>
                   </AccordionTrigger>
                   <AccordionContent className="px-6 pb-5">
-                    <p className="text-muted-foreground text-sm md:text-base leading-relaxed">
+                    <p className="text-muted-foreground text-base leading-relaxed">
                       {item.a}
                     </p>
                   </AccordionContent>
@@ -387,15 +370,15 @@ const Start = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="section-spacing relative">
+      <section className="section-spacing relative border-t border-border/20">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
         <div className="container-studio relative">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
               Ready to <span className="text-primary">Start</span>?
             </h2>
-            <p className="text-muted-foreground mb-8">
-              30 days. One framework. Written rules for everything. Demo
+            <p className="text-lg text-muted-foreground mb-8">
+              Five weeks. One framework. Written rules for everything. Demo
               execution included.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">

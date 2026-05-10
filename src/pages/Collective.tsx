@@ -21,6 +21,7 @@ import {
   BarChart3,
   Layers,
   MessageCircle,
+  ChevronDown,
 } from "lucide-react";
 
 const WHOP_MONTHLY_URL =
@@ -136,9 +137,9 @@ const Collective = () => {
       <Header />
 
       {/* Hero */}
-      <section className="pt-32 pb-20 md:pt-40 md:pb-28 relative">
+      <section className="min-h-[100svh] flex flex-col items-center justify-center relative">
         <div className="absolute inset-0 bg-gradient-to-b from-muted/20 via-background to-background" />
-        <div className="container-studio relative">
+        <div className="container-studio relative w-full">
           <div className="max-w-3xl mx-auto text-center">
             <div className="flex items-center justify-center gap-3 mb-6 animate-fade-in">
               <span className="text-primary font-medium text-sm tracking-widest uppercase">
@@ -153,14 +154,14 @@ const Collective = () => {
               <span className="text-primary">Collective</span>
             </h1>
             <p
-              className="text-lg md:text-xl text-muted-foreground mb-4 animate-fade-in"
+              className="text-xl md:text-2xl text-muted-foreground mb-4 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
               Live analysis, advanced strategy, and a community of traders who
               take their craft seriously.
             </p>
             <p
-              className="text-sm text-muted-foreground mb-10 animate-fade-in"
+              className="text-base text-muted-foreground mb-10 animate-fade-in"
               style={{ animationDelay: "0.25s" }}
             >
               Finished the Accelerator? This is where the real development continues.
@@ -188,10 +189,17 @@ const Collective = () => {
             </div>
           </div>
         </div>
+        <div
+          className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2 animate-fade-in"
+          style={{ animationDelay: "1s" }}
+        >
+          <span className="text-[10px] tracking-[0.25em] uppercase text-muted-foreground/40">Scroll</span>
+          <ChevronDown className="w-4 h-4 text-muted-foreground/30 animate-bounce" />
+        </div>
       </section>
 
       {/* Pricing — immediately after hero */}
-      <section id="pricing" className="section-spacing relative">
+      <section id="pricing" className="section-spacing relative border-t border-border/20">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
         <div className="container-studio relative">
           <div className="max-w-5xl mx-auto">
@@ -203,7 +211,7 @@ const Collective = () => {
                 Simple, Transparent{" "}
                 <span className="text-primary">Pricing</span>
               </h2>
-              <p className="text-muted-foreground max-w-xl mx-auto">
+              <p className="text-lg text-muted-foreground max-w-xl mx-auto">
                 Same access at every tier. Commit longer, pay less.
               </p>
             </ScrollReveal>
@@ -286,10 +294,10 @@ const Collective = () => {
       </section>
 
       {/* What's Inside */}
-      <section id="whats-inside" className="section-spacing">
+      <section id="whats-inside" className="section-spacing border-t border-border/20">
         <div className="container-studio">
           <div className="max-w-4xl mx-auto">
-            <ScrollReveal className="text-center mb-12">
+            <ScrollReveal className="text-center mb-14">
               <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
                 What You Get
               </p>
@@ -299,23 +307,22 @@ const Collective = () => {
               </h2>
             </ScrollReveal>
 
-            <ScrollRevealGroup className="grid md:grid-cols-2 gap-6" staggerDelay={100}>
+            <ScrollRevealGroup className="grid md:grid-cols-2 gap-x-12 gap-y-10" staggerDelay={100}>
               {features.map((feature, idx) => {
                 const IconComponent = feature.icon;
                 return (
-                  <div
-                    key={idx}
-                    className="p-8 rounded-2xl border border-border/50 bg-card/30 hover:border-primary/30 hover:bg-card transition-all duration-300"
-                  >
-                    <div className="p-2.5 rounded-lg bg-primary/10 w-fit mb-4">
+                  <div key={idx} className="flex gap-5">
+                    <div className="flex-shrink-0 mt-0.5">
                       <IconComponent className="w-5 h-5 text-primary" />
                     </div>
-                    <h3 className="font-heading text-xl font-semibold text-foreground mb-3">
-                      {feature.title}
-                    </h3>
-                    <p className="text-muted-foreground text-sm leading-relaxed">
-                      {feature.description}
-                    </p>
+                    <div>
+                      <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
+                        {feature.title}
+                      </h3>
+                      <p className="text-muted-foreground text-base leading-relaxed">
+                        {feature.description}
+                      </p>
+                    </div>
                   </div>
                 );
               })}
@@ -325,9 +332,8 @@ const Collective = () => {
       </section>
 
       {/* Who This Is For */}
-      <section className="section-spacing relative">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
-        <div className="container-studio relative">
+      <section className="section-spacing border-t border-border/20">
+        <div className="container-studio">
           <div className="max-w-3xl mx-auto">
             <ScrollReveal className="text-center mb-10">
               <h2 className="font-heading text-3xl md:text-4xl font-semibold">
@@ -337,28 +343,26 @@ const Collective = () => {
             </ScrollReveal>
 
             <ScrollReveal>
-              <div className="p-8 rounded-2xl border border-primary/20 bg-primary/5 mb-6">
-                <ul className="space-y-4">
-                  {[
-                    "Accelerator graduates ready to keep building momentum",
-                    "You've moved past the basics and want ongoing sharpening",
-                    "You want live market context, not just recorded content",
-                    "You value discipline and peer accountability",
-                  ].map((item, idx) => (
-                    <li key={idx} className="flex gap-3 items-start">
-                      <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
-                      <span className="text-foreground text-sm">{item}</span>
-                    </li>
-                  ))}
-                </ul>
-              </div>
+              <ul className="space-y-5 mb-10">
+                {[
+                  "Accelerator graduates ready to keep building momentum",
+                  "You've moved past the basics and want ongoing sharpening",
+                  "You want live market context, not just recorded content",
+                  "You value discipline and peer accountability",
+                ].map((item, idx) => (
+                  <li key={idx} className="flex gap-4 items-start">
+                    <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
+                    <span className="text-foreground text-base">{item}</span>
+                  </li>
+                ))}
+              </ul>
 
-              <p className="text-center text-muted-foreground text-sm">
+              <p className="text-center text-base text-muted-foreground">
                 New to trading? The{" "}
                 <Link to="/start" className="text-primary hover:underline font-medium">
                   Accelerator
                 </Link>{" "}
-                builds your foundation in 30 days. The Collective is where you go next.
+                builds your foundation first. The Collective is where you go next.
               </p>
             </ScrollReveal>
           </div>
@@ -366,7 +370,7 @@ const Collective = () => {
       </section>
 
       {/* FAQ */}
-      <section className="section-spacing">
+      <section className="section-spacing border-t border-border/20">
         <div className="container-studio">
           <ScrollReveal className="text-center mb-12">
             <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
@@ -388,14 +392,14 @@ const Collective = () => {
       </section>
 
       {/* Final CTA */}
-      <section className="section-spacing relative">
+      <section className="section-spacing relative border-t border-border/20">
         <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
         <div className="container-studio relative">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
               Ready to <span className="text-primary">Join</span>?
             </h2>
-            <p className="text-muted-foreground mb-8">
+            <p className="text-lg text-muted-foreground mb-8">
               Stop consuming. Start developing. Join traders who take their
               craft seriously.
             </p>
