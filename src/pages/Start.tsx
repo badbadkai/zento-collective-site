@@ -153,109 +153,51 @@ const Start = () => {
       {/* Curriculum */}
       <section id="curriculum" className="section-spacing">
         <div className="container-studio">
-          <div className="max-w-5xl mx-auto">
-            <ScrollReveal className="mb-10 text-center">
+          <div className="max-w-2xl mx-auto">
+            <ScrollReveal className="mb-12 text-center">
               <h2 className="font-heading text-3xl md:text-4xl font-semibold">
                 The <span className="text-primary">5-Week</span> Curriculum
               </h2>
             </ScrollReveal>
 
-            <ScrollRevealGroup className="space-y-8" staggerDelay={150}>
+            <ScrollRevealGroup className="divide-y divide-border/40" staggerDelay={100}>
               {[
                 {
-                  section: "Week 1 — Days 1–6",
+                  week: "Week 1",
                   title: "Foundations",
-                  days: [
-                    { day: "Day 1", topic: "Intro to Trading, Sessions & Instruments" },
-                    { day: "Day 2", topic: "Platform Setup (TradingView Demo)" },
-                    { day: "Day 3", topic: "Position Sizing, TP & SL" },
-                    { day: "Day 4", topic: "Risk Management & R:R" },
-                    { day: "Day 5", topic: "Trading Psychology" },
-                    { day: "Day 6", topic: "Live Lesson + Q&A", weekend: true },
-                  ],
+                  description: "Markets, sessions, and instruments. Platform setup, position sizing, risk management, and trading psychology. Closes with a live lesson and Q&A.",
                 },
                 {
-                  section: "Week 2 — Days 8–13",
+                  week: "Week 2",
                   title: "Technicals",
-                  days: [
-                    { day: "Day 8", topic: "Timeframes & HTF/LTF Alignment" },
-                    { day: "Day 9", topic: "Liquidity & Market Structure" },
-                    { day: "Day 10", topic: "Power of 3 & News Events" },
-                    { day: "Day 11", topic: "FVGs & IFVGs" },
-                    { day: "Day 12", topic: "Entry Frameworks & Trade Management" },
-                    { day: "Day 13", topic: "Live Lesson + Q&A", weekend: true },
-                  ],
+                  description: "Timeframe alignment, liquidity, and market structure. Power of 3, high-impact news, FVGs, IFVGs, and entry and execution frameworks. Live lesson and Q&A.",
                 },
                 {
-                  section: "Week 3 — Days 15–20",
+                  week: "Week 3",
                   title: "Optimisation",
-                  days: [
-                    { day: "Day 15", topic: "Building Your Strategy" },
-                    { day: "Day 16", topic: "Journaling: Why & How" },
-                    { day: "Day 17", topic: "How to Backtest" },
-                    { day: "Day 18", topic: "Review & Refine" },
-                    { day: "Day 19", topic: "Demo Trading Prep" },
-                    { day: "Day 20", topic: "Live Lesson + Q&A", weekend: true },
-                  ],
+                  description: "Build your written strategy, learn to journal and backtest, then review and refine. Closes with demo trading preparation and a live Q&A.",
                 },
                 {
-                  section: "Week 4 — Days 22–26",
+                  week: "Week 4",
                   title: "Prop Firms & Team Models",
-                  days: [
-                    { day: "Day 22", topic: "What Are Prop Firms?" },
-                    { day: "Day 23", topic: "Scaling Plan & Advanced Risk" },
-                    { day: "Day 24", topic: "DJay's Model" },
-                    { day: "Day 25", topic: "Kai's Model" },
-                    { day: "Day 26", topic: "Tradovate Setup for Prop Firms" },
-                  ],
+                  description: "How prop firms work, scaling plans, and advanced risk. DJay's model, Kai's model, and full Tradovate setup for a live prop firm account.",
                 },
-              ].map((sectionData, idx) => (
-                <div key={idx}>
-                  <div className="flex items-center gap-3 mb-4">
-                    <span className="text-xs font-bold text-primary uppercase tracking-wider">
-                      {sectionData.section}
-                    </span>
-                    <h3 className="font-heading text-lg font-semibold text-foreground">
-                      {sectionData.title}
-                    </h3>
+                {
+                  week: "Week 5",
+                  title: "Live Trading",
+                  description: "A full week of live sessions trading together. Your transition into the Collective — ongoing analysis, live sessions, and community.",
+                },
+              ].map((item, idx) => (
+                <div key={idx} className="flex gap-8 py-7">
+                  <div className="w-20 flex-shrink-0 pt-0.5">
+                    <span className="text-xs font-semibold text-primary uppercase tracking-widest">{item.week}</span>
                   </div>
-                  <div className="grid grid-cols-3 md:grid-cols-6 gap-3">
-                    {sectionData.days.map((item, dayIdx) => (
-                      <div
-                        key={dayIdx}
-                        className={`p-4 rounded-xl border text-center transition-colors ${
-                          item.weekend
-                            ? "border-primary/20 bg-primary/5"
-                            : "border-border/50 bg-card/30 hover:border-primary/30"
-                        }`}
-                      >
-                        <p className="text-xs font-semibold text-primary uppercase mb-2">
-                          {item.day}
-                        </p>
-                        <p className="text-sm font-medium text-foreground">
-                          {item.topic}
-                        </p>
-                      </div>
-                    ))}
+                  <div>
+                    <h3 className="font-heading text-base font-semibold text-foreground mb-1.5">{item.title}</h3>
+                    <p className="text-sm text-muted-foreground leading-relaxed">{item.description}</p>
                   </div>
                 </div>
               ))}
-
-              {/* Week 5 */}
-              <div>
-                <div className="flex items-center gap-3 mb-4">
-                  <span className="text-xs font-bold text-primary uppercase tracking-wider">
-                    Week 5 — Days 29–33
-                  </span>
-                  <h3 className="font-heading text-lg font-semibold text-foreground">
-                    Live Trading
-                  </h3>
-                </div>
-                <div className="p-5 rounded-xl border border-primary/20 bg-primary/5">
-                  <p className="text-sm text-foreground font-medium mb-1">Full week of live trading sessions together.</p>
-                  <p className="text-sm text-muted-foreground">Your transition into the Collective — ongoing live sessions, advanced analysis, and community.</p>
-                </div>
-              </div>
             </ScrollRevealGroup>
           </div>
         </div>
