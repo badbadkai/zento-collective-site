@@ -188,27 +188,27 @@ const Start = () => {
               {[
                 {
                   title: "Trading Blueprint",
-                  description: "Your personal strategy. Entry logic, exit rules, market conditions, trade management. Written down, no ambiguity.",
+                  description: "Your personal strategy written down. Entry logic, exit rules, market conditions, trade management — all of it defined before you sit down at the chart.",
                 },
                 {
                   title: "Risk Framework",
-                  description: "Position sizing, daily loss limits, drawdown thresholds, stop loss placement. Non-negotiable rules.",
+                  description: "Position sizing, daily loss limits, drawdown thresholds, stop placement. Rules that hold even when you don't want them to.",
                 },
                 {
                   title: "Psychology System",
-                  description: "If/then protocols for every emotional scenario. Anger, streaks, revenge impulses. Protocols, not willpower.",
+                  description: "A written response for every emotional scenario — anger, losing streaks, revenge impulses. Each one has a rule, decided in advance.",
                 },
                 {
                   title: "Journal & Review System",
-                  description: "Trade logging, error tracking, pattern recognition. The feedback loop that turns experience into skill.",
+                  description: "Trade logging, error tracking, pattern recognition. How raw screen time becomes actual improvement over time.",
                 },
                 {
                   title: "Demo Track Record",
-                  description: "Real trades on demo, logged and reviewed. Evidence that your system works before risking real capital.",
+                  description: "Real trades on demo, logged and reviewed. Proof that your system holds up before you put real money behind it.",
                 },
                 {
                   title: "90-Day Forward Plan",
-                  description: "What to do after the programme. Clear next steps for independent trading or prop firm preparation.",
+                  description: "A written plan for the 90 days after the programme — whether you're trading independently or preparing for a prop firm.",
                 },
               ].map((item, idx) => (
                 <div key={idx} className="group">
@@ -375,11 +375,10 @@ const Start = () => {
         <div className="container-studio relative">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
-              Ready to <span className="text-primary">Start</span>?
+              The work starts <span className="text-primary">here</span>.
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Five weeks. One framework. Written rules for everything. Demo
-              execution included.
+              Five weeks to build what most traders skip — a written system, tested on demo, before real money is ever involved.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Link to="/apply?programme=accelerator">

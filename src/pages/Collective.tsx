@@ -87,48 +87,48 @@ const Collective = () => {
       icon: Radio,
       title: "Live Trading Sessions",
       description:
-        "Real-time market analysis with annotated setups, live Q&A, and post-session recordings so you never miss a beat.",
+        "Real-time market analysis with annotated setups, live Q&A, and recordings for sessions you can't attend.",
     },
     {
       icon: BarChart3,
       title: "Trade Recaps & Market Breakdowns",
       description:
-        "Detailed post-session recaps, market context, key levels, and the reasoning behind each setup. Learn from real trades, not theory.",
+        "Post-session recaps with market context, key levels, and the reasoning behind each setup. Every trade has a story — you learn it.",
     },
     {
       icon: Layers,
       title: "Resources & Learning Reinforcement",
       description:
-        "Strategy deep-dives, structured activities, and practice exercises designed to reinforce concepts and sharpen your edge over time.",
+        "Strategy deep-dives, structured activities, and practice exercises that build execution quality over time.",
     },
     {
       icon: MessageCircle,
       title: "Direct Peer & Mentor Access",
       description:
-        "Structured discussions, trade reviews, and accountability with a community of serious practitioners, not spectators.",
+        "Trade reviews, structured discussions, and accountability with people who are actually trading — not lurking.",
     },
   ];
 
   const faqItems = [
     {
       q: "Can I cancel anytime?",
-      a: "Monthly memberships can be cancelled anytime, no lock-in. Quarterly and annual plans are billed upfront for the full period at a discounted rate.",
+      a: "Monthly memberships can be cancelled anytime, no lock-in. Quarterly and annual plans are billed upfront for the full period at a reduced rate.",
     },
     {
       q: "What's different from the free community?",
-      a: "The Premium Collective includes live trading sessions, trade recaps, strategy deep-dives, learning reinforcement activities, and direct mentor access. The free community is a starting point. This is where serious development happens.",
+      a: "The Premium Collective includes live trading sessions, trade recaps, strategy deep-dives, reinforcement activities, and direct mentor access. The free community is a starting point. This is where the real work happens.",
     },
     {
       q: "Do I need to complete the Accelerator first?",
-      a: "No, the Collective is open to all active traders. That said, if you're a complete beginner, the Accelerator will give you the foundational structure to get the most out of the Collective.",
+      a: "No, the Collective is open to all active traders. That said, if you're starting from scratch, the Accelerator will give you the foundation to get the most out of it.",
     },
     {
       q: "What platforms do you use?",
-      a: "Discord for community discussions and async analysis. Live sessions are conducted via video call with screen sharing for real-time chart walkthroughs.",
+      a: "Discord for community and async analysis. Live sessions run via video call with screen sharing for real-time chart walkthroughs.",
     },
     {
       q: "Is this a signals service?",
-      a: "No. We don't tell you what to buy or sell. The Collective provides education, analytical frameworks, and live context so you can make better decisions yourself. The goal is independence, not dependence.",
+      a: "No. We don't tell you what to buy or sell. The Collective gives you the education, context, and live analysis to make better decisions yourself — the aim is that you eventually don't need anyone else to call trades for you.",
     },
   ];
 
@@ -157,14 +157,13 @@ const Collective = () => {
               className="text-xl md:text-2xl text-muted-foreground mb-4 animate-fade-in"
               style={{ animationDelay: "0.2s" }}
             >
-              Live analysis, advanced strategy, and a community of traders who
-              take their craft seriously.
+              Live sessions, advanced strategy, and traders who are actually putting in the work.
             </p>
             <p
               className="text-base text-muted-foreground mb-10 animate-fade-in"
               style={{ animationDelay: "0.25s" }}
             >
-              Finished the Accelerator? This is where the real development continues.
+              Finished the Accelerator? This is where the development continues.
             </p>
             <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
@@ -208,8 +207,7 @@ const Collective = () => {
                 Choose Your Commitment
               </p>
               <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-4">
-                Simple, Transparent{" "}
-                <span className="text-primary">Pricing</span>
+                Pick your <span className="text-primary">pace</span>
               </h2>
               <p className="text-lg text-muted-foreground max-w-xl mx-auto">
                 Same access at every tier. Commit longer, pay less.
@@ -345,10 +343,10 @@ const Collective = () => {
             <ScrollReveal>
               <ul className="space-y-5 mb-10">
                 {[
-                  "Accelerator graduates ready to keep building momentum",
-                  "You've moved past the basics and want ongoing sharpening",
-                  "You want live market context, not just recorded content",
-                  "You value discipline and peer accountability",
+                  "Accelerator graduates who want to keep the momentum going",
+                  "You have a foundation and want live input to keep developing it",
+                  "You want to be in the room when trades are being called, not watching replays",
+                  "You want to be around traders who hold each other to a standard",
                 ].map((item, idx) => (
                   <li key={idx} className="flex gap-4 items-start">
                     <Check className="w-5 h-5 text-primary flex-shrink-0 mt-0.5" />
@@ -397,11 +395,10 @@ const Collective = () => {
         <div className="container-studio relative">
           <ScrollReveal className="max-w-2xl mx-auto text-center">
             <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
-              Ready to <span className="text-primary">Join</span>?
+              Most trading content is <span className="text-primary">entertainment</span>.
             </h2>
             <p className="text-lg text-muted-foreground mb-8">
-              Stop consuming. Start developing. Join traders who take their
-              craft seriously.
+              This is the work. Come in if you're ready for it.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
               <Button
