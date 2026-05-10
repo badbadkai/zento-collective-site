@@ -156,58 +156,57 @@ const Start = () => {
           <div className="max-w-5xl mx-auto">
             <ScrollReveal className="mb-10 text-center">
               <h2 className="font-heading text-3xl md:text-4xl font-semibold">
-                The <span className="text-primary">30-Day</span> Curriculum
+                The <span className="text-primary">5-Week</span> Curriculum
               </h2>
             </ScrollReveal>
 
             <ScrollRevealGroup className="space-y-8" staggerDelay={150}>
               {[
                 {
-                  section: "Week 1 — Days 1–5",
+                  section: "Week 1 — Days 1–6",
                   title: "Foundations",
                   days: [
-                    { day: "Day 1", topic: "Market Foundations" },
-                    { day: "Day 2", topic: "Risk & Capital" },
-                    { day: "Day 3", topic: "Trading Psychology" },
-                    { day: "Day 4", topic: "Charts & Price Action" },
-                    { day: "Day 5", topic: "Structure & Routine" },
-                    { day: "6–7", topic: "Weekend Review", weekend: true },
+                    { day: "Day 1", topic: "Intro to Trading, Sessions & Instruments" },
+                    { day: "Day 2", topic: "Platform Setup (TradingView Demo)" },
+                    { day: "Day 3", topic: "Position Sizing, TP & SL" },
+                    { day: "Day 4", topic: "Risk Management & R:R" },
+                    { day: "Day 5", topic: "Trading Psychology" },
+                    { day: "Day 6", topic: "Live Lesson + Q&A", weekend: true },
                   ],
                 },
                 {
-                  section: "Week 2 — Days 8–12",
-                  title: "Strategy",
+                  section: "Week 2 — Days 8–13",
+                  title: "Technicals",
                   days: [
-                    { day: "Day 8", topic: "Market Environment" },
-                    { day: "Day 9", topic: "Setup Identification" },
-                    { day: "Day 10", topic: "Entry Rules" },
-                    { day: "Day 11", topic: "Exit & Management" },
-                    { day: "Day 12", topic: "Blueprint Assembly" },
-                    { day: "13–14", topic: "Weekend Review", weekend: true },
+                    { day: "Day 8", topic: "Timeframes & HTF/LTF Alignment" },
+                    { day: "Day 9", topic: "Liquidity & Market Structure" },
+                    { day: "Day 10", topic: "Power of 3 & News Events" },
+                    { day: "Day 11", topic: "FVGs & IFVGs" },
+                    { day: "Day 12", topic: "Entry Frameworks & Trade Management" },
+                    { day: "Day 13", topic: "Live Lesson + Q&A", weekend: true },
                   ],
                 },
                 {
-                  section: "Week 3 — Days 15–19",
-                  title: "Execution",
+                  section: "Week 3 — Days 15–20",
+                  title: "Optimisation",
                   days: [
-                    { day: "Day 15", topic: "Demo Trading Begins" },
-                    { day: "Day 16", topic: "Trade Journaling" },
-                    { day: "Day 17", topic: "Error Tracking" },
-                    { day: "Day 18", topic: "Loss Management" },
-                    { day: "Day 19", topic: "Consistency Protocol" },
-                    { day: "20–21", topic: "Weekend Review", weekend: true },
+                    { day: "Day 15", topic: "Building Your Strategy" },
+                    { day: "Day 16", topic: "Journaling: Why & How" },
+                    { day: "Day 17", topic: "How to Backtest" },
+                    { day: "Day 18", topic: "Review & Refine" },
+                    { day: "Day 19", topic: "Demo Trading Prep" },
+                    { day: "Day 20", topic: "Live Lesson + Q&A", weekend: true },
                   ],
                 },
                 {
                   section: "Week 4 — Days 22–26",
-                  title: "Performance",
+                  title: "Prop Firms & Team Models",
                   days: [
-                    { day: "Day 22", topic: "Expectancy & Edge" },
-                    { day: "Day 23", topic: "Drawdown Rules" },
-                    { day: "Day 24", topic: "Prop Firm Simulation" },
-                    { day: "Day 25", topic: "Strategy Lock-In" },
-                    { day: "Day 26", topic: "90-Day Plan" },
-                    { day: "27–30", topic: "Final Review", weekend: true },
+                    { day: "Day 22", topic: "What Are Prop Firms?" },
+                    { day: "Day 23", topic: "Scaling Plan & Advanced Risk" },
+                    { day: "Day 24", topic: "DJay's Model" },
+                    { day: "Day 25", topic: "Kai's Model" },
+                    { day: "Day 26", topic: "Tradovate Setup for Prop Firms" },
                   ],
                 },
               ].map((sectionData, idx) => (
@@ -241,6 +240,22 @@ const Start = () => {
                   </div>
                 </div>
               ))}
+
+              {/* Week 5 */}
+              <div>
+                <div className="flex items-center gap-3 mb-4">
+                  <span className="text-xs font-bold text-primary uppercase tracking-wider">
+                    Week 5 — Days 29–33
+                  </span>
+                  <h3 className="font-heading text-lg font-semibold text-foreground">
+                    Live Trading
+                  </h3>
+                </div>
+                <div className="p-5 rounded-xl border border-primary/20 bg-primary/5">
+                  <p className="text-sm text-foreground font-medium mb-1">Full week of live trading sessions together.</p>
+                  <p className="text-sm text-muted-foreground">Your transition into the Collective — ongoing live sessions, advanced analysis, and community.</p>
+                </div>
+              </div>
             </ScrollRevealGroup>
           </div>
         </div>
