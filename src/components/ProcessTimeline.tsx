@@ -42,7 +42,7 @@ export const ProcessTimeline = () => {
         {/* Section Header */}
         <ScrollReveal className="text-center mb-16 md:mb-20">
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
-            The Progression
+            The Process
           </p>
           <h2
             className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4"
@@ -53,8 +53,7 @@ export const ProcessTimeline = () => {
           <p
             className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto"
 >
-            A systematic pathway from foundational understanding to
-            confident, disciplined execution.
+            Most traders skip to strategy before the foundation is built. This is the order we follow.
           </p>
         </ScrollReveal>
 
