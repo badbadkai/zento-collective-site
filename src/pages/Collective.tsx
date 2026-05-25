@@ -119,8 +119,8 @@ const Collective = () => {
       a: "The Premium Collective includes live trading sessions, trade recaps, strategy deep-dives, reinforcement activities, and direct mentor access. The free community is a starting point. This is where the real work happens.",
     },
     {
-      q: "Do I need to complete the Accelerator first?",
-      a: "No, the Collective is open to all active traders. That said, if you're starting from scratch, the Accelerator will give you the foundation to get the most out of it.",
+      q: "Do I need prior trading experience?",
+      a: "No. The Collective is open to all levels. If you're starting from scratch, we'll build your foundation. If you already have experience, the live sessions and community will sharpen your edge.",
     },
     {
       q: "What platforms do you use?",
@@ -163,7 +163,7 @@ const Collective = () => {
               className="text-base text-muted-foreground mb-10 animate-fade-in"
               style={{ animationDelay: "0.25s" }}
             >
-              Finished the Accelerator? This is where the development continues.
+              Live sessions, community, and education — everything in one place.
             </p>
             <div
               className="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in"
@@ -343,7 +343,7 @@ const Collective = () => {
             <ScrollReveal>
               <ul className="space-y-5 mb-10">
                 {[
-                  "Accelerator graduates who want to keep the momentum going",
+                  "Traders who want structured development, not just signals",
                   "You have a foundation and want live input to keep developing it",
                   "You want to be in the room when trades are being called, not watching replays",
                   "You want to be around traders who hold each other to a standard",
@@ -356,11 +356,7 @@ const Collective = () => {
               </ul>
 
               <p className="text-center text-base text-muted-foreground">
-                New to trading? The{" "}
-                <Link to="/start" className="text-primary hover:underline font-medium">
-                  Accelerator
-                </Link>{" "}
-                builds your foundation first. The Collective is where you go next.
+                Whether you're starting from zero or refining an existing edge, the Collective is built to meet you where you are.
               </p>
             </ScrollReveal>
           </div>

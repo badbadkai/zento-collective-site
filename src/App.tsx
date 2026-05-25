@@ -3,7 +3,7 @@ import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
 import { lazy, Suspense, useEffect } from "react";
-import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate, useLocation } from "react-router-dom";
 import { AnimatePresence } from "framer-motion";
 import { ThemeProvider } from "next-themes";
 import { Loader2 } from "lucide-react";
@@ -14,11 +14,9 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RiskDisclaimer from "./pages/RiskDisclaimer";
 import RefundPolicy from "./pages/RefundPolicy";
 import Contact from "./pages/Contact";
-import Start from "./pages/Start";
 import Collective from "./pages/Collective";
 import Articles from "./pages/Articles";
 import WaitlistPage from "./pages/WaitlistPage";
-import BootcampWaitlist from "./pages/BootcampWaitlist";
 import PageTransition from "./components/PageTransition";
 import { ErrorBoundary } from "./components/ErrorBoundary";
 import { Analytics } from "@vercel/analytics/react";
@@ -58,11 +56,11 @@ const MarketingRoutes = () => {
     <AnimatePresence mode="wait">
       <Routes location={location} key={location.pathname}>
         <Route path="/" element={<PageTransition><Index /></PageTransition>} />
-        <Route path="/start" element={<PageTransition><Start /></PageTransition>} />
+        <Route path="/start" element={<Navigate to="/collective" replace />} />
+        <Route path="/apply" element={<Navigate to="/collective" replace />} />
+        <Route path="/bootcamp-waitlist" element={<Navigate to="/collective" replace />} />
         <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
-        <Route path="/apply" element={<PageTransition><BootcampWaitlist /></PageTransition>} />
-        <Route path="/bootcamp-waitlist" element={<PageTransition><BootcampWaitlist /></PageTransition>} />
         <Route path="/articles" element={<PageTransition><Articles /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />
         <Route path="/terms" element={<PageTransition><Terms /></PageTransition>} />

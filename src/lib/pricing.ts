@@ -21,28 +21,22 @@ const OLD_COMBINED_PRICE: Record<string, number> = {
 
 // Fixed pricing table (in each currency)
 const PRICING_TABLE: Record<string, Record<string, number>> = {
-  accelerator: {
-    USD: 399,
-    SGD: 519,
-    GBP: 299,
-    EUR: 359
-  },
   collective_monthly: {
     USD: 99,
     SGD: 129,
-    GBP: 75,
+    GBP: 99,
     EUR: 89
   },
   collective_quarterly: {
     USD: 269,
     SGD: 349,
-    GBP: 199,
+    GBP: 265,
     EUR: 239
   },
   collective_annual: {
     USD: 899,
     SGD: 1169,
-    GBP: 679,
+    GBP: 899,
     EUR: 809
   }
 };

@@ -122,7 +122,7 @@ export const Header = () => {
               <DropdownMenuItem
                 onClick={() => {
                   window.scrollTo(0, 0);
-                  navigate("/apply");
+                  navigate("/collective");
                 }}
                 className="cursor-pointer"
               >
@@ -195,7 +195,7 @@ export const Header = () => {
                       <button
                         onClick={() => {
                           window.scrollTo(0, 0);
-                          navigate("/apply");
+                          navigate("/collective");
                         }}
                         className="w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
                       >

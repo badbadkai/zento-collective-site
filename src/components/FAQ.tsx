@@ -15,11 +15,11 @@ export const FAQ = () => {
     },
     {
       q: "Is this suitable for beginners?",
-      a: "Yes. If you're new to trading, the Accelerator is built specifically for you. It's a 30-day programme that takes you from zero to a working trading plan with written rules, risk management, and real demo trading experience.",
+      a: "Yes. The Collective is built to develop traders from the ground up. If you're new, we cover markets, risk, psychology, and execution before moving into advanced strategy. The only requirement is the willingness to put in the work.",
     },
     {
-      q: "I already know the basics but I'm not consistent. Which programme is right for me?",
-      a: "The Accelerator will give you the structured foundation you need, and the Premium Collective is where you sharpen it. Weekly live sessions, institutional-grade analysis, and peer accountability help you rebuild what's broken and develop real execution discipline.",
+      q: "I already know the basics but I'm not consistent. Is this for me?",
+      a: "Absolutely. The Collective is where inconsistency gets addressed directly. Weekly live sessions, institutional-grade analysis, and peer accountability help you rebuild what's broken and develop real execution discipline.",
     },
     {
       q: "What is the Premium Collective?",
