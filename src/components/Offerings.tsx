@@ -6,9 +6,7 @@ import { usePricing } from "@/context/PricingContext";
 import { getCurrencySymbol } from "@/lib/pricing";
 import { Price } from "@/components/Price";
 
-const WHOP_MONTHLY_URL =
-  "https://whop.com/zento-collective/zento-collective-premium/?utm_source=store_page&funnelId=store_c45e4b4b-1cd0-4812-9b64-30890d429456";
-const WHOP_URL = "https://whop.com/zento-collective/zento-collective-premium/";
+const WHOP_URL = "https://whop.com/zento-collective/zentocollective-premium/";
 
 const features = [
   "Live trading sessions",
@@ -33,7 +31,7 @@ export const Offerings = () => {
       sub: null,
       badge: null,
       highlighted: false,
-      url: WHOP_MONTHLY_URL,
+      url: WHOP_URL,
     },
     {
       id: "quarterly",
