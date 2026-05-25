@@ -254,7 +254,7 @@ export const Hero = () => {
           className="mt-6 text-sm text-muted-foreground animate-fade-in"
           style={{ animationDelay: "0.4s" }}
         >
-          Instant access. Cancel anytime.
+          Instant access. 14-day free trial. Cancel anytime.
         </p>
 
         {/* Decorative divider */}
