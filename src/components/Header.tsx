@@ -126,7 +126,7 @@ export const Header = () => {
                 }}
                 className="cursor-pointer"
               >
-                Waitlist
+                1-to-1 Waitlist
               </DropdownMenuItem>
             </DropdownMenuContent>
           </DropdownMenu>
@@ -199,7 +199,7 @@ export const Header = () => {
                         }}
                         className="w-full text-left px-4 py-3 text-base font-medium text-foreground hover:bg-muted rounded-lg transition-colors"
                       >
-                        Waitlist
+                        1-to-1 Waitlist
                       </button>
                     </SheetClose>
                   </div>

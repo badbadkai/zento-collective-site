@@ -22,16 +22,24 @@ export const FAQ = () => {
       a: "Absolutely. The Collective is where inconsistency gets addressed directly. Weekly live sessions, institutional-grade analysis, and peer accountability help you rebuild what's broken and develop real execution discipline.",
     },
     {
-      q: "What is the Premium Collective?",
-      a: "The Collective is our ongoing monthly membership for active traders. It includes weekly live trading sessions, institutional-grade market analysis, advanced strategy deep-dives, and direct peer and mentor access. It's where traders go after completing a programme — or if they already have a system and want continuous sharpening.",
+      q: "Can I cancel anytime?",
+      a: "Monthly memberships can be cancelled anytime — no lock-in. Quarterly plans are billed upfront for the full period. Lifetime is a one-time payment with no recurring fees.",
+    },
+    {
+      q: "What's different from the free community?",
+      a: "The Collective includes live trading sessions, trade recaps, strategy deep-dives, reinforcement activities, and direct mentor access. The free community is a starting point. This is where the real work happens.",
+    },
+    {
+      q: "What platforms do you use?",
+      a: "Discord for community and async analysis. Live sessions run via video call with screen sharing for real-time chart walkthroughs.",
     },
     {
       q: "Do you provide trading signals?",
-      a: "No. We don't tell you what to buy or sell. Every programme and the Collective itself is built around developing your independent decision-making. The goal is to make you self-sufficient, not dependent on someone else's calls.",
+      a: "No. We don't tell you what to buy or sell. The Collective is built around developing your independent decision-making. The goal is to make you self-sufficient, not dependent on someone else's calls.",
     },
     {
       q: "What is your refund policy?",
-      a: "All sales are final. Our programmes require active engagement to deliver results, and we're upfront about this. If you're unsure which path is right for you, visit each programme's page for full details or contact us directly.",
+      a: "All sales are final. The Collective requires active engagement to deliver results, and we're upfront about this. If you have questions before joining, contact us directly.",
     },
   ];
 

@@ -33,11 +33,11 @@ const PRICING_TABLE: Record<string, Record<string, number>> = {
     GBP: 265,
     EUR: 239
   },
-  collective_annual: {
-    USD: 899,
-    SGD: 1169,
-    GBP: 899,
-    EUR: 809
+  collective_lifetime: {
+    USD: 1249,
+    SGD: 1649,
+    GBP: 999,
+    EUR: 1149
   }
 };
 

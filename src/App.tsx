@@ -14,7 +14,6 @@ import PrivacyPolicy from "./pages/PrivacyPolicy";
 import RiskDisclaimer from "./pages/RiskDisclaimer";
 import RefundPolicy from "./pages/RefundPolicy";
 import Contact from "./pages/Contact";
-import Collective from "./pages/Collective";
 import Articles from "./pages/Articles";
 import WaitlistPage from "./pages/WaitlistPage";
 import PageTransition from "./components/PageTransition";
@@ -59,7 +58,7 @@ const MarketingRoutes = () => {
         <Route path="/start" element={<Navigate to="/collective" replace />} />
         <Route path="/apply" element={<Navigate to="/collective" replace />} />
         <Route path="/bootcamp-waitlist" element={<Navigate to="/collective" replace />} />
-        <Route path="/collective" element={<PageTransition><Collective /></PageTransition>} />
+        <Route path="/collective" element={<Navigate to="/" replace />} />
         <Route path="/waitlist" element={<PageTransition><WaitlistPage /></PageTransition>} />
         <Route path="/articles" element={<PageTransition><Articles /></PageTransition>} />
         <Route path="/contact" element={<PageTransition><Contact /></PageTransition>} />

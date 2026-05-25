@@ -1,81 +1,68 @@
-import { BarChart3, BookOpen, FileText } from "lucide-react";
+import { Radio, BarChart3, Layers, MessageCircle } from "lucide-react";
 import { ScrollReveal, ScrollRevealGroup } from "@/components/ScrollReveal";
 
 export const Community = () => {
-  const channels = [
+  const features = [
+    {
+      icon: Radio,
+      title: "Live Trading Sessions",
+      description:
+        "Real-time market analysis with annotated setups, live Q&A, and recordings for sessions you can't attend.",
+    },
     {
       icon: BarChart3,
-      name: "Live Market Intelligence",
+      title: "Trade Recaps & Market Breakdowns",
       description:
-        "Real-time analysis, annotated setups, and post-trade reviews from active practitioners.",
+        "Post-session recaps with key levels and reasoning behind each setup. Every trade has a story — you learn it.",
     },
     {
-      icon: BookOpen,
-      name: "Structured Education",
+      icon: Layers,
+      title: "Resources & Learning Reinforcement",
       description:
-        "Modular learning paths covering foundational concepts through advanced technical frameworks.",
+        "Strategy deep-dives, structured activities, and practice exercises that build execution quality over time.",
     },
     {
-      icon: FileText,
-      name: "Performance Documentation",
+      icon: MessageCircle,
+      title: "Direct Peer & Mentor Access",
       description:
-        "Systematic journaling protocols and pattern recognition tools for continuous improvement.",
+        "Trade reviews, structured discussions, and accountability with people who are actually trading — not lurking.",
     },
   ];
 
   return (
     <section className="section-spacing relative">
-      {/* Background */}
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
 
       <div className="container-studio relative">
-        {/* Section Header */}
         <ScrollReveal className="text-center mb-12 md:mb-16">
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
-            The Environment
+            What You Get
           </p>
-          <h2
-            className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4"
->
-            What You'll{" "}
-            <span className="text-primary">Access</span>
+          <h2 className="font-heading text-3xl sm:text-4xl md:text-5xl font-semibold mb-4">
+            What's Inside the{" "}
+            <span className="text-primary">Collective</span>
           </h2>
-          <p
-            className="text-muted-foreground text-base md:text-lg max-w-2xl mx-auto"
->
-            A curated workspace designed for deliberate practice and measurable
-            progression.
-          </p>
         </ScrollReveal>
 
-        {/* Channels */}
-        <ScrollRevealGroup className="max-w-3xl mx-auto space-y-4" staggerDelay={120}>
-          {channels.map((channel, index) => {
-            const IconComponent = channel.icon;
+        <ScrollRevealGroup
+          className="max-w-4xl mx-auto grid md:grid-cols-2 gap-x-12 gap-y-10"
+          staggerDelay={100}
+        >
+          {features.map((feature, idx) => {
+            const IconComponent = feature.icon;
             return (
-              <div
-                key={index}
-                className="group relative p-6 md:p-8 rounded-2xl border border-border/50 bg-card/30 backdrop-blur-sm hover:border-primary/30 hover:bg-card/60 transition-all duration-300"
-              >
-                <div className="flex items-start gap-4 md:gap-6">
-                  {/* Icon */}
-                  <div className="flex-shrink-0 w-12 h-12 rounded-xl bg-primary/10 flex items-center justify-center group-hover:bg-primary/20 transition-colors">
-                    <IconComponent className="w-6 h-6 text-primary" />
-                  </div>
-
-                  {/* Content */}
-                  <div>
-                    <h3 className="font-heading text-lg md:text-xl font-semibold mb-2 text-foreground group-hover:text-primary transition-colors">
-                      {channel.name}
-                    </h3>
-                    <p className="text-sm md:text-base text-muted-foreground leading-relaxed">
-                      {channel.description}
-                    </p>
-                  </div>
+              <div key={idx} className="flex gap-5">
+                <div className="flex-shrink-0 mt-0.5">
+                  <IconComponent className="w-5 h-5 text-primary" />
                 </div>
-
-                {/* Hover accent */}
-                <div className="absolute left-0 top-1/2 -translate-y-1/2 w-1 h-0 bg-primary rounded-r-full group-hover:h-12 transition-all duration-300" />
+                <div>
+                  <h3 className="font-heading text-xl font-semibold text-foreground mb-2">
+                    {feature.title}
+                  </h3>
+                  <p className="text-muted-foreground text-base leading-relaxed">
+                    {feature.description}
+                  </p>
+                </div>
               </div>
             );
           })}
