@@ -60,7 +60,7 @@ export const Offerings = () => {
       <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/10 to-background" />
 
       <div className="container-studio relative">
-        <ScrollReveal className="text-center mb-12 md:mb-16">
+        <ScrollReveal className="text-center mb-8">
           <p className="text-primary font-medium text-sm tracking-widest uppercase mb-4">
             Choose Your Commitment
           </p>
@@ -73,7 +73,7 @@ export const Offerings = () => {
         </ScrollReveal>
 
         {/* Free trial pill */}
-        <ScrollReveal className="flex justify-center mb-10 -mt-4">
+        <ScrollReveal className="flex justify-center mb-12">
           <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-sm text-foreground">
             <span className="text-primary text-xs">✦</span>
             First time? Monthly &amp; quarterly plans include a{" "}
