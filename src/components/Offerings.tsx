@@ -72,6 +72,15 @@ export const Offerings = () => {
           </p>
         </ScrollReveal>
 
+        {/* Free trial pill */}
+        <ScrollReveal className="flex justify-center mb-10 -mt-4">
+          <span className="inline-flex items-center gap-2 px-4 py-2 rounded-full border border-primary/30 bg-primary/5 text-sm text-foreground">
+            <span className="text-primary text-xs">✦</span>
+            First time? Monthly &amp; quarterly plans include a{" "}
+            <span className="font-semibold text-primary">14-day free trial</span>.
+          </span>
+        </ScrollReveal>
+
         <ScrollRevealGroup
           className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto"
           staggerDelay={120}
