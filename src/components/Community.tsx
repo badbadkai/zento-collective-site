@@ -7,25 +7,25 @@ export const Community = () => {
       icon: Radio,
       title: "Live Trading Sessions",
       description:
-        "Real-time market analysis with annotated setups, live Q&A, and recordings for sessions you can't attend.",
+        "We go live on the charts. Setups called in real time, questions answered, and every session recorded if you miss it.",
     },
     {
       icon: BarChart3,
       title: "Trade Recaps & Market Breakdowns",
       description:
-        "Post-session recaps with key levels and reasoning behind each setup. Every trade has a story — you learn it.",
+        "After each session, we walk through what happened, what we saw, and why. Context you can actually build on.",
     },
     {
       icon: Layers,
       title: "Resources & Learning Reinforcement",
       description:
-        "Strategy deep-dives, structured activities, and practice exercises that build execution quality over time.",
+        "Deep dives, exercises, and practice material to keep you building between sessions. Not just content to scroll past.",
     },
     {
       icon: MessageCircle,
       title: "Direct Peer & Mentor Access",
       description:
-        "Trade reviews, structured discussions, and accountability with people who are actually trading — not lurking.",
+        "Get your trades reviewed, ask questions, and be around people who are actually in the markets every day.",
     },
   ];
 
