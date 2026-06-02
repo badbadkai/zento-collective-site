@@ -1,6 +1,5 @@
 import { useEffect } from "react";
-import { Check, ArrowRight } from "lucide-react";
-import { Button } from "@/components/ui/button";
+import { Check } from "lucide-react";
 import { Header } from "@/components/Header";
 import { Hero } from "@/components/Hero";
 import { Offerings } from "@/components/Offerings";
@@ -56,33 +55,6 @@ const Index = () => {
       </section>
 
       <FAQ />
-
-      {/* Final CTA */}
-      <section className="section-spacing relative border-t border-border/20">
-        <div className="absolute inset-0 bg-gradient-to-b from-background via-muted/20 to-background" />
-        <div className="container-studio relative">
-          <ScrollReveal className="max-w-2xl mx-auto text-center">
-            <h2 className="font-heading text-3xl md:text-4xl font-semibold mb-6">
-              Most trading content is{" "}
-              <span className="text-primary">entertainment</span>.
-            </h2>
-            <p className="text-lg text-muted-foreground mb-8">
-              This is the work. Come in if you're ready for it.
-            </p>
-            <Button
-              variant="hero"
-              size="lg"
-              className="group"
-              onClick={() =>
-                document.getElementById("offerings")?.scrollIntoView({ behavior: "smooth" })
-              }
-            >
-              View Plans
-              <ArrowRight className="w-4 h-4 transition-transform duration-300 group-hover:translate-x-1" />
-            </Button>
-          </ScrollReveal>
-        </div>
-      </section>
 
       <Newsletter />
       <Footer />
