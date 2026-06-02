@@ -41,10 +41,10 @@ const Contact = () => {
                       For general inquiries and support:
                     </p>
                     <a
-                      href="mailto:support@zentocollective.com"
+                      href="mailto:zentocollective@gmail.com"
                       className="text-primary hover:underline font-medium text-sm"
                     >
-                      support@zentocollective.com
+                      zentocollective@gmail.com (General)
                     </a>
                   </div>
                 </div>
@@ -86,7 +86,7 @@ const Contact = () => {
                   {
                     title: "General Inquiries",
                     description:
-                      "For general questions about Zentō Collective, our programs, or services, please email us at support@zentocollective.com.",
+                      "For general questions about Zentō Collective, our programs, or services, please email us at zentocollective@gmail.com.",
                   },
                   {
                     title: "Technical Support",
@@ -138,12 +138,7 @@ const Contact = () => {
                   </div>
                   <h3 className="font-heading text-xl font-semibold mb-1">Kai</h3>
                   <p className="text-primary text-sm font-medium mb-3">Founder</p>
-                  <a
-                    href="mailto:kai@zentocollective.com"
-                    className="text-primary hover:underline font-medium text-sm"
-                  >
-                    kai@zentocollective.com
-                  </a>
+                  <p className="text-muted-foreground text-sm">Reach us at the general email below.</p>
                 </div>
 
                 {/* Djay */}
@@ -153,12 +148,7 @@ const Contact = () => {
                   </div>
                   <h3 className="font-heading text-xl font-semibold mb-1">Djay</h3>
                   <p className="text-primary text-sm font-medium mb-3">Founder</p>
-                  <a
-                    href="mailto:djay@zentocollective.com"
-                    className="text-primary hover:underline font-medium text-sm"
-                  >
-                    djay@zentocollective.com
-                  </a>
+                  <p className="text-muted-foreground text-sm">Reach us at the general email below.</p>
                 </div>
               </div>
             </section>
