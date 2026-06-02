@@ -138,7 +138,7 @@ const Contact = () => {
                   </div>
                   <h3 className="font-heading text-xl font-semibold mb-1">Kai</h3>
                   <p className="text-primary text-sm font-medium mb-3">Founder</p>
-                  <p className="text-muted-foreground text-sm">Reach us at the general email below.</p>
+                  <a href="mailto:zentocollective@gmail.com" className="text-primary hover:underline font-medium text-sm">zentocollective@gmail.com</a>
                 </div>
 
                 {/* Djay */}
@@ -148,7 +148,7 @@ const Contact = () => {
                   </div>
                   <h3 className="font-heading text-xl font-semibold mb-1">Djay</h3>
                   <p className="text-primary text-sm font-medium mb-3">Founder</p>
-                  <p className="text-muted-foreground text-sm">Reach us at the general email below.</p>
+                  <a href="mailto:zentocollective@gmail.com" className="text-primary hover:underline font-medium text-sm">zentocollective@gmail.com</a>
                 </div>
               </div>
             </section>
